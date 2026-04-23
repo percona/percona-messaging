@@ -9,7 +9,7 @@ Use this file as the **source list** before creating issues on GitHub.
 
 Use this table to see what already exists on GitHub vs what is still only in the backlog sections below.
 
-**Project board:** [Messaging go-live](https://github.com/orgs/percona/projects/14) — one backlog for all messaging-program work. Differentiate launch vs non-launch using the custom field **Launch track** (`P0 Go-live`, `P1 Soon`, `P2 Later`, `Not launch`) plus saved views (**Launch** = filter to `P0 Go-live`; **All** = no filter). Execution still uses **Workflow stage** (`Todo`, `Next`, `In progress`, `Needs review`, `Done`). GitHub’s built-in **Status** field is optional.
+**Project board:** [Messaging go-live](https://github.com/orgs/percona/projects) — one backlog for all messaging-program work. Differentiate launch vs non-launch using the custom field **Launch track** (`P0 Go-live`, `P1 Soon`, `P2 Later`, `Not launch`) plus saved views (**Launch** = filter to `P0 Go-live`; **All** = no filter). Execution still uses **Workflow stage** (`Todo`, `Next`, `In progress`, `Needs review`, `Done`). GitHub’s built-in **Status** field is optional.
 
 **`gh` (field only):** to recreate **Launch track** on another org project, run  
 `gh project field-create <number> --owner percona --name "Launch track" --data-type SINGLE_SELECT --single-select-options "P0 Go-live,P1 Soon,P2 Later,Not launch"`  

@@ -40,4 +40,4 @@ Never use in any Percona content:
 
 [Vale](https://vale.sh/) rules under [`.vale/styles/Percona/`](../.vale/styles/Percona/) mirror this page for CI (see [`.github/workflows/terminology-check.yml`](../.github/workflows/terminology-check.yml)). When you change policy here, update the matching YAML rules. The `<!-- vale off -->` / `<!-- vale on -->` comments scope off the glossary so literal examples are not treated as violations.
 
-Local check (from repo root): install the [Vale CLI](https://vale.sh/docs/installation/) and run `vale --minAlertLevel=error .` (blocking rules only) or `vale --minAlertLevel=warning .` to include warnings such as em dashes and Managed Services phrasing.
+Local check (from repo root): install the [Vale CLI](https://vale.sh/docs/install) and run `vale --minAlertLevel=error .` (blocking rules only) or `vale --minAlertLevel=warning .` to include warnings such as em dashes and Managed Services phrasing.
