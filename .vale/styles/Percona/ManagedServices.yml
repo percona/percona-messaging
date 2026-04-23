@@ -1,0 +1,6 @@
+# reference/banned-terms.md — Deprecated terminology (ExpertOps)
+extends: existence
+message: "Use Percona ExpertOps; add '(formerly Managed Services)' for historical context (reference/banned-terms.md)."
+level: warning
+raw:
+  - (?mi)^(?!.*(?:formerly|previously|old name)).*\bManaged Services\b
