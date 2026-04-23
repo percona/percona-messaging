@@ -4,6 +4,8 @@
 # Be conservative: `accept` includes 429 so vendor rate limits do not fail CI.
 max_redirects = 8
 max_concurrency = 4
+# Retries after 429 can amplify rate limits (see lychee rate-limit docs).
+max_retries = 0
 timeout = 45
 require_https = false
 cache = false

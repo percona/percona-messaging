@@ -50,10 +50,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      # lychee-action@v1.9.0 defaults to lychee 0.14.0, which ignored `accept` from
+      # .lychee.toml (429 still failed). Pin >=0.14.1 so accept=429 is honored; see
+      # https://github.com/lycheeverse/lychee/issues/1340
       - name: Check links
         uses: lycheeverse/lychee-action@v1.9.0
         with:
           args: --config .lychee.toml --verbose --no-progress '**/*.md'
           fail: true
+          lycheeVersion: "0.14.1"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
