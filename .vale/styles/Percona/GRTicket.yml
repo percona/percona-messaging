@@ -1,0 +1,6 @@
+# reference/banned-terms.md — Deprecated terminology (Jira)
+extends: existence
+message: "Use 'Jira ticket' or 'Jira design ticket' instead of 'GR ticket' (reference/banned-terms.md)."
+level: error
+tokens:
+  - GR ticket

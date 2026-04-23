@@ -9,7 +9,7 @@ Use this file as the **source list** before creating issues on GitHub.
 
 Use this table to see what already exists on GitHub vs what is still only in the backlog sections below.
 
-**Project board:** [Messaging go-live](https://github.com/orgs/percona/projects/14) — one backlog for all messaging-program work. Differentiate launch vs non-launch using the custom field **Launch track** (`P0 Go-live`, `P1 Soon`, `P2 Later`, `Not launch`) plus saved views (**Launch** = filter to `P0 Go-live`; **All** = no filter). Execution still uses **Workflow stage** (`Todo`, `Next`, `In progress`, `Needs review`, `Done`). GitHub’s built-in **Status** field is optional.
+**Project board:** [Messaging go-live](https://github.com/orgs/percona/projects) — one backlog for all messaging-program work. Differentiate launch vs non-launch using the custom field **Launch track** (`P0 Go-live`, `P1 Soon`, `P2 Later`, `Not launch`) plus saved views (**Launch** = filter to `P0 Go-live`; **All** = no filter). Execution still uses **Workflow stage** (`Todo`, `Next`, `In progress`, `Needs review`, `Done`). GitHub’s built-in **Status** field is optional.
 
 **`gh` (field only):** to recreate **Launch track** on another org project, run  
 `gh project field-create <number> --owner percona --name "Launch track" --data-type SINGLE_SELECT --single-select-options "P0 Go-live,P1 Soon,P2 Later,Not launch"`  
@@ -79,7 +79,7 @@ All workflows use `**actions/checkout@v4`** (official). Below: what is **pre-mad
 
 | Workflow                        | Marketplace / pre-built                                                                    | Custom (this repo)                                                                      | Could swap for more pre-built later                                                                                                                        |
 | ------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `terminology-check.yml`         | `actions/checkout` only                                                                    | Inline `grep` / shell for policy terms                                                  | Could move some patterns into `**typos`** `_typos.toml` (`[default.extend-words]` corrections) or a small **cspell** config; policy rules are still yours. |
+| `terminology-check.yml`         | `actions/checkout` only                                                                    | [Vale](https://vale.sh/) + `.vale/styles/Percona/` (mirrors `reference/banned-terms.md`) | Keep rules aligned with the reference page; typos (`_typos.toml`) stays spelling-only. |
 | `impact-check.yml`              | `actions/checkout`, `actions/setup-python`, `actions/github-script`                        | `scripts/impact_check.py`                                                               | Comment upsert could use **sticky PR comment** actions; map logic stays custom.                                                                            |
 | `smart-suggestions.yml`         | checkout, setup-python, **github-script**                                                  | `scripts/suggest_updates.py`                                                            | Same as above for comments.                                                                                                                                |
 | `content-governance-checks.yml` | checkout, **github-script**                                                                | `new_file_gate.py`, `check_doc_coverage.py`, `duplicate_detector.py`                    | Gate/coverage/duplicate logic is inherently repo-specific.                                                                                                 |
@@ -88,7 +88,7 @@ All workflows use `**actions/checkout@v4`** (official). Below: what is **pre-mad
 | `prose-and-links.yml`           | **crate-ci/typos**, **DavidAnson/markdownlint-cli2-action**, **lycheeverse/lychee-action** | Config only: `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`, `.markdownlintignore` | Fully pre-built runners; you only maintain config.                                                                                                         |
 
 
-`**actions/github-script`:** maintained by GitHub; your **inline JavaScript** is custom. Alternatives: `**peter-evans/find-comment` + `create-or-update-comment`**, or **marocchino/sticky-pull-request-comment**, if you want less JS in YAML.
+The `actions/github-script` action is maintained by GitHub; your **inline JavaScript** is custom. Alternatives: `peter-evans/find-comment` with `create-or-update-comment`, or **marocchino/sticky-pull-request-comment**, if you want less JS in YAML.
 
 ---
 

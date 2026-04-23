@@ -4,14 +4,17 @@
 # Be conservative: avoid failing on transient 403/429 from vendor sites
 max_redirects = 8
 max_concurrency = 4
-timeout = 25
+timeout = 45
 require_https = false
 cache = false
 
-accept = ["200", "204", "206", "301", "302", "303", "307", "308"]
+# 429: some vendor blogs rate-limit CI; treat as non-fatal when the host responds.
+accept = ["200", "204", "206", "301", "302", "303", "307", "308", "429"]
 
 exclude = [
   "^mailto:", # local validation only
+  # McKinsey DE often times out or blocks datacenter IPs in CI; keep citation in prose.
+  "^https://www\\.mckinsey\\.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024$",
 ]
 
 # Expand as needed when a host is consistently flaky in CI
