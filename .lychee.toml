@@ -17,10 +17,21 @@ exclude = [
   "^mailto:", # local validation only
   # McKinsey DE often times out or blocks datacenter IPs in CI; keep citation in prose.
   "^https://www\\.mckinsey\\.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024$",
+  # Gartner: still returns 403 from many automated / datacenter clients (including GitHub
+  # Actions) even with a browser-like User-Agent—WAF behavior, not a broken URL for readers.
+  # Link remains in markdown; CI skips only this URL so lychee does not fail the build.
+  "^https://www\\.gartner\\.com/en/articles/reduce-your-data-architecture-complexity-with-polyglot-persistence$",
 ]
 
 # Expand as needed when a host is consistently flaky in CI
 exclude_path = []
 
+# Many analyst and vendor sites return 403 to the default lychee User-Agent from GitHub
+# Actions (WAF / bot heuristics), even though the same URL works in a normal browser.
+# Use a stable browser-like UA plus typical document request headers so link checks
+# better match how readers open markdown links.
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+
 [headers]
-"User-Agent" = "Mozilla/5.0 (compatible; lychee-linkcheck; +https://github.com/lycheeverse/lychee)"
+"Accept" = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
+"Accept-Language" = "en-US,en;q=0.9"
