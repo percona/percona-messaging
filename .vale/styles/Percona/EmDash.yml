@@ -1,0 +1,6 @@
+# reference/banned-terms.md — Formatting (no em dash)
+extends: existence
+message: "Use commas, periods, colons, or parentheses instead of an em dash — (reference/banned-terms.md)."
+level: warning
+tokens:
+  - "—"

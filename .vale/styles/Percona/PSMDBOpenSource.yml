@@ -1,0 +1,9 @@
+# reference/banned-terms.md — Licensing accuracy (SSPL)
+# Same-line PSMDB + “open source” is blocked unless the line clarifies source-available,
+# or clearly refers to Apache‑licensed perimeter tooling. (List labels like
+# “- Encrypted open source:” are stripped via BlockIgnores in .vale.ini.)
+extends: existence
+message: "Percona Server for MongoDB is source available (SSPL), not open source (reference/banned-terms.md)."
+level: error
+raw:
+  - (?mi)^(?!.*source[\s-]available)(?!.*Apache\s+2\.0)(?=.*\bPercona\s+Server\s+for\s+MongoDB\b)(?=.*\bopen[\s-]+source\b).*$

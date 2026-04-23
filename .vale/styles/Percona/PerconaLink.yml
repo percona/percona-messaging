@@ -1,0 +1,6 @@
+# reference/banned-terms.md — Deprecated terminology (ClusterSync)
+extends: existence
+message: "Use Percona ClusterSync; add 'previously', 'formerly', or mention ClusterSync for historical context (reference/banned-terms.md)."
+level: error
+raw:
+  - (?mi)^(?!.*(?:ClusterSync|previously|formerly)).*\bPercona Link\b

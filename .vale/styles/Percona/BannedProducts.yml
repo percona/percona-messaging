@@ -1,0 +1,8 @@
+# reference/banned-terms.md — Banned terms
+extends: existence
+message: "Banned term (reference/banned-terms.md): remove '%s' entirely."
+level: error
+ignorecase: true
+tokens:
+  - Everest
+  - ProBuilds
