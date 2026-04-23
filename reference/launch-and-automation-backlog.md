@@ -9,7 +9,11 @@ Use this file as the **source list** before creating issues on GitHub.
 
 Use this table to see what already exists on GitHub vs what is still only in the backlog sections below.
 
-**Project board:** [Messaging go-live](https://github.com/orgs/percona/projects/14) — board columns use the custom field **Workflow stage** (`Todo`, `Next`, `In progress`, `Needs review`, `Done`). GitHub’s built-in **Status** field is optional.
+**Project board:** [Messaging go-live](https://github.com/orgs/percona/projects/14) — one backlog for all messaging-program work. Differentiate launch vs non-launch using the custom field **Launch track** (`P0 Go-live`, `P1 Soon`, `P2 Later`, `Not launch`) plus saved views (**Launch** = filter to `P0 Go-live`; **All** = no filter). Execution still uses **Workflow stage** (`Todo`, `Next`, `In progress`, `Needs review`, `Done`). GitHub’s built-in **Status** field is optional.
+
+**`gh` (field only):** to recreate **Launch track** on another org project, run  
+`gh project field-create <number> --owner percona --name "Launch track" --data-type SINGLE_SELECT --single-select-options "P0 Go-live,P1 Soon,P2 Later,Not launch"`  
+(`gh project` cannot create saved views yet — add **Launch** / **All** in the project UI; the **Messaging go-live** project readme documents this.)
 
 
 | #   | Title                                                                                          | URL                                                                                                            |
@@ -36,7 +40,7 @@ Use this table to see what already exists on GitHub vs what is still only in the
 | 20  | Implement: canonical discoverability check (beyond new-file doc coverage)                     | [https://github.com/percona/percona-messaging/issues/20](https://github.com/percona/percona-messaging/issues/20) |
 | 21  | Implement: fixture-based regression tests for automation scripts                             | [https://github.com/percona/percona-messaging/issues/21](https://github.com/percona/percona-messaging/issues/21) |
 
-**Project board policy:** add work to [Messaging go-live](https://github.com/orgs/percona/projects/14) only when it is **`P0 - launch blocker`** (or you explicitly decide otherwise). Issue **#13** is **not** on that project. Issues **#1–#12** may still appear there from earlier; remove them from the project if you want the board to match this policy.
+**Project board policy:** the board is **inclusive** (program + launch + later work can all live here). Set **Launch track** on every card so the **Launch** saved view stays honest. Align **Launch track** with issue labels when you triage (for example `P0 - launch blocker` → **P0 Go-live**; roadmap automation → **P2 Later** or **Not launch**). Issue **#13** may stay off the project by policy if you prefer; if it is on the board, set **Not launch** or **P2 Later** unless it truly blocks go-live.
 
 ## Bootstrap: push, labels, project, then issues
 
