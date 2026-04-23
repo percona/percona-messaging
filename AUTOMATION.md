@@ -58,7 +58,6 @@ This list is intentionally broader than current implementation so ideas are not 
 ### Planned next (high-confidence, near-term)
 
 - PR launch-readiness label consistency checks (`ready-for-launch`, `go-live:`*)
-- CODEOWNERS drift checks for new path scopes
 - Reviewer-SLA reminder automations for aging approvals
 - Confidence tracking for suggestion precision/recall over time
 
@@ -67,7 +66,6 @@ This list is intentionally broader than current implementation so ideas are not 
 - Decomposition-completeness assistant for propagation coverage
 - Canonical-link integrity check (new/changed docs must be discoverable from navigation docs)
 - Automation regression tests for scripts (fixture-based expected outputs)
-- Scheduled "rule drift" report when terminology/naming references and checks diverge
 - Auto-triage labeler for incoming issues (`intake`, `decomposition`, `governance`, `automation`, `training`)
 - PR change-risk scorer to suggest required reviewer set based on touched areas
 

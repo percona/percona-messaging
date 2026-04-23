@@ -50,7 +50,6 @@ This guide describes how to implement and operationalize this repository as an a
 ### 3.5 Automation opportunity backlog (next wave)
 
 - Add a PR label/status consistency check (for example `ready-for-launch` + `go-live:`*) so staging state is machine-readable.
-- Add a CODEOWNERS coverage drift check that flags new top-level content paths without explicit ownership rules.
 - Add reviewer-SLA reminders (issue or PR comment nudges) when pending approvals exceed target windows.
 - Add a decomposition-completeness assistant that checks whether likely propagation targets were considered before merge.
 
