@@ -1,0 +1,96 @@
+name: Staleness Report
+
+on:
+  schedule:
+    - cron: "0 14 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  stale-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate staleness report
+        run: |
+          python scripts/staleness_report.py \
+            --days 180 \
+            --output-md staleness-report.md \
+            --output-json staleness-report.json
+
+      - name: Upload staleness artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: staleness-report
+          path: |
+            staleness-report.md
+            staleness-report.json
+
+      - name: Upsert staleness issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-staleness-report -->";
+            const report = fs.readFileSync("staleness-report.md", "utf8");
+            const body = `${marker}\n${report}`;
+            const title = "Messaging content staleness report";
+            const { owner, repo } = context.repo;
+
+            const issues = await github.paginate(
+              github.rest.issues.listForRepo,
+              { owner, repo, state: "open", labels: "maintenance,staleness", per_page: 100 }
+            );
+            const existing = issues.find((i) => i.body && i.body.includes(marker));
+            const noStale = report.includes("No stale canonical markdown files found.");
+
+            if (existing && noStale) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body: "No stale canonical markdown files found in the latest run. Closing this report."
+              });
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                state: "closed"
+              });
+              return;
+            }
+
+            if (noStale && !existing) {
+              return;
+            }
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                title,
+                body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: ["maintenance", "staleness"]
+              });
+            }

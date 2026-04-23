@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Automation & CI",
+    "color": "0E8A16",
+    "description": "CI workflows, scripts, maps under automation/, and tooling."
+  },
+  {
+    "name": "Content & messaging",
+    "color": "1D76DB",
+    "description": "Canonical copy, products, use cases, case studies, and narrative."
+  },
+  {
+    "name": "Governance & policy",
+    "color": "5319E7",
+    "description": "Rules, review expectations, legal/compliance, naming, and editor rules alignment."
+  },
+  {
+    "name": "Go-live & repo setup",
+    "color": "B60205",
+    "description": "Before public: labels, branch protection, CODEOWNERS, hosting, read site, visibility."
+  },
+  {
+    "name": "Testing / sign-off",
+    "color": "BFDADC",
+    "description": "Someone still needs to verify the check, workflow, or process (manual or automated)."
+  },
+  {
+    "name": "Feature / build",
+    "color": "006B75",
+    "description": "New capability: build it, ship it, or add a new check."
+  },
+  {
+    "name": "Work session",
+    "color": "FEF2C0",
+    "description": "Time-boxed: walkthrough, training, or stakeholder session (not only code)."
+  },
+  {
+    "name": "Roadmap: soon",
+    "color": "C2E0C6",
+    "description": "High confidence next; right after or alongside launch prep."
+  },
+  {
+    "name": "Roadmap: later",
+    "color": "D4C5F9",
+    "description": "Scoping or priority TBD; not required for first public day."
+  },
+  {
+    "name": "P0 - launch blocker",
+    "color": "B60205",
+    "description": "Must close or explicitly accept risk before / at go-live. (Same as backlog “P0”.)"
+  },
+  {
+    "name": "P1 - important soon",
+    "color": "D93F0B",
+    "description": "Do right after launch if not blocking. (Same as backlog “P1”.)"
+  },
+  {
+    "name": "P2 - backlog",
+    "color": "F9D0C4",
+    "description": "When there is capacity. (Same as backlog “P2”.)"
+  },
+  {
+    "name": "Launch program",
+    "color": "FBCA04",
+    "description": "Counts toward the pre-go-live project or release board."
+  },
+  {
+    "name": "Needs: legal review",
+    "color": "C5DEF5",
+    "description": "Legal or compliance should look at content or claims before publishing."
+  },
+  {
+    "name": "Needs: product or GTM",
+    "color": "BFD4F2",
+    "description": "Product, marketing, or GTM should confirm scope, naming, or positioning."
+  }
+]

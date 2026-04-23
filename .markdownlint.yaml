@@ -1,0 +1,20 @@
+# https://github.com/DavidAnson/markdownlint
+# CI: .github/workflows/prose-and-links.yml (markdownlint-cli2)
+# Structural hints only (not grammar). This corpus is marketing + lists + templates.
+
+default: true
+MD001: false # heading-increment
+MD012: false # no-multiple-blanks
+MD013: false # line length
+MD022: false # blanks-around-headings
+MD024: false # duplicate headings
+MD033: false # inline HTML
+MD036: false # no-emphasis-as-heading (intentional short labels in copy)
+MD040: false # fenced-language
+MD041: false # first line heading
+MD047: false # single trailing newline (CI/editor variance)
+MD032: false # blanks-around-lists (common in dense bullet copy)
+MD007: false # ul-indent (nested outline style in playbooks)
+MD029: false # ol-prefix (numbered outlines with sub-bullets)
+# Issue / PR frontmatter in .github/ uses spacing GitHub needs; do not enforce there
+# (markdownlint does not read YAML front matter as special)

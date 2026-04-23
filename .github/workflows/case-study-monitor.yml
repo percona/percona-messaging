@@ -1,0 +1,57 @@
+name: Case Study Monitor
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: ${{ vars.CASE_STUDY_FEED_URL != '' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Sync case studies from website feed
+        run: |
+          python scripts/sync_case_studies.py \
+            --source-url "${{ vars.CASE_STUDY_FEED_URL }}" \
+            --output data/case-studies.json
+
+      - name: Build update suggestions
+        run: |
+          python scripts/suggest_updates.py \
+            --base HEAD~1 \
+            --head HEAD \
+            --output suggestions.json || true
+
+      - name: Create pull request with synced data
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/case-study-sync
+          title: "Sync case studies and messaging suggestions"
+          commit-message: "Sync case study registry"
+          body: |
+            ## Summary
+            - Sync `data/case-studies.json` from configured website feed
+            - Regenerate suggestion candidates in `suggestions.json` for reviewer context
+            - Review proof points and use-case pages for missing references
+
+            ## Review checklist
+            - [ ] Validate newly added case studies are accurate
+            - [ ] Confirm suggested messaging updates are still defensible
+            - [ ] Update proof points and use-case pages as needed
+          add-paths: |
+            data/case-studies.json
+            suggestions.json

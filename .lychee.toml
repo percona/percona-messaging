@@ -1,0 +1,21 @@
+# Link checking: https://github.com/lycheeverse/lychee
+# CI: .github/workflows/prose-and-links.yml
+
+# Be conservative: avoid failing on transient 403/429 from vendor sites
+max_redirects = 8
+max_concurrency = 4
+timeout = 25
+require_https = false
+cache = false
+
+accept = ["200", "204", "206", "301", "302", "303", "307", "308"]
+
+exclude = [
+  "^mailto:", # local validation only
+]
+
+# Expand as needed when a host is consistently flaky in CI
+exclude_path = []
+
+[headers]
+"User-Agent" = "Mozilla/5.0 (compatible; lychee-linkcheck; +https://github.com/lycheeverse/lychee)"

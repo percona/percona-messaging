@@ -1,0 +1,47 @@
+# Spelling: https://github.com/crate-ci/typos
+# Local:  cargo install typos-cli  &&  typos
+# CI:     .github/workflows/prose-and-links.yml
+
+[files]
+extend-exclude = [
+  "node_modules/**",
+  ".git/**",
+]
+
+[default]
+extend-ignore-identifiers-re = [
+  "^[A-Z]{2,5}$", # e.g. API, PMM, SSPL, GDPR, QAN
+]
+
+[default.extend-identifiers]
+BBVA = "BBVA"
+Carpages = "Carpages"
+Civo = "Civo"
+DBaaS = "DBaaS"
+EDB = "EDB"
+ExpertOps = "ExpertOps"
+Jira = "Jira"
+Layer7 = "Layer7"
+LeadByte = "LeadByte"
+Minsait = "Minsait"
+Orchestrator = "Orchestrator"
+Patroni = "Patroni"
+Percona = "Percona"
+pgBackRest = "pgBackRest"
+PMM = "PMM"
+PostgreSQL = "PostgreSQL"
+ProxySQL = "ProxySQL"
+QAN = "QAN"
+SSPL = "SSPL"
+Sysbench = "Sysbench"
+Valkey = "Valkey"
+XtraBackup = "XtraBackup"
+XtraDB = "XtraDB"
+MariaDB = "MariaDB"
+MongoDB = "MongoDB"
+Agustin = "Agustin"
+Gallego = "Gallego"
+Laudares = "Laudares"
+Kubernetes = "Kubernetes"
+Redis = "Redis"
+Helm = "Helm"

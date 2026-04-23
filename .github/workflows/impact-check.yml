@@ -1,0 +1,73 @@
+name: Impact Check
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "automation/messaging-impact-map.yml"
+      - "scripts/impact_check.py"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  impact-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Fetch base branch
+        run: git fetch origin "${{ github.base_ref }}" --depth=1
+
+      - name: Run impact check
+        id: impact
+        run: |
+          python scripts/impact_check.py \
+            --base "origin/${{ github.base_ref }}" \
+            --head "HEAD" \
+            --output-json impact-report.json \
+            --output-md impact-report.md
+
+      - name: Add report to workflow summary
+        if: always()
+        run: cat impact-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upsert PR comment with impact checklist
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-impact-check -->";
+            const body = `${marker}\n` + fs.readFileSync("impact-report.md", "utf8");
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }

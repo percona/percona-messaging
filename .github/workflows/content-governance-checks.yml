@@ -1,0 +1,111 @@
+name: Content Governance Checks
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
+      - "scripts/new_file_gate.py"
+      - "scripts/check_doc_coverage.py"
+      - "scripts/duplicate_detector.py"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  governance-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: git fetch origin "${{ github.base_ref }}" --depth=1
+
+      - name: Write PR body to file
+        run: |
+          mkdir -p .tmp
+          printf '%s' "${{ github.event.pull_request.body }}" > .tmp/pr_body.md
+
+      - name: Run new-file gate
+        id: new_file_gate
+        continue-on-error: true
+        run: |
+          python scripts/new_file_gate.py \
+            --base "origin/${{ github.base_ref }}" \
+            --head "HEAD" \
+            --pr-body-file ".tmp/pr_body.md" \
+            --output-md "new-file-gate-report.md"
+
+      - name: Run doc coverage check
+        id: coverage
+        continue-on-error: true
+        run: |
+          python scripts/check_doc_coverage.py \
+            --base "origin/${{ github.base_ref }}" \
+            --head "HEAD" \
+            --output-md "doc-coverage-report.md"
+
+      - name: Run duplicate detector
+        id: duplicate
+        continue-on-error: true
+        run: |
+          python scripts/duplicate_detector.py \
+            --base "origin/${{ github.base_ref }}" \
+            --head "HEAD" \
+            --output-md "duplicate-detector-report.md"
+
+      - name: Add reports to workflow summary
+        if: always()
+        run: |
+          for file in new-file-gate-report.md doc-coverage-report.md duplicate-detector-report.md; do
+            if [ -f "$file" ]; then
+              cat "$file" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+
+      - name: Upsert PR governance comment
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-content-governance -->";
+            const files = [
+              "new-file-gate-report.md",
+              "doc-coverage-report.md",
+              "duplicate-detector-report.md",
+            ];
+            const sections = files
+              .filter((f) => fs.existsSync(f))
+              .map((f) => fs.readFileSync(f, "utf8"));
+            const body = `${marker}\n` + sections.join("\n");
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+      - name: Fail if any blocking governance check failed
+        if: steps.new_file_gate.outcome == 'failure' || steps.coverage.outcome == 'failure' || steps.duplicate.outcome == 'failure'
+        run: |
+          echo "One or more governance checks failed."
+          exit 1

@@ -1,0 +1,74 @@
+---
+description: Impact and propagation analysis for messaging changes, including features that may affect value-pillar and framework copy
+alwaysApply: false
+---
+
+# Impact analysis
+
+For PRs or requests that change **positioning, names, or claims, or introduce features that could impact value-pillar language**: find other canonical places that should move with it, without inventing new positioning.
+
+## Impact level rubric (objective)
+
+Classify every discrete change (or each item in a list). If it fits **low**, skip the long analysis unless a rule in **Efficient use** still applies.
+
+| Level | Definition (use the first that matches) |
+| --- | --- |
+| **Low** | No new or altered **customer-facing claim** (outcome, comparison, number, “we support X,” security/compliance, licensing, SLA, or price model). Only wording cleanup, typos, formatting, internal notes, or moving text **without** meaning change. Link fixes that point to the **same** public meaning. |
+| **Medium** | A new or changed claim that is **single-stack** and **single-pillar** in scope: incremental capability, point release, bugfix with customer-visible behavior, or added proof in one pillar without changing company or portfolio story. |
+| **High** | At least one applies: (a) **comparative** or **vs vendor** / vs alternative framing changes; (b) **licensing, compliance, security posture, availability, or SLA** in a way that could affect buy, audit, or risk; (c) **renames** of products, offerings, or value language, or **swaps** of banned/legacy terms; (d) **multi-stack** or **company-wide** narrative; (e) **flagship** proof (ecosystem milestone, major case study, new platform) that would belong “above the fold” for a buyer. |
+
+**Primary pillar (product files):** Pick exactly one lead pillar for **medium** and **high** items using **best fit** to **Optimized TCO**, **Performance and Reliability at Scale**, **Security, Sovereignty, and Compliance**, or **Adaptability for Emerging Workloads**. Use a **secondary** only when the same change clearly touches two (for example, security + compliance).
+
+**Escalation to `framework/why-percona.md` (objective):** Add or change copy there only when the item is **high** and at least one applies: (i) open alternatives, ecosystem, upstream, or **licensing** story; (ii) run anywhere, portability, or multi-environment control; (iii) expertise, support, or services **differentiation**. If **high** but only a deep **technical** detail with no value story, keep it in the product file (pillar + tech section), not `why-percona.md`.
+
+## Efficient use (practical)
+
+- **Skip the full pass** (no pillar table, no why-percona check) when **all** items are **low** and the PR does not touch `framework/`, `use-cases-value-pillars/`, or `reference/` for naming policy. Still run a quick **string pass** for accidental stale names if anything was renamed in passing.
+- **Always run the full pass** when any item is **high**; any PR touches `framework/why-percona.md`, `core-positioning.md`, or `executive-summary.md`; or the change lists **banned/legacy** terms in `terminology-and-naming.mdc`.
+- **Long feature lists:** First score each line **L / M / H** in a compact list. Only write placement guidance (pillar + file) for **M** and **H**. Collapse adjacent **L** items into one line: “N low-signal edits, no messaging propagation.”
+- **Batch by stack:** For multiple items on the same **stack**, touch `products/<stack>/messaging.md` at most once per review round: gather all **M/H** for that file and merge edits to avoid thrash.
+- **Cap prose:** For each **M/H** item, at most **one** pillar bullet line (plus link if needed) and **one** short tech block reference; if more to say, use **TODO** and issue for human scope.
+
+## How to analyze (not just string matching)
+
+Do **not** treat this as “find the same words elsewhere.” Read the change, then reason about **meaning**: who is affected, how strongly, and **which narrative layer** it belongs in. Use the **rubric** above to assign level first; that drives depth.
+
+1. **Customer impact (magnitude):** Not every feature or edit matters equally. For each change, use the table (**low / medium / high**) and a one-line **why**. A list of ten features is not ten equal updates: only **material** (M/H) need placement detail unless **Efficient use** says otherwise.
+2. **Which value story it serves:** Name the **primary** affected pillar (and secondary if any).
+   - **Product layer:** In `products/<stack>/messaging.md`, value alignment is organized under **Optimized TCO**, **Performance and Reliability at Scale**, **Security, Sovereignty, and Compliance**, and **Adaptability for Emerging Workloads** (see `use-cases-value-pillars/` for cross-portfolio scenario language). Place or update **substantive** proof in the **right pillar subsection** for that stack, with a **short customer-relevant line** and, where useful, a **link**; put **technical depth** in the product intro or the natural “tech” part of that file so the pillar bullet stays readable.
+   - **Company layer:** `framework/why-percona.md` is framed around Percona’s **three** core values (open alternatives and ecosystem, run anywhere, expertise on call). Use that file only per **Escalation to `why-percona.md`** in the rubric, not for every minor release note.
+3. **When to escalate to Why Percona:** Follow the **objective** rule in the rubric (**high** plus (i), (ii), or (iii)). If it would **mislead** to leave company-level proof only in a product sub-bullet, treat that as **high** and escalate.
+
+Use **search** (names, legacy terms, product tokens) to **verify** coverage and catch stragglers after you have reasoned about the above; see `terminology-and-naming.mdc` for banned or renamed terms.
+
+## Standard propagation patterns (if → then)
+
+Use as a map; priority and placement still follow the section above.
+
+| If the work touches... | Also review |
+| --- | --- |
+| **Community contributions, upstream work, ecosystem participation, or flagship open/source-available proof** | `framework/why-percona.md` section 1 when it is **major**; otherwise `products/<stack>/messaging.md` under the pillar it best supports |
+| **Portability, clouds, K8s, or “run anywhere” proof** | `framework/why-percona.md` section 2 when **broad**; else pillar bullets + tech context in the relevant `products/<stack>/messaging.md` |
+| **Support, SLAs, ExpertOps, consulting, or “experts on call”** | `framework/why-percona.md` section 3 when **strategic**; else `offerings/` and the product file as needed |
+| **Company one-liner, elevator POV, or “who we are”** | `framework/core-positioning.md`, `framework/executive-summary.md` |
+| **A value pillar or cross-product scenario** | `use-cases-value-pillars/`; keep `framework/why-percona.md` intro aligned with the three core values |
+| **A specific product or stack** | `products/<product>/messaging.md` (pillar subsections + technical depth in the right place) |
+| **Commercial package or offering name** | `offerings/`; `offering-naming.mdc` when in scope |
+| **Licensing (open source vs source available)** | `terminology-and-naming.mdc`; never overstate OSI “open source” |
+
+Execution-only assets (decks, campaigns, talk tracks) are **out of scope** for file lists here; note one line of **execution follow-up** if relevant.
+
+## Quick coherence check
+
+- **L/M/H** assigned with the table before a file list?
+- Same story across **framework** (if escalated per rubric), **product** pillar bullets, and **tech** detail where you placed it?
+- Licensing and banlist terms correct?
+
+## Output (keep short)
+
+1. **L/M/H line** (or one-line summary for bulk **low** items per **Efficient use**).
+2. **Primary (and secondary) pillar** or company-value angle for each **M** and **H** only.
+3. **Table:** `Priority` (must / should / optional), `File`, `Lines`, `Action` (one line).
+4. **TODOs** for humans if uncertain.
+
+Triage automation suggestions as **must / optional / reject (reason)**.

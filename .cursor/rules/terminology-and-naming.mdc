@@ -1,0 +1,132 @@
+---
+description: Canonical naming, banned terms, and terminology corrections for all Percona messaging
+alwaysApply: true
+---
+
+# Terminology and naming (hard rules)
+
+These rules apply to every file in this repo. They are non-negotiable.
+
+## Banned terms
+
+Never add, keep, or reintroduce references to:
+- `Everest`
+- `ProBuilds`
+
+If you encounter either term in any file, remove it entirely (do not replace with a euphemism) and rewrite the surrounding sentence to preserve meaning.
+
+## Terminology corrections
+
+- "GR ticket" and "GR" refer to **Jira design tickets**. Always write "Jira ticket" or "Jira design ticket." Never write "GR ticket" or "GR" as a standalone term for tickets.
+- "Managed Services" is the old name for **ExpertOps**. Replace in all new or updated materials. On first mention, write "Percona ExpertOps" (one word, capital O). "Managed Services" is acceptable only when providing historical context (e.g., "formerly Managed Services").
+- "Percona Link" is the old name for **Percona ClusterSync**. Replace in all materials.
+
+## "Open source" (never hyphenated)
+
+- Always write **open source** (two words, no hyphen), whether used as a noun, adjective, or verb.
+- Never write "open-source."
+- If you encounter the hyphenated form in any file, replace it with "open source."
+
+## Formatting
+
+- No em dashes (`—` or `--`). Use commas, periods, colons, or parentheses instead.
+- No blockquote carets (`>`) in draft copy that will be sent as messages or pasted into external tools.
+
+## Naming hierarchy (Percona leads)
+
+Use the most defensible formulation available. In order of preference:
+
+| Priority | Pattern | Example | Use where |
+| --- | --- | --- | --- |
+| 1 (strongest) | Percona leads | "Percona Software for MongoDB," "Percona Support for MySQL" | Headlines, CTAs, section headers, first mention |
+| 2 (defensible) | "for [DB]" | "Support for MongoDB," "Expert Support for PostgreSQL" | Section headers, body copy |
+| 3 (weakest, avoid) | "[DB] [Service]" | "MongoDB Support," "MySQL Consulting" | Never in headlines. Acceptable in referential body copy only |
+
+## Customer-facing product names
+
+| Context | Use this | Not this |
+| --- | --- | --- |
+| Headlines, one-pagers, events, overview pages | **Percona for MySQL** (umbrella) | Percona Distribution for MySQL |
+| Software detail pages | **Percona Software for MySQL** | Percona Distribution for MySQL |
+| Download pages, docs, technical implementation | **Percona Server for MySQL**, **Percona Distribution for MySQL** | (These are fine in technical context) |
+| Any customer-facing copy that isn't docs/downloads | **"software"** or **"stack"** | "distribution" (causes confusion: attendees hear "distributed database") |
+
+## Canonical product and offering names
+
+### Database products (Percona develops and maintains)
+- Percona Server for MySQL
+- Percona XtraDB Cluster
+- Percona XtraBackup
+- Percona Toolkit
+- Percona Distribution for MySQL (technical name for the full bundle)
+- Percona Server for PostgreSQL
+- Percona Distribution for PostgreSQL (technical name for the full bundle)
+- Percona Server for MongoDB (source available under SSPL, not open source)
+- Percona Backup for MongoDB
+- Percona ClusterSync for MongoDB (previously "Percona Link")
+- Percona Monitoring and Management (PMM)
+- Percona Operator for MySQL (based on Percona XtraDB Cluster)
+- Percona Operator for PostgreSQL
+- Percona Operator for MongoDB
+
+### Databases Percona supports but does not develop software for
+- Redis
+- MariaDB (Community versions only)
+
+Never claim Percona develops Redis or MariaDB software.
+- OK: "Percona supports Redis users with operational expertise."
+- Not OK: "Percona builds software for Redis."
+
+### Commercial offerings
+| Full name | Acceptable short forms |
+| --- | --- |
+| Percona Expert Support | Expert Support, Percona Support, Support |
+| Percona ExpertOps | ExpertOps, Proactive Database Management |
+| Percona Expert Consulting and Services | Consulting and Services, Percona Consulting, Percona Services |
+
+Use full name on first mention in a section; shorthand afterward.
+
+### Support tiers
+- Advanced Support
+- Premium Support
+
+Keep "Support" attached when referencing SLAs or response times.
+
+### Value pillars (for messaging framework alignment)
+| Core value | Full pillar label |
+| --- | --- |
+| Open source | Open Source Commitment |
+| Freedom / portability | Vendor Freedom to Run Anywhere |
+| Expertise | Expertise on Call |
+
+### Internal-only terms (do not use in customer-facing copy)
+- Run / Operate / Observe (lifecycle model)
+- "Distribution" in headlines or first-contact materials
+
+## Licensing accuracy (non-negotiable)
+
+- Only call software **open source** if it uses an OSI-approved license.
+- If not OSI-approved, call it **source available**.
+- If license status is uncertain, write **TODO: verify license** and default to "source available."
+
+| Product | License type | Label |
+| --- | --- | --- |
+| Percona Server for MySQL | GPL | Open source |
+| Percona Server for PostgreSQL | PostgreSQL License | Open source |
+| Percona Server for MongoDB | SSPL | Source available (never "open source") |
+| Valkey | BSD-3-Clause | Open source |
+| Redis (post-2025 re-license) | AGPL | Open source |
+
+## MariaDB scope
+
+Percona supports **MariaDB Community versions only**. Do not:
+- Use "any MariaDB version"
+- Imply coverage of MariaDB Enterprise editions
+- Claim Percona develops MariaDB software
+
+## Third-party trademark rules
+
+- Use ® on first or prominent mention of registered marks (MongoDB®, MySQL®).
+- Never pair a third-party trademark with copy that criticizes or disparages the trademark owner in the same headline, subhead, or CTA.
+- **Test**: "Would this line work with a generic noun instead of the trademark?" If yes, use the generic noun.
+- See `reference/canonical-naming.md` and `NOTICES.md` for full attribution.

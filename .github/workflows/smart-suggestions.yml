@@ -1,0 +1,79 @@
+name: Smart Suggestions
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "automation/*.yml"
+      - "scripts/suggest_updates.py"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  suggest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Fetch base branch
+        run: git fetch origin "${{ github.base_ref }}" --depth=1
+
+      - name: Build suggestion candidates
+        run: |
+          python scripts/suggest_updates.py \
+            --base "origin/${{ github.base_ref }}" \
+            --head "HEAD" \
+            --output suggestions.json
+
+      - name: Publish suggestion summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-smart-suggestions -->";
+            const payload = JSON.parse(fs.readFileSync("suggestions.json", "utf8"));
+            const suggestions = payload.suggestions || [];
+
+            let body = `${marker}\n## Messaging Smart Suggestions\n\n`;
+            if (!suggestions.length) {
+              body += "No suggestion candidates were generated for this PR.\n";
+            } else {
+              body += "| File | Why impacted | Claim | Confidence |\n";
+              body += "| --- | --- | --- | --- |\n";
+              for (const s of suggestions.slice(0, 20)) {
+                body += `| \`${s.file}\` | ${s.why_impacted} | ${s.claim_trigger} | ${s.confidence} |\n`;
+              }
+              body += "\nOnly auto-apply suggestions at high confidence with reviewer approval.\n";
+            }
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }

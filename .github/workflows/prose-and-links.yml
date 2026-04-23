@@ -1,0 +1,59 @@
+# Spelling (typos), markdown structure (markdownlint-cli2), and URL health (lychee).
+# Uses published marketplace actions; see reference/launch-and-automation-backlog.md.
+
+name: Prose and links
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "_typos.toml"
+      - ".lychee.toml"
+      - ".markdownlint.yaml"
+      - ".markdownlintignore"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prose-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typos:
+    name: Spelling (typos)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check spelling
+        uses: crate-ci/typos@v1
+        with:
+          config: _typos.toml
+          files: "**/*.md"
+
+  markdownlint:
+    name: Markdown structure (markdownlint)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Markdownlint
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+
+  lychee:
+    name: Links (lychee)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check links
+        uses: lycheeverse/lychee-action@v1.9.0
+        with:
+          args: --config .lychee.toml --verbose --no-progress '**/*.md'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

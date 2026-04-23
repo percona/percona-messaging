@@ -1,0 +1,99 @@
+# Repository Automation
+
+This document is the single entry point for automation across the repository.
+
+It explains how `.github/workflows/`, `scripts/`, and `automation/` work together.
+
+## Automation architecture
+
+- `**.github/workflows/**`: when automation runs (triggers, permissions, PR comments, scheduled jobs).
+- `**scripts/**`: what automation executes (Python logic for checks, reports, and sync tasks).
+- `**automation/**`: automation inputs (impact map, claim categories, and other config data).
+- `**data/**`: machine-readable inputs/outputs used by automation (for example case-study registry).
+
+## Workflow map
+
+
+| Workflow                                          | Trigger                                     | Uses scripts                                                                                 | Uses config/data                                                    | Output                                            |
+| ------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
+| `.github/workflows/terminology-check.yml`         | PR touching `*.md`                          | inline shell checks                                                                          | repository markdown content                                         | Fails/warns on banned terms and naming issues     |
+| `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script      | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist        |
+| `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script      | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates             |
+| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks   |
+| `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch           | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue       |
+| `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch           | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data |
+| `.github/workflows/prose-and-links.yml`         | PR touching markdown or prose config        | _(none — uses marketplace actions)_                                                          | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health |
+
+## Where automation runs in the contributor flow
+
+1. Contributor opens a PR.
+2. PR workflows run checks and publish comments/summaries.
+3. Maintainers/domain owners review both content and automation feedback.
+4. Blocking checks must pass before merge.
+5. Scheduled workflows create maintenance artifacts (issues/PRs) outside normal PR flow.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contributor-facing workflow behavior and [GOVERNANCE.md](GOVERNANCE.md) for review/approval policy.
+
+## AI and automation: how to use AI responsibly
+
+AI can help design or refine automations, but should not replace deterministic enforcement where exact rules are required.
+
+Use this decision pattern for each automation use case:
+
+- **Deterministic check** when policy is explicit and binary (for example banned terms, required PR fields).
+- **AI-assisted check** when inference or broader contextual suggestions are needed.
+- **Hybrid** when deterministic gating plus AI suggestions gives the best coverage.
+
+When using AI to change automation, always include:
+
+- Intended failure mode (what should be caught)
+- Scope boundaries (what should *not* be caught)
+- False-positive tolerance and reviewer expectation
+- Output format (blocking error, warning, PR comment, issue, or report)
+
+## Planned and candidate automation backlog
+
+This list is intentionally broader than current implementation so ideas are not lost before issues are opened.
+
+### Planned next (high-confidence, near-term)
+
+- PR launch-readiness label consistency checks (`ready-for-launch`, `go-live:`*)
+- CODEOWNERS drift checks for new path scopes
+- Reviewer-SLA reminder automations for aging approvals
+- Confidence tracking for suggestion precision/recall over time
+
+### Candidate next wave (needs scoping)
+
+- Decomposition-completeness assistant for propagation coverage
+- Canonical-link integrity check (new/changed docs must be discoverable from navigation docs)
+- Automation regression tests for scripts (fixture-based expected outputs)
+- Scheduled "rule drift" report when terminology/naming references and checks diverge
+- Auto-triage labeler for incoming issues (`intake`, `decomposition`, `governance`, `automation`, `training`)
+- PR change-risk scorer to suggest required reviewer set based on touched areas
+
+### Longer-horizon ideas
+
+- Suggestion quality feedback loop (reviewers mark suggestions useful/not useful to improve scoring)
+- Cross-repo adaptation watcher for known downstream channels (report-only, no auto-write)
+- "Missed propagation" post-merge auditor that samples merged PRs for coverage gaps
+- **Downstream-asset impact tracking:** a maintained registry of execution assets that consume canonical messaging (e.g. slide decks, web pages, datasheets, sales tools). When this repo changes, automation (or a scheduled job) checks the map and **notifies** asset owners of what may need a refresh, without assuming direct write access to those systems
+
+Track opportunities as issues labeled `automation`.  
+Until issues are opened, keep this section as the backlog source of truth.
+
+## Automation intake rubric (before opening an issue)
+
+Use this quick filter so automation scope stays practical:
+
+- **Failure mode:** what concrete problem does this catch?
+- **Signal quality:** what false-positive rate is acceptable?
+- **Blast radius:** which files/workflows are affected?
+- **Enforcement mode:** block, warn, comment, report, or scheduled issue?
+- **Owner and cadence:** who maintains it, and how often is it reviewed?
+
+## Local validation
+
+See [scripts/README.md](scripts/README.md) for script-level usage.  
+When testing PR-based scripts locally, run against a base/head git range similar to CI.
+
+For spelling, links, and markdown structure, use the same tools as [prose-and-links.yml](.github/workflows/prose-and-links.yml): `typos` (see `_typos.toml`), `lychee` (see `.lychee.toml`), and `markdownlint-cli2` (see `.markdownlint.yaml`). Markdownlint enforces structure, not grammar or product voice.

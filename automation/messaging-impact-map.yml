@@ -1,0 +1,59 @@
+version: 1
+description: Rules-based map for files that must be reviewed when specific messaging claims change.
+
+rules:
+  - id: postgres-cost-claim
+    description: PostgreSQL cost/TCO claims usually impact shared value proof messaging.
+    severity: required
+    triggers:
+      file_globs:
+        - "products/postgresql/*.md"
+      diff_regex:
+        - "(?i)\\bcost\\b"
+        - "(?i)\\btco\\b"
+        - "(?i)\\bsavings?\\b"
+        - "(?i)\\boptimi[sz]ation\\b"
+    must_review:
+      - "use-cases-value-pillars/cost-optimization.md"
+      - "framework/core-positioning.md"
+      - "products/postgresql/messaging.md"
+      - "products/postgresql/competitive.md"
+    suggest_globs:
+      - "products/**/competitive.md"
+      - "use-cases-value-pillars/*.md"
+
+  - id: licensing-or-open-source-claims
+    description: License and open source positioning changes are cross-cutting.
+    severity: required
+    triggers:
+      file_globs:
+        - "products/**/*.md"
+        - "framework/**/*.md"
+      diff_regex:
+        - "(?i)open source"
+        - "(?i)source available"
+        - "(?i)license"
+        - "(?i)sspl"
+        - "(?i)agpl"
+    must_review:
+      - "reference/canonical-naming.md"
+      - "reference/banned-terms.md"
+      - "framework/core-positioning.md"
+
+  - id: offering-name-or-tier-change
+    description: Offering naming updates should stay aligned across offering pages.
+    severity: warn
+    triggers:
+      file_globs:
+        - "offerings/*.md"
+        - "reference/*.md"
+      diff_regex:
+        - "(?i)expert support"
+        - "(?i)expertops"
+        - "(?i)consulting"
+        - "(?i)managed services"
+    must_review:
+      - "offerings/expert-support.md"
+      - "offerings/expertops.md"
+      - "offerings/expert-consulting.md"
+      - "reference/canonical-naming.md"

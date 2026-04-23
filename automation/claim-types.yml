@@ -1,0 +1,30 @@
+version: 1
+description: Canonical claim categories used by messaging automation.
+
+claim_types:
+  cost:
+    keywords:
+      - "cost"
+      - "tco"
+      - "savings"
+      - "optimiz"
+      - "efficiency"
+  reliability:
+    keywords:
+      - "reliability"
+      - "uptime"
+      - "availability"
+      - "resilience"
+      - "sla"
+  migration_ease:
+    keywords:
+      - "migration"
+      - "compatibility"
+      - "drop-in"
+      - "switch"
+  security_compliance:
+    keywords:
+      - "security"
+      - "compliance"
+      - "sovereignty"
+      - "governance"
