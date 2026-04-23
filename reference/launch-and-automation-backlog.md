@@ -88,7 +88,7 @@ All workflows use `**actions/checkout@v4`** (official). Below: what is **pre-mad
 | `prose-and-links.yml`           | **crate-ci/typos**, **DavidAnson/markdownlint-cli2-action**, **lycheeverse/lychee-action** | Config only: `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`, `.markdownlintignore` | Fully pre-built runners; you only maintain config.                                                                                                         |
 
 
-`**actions/github-script`:** maintained by GitHub; your **inline JavaScript** is custom. Alternatives: `**peter-evans/find-comment` + `create-or-update-comment`**, or **marocchino/sticky-pull-request-comment**, if you want less JS in YAML.
+The `actions/github-script` action is maintained by GitHub; your **inline JavaScript** is custom. Alternatives: `peter-evans/find-comment` with `create-or-update-comment`, or **marocchino/sticky-pull-request-comment**, if you want less JS in YAML.
 
 ---
 
