@@ -23,6 +23,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch           | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue       |
 | `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch           | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data |
 | `.github/workflows/prose-and-links.yml`         | PR touching markdown or prose config        | _(none — uses marketplace actions)_                                                          | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health |
+| `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch | `scripts/quarterly_lychee_citation_review_issue.py`                                      | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
 
 ## Where automation runs in the contributor flow
 
