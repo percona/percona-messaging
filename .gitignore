@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Notion exports (local reference only, not committed)
+notion-export*/
+
+# Draft working files
+*.draft.md
+*.wip.md
+
+# Local planning (never committed)
+localtodo.md
+
+# Node modules (if GitHub Actions use local scripts)
+node_modules/
+.venv/
+.pycache/

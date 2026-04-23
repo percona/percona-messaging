@@ -1,0 +1,61 @@
+# =========================
+# Default ownership
+# =========================
+# Note on multiple owners: all listed owners are requested for review, but a single
+# approval from any one listed code owner satisfies the CODEOWNERS requirement.
+# PR authors cannot satisfy required review on their own pull requests.
+# Unconfirmed handles are commented out below to avoid CODEOWNERS parsing issues.
+# *                                           @briana-swift @val-bogatyreva
+*                                           @brianamarie
+
+# =========================
+# Strategic / narrative layers
+# =========================
+# /framework/                                  @briana-swift @gareth-case @andrey-glazkov @cindy-neely
+/framework/                                  @brianamarie
+# /offerings/                                  @briana-swift @matt-kane @andrey-glazkov @cindy-neely
+/offerings/                                  @brianamarie
+# /use-cases-value-pillars/                    @briana-swift @gareth-case @matt-kane @cindy-neely
+/use-cases-value-pillars/                    @brianamarie
+# /reference/                                  @briana-swift @val-bogatyreva @cindy-neely
+/reference/                                  @brianamarie
+
+# =========================
+# Product ownership
+# =========================
+# /products/mysql/                             @briana-swift @val-bogatyreva @dennis-kittrell
+/products/mysql/                             @brianamarie
+# /products/postgresql/                        @briana-swift @kai-wagner
+/products/postgresql/                        @brianamarie
+# /products/mongodb/                           @briana-swift @val-bogatyreva @puneet-kala
+/products/mongodb/                           @brianamarie
+# /products/valkey-redis/                      @briana-swift @kyle-davis
+/products/valkey-redis/                      @brianamarie
+# /products/pmm/                               @briana-swift @dave-poole
+/products/pmm/                               @brianamarie
+# /products/operators/                         @briana-swift @kate-obiidykhata @slava-sarzhan
+/products/operators/                         @brianamarie
+
+# =========================
+# Compliance-sensitive overrides (last match wins)
+# =========================
+# /reference/**/trademark*                     @briana-swift @jaimie-mckean @cindy-neely
+/reference/**/trademark*                     @brianamarie
+# /reference/**/legal*                         @briana-swift @jaimie-mckean @cindy-neely
+/reference/**/legal*                         @brianamarie
+# /NOTICES.md                                  @briana-swift @jaimie-mckean @cindy-neely
+/NOTICES.md                                  @brianamarie
+# /LICENSE                                     @briana-swift @jaimie-mckean
+/LICENSE                                     @brianamarie
+
+# =========================
+# Repo governance / workflow
+# =========================
+# /README.md                                   @briana-swift @cindy-neely
+/README.md                                   @brianamarie
+# /CONTRIBUTING.md                             @briana-swift @cindy-neely
+/CONTRIBUTING.md                             @brianamarie
+# /.cursor/rules/                              @briana-swift @val-bogatyreva
+/.cursor/rules/                              @brianamarie
+# /.github/                                    @briana-swift @slava-sarzhan @kate-obiidykhata @cindy-neely
+/.github/                                    @brianamarie
