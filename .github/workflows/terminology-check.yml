@@ -1,13 +1,16 @@
-# Terminology and naming linter
-# Runs on every PR that touches markdown files.
-# Deterministic pattern matching only. No AI.
+# Terminology and naming linter (Vale)
+# Rules mirror reference/banned-terms.md — update both when policy changes.
+# https://vale.sh/
 
 name: Terminology Check
 
 on:
   pull_request:
     paths:
-      - '**/*.md'
+      - "**/*.md"
+      - ".vale.ini"
+      - ".vale/**"
+      - ".github/workflows/terminology-check.yml"
 
 jobs:
   check-terminology:
@@ -15,80 +18,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check for banned terms
+      - name: Install Vale
+        env:
+          VALE_VERSION: "3.12.0"
         run: |
-          echo "Checking for banned terms..."
-          FAILED=0
+          set -euo pipefail
+          curl -fsSL "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" -o /tmp/vale.tgz
+          sudo tar -xzf /tmp/vale.tgz -C /usr/local/bin vale
+          vale -v
 
-          # reference/banned-terms.md lists forbidden strings for humans; exclude it from
-          # literal greps (otherwise the glossary always matches itself).
-          EXCLUDE_GLOSSARY=(--exclude=banned-terms.md)
-
-          # Banned terms (case-insensitive)
-          for term in "Everest" "ProBuilds"; do
-            if grep -rni "$term" --include="*.md" "${EXCLUDE_GLOSSARY[@]}" .; then
-              echo "::error::Banned term found: '$term'. Remove it and rewrite the surrounding sentence."
-              FAILED=1
-            fi
-          done
-
-          # Banned terminology: "GR ticket" or standalone "GR" for tickets
-          if grep -rn "GR ticket" --include="*.md" "${EXCLUDE_GLOSSARY[@]}" .; then
-            echo "::error::Found 'GR ticket'. Use 'Jira ticket' or 'Jira design ticket' instead."
-            FAILED=1
-          fi
-
-          # Old product name: "Percona Link"
-          if grep -rn "Percona Link" --include="*.md" . | grep -v "ClusterSync" | grep -v "previously" | grep -v "formerly"; then
-            echo "::error::Found 'Percona Link' without context. Use 'Percona ClusterSync' (note: 'previously Percona Link' is acceptable for historical context)."
-            FAILED=1
-          fi
-
-          if [ $FAILED -eq 1 ]; then
-            exit 1
-          fi
-          echo "No banned terms found."
-
-      - name: Check for hyphenated "open-source"
-        run: |
-          echo "Checking for hyphenated 'open-source'..."
-          if grep -rn "open-source" --include="*.md" --exclude=banned-terms.md .; then
-            echo "::error::Found 'open-source' (hyphenated). Always write 'open source' (two words, no hyphen)."
-            exit 1
-          fi
-          echo "No hyphenated 'open-source' found."
-
-      - name: Check naming conventions
-        run: |
-          echo "Checking naming conventions..."
-          FAILED=0
-
-          # "Managed Services" should be "ExpertOps" (except in historical context)
-          MANAGED_HITS=$(grep -rn "Managed Services" --include="*.md" . | grep -v "formerly" | grep -v "previously" | grep -v "old name" || true)
-          if [ -n "$MANAGED_HITS" ]; then
-            echo "$MANAGED_HITS"
-            echo "::warning::Found 'Managed Services' without historical context. The current name is 'ExpertOps'. Add '(formerly Managed Services)' if historical context is needed, or replace with 'ExpertOps'."
-          fi
-
-          # Check for "Distribution" in customer-facing directories (not reference/ or docs context)
-          DISTRO_HITS=$(grep -rn "Distribution for" --include="*.md" framework/ offerings/ products/ use-cases-value-pillars/ 2>/dev/null || true)
-          if [ -n "$DISTRO_HITS" ]; then
-            echo "$DISTRO_HITS"
-            echo "::warning::Found 'Distribution for' in customer-facing content. Use 'Percona for [DB]' or 'Percona Software for [DB]' instead. Reserve 'Distribution' for technical/download contexts."
-          fi
-
-          echo "Naming convention check complete."
-
-      - name: Check SSPL licensing accuracy
-        run: |
-          echo "Checking licensing accuracy..."
-
-          # MongoDB should never be called "open source" in product context
-          MONGO_OS=$(grep -rn "Percona Server for MongoDB" --include="*.md" . | grep -i "open source" | grep -vi "source available" || true)
-          if [ -n "$MONGO_OS" ]; then
-            echo "$MONGO_OS"
-            echo "::error::Percona Server for MongoDB is source available (SSPL), not open source. Fix licensing language."
-            exit 1
-          fi
-
-          echo "Licensing accuracy check complete."
+      - name: Vale (policy; mirrors reference/banned-terms.md)
+        run: vale --minAlertLevel=error .
