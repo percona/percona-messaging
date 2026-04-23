@@ -16,8 +16,8 @@ notion-export*/
 *.draft.md
 *.wip.md
 
-# Local planning (never committed)
-localtodo.md
+# Local planning and session notes (never committed)
+local-instructions/
 
 # Node modules (if GitHub Actions use local scripts)
 node_modules/
