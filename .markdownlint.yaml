@@ -16,5 +16,6 @@ MD047: false # single trailing newline (CI/editor variance)
 MD032: false # blanks-around-lists (common in dense bullet copy)
 MD007: false # ul-indent (nested outline style in playbooks)
 MD029: false # ol-prefix (numbered outlines with sub-bullets)
+MD049: false # emphasis-style — allow *asterisks* and _underscores_ (editor defaults vary; not a product-voice signal)
 # Issue / PR frontmatter in .github/ uses spacing GitHub needs; do not enforce there
 # (markdownlint does not read YAML front matter as special)

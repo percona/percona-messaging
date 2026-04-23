@@ -1,0 +1,8 @@
+# reference/banned-terms.md — Formatting (open source, not hyphenated in prose)
+# Ignores URL path segments like ...-open-source-... (hyphen immediately before "open").
+extends: existence
+message: 'Write "open source" as two words, not hyphenated (reference/banned-terms.md).'
+level: error
+ignorecase: true
+raw:
+  - (?m)(^|[\s'"(\[{<])open-source
