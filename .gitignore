@@ -18,6 +18,8 @@ notion-export*/
 
 # Local planning and session notes (never committed)
 local-instructions/
+# Legacy path (same purpose); editors sometimes recreate it if a tab still points at old paths
+instructions/
 
 # Node modules (if GitHub Actions use local scripts)
 node_modules/
