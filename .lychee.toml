@@ -1,7 +1,7 @@
 # Link checking: https://github.com/lycheeverse/lychee
 # CI: .github/workflows/prose-and-links.yml
 
-# Be conservative: avoid failing on transient 403/429 from vendor sites
+# Be conservative: `accept` includes 429 so vendor rate limits do not fail CI.
 max_redirects = 8
 max_concurrency = 4
 timeout = 45
