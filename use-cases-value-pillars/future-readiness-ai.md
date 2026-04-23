@@ -1,0 +1,24 @@
+# Future Readiness (AI, Emerging Workloads)
+
+As AI, real-time analytics, and hybrid data pipelines reshape enterprise workloads, most organizations face a familiar tension: adopt faster, or lose control. [According to IDC](https://my.idc.com/getdoc.jsp?containerId=prAP53268725), 75% of enterprise AI workloads will be deployed on hybrid fit-for-purpose infrastructure by 2027, yet many are locked into proprietary ecosystems that tie "AI enablement" to license upgrades or vendor-specific APIs.
+
+Percona's open source foundation and consistent operational model give customers freedom to evolve. From AI pipelines to vector search and hybrid-cloud deployments, Percona helps teams adopt emerging workloads securely, efficiently, and without losing architectural independence.
+
+### The Problem: Innovation Trapped by Proprietary Design
+
+AI, ML, and real-time analytics depend on data mobility and trust, but current database ecosystems often limit both. Proprietary vendors package "AI readiness" behind gated features or closed infrastructure, fragmenting governance and inflating costs.
+
+- **Feature lock-in:** Capabilities like vector search, model inference, or embeddings are increasingly tied to enterprise SKUs, forcing migrations or premium pricing. [Forrester documents](https://www.forrester.com/report/the-vector-databases-landscape-q2-2024/RES180797) a fast-maturing, vendor-differentiated vector DB market, indicating buyers must choose carefully.
+- **Fragmented data architectures:** AI pipelines must bridge structured (SQL) and unstructured (NoSQL, key-value, or document) data ([IDC](https://www.netapp.com/media/110879-idc-workload-impacts-storage-info-brief.pdf)). Maintaining separate engines for training, inference, and analytics increases latency and operational complexity.
+- **Compliance drag:** Using regulated or customer data in AI training pipelines adds exposure if encryption, audit trails, and access policies differ across environments. 70% of organizations report data-governance difficulties in their AI efforts ([McKinsey](https://www.mckinsey.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024)).
+- **Unpredictable scaling costs:** Elastic AI workloads spike compute and storage demand, and per-core or per-query pricing models compound waste.
+- **Operational silos:** Specialized AI databases create skills gaps, slowing deployment and increasing dependency on vendor-specific expertise.
+
+### The Solution: Open Infrastructure for AI Evolution
+
+Percona enables AI, vector search, and hybrid data workloads through open, secure, and portable database architectures. Customers can modernize existing systems for emerging workloads without replatforming or lock-in.
+
+- **AI-ready databases:** Percona supports [pgvector](https://www.percona.com/blog/pgvector-the-critical-postgresql-component-for-your-enterprise-ai-strategy/) in PostgreSQL today and is evaluating vector search options for MongoDB, MySQL, and MariaDB as those ecosystems mature. With pgvector's operational complexity and MongoDB's source-available implementation limiting cross-engine consistency, Percona's multi-database expertise helps customers adopt AI capabilities without locking into fragmented early-stage solutions.
+- **Hybrid and multi-cloud flexibility:** Percona Operators orchestrate consistent deployments across on-prem and cloud clusters, enabling AI pipelines to train or infer near the data source while maintaining governance.
+- **Data integrity and compliance:** Encryption, RBAC, and transparent audit logs preserve control over sensitive data used in AI training, supporting GDPR, HIPAA, and ISO 27001 alignment.
+- **Predictable performance and cost:** ExpertOps tuning and rightsized infrastructure optimize indexing, caching, and query execution for AI workloads.

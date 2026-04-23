@@ -1,0 +1,42 @@
+# Cost Optimization and Price/Performance
+
+Database operational environments have grown more fragmented, affecting nearly every organization. As organizations adopt multiple engines and deployment models to stay agile and hit stricter price/performance requirements, they inherit overlapping tools, processes, and contracts. This sprawl introduces limitations in operational visibility, leaving teams uncertain about what they are running, unclear on what they are paying for, and vulnerable to sudden cost overruns.
+
+Industry reports show that cloud waste is increasing, not shrinking. In [VMware's Private Cloud Outlook 2025 survey](https://blogs.vmware.com/cloud-foundation/2025/05/29/private-cloud-outlook-2025-the-cloud-reset/) of 1,800 IT decision-makers, nearly half reported that more than 25% of their public cloud spend is wasted, and roughly one-third said it exceeds 50%. This level of waste makes cost predictability difficult and increases the pressure to standardize operations.
+
+Percona's open source-based approach restores control and optimizes database cost and price/performance by standardizing database operations across environments, eliminating licensing lock-in, and giving organizations a predictable, right-sized cost structure.
+
+### The Problem: Complexity Creates Unplanned and Indirect Cost
+
+Modern database systems now span relational and non-relational systems running across on-prem, cloud, and hybrid environments, often including Kubernetes deployments. Recent industry reports show that cloud cost pressures continue to rise: [CloudZero's State of Cloud Cost 2024](https://www.cloudzero.com/state-of-cloud-cost/) found that 58% of organizations believe their cloud spend is higher than it should be, and [Vantage's Q4 2024 Cloud Cost Report](https://www.vantage.sh/cloud-cost-report/2024-q4) highlighted databases, compute, and storage as the top drivers of cloud cost growth. As these environments expand, the operational work required to support them increases as well, especially when teams lack clear visibility into how resources are actually being used.
+
+A widely referenced [GigaOm study](https://gigaom.com/report/cassandra-total-cost-of-ownership-study-2/) modeling a production workload found that the largest share of TCO came from people and infrastructure. In the modeled scenario, a self-managed environment consumed ~4 FTEs and $2.8M over three years, compared to $353K for the optimized, automated scenario. Operational work remains the largest share of database spend, and environments that rely heavily on manual processes see the steepest increases in cost. When routine tasks aren't standardized or automated, expenses rise quickly.
+
+- **Database variation is the norm:** Most organizations run more than one database engine. Analyst research from [Gartner](https://www.gartner.com/en/articles/reduce-your-data-architecture-complexity-with-polyglot-persistence), [Thoughtworks](https://www.thoughtworks.com/radar/techniques/polyglot-persistence), and the [Data on Kubernetes community](https://www.redhat.com/en/engage/state-kubernetes-security-report-2024) shows a clear shift toward polyglot data environments, with teams operating multiple databases side by side to serve different workloads.
+- **Operational sprawl increases overhead:** Multiple monitoring systems, backup tools, and vendor SLAs mean more people, tickets, and handoffs. [Liquibase reports](https://www.liquibase.com/blog/why-financial-services-leaders-are-re-evaluating-open-source-for-database-change-management) that tool sprawl and lack of standardization increase deployment errors by up to 70%, translating directly into downtime, rework, and audit risk.
+- **Inefficient resource consumption:** Proprietary DBaaS tiers often enforce sizing floors and support bundles that lead to consistent under-utilization and higher long-term spend. At the same time, efforts to reduce cost by scaling down too aggressively can cause underprovisioning, resulting in degraded performance or unexpected downtime.
+- **AI and analytics affect business competitiveness:** Real-time and AI-driven workloads demand unified data access, but fragmented systems slow response and inflate both latency and cost per transaction.
+- **Downstream costs:** Cloud bills, tool licensing, and staff hours add up on one side; downtime, security gaps, and lost productivity on the other. Industry research estimates poor data quality and inefficiencies cost organizations over $12.9 million annually ([LakeFS, 2024](https://lakefs.io/blog/poor-data-quality-business-costs/)). The average data breach now costs $4.88M ([IBM](https://www.ibm.com/think/insights/cost-of-a-data-breach-2024-financial-industry)), with outage costs in the automotive industry exceeding $2.3M per hour ([Siemens, 2024](https://blog.siemens.com/2024/07/the-true-cost-of-an-hours-downtime-an-industry-analysis/)).
+
+### The Solution: Unified Operations, Quantified Savings
+
+Percona eliminates operational complexity through automation, open standards, and lifecycle consistency across engines and environments. The impact shows up both in predictable and continuous cost optimization: better price/performance, lower waste, and fewer hours spent on routine operations.
+
+- **Transparent, usage-based pricing:** Percona solutions are scoped to real deployment needs and cost-optimization goals, not license math. Expert Support and ExpertOps Subscriptions scale with actual environment size, with no per-core pricing, license gates, or hidden fees. For defined projects such as migrations, architecture reviews, or performance assessments, Expert Consulting and Services engagements are offered with transparent estimates, with clear deliverables and predictable outcomes.
+- **Licensing elimination:** $0 in database licensing. All software licenses are available to use for free under open source and source-available licenses.
+- **Right-sized infrastructure and price/performance:** Percona Support and ExpertOps align to actual usage, avoiding DBaaS premium costs and helping teams meet price/performance requirements with a lower spend. [Optimum Instruments avoided a DBA hire and reduced 20+ engineer hours/month of manual backups](https://experience.percona.com/case-study/optimum-instruments/) after adopting Percona ExpertOps: Proactive Database Management (previously Managed Services). [GigaOm's 2022 case study](https://gigaom.com/report/cassandra-total-cost-of-ownership-study-2/) (vendor commissioned, Cassandra scenario) estimated a three-year TCO of $2.8 million for a self-managed deployment versus $353K for optimized cloud-native configurations. By rightsizing clusters and eliminating DBaaS markups, customers typically cut 20–30% in infrastructure waste, consistent with [Flexera's 32% cloud overspend findings](https://www.cloudzero.com/blog/cloud-computing-statistics/).
+- **Downstream savings:** Beyond the visible cost savings, unplanned downtime and performance instability cost enterprises an estimated $400 billion annually ([Splunk, 2023](https://www.splunk.com/en_us/blog/cio-office/cost-of-downtime-from-global-executives.html)), while every hour of outage can exceed $2.3 million in high-value industries like automotive (Siemens, 2024). [Optimum Instruments stabilized customer-facing latency and cut downtime incidents](https://experience.percona.com/case-study/optimum-instruments/) with PMM's standardized monitoring and proactive automation.
+
+### Customer Evidence
+
+**[Protectall: eliminated licensing costs; unified governance across MySQL + PostgreSQL](https://experience.percona.com/case-study/protectall/)**
+
+- Replaced Oracle MySQL Enterprise servers for significant yearly license savings
+- Standardized observability with PMM; planned PostgreSQL rollout alongside MySQL
+- Lower run-rate, better price/performance, and a vendor-independent roadmap for analytics
+
+**[Optimum Instruments: reduced downtime and staffing burden with Percona ExpertOps (formerly Managed Services) + PMM](https://experience.percona.com/case-study/optimum-instruments/)**
+
+- ~250 MySQL 5.7 servers; 20+ engineer hours/month manual backup effort
+- Migrated to MySQL 8.0 (Percona Distribution + XtraBackup); adopted Percona ExpertOps (formerly Managed Services); implemented PMM
+- Fewer incidents, better latency, avoided DBA hire, engineers back to product work
