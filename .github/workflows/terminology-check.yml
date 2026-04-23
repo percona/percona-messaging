@@ -20,16 +20,20 @@ jobs:
           echo "Checking for banned terms..."
           FAILED=0
 
+          # reference/banned-terms.md lists forbidden strings for humans; exclude it from
+          # literal greps (otherwise the glossary always matches itself).
+          EXCLUDE_GLOSSARY=(--exclude=banned-terms.md)
+
           # Banned terms (case-insensitive)
           for term in "Everest" "ProBuilds"; do
-            if grep -rni "$term" --include="*.md" .; then
+            if grep -rni "$term" --include="*.md" "${EXCLUDE_GLOSSARY[@]}" .; then
               echo "::error::Banned term found: '$term'. Remove it and rewrite the surrounding sentence."
               FAILED=1
             fi
           done
 
           # Banned terminology: "GR ticket" or standalone "GR" for tickets
-          if grep -rn "GR ticket" --include="*.md" .; then
+          if grep -rn "GR ticket" --include="*.md" "${EXCLUDE_GLOSSARY[@]}" .; then
             echo "::error::Found 'GR ticket'. Use 'Jira ticket' or 'Jira design ticket' instead."
             FAILED=1
           fi
@@ -48,7 +52,7 @@ jobs:
       - name: Check for hyphenated "open-source"
         run: |
           echo "Checking for hyphenated 'open-source'..."
-          if grep -rn "open-source" --include="*.md" .; then
+          if grep -rn "open-source" --include="*.md" --exclude=banned-terms.md .; then
             echo "::error::Found 'open-source' (hyphenated). Always write 'open source' (two words, no hyphen)."
             exit 1
           fi
