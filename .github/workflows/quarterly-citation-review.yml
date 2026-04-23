@@ -1,0 +1,50 @@
+# Opens a fresh issue each quarter listing URLs excluded from lychee in CI (403 / WAF).
+# See automation/lychee-quarterly-review-citations.json and scripts/quarterly_lychee_citation_review_issue.py.
+
+name: Quarterly citation link review
+
+on:
+  schedule:
+    # 15:00 UTC on the 15th of Jan, Apr, Jul, Oct
+    - cron: "0 15 15 1,4,7,10 *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  open-quarterly-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build issue body
+        run: python scripts/quarterly_lychee_citation_review_issue.py
+
+      - name: Create issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const meta = JSON.parse(fs.readFileSync("quarterly-citation-review-meta.json", "utf8"));
+            const body = fs.readFileSync("quarterly-citation-review-issue.md", "utf8");
+            const { owner, repo } = context.repo;
+            const assignee = (meta.assignee || "").trim();
+            const payload = {
+              owner,
+              repo,
+              title: meta.title,
+              body,
+              labels: ["Automation & CI", "Testing / sign-off"],
+            };
+            if (assignee) {
+              payload.assignees = [assignee];
+            }
+            await github.rest.issues.create(payload);

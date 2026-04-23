@@ -1,0 +1,35 @@
+{
+  "assignee": "brianamarie",
+  "citations": [
+    {
+      "url": "https://www.gartner.com/en/articles/reduce-your-data-architecture-complexity-with-polyglot-persistence",
+      "rationale": "Gartner returns 403 to GitHub Actions (WAF); citation remains in prose.",
+      "markdown_files": ["use-cases-value-pillars/cost-optimization.md"]
+    },
+    {
+      "url": "https://www.mckinsey.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024",
+      "rationale": "McKinsey DE often blocks or times out datacenter IPs in CI.",
+      "markdown_files": ["use-cases-value-pillars/future-readiness-ai.md"]
+    },
+    {
+      "url": "https://www.bigdatawire.com/this-just-in/idc-survey-finds-data-sovereignty-and-compliance-issues-shaping-it-decisions/",
+      "rationale": "Big Data Wire returns 403 to automated clients in CI.",
+      "markdown_files": ["use-cases-value-pillars/security-sovereignty-compliance.md"]
+    },
+    {
+      "url": "https://www.akamai.com/newsroom/press-release/akamai-releases-spring-2017-state-of-online-retail-performance-report",
+      "rationale": "Akamai returns 403 to automated clients in CI.",
+      "markdown_files": ["use-cases-value-pillars/performance-reliability.md"]
+    },
+    {
+      "url": "https://www.datacamp.com/doc/mysql/mysql-innodb-buffer-pool-tuning",
+      "rationale": "DataCamp returns 403 to automated clients in CI.",
+      "markdown_files": ["use-cases-value-pillars/performance-reliability.md"]
+    },
+    {
+      "url": "https://www.netapp.com/media/110879-idc-workload-impacts-storage-info-brief.pdf",
+      "rationale": "NetApp-hosted PDF (Akamai edge) returns 403 to automated clients in CI.",
+      "markdown_files": ["use-cases-value-pillars/future-readiness-ai.md"]
+    }
+  ]
+}

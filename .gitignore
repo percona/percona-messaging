@@ -16,8 +16,14 @@ notion-export*/
 *.draft.md
 *.wip.md
 
-# Local planning (never committed)
-localtodo.md
+# Local planning and session notes (never committed)
+local-instructions/
+# Legacy path (same purpose); editors sometimes recreate it if a tab still points at old paths
+instructions/
+
+# Generated when running scripts/quarterly_lychee_citation_review_issue.py locally
+quarterly-citation-review-issue.md
+quarterly-citation-review-meta.json
 
 # Node modules (if GitHub Actions use local scripts)
 node_modules/
