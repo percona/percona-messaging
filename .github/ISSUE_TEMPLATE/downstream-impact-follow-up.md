@@ -1,10 +1,10 @@
 ---
-
-## name: Downstream impact follow-up
+name: Downstream impact follow-up
 about: Canonical messaging changed (or will); surfaces outside this repo must update or someone must explicitly accept drift
 title: "[Downstream] "
-labels: ["Content & messaging"]
+labels: ["Downstream", "Content & messaging"]
 assignees: ''
+---
 
 ## Use this template when
 
