@@ -14,6 +14,17 @@ from typing import Any
 
 import yaml
 
+WAIVER_MARKER = "<!-- messaging-impact-waiver-data:v1 -->"
+
+SLASH_HELP = f"""
+---
+**Manual acknowledgment (maintainers):** After reviewing paths you will not change in this PR, comment on the PR:
+- `/impact-ok all` — acknowledge **every** currently missing required path (same effect as the `impact-check-waived` label).
+- `/impact-ok <path>` — acknowledge **one** path, e.g. `/impact-ok reference/canonical-naming.md` (repeat per file).
+
+Requires **Owner**, **Member**, or **Collaborator** association on this repo. Waivers are stored in a hidden PR comment (`{WAIVER_MARKER}`). Remove waivers or re-run this check if the diff changes materially.
+"""
+
 
 def run_git(args: list[str]) -> str:
     result = subprocess.run(
@@ -60,10 +71,26 @@ def should_trigger(rule: dict[str, Any], files: list[str], diff_text: str) -> bo
     return files_match and regex_match
 
 
+def load_waiver_state(path: Path | None) -> tuple[bool, frozenset[str]]:
+    """Return (waive_all, waived_paths) from JSON file written by CI."""
+    if not path or not path.exists():
+        return False, frozenset()
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return False, frozenset()
+    waive_all = bool(raw.get("all"))
+    paths_raw = raw.get("paths") or []
+    paths = frozenset(str(p).strip() for p in paths_raw if str(p).strip())
+    return waive_all, paths
+
+
 def build_report(
     rules: list[dict[str, Any]],
     files: list[str],
     diff_text: str,
+    waive_all: bool,
+    waived_paths: frozenset[str],
 ) -> tuple[dict[str, Any], bool]:
     triggered: list[dict[str, Any]] = []
     has_blocker = False
@@ -76,8 +103,15 @@ def build_report(
         touched = [path for path in must_review if file_touched(files, path)]
         missing = [path for path in must_review if path not in touched]
 
+        if waive_all:
+            missing_for_block = []
+            waived_here = list(missing)
+        else:
+            missing_for_block = [p for p in missing if p not in waived_paths]
+            waived_here = [p for p in missing if p in waived_paths]
+
         severity = (rule.get("severity") or "warn").lower()
-        if severity == "required" and missing:
+        if severity == "required" and missing_for_block:
             has_blocker = True
 
         triggered.append(
@@ -88,6 +122,8 @@ def build_report(
                 "must_review": must_review,
                 "touched": touched,
                 "missing": missing,
+                "missing_for_block": missing_for_block,
+                "waived": waived_here,
                 "suggest_globs": rule.get("suggest_globs", []),
             }
         )
@@ -96,7 +132,7 @@ def build_report(
 
 
 def markdown_report(report: dict[str, Any]) -> str:
-    lines = []
+    lines: list[str] = []
     lines.append("## Messaging Impact Check")
     lines.append("")
     changed = report.get("changed_files", [])
@@ -109,18 +145,29 @@ def markdown_report(report: dict[str, Any]) -> str:
     rules = report.get("triggered_rules", [])
     if not rules:
         lines.append("No impact rules were triggered.")
+        lines.append(SLASH_HELP.strip())
         return "\n".join(lines)
 
     for rule in rules:
-        status = "BLOCKING" if rule["severity"] == "required" and rule["missing"] else "WARN"
+        missing_for_block = rule.get("missing_for_block", rule.get("missing", []))
+        status = "BLOCKING" if rule["severity"] == "required" and missing_for_block else "WARN"
         lines.append(f"### {rule['id']} ({status})")
         if rule["description"]:
             lines.append(rule["description"])
         lines.append("")
         lines.append("Required review files:")
+        waived_set = set(rule.get("waived", []))
+        missing_set = set(rule.get("missing", []))
         for path in rule["must_review"]:
-            checked = "x" if path in rule["touched"] else " "
-            lines.append(f"- [{checked}] `{path}`")
+            if path in rule["touched"]:
+                lines.append(f"- [x] `{path}`")
+            elif path in missing_set:
+                if path in waived_set:
+                    lines.append(f"- [x] `{path}` *(waived — /impact-ok)*")
+                else:
+                    lines.append(f"- [ ] `{path}`")
+            else:
+                lines.append(f"- [x] `{path}`")
         if rule["suggest_globs"]:
             lines.append("")
             lines.append("Suggested additional scan:")
@@ -128,6 +175,8 @@ def markdown_report(report: dict[str, Any]) -> str:
                 lines.append(f"- `{pattern}`")
         lines.append("")
 
+    lines.append(SLASH_HELP.strip())
+    lines.append("")
     return "\n".join(lines).strip() + "\n"
 
 
@@ -136,6 +185,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--map", default="automation/messaging-impact-map.yml", dest="map_path")
     parser.add_argument("--base", default="origin/main", dest="base_ref")
     parser.add_argument("--head", default="HEAD", dest="head_ref")
+    parser.add_argument(
+        "--waiver-file",
+        default="",
+        help="JSON file: {\"all\": bool, \"paths\": [\"reference/foo.md\", ...]} from PR waiver comment + label state.",
+    )
     parser.add_argument("--output-json", default="impact-report.json")
     parser.add_argument("--output-md", default="impact-report.md")
     return parser.parse_args()
@@ -152,9 +206,12 @@ def main() -> int:
         config = yaml.safe_load(handle) or {}
     rules = config.get("rules", [])
 
+    waiver_path = Path(args.waiver_file) if args.waiver_file else None
+    waive_all, waived_paths = load_waiver_state(waiver_path)
+
     files = changed_files(args.base_ref, args.head_ref)
     diff_text = changed_diff(args.base_ref, args.head_ref)
-    report, has_blocker = build_report(rules, files, diff_text)
+    report, has_blocker = build_report(rules, files, diff_text, waive_all, waived_paths)
     report_md = markdown_report(report)
 
     Path(args.output_json).write_text(json.dumps(report, indent=2), encoding="utf-8")

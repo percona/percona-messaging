@@ -18,12 +18,23 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | ------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
 | `.github/workflows/terminology-check.yml`         | PR touching `*.md`                          | inline shell checks                                                                          | repository markdown content                                         | Fails/warns on banned terms and naming issues     |
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script      | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist        |
+| `.github/workflows/impact-slash-commands.yml`   | PR comment starting with `/impact-ok`       | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | Updates waiver state + refreshes impact checklist |
 | `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script      | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates             |
 | `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks   |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch           | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue       |
 | `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch           | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data |
 | `.github/workflows/prose-and-links.yml`         | PR touching markdown or prose config        | _(none — uses marketplace actions)_                                                          | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health |
 | `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch | `scripts/quarterly_lychee_citation_review_issue.py`                                      | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
+
+
+### Impact Check waivers (`/impact-ok`)
+
+When **required** impact rules list `must_review` files that you will **not** edit in this PR, a maintainer (**Owner**, **Member**, or **Collaborator**) can acknowledge that in-band:
+
+- Comment **`/impact-ok all`** on the PR to waive every missing required path for the current diff (equivalent to applying the **`impact-check-waived`** label, which `impact-check.yml` still merges into waiver state).
+- Comment **`/impact-ok <path>`** once per file, using the **exact** backticked path from the checklist (example: `/impact-ok reference/canonical-naming.md`).
+
+The workflow [`.github/workflows/impact-slash-commands.yml`](.github/workflows/impact-slash-commands.yml) stores state in a hidden PR comment (`<!-- messaging-impact-waiver-data:v1 -->` + JSON), then re-runs `impact_check.py` and **updates the same checklist comment** as the normal Impact Check. Remove waivers or re-run checks if the diff changes materially. Restrict who can use slash commands by repo role (same as label bypass).
 
 ## Where automation runs in the contributor flow
 

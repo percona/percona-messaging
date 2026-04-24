@@ -1,0 +1,205 @@
+name: Impact slash commands
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: impact-slash-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  impact-ok:
+    runs-on: ubuntu-latest
+    if: |
+      github.event.issue.pull_request &&
+      github.actor != 'github-actions[bot]' &&
+      startsWith(github.event.comment.body, '/impact-ok')
+
+    steps:
+      - name: Guard — maintainer collaborators only
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const allowed = new Set(["OWNER", "MEMBER", "COLLABORATOR"]);
+            const assoc = context.payload.comment.author_association;
+            if (!allowed.has(assoc)) {
+              throw new Error(
+                `/impact-ok requires Owner, Member, or Collaborator on this repo (got ${assoc}).`
+              );
+            }
+
+      - name: Load PR metadata
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            core.setOutput("head_ref", `refs/pull/${context.issue.number}/head`);
+            core.setOutput("base_ref", pr.data.base.ref);
+
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch base ref
+        run: git fetch origin "${{ steps.pr.outputs.base_ref }}" --depth=1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Parse /impact-ok and merge waiver state
+        id: merge
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-impact-waiver-data:v1 -->";
+            const impactMarker = "<!-- messaging-impact-check -->";
+            const pr_number = context.issue.number;
+            const { owner, repo } = context.repo;
+            const body = context.payload.comment.body.trim();
+            if (!body.startsWith("/impact-ok")) {
+              throw new Error("Unexpected comment shape");
+            }
+            const rest = body.slice("/impact-ok".length).trim();
+            let waiveAll = false;
+            let newPaths = [];
+            if (!rest || rest.toLowerCase() === "all") {
+              waiveAll = true;
+            } else {
+              newPaths = [rest];
+            }
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number: pr_number, per_page: 100 }
+            );
+            const impact = comments.find((c) => c.body && c.body.includes(impactMarker));
+            const unchecked = [];
+            if (impact) {
+              const re = /^- \[ \] `([^`]+)`/gm;
+              let m;
+              while ((m = re.exec(impact.body))) unchecked.push(m[1]);
+            }
+
+            if (!waiveAll) {
+              for (const p of newPaths) {
+                if (!unchecked.includes(p)) {
+                  throw new Error(
+                    `Path not listed as unchecked in the latest impact checklist: \`${p}\`. Copy/paste the exact backticked path from the impact comment.`
+                  );
+                }
+              }
+            }
+
+            const waiverComment = comments.find((c) => c.body && c.body.includes(marker));
+            let data = { all: false, paths: [] };
+            if (waiverComment) {
+              try {
+                const restJson = waiverComment.body.split(marker)[1].trim();
+                Object.assign(data, JSON.parse(restJson));
+              } catch (e) {
+                core.warning("Resetting waiver state (invalid JSON): " + e);
+                data = { all: false, paths: [] };
+              }
+            }
+            if (waiveAll) {
+              data.all = true;
+              data.paths = [];
+            } else {
+              data.all = false;
+              const set = new Set(data.paths || []);
+              for (const p of newPaths) set.add(p);
+              data.paths = [...set];
+            }
+
+            const outBody = `${marker}\n${JSON.stringify(data, null, 2)}`;
+            if (waiverComment) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: waiverComment.id,
+                body: outBody,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: pr_number,
+                body: outBody,
+              });
+            }
+            fs.writeFileSync("waivers.json", JSON.stringify(data));
+
+            try {
+              await github.rest.reactions.createForIssueComment({
+                owner,
+                repo,
+                comment_id: context.payload.comment.id,
+                content: "rocket",
+              });
+            } catch (e) {
+              core.info("Could not add reaction (ignored): " + e);
+            }
+
+            const summary = waiveAll
+              ? "Recorded **/impact-ok all** (waive every required path for this diff)."
+              : `Recorded **/impact-ok** for: ${newPaths.map((p) => "`" + p + "`").join(", ")}.`;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: pr_number,
+              body:
+                `🤖 ${summary} Re-running impact logic below — the checklist comment will refresh.`,
+            });
+
+      - name: Run impact check
+        run: |
+          python scripts/impact_check.py \
+            --base "origin/${{ steps.pr.outputs.base_ref }}" \
+            --head "HEAD" \
+            --waiver-file waivers.json \
+            --output-json impact-report.json \
+            --output-md impact-report.md
+
+      - name: Upsert impact checklist comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-impact-check -->";
+            const body = `${marker}\n` + fs.readFileSync("impact-report.md", "utf8");
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
