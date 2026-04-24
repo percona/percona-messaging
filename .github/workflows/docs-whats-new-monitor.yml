@@ -1,0 +1,149 @@
+# Opens a GitHub issue (label: product-update) when Percona Documentation publishes
+# a new "What's new" announcement, using the official RSS feed — not HTML scraping.
+#
+# Feed: https://docs.percona.com/feed_rss_created.xml
+# Hub: https://docs.percona.com/new/
+#
+# The RSS item count is bounded (~20 items); schedule often enough that new entries
+# are caught before they roll off the feed. Weekly is a minimum; daily is safer.
+#
+# Enable: Repository → Settings → Secrets and variables → Actions → Variables:
+#   DOCS_WHATS_NEW_MONITOR_ENABLED = true
+#
+# First-time / recovery: to backfill state without opening issues:
+#   python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
+
+name: Docs What's New monitor
+
+on:
+  schedule:
+    - cron: "0 15 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ vars.DOCS_WHATS_NEW_MONITOR_ENABLED == 'true' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Prepare new RSS items
+        id: prep
+        env:
+          FEED_URL: https://docs.percona.com/feed_rss_created.xml
+        run: |
+          python scripts/docs_whats_new_monitor.py prepare \
+            --feed "${FEED_URL}" \
+            --state data/docs_whats_new_seen_guids.json \
+            --output-json new-items.json
+          count=$(python -c "import json; print(len(json.load(open('new-items.json'))))")
+          echo "count=${count}" >> "${GITHUB_OUTPUT}"
+
+      - name: Open issues for new announcements
+        if: ${{ steps.prep.outputs.count != '0' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const crypto = require("crypto");
+            const { owner, repo } = context.repo;
+            const items = JSON.parse(fs.readFileSync("new-items.json", "utf8"));
+            const processed = [];
+
+            function markerFor(guid) {
+              const h = crypto.createHash("sha256").update(guid).digest("hex").slice(0, 16);
+              return `<!-- whatsnew-feed:${h} -->`;
+            }
+
+            for (const item of items) {
+              const marker = markerFor(item.guid);
+              const q = `repo:${owner}/${repo} is:issue in:body ${marker}`;
+              const search = await github.rest.search.issuesAndPullRequests({
+                q,
+                per_page: 1,
+              });
+              if (search.data.total_count > 0) {
+                processed.push(item.guid);
+                continue;
+              }
+
+              const title = `[Release] ${item.title}`.slice(0, 250);
+              const body = [
+                marker,
+                "",
+                "_This issue was opened automatically from the [Percona Documentation What's New](https://docs.percona.com/new/) RSS feed ([feed_rss_created.xml](https://docs.percona.com/feed_rss_created.xml)). Close if it is not relevant to canonical messaging in this repo._",
+                "",
+                "## Product and version",
+                "",
+                `_(from announcement)_ **${item.title}** — edit if you have a cleaner product/version line._`,
+                "",
+                "## Release artifact (link)",
+                "",
+                item.link || "_TBD_",
+                "",
+                "## What's new in this release (messaging-relevant)",
+                "",
+                item.description || "_See announcement link._",
+                "",
+                "## What messaging needs updating",
+                "",
+                "_Unknown — needs triage (list paths under `products/`, `framework/`, etc. when known)._",
+                "",
+                "## Release date",
+                "",
+                item.pubDate || "_TBD_",
+                "",
+                "## Source",
+                "",
+                `- RSS: https://docs.percona.com/feed_rss_created.xml`,
+                `- Item GUID: ${item.guid}`,
+              ].join("\n");
+
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: ["product-update"],
+              });
+              processed.push(item.guid);
+            }
+
+            fs.writeFileSync("processed-guids.json", JSON.stringify(processed));
+
+      - name: Merge processed GUIDs into state
+        if: ${{ steps.prep.outputs.count != '0' }}
+        run: |
+          python scripts/docs_whats_new_monitor.py merge \
+            --state data/docs_whats_new_seen_guids.json \
+            --guids-json processed-guids.json
+
+      - name: Pull request for state file
+        if: ${{ steps.prep.outputs.count != '0' }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/docs-whats-new-state
+          title: "Record processed What's New RSS GUIDs"
+          commit-message: "chore: merge docs What's New feed GUIDs into state"
+          body: |
+            Automated follow-up from **Docs What's New monitor**.
+
+            - Updates `data/docs_whats_new_seen_guids.json` so future runs do not re-file the same announcements.
+            - If this PR is empty or unnecessary, close it.
+
+            ## Reviewer checklist
+            - [ ] Merge if the GUID list change looks correct
+          add-paths: |
+            data/docs_whats_new_seen_guids.json
