@@ -15,6 +15,7 @@ assignees: ''
 
 - The scope is **“this version shipped; align repo messaging to the official release artifact”** → open **[Product release update](https://github.com/percona/percona-messaging/issues/new?template=product-release-update.md)** instead, then link that issue here if you also need narrative or cross-product follow-up.
 - You need **intake routing** or a **new canonical file exception** → use **Messaging intake and decomposition** or **New canonical file exception**.
+- **Docs, web, hub, or other repos** must change after this work → open **[Downstream impact follow-up](https://github.com/percona/percona-messaging/issues/new?template=downstream-impact-follow-up.md)** and link it here.
 
 ## Summary
 

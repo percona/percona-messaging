@@ -15,6 +15,7 @@ assignees: ''
 
 - The driver is **positioning, GTM, competitive story, packaging tiers, or cross-release narrative** → open **[Messaging change or update](https://github.com/percona/percona-messaging/issues/new?template=messaging-change-update.md)** instead (you can link this release issue from there if both apply).
 - You mostly need **intake / decomposition** across many modules or a **new canonical file** → use **Messaging intake and decomposition** or the relevant specialized template.
+- **Surfaces outside this repo** (docs, web, product UI) need coordinated updates → **[Downstream impact follow-up](https://github.com/percona/percona-messaging/issues/new?template=downstream-impact-follow-up.md)**.
 
 ## Product and version
 
