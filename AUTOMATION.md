@@ -24,12 +24,14 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch           | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data |
 | `.github/workflows/prose-and-links.yml`         | PR touching markdown or prose config        | _(none — uses marketplace actions)_                                                          | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health |
 | `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch | `scripts/quarterly_lychee_citation_review_issue.py`                                      | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
-| `.github/workflows/docs-whats-new-monitor.yml`    | Daily schedule + manual dispatch (opt-in)     | `scripts/docs_whats_new_monitor.py`                                                          | RSS feed + `data/docs_whats_new_seen_guids.json`                    | New `product-update` issues; PR updates GUID state |
+| `.github/workflows/docs-whats-new-monitor.yml`    | Daily schedule + manual dispatch (opt-in)     | `scripts/docs_whats_new_monitor.py`                                                          | RSS feed + `data/docs_whats_new_seen_guids.json`                    | New `product-update` issues (backup intake); PR updates GUID state |
 
 
 ## Docs What's New monitor (optional)
 
-When enabled, scheduled automation watches the official Percona Documentation **What's New** RSS feed (not HTML scraping) and opens GitHub issues aligned with the **Product release update** template flow (`product-update` label, `[Release]` title prefix).
+**Role:** This is a **secondary, catch-all safety net**, not the primary way canonical messaging stays current. Product and GTM should still drive versioned updates through the normal **Product release update** process (release artifacts, owners, and timelines). The monitor exists so that if something ships and **no one files an issue**, we still get a **triage signal** from the official Percona Documentation **What's New** RSS feed (not HTML scraping) before announcements age off the feed.
+
+When enabled, scheduled automation watches that feed and opens GitHub issues aligned with the **Product release update** template flow (`product-update` label, `[Release]` title prefix). Treat opened issues as **intake to confirm or close**, not as an authoritative release checklist.
 
 | Detail | Value |
 | ------ | ----- |
