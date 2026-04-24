@@ -1,14 +1,24 @@
 ---
 name: Messaging change or update
-about: Report a product, positioning, or GTM change to reflect in canonical messaging (not only a versioned ship)
+about: Change canonical messaging when the driver is not “mirror this version’s release notes”—e.g. positioning, GTM, packaging, competitive, claims, or multi-release narrative
 title: "[Update] "
 labels: ["Content & messaging"]
 assignees: ''
 ---
 
+## Use this template when
+
+- The work is driven by **strategy, narrative, packaging, sales/GTM assets, competitive alignment, or policy/claims hygiene**—not primarily by “copy what’s new in version X.Y from the release notes.”
+- **Multiple releases**, **no single version**, or **evergreen** wording needs to change (even if a recent release is context in the background).
+
+## Use a different template when
+
+- The scope is **“this version shipped; align repo messaging to the official release artifact”** → open **[Product release update](https://github.com/percona/percona-messaging/issues/new?template=product-release-update.md)** instead, then link that issue here if you also need narrative or cross-product follow-up.
+- You need **intake routing** or a **new canonical file exception** → use **Messaging intake and decomposition** or **New canonical file exception**.
+
 ## Summary
 
-<!-- One or two sentences: what changed in the real world (product, packaging, competitive, or GTM) that readers of percona-messaging should eventually see? -->
+<!-- One or two sentences: what changed in the real world that readers of percona-messaging should eventually see? -->
 
 ## Why this matters for external messaging
 
@@ -16,7 +26,7 @@ assignees: ''
 
 ## Type of change
 
-<!-- Check all that apply. -->
+<!-- Check all that apply. (Routine “sync to release notes only” belongs in Product release update, not here.) -->
 
 - [ ] Positioning / narrative (no specific version)
 - [ ] GTM or sales-facing storyline (e.g. newsletter, pitch)
@@ -45,7 +55,7 @@ assignees: ''
 
 ## Sources (public or attach privately)
 
-<!-- e.g. release notes, public roadmap, published comparison doc. Do not paste customer-specific or CRM content. -->
+<!-- e.g. public roadmap, published comparison doc, approved positioning memo. Do not paste customer-specific or CRM content. -->
 
 ## Target timing
 
