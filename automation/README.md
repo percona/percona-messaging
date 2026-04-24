@@ -8,6 +8,7 @@ For the full automation system map (workflows + scripts + config + AI usage), se
 
 - `messaging-impact-map.yml`: rules-based mapping of changed topics to files that must be reviewed
 - `claim-types.yml`: canonical claim categories and keyword hints used by suggestion tooling
+- `lychee-quarterly-review-citations.json`: URLs excluded from lychee in CI; source for the [quarterly citation review workflow](../.github/workflows/quarterly-citation-review.yml) (keep in sync with `.lychee.toml` `exclude` for those URLs)
 
 ## How configuration is used
 
