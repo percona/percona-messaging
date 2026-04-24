@@ -16,6 +16,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 - `sync_case_studies.py`: syncs case-study data from an external JSON feed
 - `staleness_report.py`: builds scheduled stale-content maintenance reports
+- `quarterly_lychee_citation_review_issue.py`: builds the body for the quarterly CI-excluded citation URL review issue
 
 ## Workflow entry points
 
@@ -23,6 +24,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `.github/workflows/smart-suggestions.yml` -> `suggest_updates.py`
 - `.github/workflows/content-governance-checks.yml` -> `new_file_gate.py`, `check_doc_coverage.py`, `duplicate_detector.py`
 - `.github/workflows/staleness-report.yml` -> `staleness_report.py`
+- `.github/workflows/quarterly-citation-review.yml` -> `quarterly_lychee_citation_review_issue.py`
 - `.github/workflows/case-study-monitor.yml` -> `sync_case_studies.py`, `suggest_updates.py`
 
 ## AI-assisted automation development
