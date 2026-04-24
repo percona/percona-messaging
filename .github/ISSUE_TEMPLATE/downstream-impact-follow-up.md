@@ -27,7 +27,7 @@ assignees: ''
 
 ## Impact (one screen)
 
-**What downstream readers will see wrong if nobody acts:** 
+**What downstream readers will see wrong if nobody acts:**
 
 **Severity:**  P0 launch blocker / P1 important soon / P2 backlog
 
