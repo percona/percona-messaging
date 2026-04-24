@@ -73,5 +73,10 @@
     "name": "Needs: product or GTM",
     "color": "BFD4F2",
     "description": "Product, marketing, or GTM should confirm scope, naming, or positioning."
+  },
+  {
+    "name": "impact-check-waived",
+    "color": "5319E7",
+    "description": "Maintainer: same as /impact-ok all — Impact Check treats all missing must_review paths as waived (merged into waiver JSON). Remove after merge or if the diff changes."
   }
 ]
