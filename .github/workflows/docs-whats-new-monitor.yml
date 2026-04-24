@@ -1,5 +1,7 @@
-# Opens a GitHub issue (label: product-update) when Percona Documentation publishes
-# a new "What's new" announcement, using the official RSS feed — not HTML scraping.
+# Backup intake: opens a GitHub issue (label: product-update) when Percona Documentation
+# publishes a new "What's new" announcement, using the official RSS feed — not HTML scraping.
+# This is NOT the primary release-messaging process; it is an opt-in safety net so we notice
+# ships that might otherwise miss a Product release update issue before items roll off the feed.
 #
 # Feed: https://docs.percona.com/feed_rss_created.xml
 # Hub: https://docs.percona.com/new/
@@ -83,7 +85,7 @@ jobs:
               const body = [
                 marker,
                 "",
-                "_This issue was opened automatically from the [Percona Documentation What's New](https://docs.percona.com/new/) RSS feed ([feed_rss_created.xml](https://docs.percona.com/feed_rss_created.xml)). Close if it is not relevant to canonical messaging in this repo._",
+                "_This issue was opened automatically as a **backup intake** signal from the [Percona Documentation What's New](https://docs.percona.com/new/) RSS feed ([feed_rss_created.xml](https://docs.percona.com/feed_rss_created.xml)). It does **not** replace the normal Product release update process—confirm coverage, dedupe if someone already filed an issue, or close if not relevant to canonical messaging in this repo._",
                 "",
                 "## Product and version",
                 "",

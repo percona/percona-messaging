@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Monitor Percona Documentation 'What's New' RSS and prepare state merges.
 
+Intended as a secondary safety net (catch-all triage signal), not the primary
+process for keeping canonical messaging aligned with releases.
+
 The public feed (MkDocs RSS plugin) is stable and preferable to scraping HTML:
 https://docs.percona.com/feed_rss_created.xml
 
