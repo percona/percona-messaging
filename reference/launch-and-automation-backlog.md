@@ -124,7 +124,7 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 | D2  | PR comment automation: replace ad-hoc `github-script` with find/create-or-update actions        | build   | Optional cleanup.                                                 |
 
 
-### Near-term automation (from `AUTOMATION.md` / `IMPLEMENTATION.md`) — **build**
+### Near-term automation (from `AUTOMATION.md` / `OPEN-SOURCE-MESSAGING-PLAYBOOK.md`) — **build**
 
 
 | ID  | Title (short)                                                        |
