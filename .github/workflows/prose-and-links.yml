@@ -25,9 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Check spelling
-        uses: crate-ci/typos@v1
+        uses: crate-ci/typos@cf5f1c29a8ac336af8568821ec41919923b05a83 # v1
         with:
           config: _typos.toml
           files: "**/*.md"
@@ -37,9 +37,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Markdownlint
-        uses: DavidAnson/markdownlint-cli2-action@v19
+        uses: DavidAnson/markdownlint-cli2-action@05f32210e84442804257b2a6f20b273450ec8265 # v19
         with:
           globs: |
             **/*.md
@@ -49,12 +49,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       # lychee-action@v1.9.0 defaults to lychee 0.14.0, which ignored `accept` from
       # .lychee.toml (429 still failed). Pin >=0.14.1 so accept=429 is honored; see
       # https://github.com/lycheeverse/lychee/issues/1340
       - name: Check links
-        uses: lycheeverse/lychee-action@v1.9.0
+        uses: lycheeverse/lychee-action@22134d37a1fff6c2974df9c92a7c7e1e86a08f9c # v1.9.0
         with:
           args: --config .lychee.toml --verbose --no-progress '**/*.md'
           fail: true
