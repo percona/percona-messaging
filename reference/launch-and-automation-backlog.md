@@ -15,7 +15,6 @@ Use this table to see what already exists on GitHub vs what is still only in the
 `gh project field-create <number> --owner percona --name "Launch track" --data-type SINGLE_SELECT --single-select-options "P0 Go-live,P1 Soon,P2 Later,Not launch"`  
 (`gh project` cannot create saved views yet — add **Launch** / **All** in the project UI; the **Messaging go-live** project readme documents this.)
 
-
 | #   | Title                                                                                          | URL                                                                                                            |
 | --- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | 1   | Implement launch hygiene automation (labels, project membership, workflow stage, stale triage) | [https://github.com/percona/percona-messaging/issues/1](https://github.com/percona/percona-messaging/issues/1) |
@@ -62,20 +61,17 @@ Run steps 2–4 on a machine with `**gh*`*, `**jq**`, and permission to change l
 
 ## Legend
 
-
 | Tag         | Meaning                                                                 |
 | ----------- | ----------------------------------------------------------------------- |
 | **test**    | Capability exists in-repo; sign off that behavior matches expectations. |
 | **build**   | Not implemented yet; track as work.                                     |
 | **process** | Working session or operational task (not necessarily code).             |
 
-
 ---
 
 ## GitHub Actions inventory (third-party vs custom)
 
 All workflows use `**actions/checkout@v4`** (official). Below: what is **pre-made** vs **repository-owned**.
-
 
 | Workflow                        | Marketplace / pre-built                                                                    | Custom (this repo)                                                                      | Could swap for more pre-built later                                                                                                                        |
 | ------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -87,13 +83,11 @@ All workflows use `**actions/checkout@v4`** (official). Below: what is **pre-mad
 | `case-study-monitor.yml`        | checkout, setup-python, **peter-evans/create-pull-request**                                | `sync_case_studies.py`, `suggest_updates.py`                                            | PR creation is already a standard action; sync script is custom.                                                                                           |
 | `prose-and-links.yml`           | **crate-ci/typos**, **DavidAnson/markdownlint-cli2-action**, **lycheeverse/lychee-action** | Config only: `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`, `.markdownlintignore` | Fully pre-built runners; you only maintain config.                                                                                                         |
 
-
 The `actions/github-script` action is maintained by GitHub; your **inline JavaScript** is custom. Alternatives: `peter-evans/find-comment` with `create-or-update-comment`, or **marocchino/sticky-pull-request-comment**, if you want less JS in YAML.
 
 ---
 
 ## Implemented in repo — validate before go-live (**test**)
-
 
 | ID  | Suggested issue title                                          | Notes                                                                         |
 | --- | -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
@@ -110,11 +104,9 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 | A11 | Validate: markdown structure (`markdownlint-cli2`)             | Not grammar; tuned for this corpus (see `.markdownlint.yaml`).                |
 | A12 | Validate: external links (`lychee` / `.lychee.toml`)           | Tune `exclude` if a host is flaky in CI.                                      |
 
-
 ---
 
 ## Not in CI yet — track as issues (**build** or **process**)
-
 
 | ID  | Suggested issue title                                                                           | Type    | Notes                                                             |
 | --- | ----------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------- |
@@ -123,9 +115,7 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 | D1  | Deeper **style / grammar** (Vale `write-good`/Microsoft, or LanguageTool, or editorial process) | build   | **Not** covered by markdownlint; pair with brand voice reviewers. |
 | D2  | PR comment automation: replace ad-hoc `github-script` with find/create-or-update actions        | build   | Optional cleanup.                                                 |
 
-
 ### Near-term automation (from `AUTOMATION.md` / `OPEN-SOURCE-MESSAGING-PLAYBOOK.md`) — **build**
-
 
 | ID  | Title (short)                                                        |
 | --- | -------------------------------------------------------------------- |
@@ -134,9 +124,7 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 | N4  | Suggestion precision / recall metrics — [opened as #17](https://github.com/percona/percona-messaging/issues/17) (**P2 / Roadmap: later** on issue) |
 | N5  | Decomposition-completeness assistant — [opened as #18](https://github.com/percona/percona-messaging/issues/18) (**P2 / Roadmap: later** on issue) |
 
-
 ### Next wave — **build**
-
 
 | ID  | Title (short)                                                                                                                                                                         |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -150,13 +138,11 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 | W8  | Post-merge missed-propagation sampler                                                                                                                                                 |
 | W9  | **Downstream execution assets:** registry + check/notify for decks, webpages, datasheets, enablement, etc., when canonical messaging changes (see *Future wish* below; pairs with W7) |
 
-
 ### Future wish (north star, not v1)
 
 **Downstream impact automation:** when canonical messaging in this repository changes, you want a durable loop that: (1) records which **downstream** materials exist and depend on it (e.g. slide decks, website pages, PDF datasheets, sales enablement, partner pages), (2) **detects** relevant merges or diffs and **notifies** the right people or systems that those assets may be stale, and (3) stays **report-first**—no automatic writes to CMS, Slides, or file shares until product and security agree. This is the execution-side complement to in-repo [propagation](decomposition-and-propagation.md); it extends the same “don’t miss surfaces” problem beyond markdown.
 
 ### Stakeholder / content (non-automation) — **process** or **build**
-
 
 | ID  | Title                                             | Who to involve (typical)   |
 | --- | ------------------------------------------------- | -------------------------- |
@@ -172,11 +158,9 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 | C7  | Read site: Docsify vs MkDocs                      | PMs, you                   |
 | C8  | Build with AI competition admin                   | You, program owner         |
 
-
 ---
 
 ## Suggested default labels (when opening on GitHub)
-
 
 | Backlog row              | Suggested labels                                                                                                                                                                        |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -187,7 +171,6 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 | **P** (walkthroughs)     | `Work session` · `Governance & policy` or `Automation & CI` · `Launch program` · `Needs: …` as needed.                                                                                  |
 | **G** (program ops)      | `Go-live & repo setup` · `Work session` (G2) · `**P0 - launch blocker`** for G1 if it gates everything else.                                                                            |
 | **D** (tooling cleanup)  | `Feature / build` or `Automation & CI` · `**P2 - backlog`** unless it blocks you.                                                                                                       |
-
 
 ---
 

@@ -34,6 +34,19 @@ Anyone with useful context can contribute. That includes product owners, Solutio
 - `github.dev`: best for multi-file edits in a browser-based editor
 - Local clone: best for contributors comfortable with Git or using AI-assisted editors
 
+## Markdown whitespace formatting
+
+For markdown structure checks, this repository enforces whitespace consistency only:
+
+- no trailing spaces (`MD009`, with normal 2-space hard-break behavior)
+- no multiple consecutive blank lines (`MD012`)
+- one trailing newline at end of file (`MD047`)
+
+Use the same CLI locally as CI:
+
+- Check: `npx -y markdownlint-cli2@0.22.1 "**/*.md"`
+- Autofix: `npx -y markdownlint-cli2@0.22.1 --fix "**/*.md"`
+
 ## Contribution workflow
 
 1. Make the smallest change that solves the problem.
