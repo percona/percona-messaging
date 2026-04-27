@@ -5,6 +5,7 @@ on:
     types: [created]
 
 permissions:
+  actions: write
   contents: read
   issues: write
   pull-requests: write
@@ -51,6 +52,7 @@ jobs:
               pull_number: context.issue.number,
             });
             core.setOutput("head_sha", pr.data.head.sha);
+            core.setOutput("head_ref", pr.data.head.ref);
             core.setOutput("base_ref", pr.data.base.ref);
 
       - name: Checkout PR head
@@ -181,3 +183,40 @@ jobs:
             } else {
               await github.rest.issues.createComment({ owner, repo, issue_number, body });
             }
+
+      - name: Rerun latest Impact Check workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const headSha = "${{ steps.pr.outputs.head_sha }}";
+            const headRef = "${{ steps.pr.outputs.head_ref }}";
+
+            const runs = await github.paginate(
+              github.rest.actions.listWorkflowRunsForRepo,
+              {
+                owner,
+                repo,
+                event: "pull_request",
+                branch: headRef,
+                per_page: 100,
+              }
+            );
+
+            const run = runs.find(
+              (r) => r.name === "Impact Check" && r.head_sha === headSha
+            );
+
+            if (!run) {
+              core.warning(
+                `No matching Impact Check run found for head SHA ${headSha}; skipping rerun.`
+              );
+              return;
+            }
+
+            await github.rest.actions.reRunWorkflow({
+              owner,
+              repo,
+              run_id: run.id,
+            });
+            core.info(`Requested rerun for Impact Check run ${run.id}.`);
