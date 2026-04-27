@@ -51,7 +51,7 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 6. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes.
 7. Read [GOVERNANCE.md](GOVERNANCE.md) when a change affects ownership, approval, or canonical status.
 8. Use [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) for the decomposition workflow and propagation checklist.
-9. Use [IMPLEMENTATION.md](IMPLEMENTATION.md) and [ORIGIN.md](ORIGIN.md) for the operating model behind this repository.
+9. Use [OPEN-SOURCE-MESSAGING-PLAYBOOK.md](OPEN-SOURCE-MESSAGING-PLAYBOOK.md) and [ORIGIN.md](ORIGIN.md) for the operating model and adoption program behind this repository.
 
 ## Working with AI assistants
 
@@ -74,7 +74,7 @@ Keep content private only when it includes sensitive material, such as:
 
 ## Playbook and governance
 
-- `OPEN-SOURCE-MESSAGING-PLAYBOOK.md`: operating order, communication cadence, goals, and presentation scaffold
+- `OPEN-SOURCE-MESSAGING-PLAYBOOK.md`: operating order, program delivery and workstreams, stakeholder comms, goals, and control loop
 - `reference/content-governance.md`: decomposition, anti-duplication, and private competitive policy
 - `reference/decomposition-and-propagation.md`: step-by-step decomposition and propagation workflow
 - `AUTOMATION.md`: end-to-end automation map across workflows, scripts, and config
