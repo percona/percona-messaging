@@ -6,6 +6,7 @@ on:
       - "**/*.md"
       - "automation/messaging-impact-map.yml"
       - "scripts/impact_check.py"
+      - ".github/requirements/ci.txt"
       - ".github/workflows/impact-check.yml"
       - ".github/workflows/impact-slash-commands.yml"
 
@@ -27,9 +28,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: ".github/requirements/ci.txt"
 
       - name: Install dependencies
-        run: pip install pyyaml
+        run: python -m pip install -r .github/requirements/ci.txt
 
       - name: Fetch base branch
         run: git fetch origin "${{ github.base_ref }}" --depth=1
