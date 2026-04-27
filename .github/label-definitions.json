@@ -75,8 +75,13 @@
     "description": "Product, marketing, or GTM should confirm scope, naming, or positioning."
   },
   {
-    "name": "impact-check-waived",
-    "color": "5319E7",
-    "description": "Maintainer: same as /impact-ok all — Impact Check treats all missing must_review paths as waived (merged into waiver JSON). Remove after merge or if the diff changes."
+    "name": "Downstream",
+    "color": "A371F7",
+    "description": "Outbound: repo canon changed; templates, datasheets, docs, web, or other surfaces need follow-up."
+  },
+  {
+    "name": "Inbound",
+    "color": "0288D1",
+    "description": "Inbound: ships, GTM, or external requests driving updates to canonical messaging in this repo."
   }
 ]

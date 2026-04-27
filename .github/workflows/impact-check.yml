@@ -34,7 +34,7 @@ jobs:
       - name: Fetch base branch
         run: git fetch origin "${{ github.base_ref }}" --depth=1
 
-      - name: Build waiver state (label + waiver comment)
+      - name: Build waiver state from hidden comment
         uses: actions/github-script@v7
         with:
           script: |
@@ -50,14 +50,12 @@ jobs:
             let data = { all: false, paths: [] };
             if (found) {
               try {
-                const rest = found.body.split(marker)[1].trim();
-                Object.assign(data, JSON.parse(rest));
+                const raw = found.body.split(marker)[1].trim();
+                Object.assign(data, JSON.parse(raw));
               } catch (e) {
                 core.warning("Ignoring invalid waiver JSON: " + e);
               }
             }
-            const labels = context.payload.pull_request.labels.map((l) => l.name);
-            if (labels.includes("impact-check-waived")) data.all = true;
             fs.writeFileSync("waivers.json", JSON.stringify(data));
 
       - name: Run impact check
