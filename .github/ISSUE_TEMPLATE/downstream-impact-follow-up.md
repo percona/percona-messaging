@@ -18,12 +18,10 @@ assignees: ''
 
 ## Upstream (this repo)
 
-
 |                            |     |
 | -------------------------- | --- |
 | **PR / issue**             |     |
 | **Merged or target merge** |     |
-
 
 ## Impact (one screen)
 
@@ -32,8 +30,6 @@ assignees: ''
 **Severity:**  P0 launch blocker / P1 important soon / P2 backlog
 
 ## Downstream surfaces (check + link)
-
-
 
 - Docs (public docs / versioned pages) — issue/PR:
 - Web / marketing (`percona.com`, campaigns, landing) — issue/PR:
@@ -48,4 +44,3 @@ assignees: ''
 - No remaining **customer-facing contradiction** between this repo and checked surfaces for the scope of the upstream change.
 
 ## Related
-

@@ -285,7 +285,6 @@ These items are usually tracked as issues (for example under the `automation` la
 
 Optional: use this table as a lightweight monthly tracker if it helps your team.
 
-
 | Month   | Priority                          | Owner | Status                   | Key output          | Notes                          |
 | ------- | --------------------------------- | ----- | ------------------------ | ------------------- | ------------------------------ |
 | YYYY-MM | Example: PostgreSQL claim refresh | Name  | Planned/In progress/Done | PR link or artifact | Risks, dependencies, follow-up |
