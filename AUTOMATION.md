@@ -18,6 +18,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | ------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
 | `.github/workflows/terminology-check.yml`         | PR touching `*.md`                          | inline shell checks                                                                          | repository markdown content                                         | Fails/warns on banned terms and naming issues     |
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script      | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist        |
+| `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`     | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist    |
 | `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script      | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates             |
 | `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks   |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch           | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue       |
@@ -59,6 +60,15 @@ python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_s
 5. Scheduled workflows create maintenance artifacts (issues/PRs) outside normal PR flow.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contributor-facing workflow behavior and [GOVERNANCE.md](GOVERNANCE.md) for review/approval policy.
+
+## Impact check manual acknowledgement
+
+For false positives where maintainers agree no edit is needed in a listed `must_review` file:
+
+- Comment `/impact-ok all` to acknowledge all currently missing required paths.
+- Comment `/impact-ok <exact path>` to acknowledge one path at a time.
+
+The slash-command workflow stores waiver state in a hidden PR comment and re-runs the impact check so the checklist comment reflects waived items.
 
 ## AI and automation: how to use AI responsibly
 
