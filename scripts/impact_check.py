@@ -16,15 +16,6 @@ import yaml
 
 WAIVER_MARKER = "<!-- messaging-impact-waiver-data:v1 -->"
 
-SLASH_HELP = f"""
----
-**Manual acknowledgment (maintainers):** After reviewing paths you will not change in this PR, comment on the PR:
-- `/impact-ok all` — acknowledge **every** currently missing required path (same effect as the `impact-check-waived` label).
-- `/impact-ok <path>` — acknowledge **one** path, e.g. `/impact-ok reference/canonical-naming.md` (repeat per file).
-
-Requires **Owner**, **Member**, or **Collaborator** association on this repo. Waivers are stored in a hidden PR comment (`{WAIVER_MARKER}`). Remove waivers or re-run this check if the diff changes materially.
-"""
-
 
 def run_git(args: list[str]) -> str:
     result = subprocess.run(
@@ -72,7 +63,7 @@ def should_trigger(rule: dict[str, Any], files: list[str], diff_text: str) -> bo
 
 
 def load_waiver_state(path: Path | None) -> tuple[bool, frozenset[str]]:
-    """Return (waive_all, waived_paths) from JSON file written by CI."""
+    """Return (waive_all, waived_paths) from optional waiver JSON."""
     if not path or not path.exists():
         return False, frozenset()
     try:
@@ -102,6 +93,8 @@ def build_report(
         must_review = rule.get("must_review", [])
         touched = [path for path in must_review if file_touched(files, path)]
         missing = [path for path in must_review if path not in touched]
+        waived = list(missing) if waive_all else [path for path in missing if path in waived_paths]
+        missing_for_block = [path for path in missing if path not in waived]
 
         if waive_all:
             missing_for_block = []
@@ -122,8 +115,8 @@ def build_report(
                 "must_review": must_review,
                 "touched": touched,
                 "missing": missing,
+                "waived": waived,
                 "missing_for_block": missing_for_block,
-                "waived": waived_here,
                 "suggest_globs": rule.get("suggest_globs", []),
             }
         )
@@ -145,11 +138,16 @@ def markdown_report(report: dict[str, Any]) -> str:
     rules = report.get("triggered_rules", [])
     if not rules:
         lines.append("No impact rules were triggered.")
-        lines.append(SLASH_HELP.strip())
+        lines.append("")
+        lines.append("Manual acknowledgment (maintainers):")
+        lines.append("- `/impact-ok all`")
+        lines.append("- `/impact-ok <exact missing path>`")
         return "\n".join(lines)
 
     for rule in rules:
-        missing_for_block = rule.get("missing_for_block", rule.get("missing", []))
+        missing_for_block = set(rule.get("missing_for_block", []))
+        missing = set(rule.get("missing", []))
+        waived = set(rule.get("waived", []))
         status = "BLOCKING" if rule["severity"] == "required" and missing_for_block else "WARN"
         lines.append(f"### {rule['id']} ({status})")
         if rule["description"]:
@@ -161,13 +159,10 @@ def markdown_report(report: dict[str, Any]) -> str:
         for path in rule["must_review"]:
             if path in rule["touched"]:
                 lines.append(f"- [x] `{path}`")
-            elif path in missing_set:
-                if path in waived_set:
-                    lines.append(f"- [x] `{path}` *(waived — /impact-ok)*")
-                else:
-                    lines.append(f"- [ ] `{path}`")
+            elif path in missing and path in waived:
+                lines.append(f"- [x] `{path}` *(waived — /impact-ok)*")
             else:
-                lines.append(f"- [x] `{path}`")
+                lines.append(f"- [ ] `{path}`")
         if rule["suggest_globs"]:
             lines.append("")
             lines.append("Suggested additional scan:")
@@ -175,8 +170,12 @@ def markdown_report(report: dict[str, Any]) -> str:
                 lines.append(f"- `{pattern}`")
         lines.append("")
 
-    lines.append(SLASH_HELP.strip())
+    lines.append("Manual acknowledgment (maintainers):")
+    lines.append("- `/impact-ok all`")
+    lines.append("- `/impact-ok <exact missing path>`")
     lines.append("")
+    lines.append(f"Waiver state is stored in `{WAIVER_MARKER}`.")
+
     return "\n".join(lines).strip() + "\n"
 
 
@@ -185,11 +184,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--map", default="automation/messaging-impact-map.yml", dest="map_path")
     parser.add_argument("--base", default="origin/main", dest="base_ref")
     parser.add_argument("--head", default="HEAD", dest="head_ref")
-    parser.add_argument(
-        "--waiver-file",
-        default="",
-        help="JSON file: {\"all\": bool, \"paths\": [\"reference/foo.md\", ...]} from PR waiver comment + label state.",
-    )
+    parser.add_argument("--waiver-file", default="", help="Optional waiver JSON path")
     parser.add_argument("--output-json", default="impact-report.json")
     parser.add_argument("--output-md", default="impact-report.md")
     return parser.parse_args()
@@ -205,6 +200,8 @@ def main() -> int:
     with map_path.open("r", encoding="utf-8") as handle:
         config = yaml.safe_load(handle) or {}
     rules = config.get("rules", [])
+    waiver_path = Path(args.waiver_file) if args.waiver_file else None
+    waive_all, waived_paths = load_waiver_state(waiver_path)
 
     waiver_path = Path(args.waiver_file) if args.waiver_file else None
     waive_all, waived_paths = load_waiver_state(waiver_path)
