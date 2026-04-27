@@ -8,19 +8,11 @@ assignees: ""
 
 ## Request summary
 
-
-
 ## Business context
-
-
 
 ## Source context
 
-
-
 ## Decomposition proposal
-
-
 
 - Framework:
 - Use-cases/value-pillars:
@@ -31,8 +23,6 @@ assignees: ""
 
 ## Canonical files to update first
 
-
-
 ## New file needed?
 
 - No, update existing canonical files only
@@ -42,15 +32,9 @@ assignees: ""
 
 ### Existing files reviewed first
 
-
-
 ### Exact gap not covered
 
-
-
 ### Owner and maintenance plan
-
-
 
 ## Privacy boundary check
 
