@@ -1,0 +1,43 @@
+name: Pinned CI Python Dependencies
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/*.yml"
+      - ".github/requirements/*.txt"
+
+permissions:
+  contents: read
+
+jobs:
+  enforce-pinned-python-deps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify workflows do not use unpinned pip installs
+        run: |
+          python - <<'PY'
+          import pathlib
+          import re
+          import sys
+
+          root = pathlib.Path(".github/workflows")
+          pattern = re.compile(r"\bpip\s+install\s+(?!.*(?:-r|--requirement)\b)[^\n#]+")
+          violations = []
+
+          for path in sorted(root.glob("*.yml")):
+            for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+              if pattern.search(line):
+                violations.append((path.as_posix(), line_number, line.strip()))
+
+          if violations:
+            print("Found unpinned pip install commands in workflows:")
+            for path, line_number, line in violations:
+              print(f"- {path}:{line_number}: {line}")
+            sys.exit(1)
+
+          print("All workflow pip installs use requirements files.")
+          PY
