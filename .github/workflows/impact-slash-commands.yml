@@ -68,9 +68,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: ".github/requirements/ci.txt"
 
       - name: Install dependencies
-        run: pip install pyyaml
+        run: python -m pip install -r .github/requirements/ci.txt
 
       - name: Merge command into waiver state
         id: merge_waiver
