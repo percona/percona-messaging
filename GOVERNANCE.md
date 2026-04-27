@@ -31,14 +31,12 @@ This document defines how Percona Messaging stays trustworthy: messaging is curr
 
 Percona Messaging uses RAPID to keep decision rights explicit.
 
-
 | Decision type                                       | Recommend                              | Agree / Input                                | Perform                      | Decide                                         |
 | --------------------------------------------------- | -------------------------------------- | -------------------------------------------- | ---------------------------- | ---------------------------------------------- |
 | Repository structure and workflow                   | Repository maintainers                 | Domain owners and affected reviewers         | Repository maintainers       | Repository lead                                |
 | Framework messaging and naming rules                | Repository maintainers                 | Domain owners and specialist reviewers       | Contributors and maintainers | Messaging governance lead                      |
 | Product or offering messaging updates               | Domain owner or designated contributor | Repository maintainer and affected reviewers | Contributor                  | Domain owner                                   |
 | High-risk public claims or launch-sensitive changes | Domain owner or repository maintainer  | Specialist reviewers                         | Contributor and maintainer   | Designated approver for the affected risk area |
-
 
 ## Ownership map and CODEOWNERS
 
