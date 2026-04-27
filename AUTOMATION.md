@@ -13,10 +13,9 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 
 ## Workflow map
 
-
 | Workflow                                          | Trigger                                     | Uses scripts                                                                                 | Uses config/data                                                    | Output                                            |
 | ------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
-| `.github/workflows/terminology-check.yml`         | PR touching `*.md`                          | inline shell checks                                                                          | repository markdown content                                         | Fails/warns on banned terms and naming issues     |
+| `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                      | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues     |
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script      | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist        |
 | `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`     | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist    |
 | `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script      | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates             |
@@ -131,3 +130,11 @@ See [scripts/README.md](scripts/README.md) for script-level usage.
 When testing PR-based scripts locally, run against a base/head git range similar to CI.
 
 For spelling, links, and markdown structure, use the same tools as [prose-and-links.yml](.github/workflows/prose-and-links.yml): `typos` (see `_typos.toml`), `lychee` (see `.lychee.toml`), and `markdownlint-cli2` (see `.markdownlint.yaml`). Markdownlint enforces structure, not grammar or product voice.
+
+## Tool versions in automation
+
+Repository-managed automation tool versions live in `automation/tool-versions.json`.
+
+- **Vale version source of truth:** `automation/tool-versions.json` -> `vale.version`
+- **Current consumer:** `.github/workflows/terminology-check.yml`
+- **Bump path:** update `vale.version`, open PR, and confirm the workflow log prints `Using Vale v...` and `vale -v` for the updated version.

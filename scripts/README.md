@@ -52,3 +52,7 @@ Human-readable label names, colors, and descriptions live in [`.github/label-def
 - **External URLs:** [`lychee`](https://github.com/lycheeverse/lychee) with [`.lychee.toml`](../.lychee.toml).
 - **Markdown structure** (not product grammar): [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) with [`.markdownlint.yaml`](../.markdownlint.yaml) and [`.markdownlintignore`](../.markdownlintignore).
 
+Local markdownlint commands (same tool as CI):
+
+- Check: `npx -y markdownlint-cli2@0.22.1 "**/*.md"`
+- Autofix whitespace: `npx -y markdownlint-cli2@0.22.1 --fix "**/*.md"`
