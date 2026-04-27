@@ -36,4 +36,3 @@ This repository is not only a place to store copy. It is an operating model for 
 3. Document what stays private and what becomes canonical.
 4. Test the workflow on a real change before broadening scope.
 5. Turn what you learn into contribution guidance and review rules.
-
