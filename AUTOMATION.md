@@ -13,7 +13,6 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 
 ## Workflow map
 
-
 | Workflow                                          | Trigger                                     | Uses scripts                                                                                 | Uses config/data                                                    | Output                                            |
 | ------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
 | `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                      | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues     |
