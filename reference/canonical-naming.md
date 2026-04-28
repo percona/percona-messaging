@@ -2,16 +2,13 @@
 
 **Values**
 
-
 | Core value            | Full pillar label                  | Common shorthand | How to use                                                                                                                                        |
 | --------------------- | ---------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Open source           | **Open Source Commitment**         | Open source      | Use this phrasing for the pillar label. In body copy, feel free to reference open source, source-available, licensing, or transparency as needed. |
 | Freedom / portability | **Vendor Freedom to Run Anywhere** | Vendor freedom   | Use the full label in headings or diagrams. In narrative text, "run anywhere," "multi-cloud," or "platform freedom" are fine.                     |
 | Expertise             | **Expertise on Call**              | Expertise        | Use as the pillar name. In explanations, you can say "upstream-level engineers," "experts on call," or similar.                                   |
 
-
 **Offerings**
-
 
 | Type             | Full name                                   | Acceptable short form                                            | Guidance                                                                                                                                                                                                                                                                                   |
 | ---------------- | ------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -21,5 +18,3 @@
 | Product          | **Percona Monitoring and Management (PMM)** | PMM                                                              | Treat as a product or capability used across offerings rather than part of an offer name.                                                                                                                                                                                                  |
 | Lifecycle model  | **Run / Operate / Observe**                 | None                                                             | **Internal only.** Used to describe the software lifecycle framing.                                                                                                                                                                                                                        |
 | Support tiers    | **Advanced Support**, **Premium Support**   | None                                                             | Keep "Support" attached for clarity when referencing SLAs or response times.                                                                                                                                                                                                               |
-
-

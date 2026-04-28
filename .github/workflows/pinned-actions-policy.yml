@@ -1,0 +1,69 @@
+name: Pinned Actions Policy
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/*.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check-pinned-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Validate workflow action pins (warn-only)
+        run: |
+          python - <<'PY'
+          import pathlib
+          import re
+          import sys
+
+          workflow_dir = pathlib.Path(".github/workflows")
+          pattern = re.compile(r"^\s*uses:\s*([^\s#]+)")
+          sha_pattern = re.compile(r"^[0-9a-f]{40}$")
+
+          violations = []
+          for workflow in sorted(workflow_dir.glob("*.yml")):
+              for line_number, line in enumerate(workflow.read_text().splitlines(), start=1):
+                  match = pattern.search(line)
+                  if not match:
+                      continue
+                  spec = match.group(1).strip()
+                  if spec.startswith("./") or spec.startswith("docker://"):
+                      continue
+                  if "@" not in spec:
+                      violations.append((workflow.as_posix(), line_number, spec, "missing @ref"))
+                      continue
+                  _, ref = spec.rsplit("@", 1)
+                  if not sha_pattern.fullmatch(ref):
+                      violations.append((workflow.as_posix(), line_number, spec, "ref is not full 40-char SHA"))
+
+          report = pathlib.Path("pinned-actions-policy-report.md")
+          if not violations:
+              report.write_text("## Pinned Actions Policy\n\nAll workflow action refs are pinned to full commit SHAs.\n")
+              print("Pinned Actions Policy: all refs are pinned.")
+              sys.exit(0)
+
+          lines = [
+              "## Pinned Actions Policy",
+              "",
+              ":warning: Found workflow action refs that are not pinned to full commit SHAs.",
+              "",
+              "| File | Line | uses | Problem |",
+              "| --- | ---: | --- | --- |",
+          ]
+          for path, line_number, spec, problem in violations:
+              lines.append(f"| `{path}` | {line_number} | `{spec}` | {problem} |")
+              print(f"::warning file={path},line={line_number}::{spec} ({problem})")
+          report.write_text("\n".join(lines) + "\n")
+          print("Pinned Actions Policy: violations detected (warn-only mode).")
+          PY
+
+      - name: Add policy report to workflow summary
+        if: always()
+        run: cat pinned-actions-policy-report.md >> "$GITHUB_STEP_SUMMARY"

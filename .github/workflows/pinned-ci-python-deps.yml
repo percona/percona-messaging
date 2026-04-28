@@ -1,0 +1,108 @@
+name: Pinned CI Python Dependencies
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/*.yml"
+      - ".github/requirements/*.txt"
+
+permissions:
+  contents: read
+
+jobs:
+  enforce-pinned-python-deps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Verify workflows do not use unpinned pip installs
+        run: |
+          python - <<'PY'
+          import pathlib
+          import re
+          import shlex
+          import sys
+
+          root = pathlib.Path(".github/workflows")
+          heredoc_start_pattern = re.compile(r"<<-?\s*(['\"]?)([A-Za-z_][A-Za-z0-9_]*)\1")
+          run_inline_pattern = re.compile(r"^\s*run:\s*(.+?)\s*$")
+          run_block_pattern = re.compile(r"^\s*run:\s*[>|][-+0-9]*\s*$")
+          violations = []
+
+          def indentation(line: str) -> int:
+            return len(line) - len(line.lstrip(" "))
+
+          def has_unpinned_install(command: str) -> bool:
+            stripped = command.strip()
+            if not stripped or stripped.startswith("#"):
+              return False
+            try:
+              tokens = shlex.split(stripped, comments=True, posix=True)
+            except ValueError:
+              tokens = stripped.split()
+            if len(tokens) >= 2 and tokens[0] in {"pip", "pip3"} and tokens[1] == "install":
+              return not any(token in {"-r", "--requirement"} for token in tokens[2:])
+            if (
+              len(tokens) >= 4
+              and tokens[0] in {"python", "python3"}
+              and tokens[1] == "-m"
+              and tokens[2] == "pip"
+              and tokens[3] == "install"
+            ):
+              return not any(token in {"-r", "--requirement"} for token in tokens[4:])
+            return False
+
+          for path in sorted(root.glob("*.yml")):
+            lines = path.read_text(encoding="utf-8").splitlines()
+            index = 0
+            while index < len(lines):
+              line = lines[index]
+              line_number = index + 1
+
+              inline_match = run_inline_pattern.match(line)
+              if inline_match:
+                command = inline_match.group(1).strip()
+                if has_unpinned_install(command):
+                  violations.append((path.as_posix(), line_number, command))
+                index += 1
+                continue
+
+              if not run_block_pattern.match(line):
+                index += 1
+                continue
+
+              run_indent = indentation(line)
+              index += 1
+              heredoc_end = None
+              while index < len(lines):
+                block_line = lines[index]
+                block_line_number = index + 1
+                stripped = block_line.strip()
+
+                if stripped and indentation(block_line) <= run_indent:
+                  break
+
+                if heredoc_end is not None:
+                  if stripped == heredoc_end:
+                    heredoc_end = None
+                  index += 1
+                  continue
+
+                heredoc_match = heredoc_start_pattern.search(block_line)
+                if heredoc_match:
+                  heredoc_end = heredoc_match.group(2)
+
+                if has_unpinned_install(stripped):
+                  violations.append((path.as_posix(), block_line_number, stripped))
+                index += 1
+
+          if violations:
+            print("Found unpinned pip install commands in workflows:")
+            for path, line_number, line in violations:
+              print(f"- {path}:{line_number}: {line}")
+            sys.exit(1)
+
+          print("All workflow pip installs use requirements files.")
+          PY
