@@ -36,7 +36,20 @@ module.exports = async function upsertMarkerComment({
     issue_number,
     per_page: perPage,
   });
-  const existing = comments.find((c) => c.body && c.body.includes(marker));
+  const markerComments = comments
+    .filter((c) => c.body && c.body.includes(marker))
+    .sort((a, b) => {
+      const aTime = Date.parse(a.updated_at || a.created_at || "") || 0;
+      const bTime = Date.parse(b.updated_at || b.created_at || "") || 0;
+      return bTime - aTime;
+    });
+  const existing = markerComments[0];
+
+  if (markerComments.length > 1) {
+    core.warning(
+      `Found ${markerComments.length} comments with marker ${marker}; updating latest comment ${existing.id}.`,
+    );
+  }
 
   if (existing) {
     await github.rest.issues.updateComment({
