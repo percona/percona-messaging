@@ -18,7 +18,7 @@ MD049: false # emphasis-style — allow *asterisks* and _underscores_ (editor de
 MD060: false # table-column-style (aligned pipes are not required in this corpus)
 # Whitespace policy (issue #59): only structural cleanliness, not prose style.
 MD009: true # no-trailing-spaces (allows 2-space hard break by default)
-MD012: true # no-multiple-blanks
-MD047: true # single trailing newline at end of file
+MD012: false # no-multiple-blanks (disabled to reduce low-signal newline churn)
+MD047: false # single trailing newline at end of file (disabled to avoid EOF newline noise)
 # Issue / PR frontmatter in .github/ uses spacing GitHub needs; do not enforce there
 # (markdownlint does not read YAML front matter as special)
