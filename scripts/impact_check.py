@@ -62,18 +62,20 @@ def should_trigger(rule: dict[str, Any], files: list[str], diff_text: str) -> bo
     return files_match and regex_match
 
 
-def load_waiver_state(path: Path | None) -> tuple[bool, frozenset[str]]:
-    """Return (waive_all, waived_paths) from optional waiver JSON."""
+def load_waiver_state(path: Path | None) -> tuple[bool, frozenset[str], frozenset[str]]:
+    """Return (waive_all, waived_paths, reset_paths) from optional waiver JSON."""
     if not path or not path.exists():
-        return False, frozenset()
+        return False, frozenset(), frozenset()
     try:
         raw = json.loads(path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError):
-        return False, frozenset()
+        return False, frozenset(), frozenset()
     waive_all = bool(raw.get("all"))
     paths_raw = raw.get("paths") or []
+    reset_raw = raw.get("reset_paths") or []
     paths = frozenset(str(p).strip() for p in paths_raw if str(p).strip())
-    return waive_all, paths
+    reset_paths = frozenset(str(p).strip() for p in reset_raw if str(p).strip())
+    return waive_all, paths, reset_paths
 
 
 def build_report(
@@ -82,6 +84,7 @@ def build_report(
     diff_text: str,
     waive_all: bool,
     waived_paths: frozenset[str],
+    reset_paths: frozenset[str],
 ) -> tuple[dict[str, Any], bool]:
     triggered: list[dict[str, Any]] = []
     has_blocker = False
@@ -93,7 +96,8 @@ def build_report(
         must_review = rule.get("must_review", [])
         touched = [path for path in must_review if file_touched(files, path)]
         missing = [path for path in must_review if path not in touched]
-        waived = list(missing) if waive_all else [path for path in missing if path in waived_paths]
+        waived_base = list(missing) if waive_all else [path for path in missing if path in waived_paths]
+        waived = [path for path in waived_base if path not in reset_paths]
         missing_for_block = [path for path in missing if path not in waived]
 
         severity = (rule.get("severity") or "warn").lower()
@@ -132,9 +136,11 @@ def markdown_report(report: dict[str, Any]) -> str:
     if not rules:
         lines.append("No impact rules were triggered.")
         lines.append("")
-        lines.append("Manual acknowledgment (maintainers):")
+        lines.append("Manual waiver commands (maintainers):")
         lines.append("- `/impact-ok all`")
         lines.append("- `/impact-ok <exact missing path>`")
+        lines.append("- `/impact-reset all`")
+        lines.append("- `/impact-reset <exact missing path>`")
         return "\n".join(lines)
 
     for rule in rules:
@@ -161,9 +167,11 @@ def markdown_report(report: dict[str, Any]) -> str:
                 lines.append(f"- `{pattern}`")
         lines.append("")
 
-    lines.append("Manual acknowledgment (maintainers):")
+    lines.append("Manual waiver commands (maintainers):")
     lines.append("- `/impact-ok all`")
     lines.append("- `/impact-ok <exact missing path>`")
+    lines.append("- `/impact-reset all`")
+    lines.append("- `/impact-reset <exact missing path>`")
     lines.append("")
     lines.append(f"Waiver state is stored in `{WAIVER_MARKER}`.")
 
@@ -192,11 +200,11 @@ def main() -> int:
         config = yaml.safe_load(handle) or {}
     rules = config.get("rules", [])
     waiver_path = Path(args.waiver_file) if args.waiver_file else None
-    waive_all, waived_paths = load_waiver_state(waiver_path)
+    waive_all, waived_paths, reset_paths = load_waiver_state(waiver_path)
 
     files = changed_files(args.base_ref, args.head_ref)
     diff_text = changed_diff(args.base_ref, args.head_ref)
-    report, has_blocker = build_report(rules, files, diff_text, waive_all, waived_paths)
+    report, has_blocker = build_report(rules, files, diff_text, waive_all, waived_paths, reset_paths)
     report_md = markdown_report(report)
 
     Path(args.output_json).write_text(json.dumps(report, indent=2), encoding="utf-8")
