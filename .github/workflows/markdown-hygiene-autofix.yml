@@ -1,0 +1,201 @@
+name: Markdown hygiene auto-fix
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: markdown-hygiene-autofix-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  AUTO_PUSH_ENABLED: ${{ vars.MARKDOWN_HYGIENE_AUTO_PUSH_ENABLED || 'true' }}
+
+jobs:
+  markdown-hygiene-autofix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed markdown files in PR
+        id: changed
+        run: |
+          git diff --name-only --diff-filter=ACMR \
+            "${{ github.event.pull_request.base.sha }}" \
+            "${{ github.event.pull_request.head.sha }}" \
+            -- '*.md' > changed-md.txt
+
+          if [ -s changed-md.txt ]; then
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "changed_files<<EOF"
+              sed 's/.*/- `&`/' changed-md.txt
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "changed_files<<EOF"
+              echo "- (none)"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check markdown hygiene (check mode)
+        id: check
+        if: steps.changed.outputs.has_files == 'true'
+        run: |
+          mapfile -t files < changed-md.txt
+          set +e
+          npx -y markdownlint-cli2@0.22.1 --config automation/markdown-hygiene-autofix.jsonc "${files[@]}"
+          status=$?
+          set -e
+
+          if [ "$status" -eq 0 ]; then
+            echo "needs_fix=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "needs_fix=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Apply markdown hygiene fixes
+        if: steps.check.outputs.needs_fix == 'true'
+        run: |
+          mapfile -t files < changed-md.txt
+          npx -y markdownlint-cli2@0.22.1 --config automation/markdown-hygiene-autofix.jsonc --fix "${files[@]}"
+
+      - name: Detect fixer diff
+        id: fixes
+        if: steps.check.outputs.needs_fix == 'true'
+        run: |
+          git diff --name-only -- '*.md' > fixed-md.txt
+
+          if [ -s fixed-md.txt ]; then
+            echo "has_fixes=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "fixed_files<<EOF"
+              sed 's/.*/- `&`/' fixed-md.txt
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "has_fixes=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "fixed_files<<EOF"
+              echo "- (none)"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push auto-fix
+        id: commit_push
+        if: steps.fixes.outputs.has_fixes == 'true' && env.AUTO_PUSH_ENABLED == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --pathspec-from-file=fixed-md.txt
+          if git diff --cached --quiet; then
+            echo "No staged markdown changes after fixer."
+            exit 0
+          fi
+          git commit -m "chore(markdown): auto-fix hygiene"
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+
+      - name: Add run summary
+        if: always()
+        run: |
+          {
+            echo "## Markdown hygiene auto-fix"
+            echo ""
+            echo "- Changed markdown files:"
+            echo "${{ steps.changed.outputs.changed_files || '- (none)' }}"
+            echo "- Check mode needed fixes:"
+            echo "- ${{ steps.check.outputs.needs_fix == 'true' && 'yes' || 'no' }}"
+            if [ "${{ steps.fixes.outputs.has_fixes || 'false' }}" = "true" ]; then
+              echo "- Files fixed:"
+              echo "${{ steps.fixes.outputs.fixed_files }}"
+            else
+              echo "- Files fixed:"
+              echo "- (none)"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upsert PR auto-fix comment
+        if: steps.fixes.outputs.has_fixes == 'true'
+        continue-on-error: true
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          FIXED_FILES: ${{ steps.fixes.outputs.fixed_files }}
+          AUTO_PUSH_ENABLED: ${{ env.AUTO_PUSH_ENABLED }}
+          PUSH_ALLOWED: ${{ github.event.pull_request.head.repo.full_name == github.repository && env.AUTO_PUSH_ENABLED == 'true' && 'true' || 'false' }}
+          PUSHED: ${{ steps.commit_push.outcome == 'success' && 'true' || 'false' }}
+        with:
+          script: |
+            const marker = "<!-- messaging-markdown-hygiene-autofix -->";
+            const fixedFiles = process.env.FIXED_FILES || "- (none)";
+            const autoPushEnabled = process.env.AUTO_PUSH_ENABLED === "true";
+            const pushAllowed = process.env.PUSH_ALLOWED === "true";
+            const pushed = process.env.PUSHED === "true";
+
+            const lines = [
+              marker,
+              "## Markdown hygiene auto-fix",
+              "",
+            ];
+
+            if (pushAllowed && pushed) {
+              lines.push(
+                "Applied safe markdown hygiene fixes and pushed one bot commit to this PR branch.",
+                "",
+                "Fixed files:",
+                fixedFiles,
+              );
+            } else if (!autoPushEnabled) {
+              lines.push(
+                "Detected safe markdown hygiene fixes in check mode. Auto-push is disabled for rollout.",
+                "",
+                "Files that need hygiene fixes:",
+                fixedFiles,
+                "",
+                "Run locally, then push:",
+                "`npx -y markdownlint-cli2@0.22.1 --config automation/markdown-hygiene-autofix.jsonc --fix \"**/*.md\"`",
+              );
+            } else if (!pushAllowed) {
+              lines.push(
+                "Detected safe markdown hygiene fixes, but skipped push because this PR branch is from a fork.",
+                "",
+                "Files that need hygiene fixes:",
+                fixedFiles,
+                "",
+                "Run locally, then push:",
+                "`npx -y markdownlint-cli2@0.22.1 --config automation/markdown-hygiene-autofix.jsonc --fix \"**/*.md\"`",
+              );
+            } else {
+              lines.push(
+                "Detected markdown hygiene fixes, but no bot commit was pushed.",
+                "",
+                "Files that need hygiene fixes:",
+                fixedFiles,
+              );
+            }
+
+            const body = lines.join("\n");
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body,
+            });
