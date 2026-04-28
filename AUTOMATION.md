@@ -43,6 +43,8 @@ For false positives where maintainers agree no edit is needed in a listed `must_
 
 - Comment `/impact-ok all` to acknowledge all currently missing required paths.
 - Comment `/impact-ok <exact path>` to acknowledge one path at a time.
+- Comment `/impact-reset all` to clear all recorded waivers for the PR.
+- Comment `/impact-reset <exact path>` to remove one waiver. If `/impact-ok all` is active, this path-specific reset is stored as an explicit exception.
 
 The slash-command workflow stores waiver state in a hidden PR comment and re-runs the impact check so the checklist comment reflects waived items.
 

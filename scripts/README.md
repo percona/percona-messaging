@@ -7,6 +7,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 ## Pull request intelligence scripts
 
 - `impact_check.py`: checks changed files against `automation/messaging-impact-map.yml`
+  - applies waiver state from slash commands (`/impact-ok`, `/impact-reset`) including path-specific resets when `all` is active
 - `suggest_updates.py`: generates deterministic suggestion candidates for impacted files
 - `new_file_gate.py`: enforces required PR justification fields when new markdown files are added
 - `check_doc_coverage.py`: verifies new markdown docs are linked from repository navigation docs
