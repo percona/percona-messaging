@@ -31,6 +31,11 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `.github/workflows/quarterly-citation-review.yml` -> `quarterly_lychee_citation_review_issue.py`
 - `.github/workflows/case-study-monitor.yml` -> `sync_case_studies.py`, `suggest_updates.py`
 
+## Validation sign-off runbooks
+
+- Issue #9 new file gate: see `New file gate sign-off protocol (issue #9)` below.
+- Issue #15 multi-check integration smoke: see `Multi-check integration smoke sign-off protocol (issue #15)` below.
+
 ## New file gate sign-off protocol (issue #9)
 
 Use this protocol to produce low-lift PASS or FAIL evidence for `new_file_gate.py` in `.github/workflows/content-governance-checks.yml`.
@@ -57,6 +62,69 @@ Expected outcomes:
 
 - Post `@brianamarie Sign-off: PASS | FAIL - <one line>`.
 - Add 3 to 5 bullets covering scenario outcomes, PR comment upsert behavior, and any follow-up issue.
+
+## Multi-check integration smoke sign-off protocol (issue #15)
+
+Use this protocol for one realistic draft PR that triggers multiple workflows together and validates integration behavior.
+
+### Preconditions
+
+- Run from a branch in this repository (not a fork) so PR comment upserts can write as expected.
+- Use existing files only, do not create new markdown files in this smoke PR.
+- Keep the PR as draft while testing.
+
+### Deterministic file touch set
+
+- Edit one existing markdown file, for example `reference/launch-and-automation-backlog.md`.
+- Edit one existing automation/config file that still keeps checks green, for example `automation/messaging-impact-map.yml` or `_typos.toml`.
+- Optional for broader coverage, include `.markdownlint.yaml` or `.lychee.toml`.
+
+Expected checks for this scenario:
+
+- `Terminology Check`
+- `Impact Check`
+- `Smart Suggestions`
+- `Content Governance Checks`
+- `Prose and links` (`Spelling (typos)`, `Markdown structure (markdownlint)`, `Links (lychee)`)
+
+### Tier model
+
+- Tier A (core smoke, required): verify trigger coverage, rerun stability, and comment idempotency.
+- Tier B (extended diagnostics, conditional): run only when Tier A fails or behavior is unclear.
+
+### Acceptance thresholds
+
+- Trigger coverage: all expected checks appear for this deterministic PR shape.
+- Comment idempotency: marker-managed comments update in place and do not duplicate after reruns.
+- Runtime health: no outlier runtime beyond your team budget for routine PR checks.
+- Guidance quality: at least one failing check (if induced) gives clear first-fix direction.
+- Branch-protection parity: check names in PR runs match required checks in branch protection.
+
+### Execution sequence
+
+1. Open a draft PR with the baseline mixed change, then verify all expected checks appear.
+2. Record exact check names and completion status.
+3. Confirm each marker-managed PR comment is upserted in place (updated, not duplicated).
+4. Push one small follow-up commit to force reruns, then confirm check-set stability and idempotency again.
+5. If Tier A passes all thresholds, stop and sign off.
+6. If any threshold fails, run Tier B:
+   - Introduce one controlled lint or terminology failure.
+   - Verify first-fix guidance is clear and actionable.
+   - Revert the induced failure in the next commit.
+
+### Failure classes (for fast follow-up issue creation)
+
+- F1: Trigger mismatch (missing or unexpected workflows)
+- F2: Comment idempotency defect (duplicate or stale marker comments)
+- F3: Flaky or slow checks (unstable outcomes or runtime outliers)
+- F4: Guidance UX gap (failure output does not explain next fix step)
+- F5: Branch-protection mismatch (required checks differ from runtime names)
+
+### Sign-off record for issue #15
+
+- Post `@brianamarie Sign-off: PASS | FAIL - <one line>`.
+- Include: `Tier run`, exact `Check set observed`, `Rerun delta`, `Comment idempotency`, `Protection parity`, and `Follow-ups`.
+- Add 3 to 5 bullets for observations and follow-up issues for any confusing UX.
 
 ## AI-assisted automation development
 

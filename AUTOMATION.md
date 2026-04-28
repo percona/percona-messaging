@@ -120,6 +120,7 @@ Use this quick filter so automation scope stays practical:
 ## Local validation
 
 See [scripts/README.md](scripts/README.md) for script-level usage.  
+For sign-off execution protocols, see the `Validation sign-off runbooks` section in [scripts/README.md](scripts/README.md), including issue #9 (`new file gate`) and issue #15 (`multi-check integration smoke`).
 When testing PR-based scripts locally, run against a base/head git range similar to CI.
 
 For spelling, links, and markdown structure, use the same tools as [prose-and-links.yml](.github/workflows/prose-and-links.yml): `typos` (see `_typos.toml`), `lychee` (see `.lychee.toml`), and `markdownlint-cli2` (see `.markdownlint.yaml`). Markdownlint enforces structure, not grammar or product voice.

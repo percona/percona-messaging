@@ -96,64 +96,21 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 ## Implemented in repo — validate before go-live (**test**)
 
 
-| ID  | Suggested issue title                                          | Notes                                                                         |
-| --- | -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| A1  | Validate: terminology / banned terms (`terminology-check.yml`) | Overlaps conceptually with **typos**; terminology = policy, typos = spelling. |
-| A2  | Validate: impact check                                         |                                                                               |
-| A3  | Validate: smart suggestions                                    |                                                                               |
-| A4  | Validate: new file gate                                        | See `scripts/README.md` (New file gate sign-off protocol for issue #9).       |
-| A5  | Validate: doc coverage                                         |                                                                               |
-| A6  | Validate: duplicate detector                                   |                                                                               |
-| A7  | Validate: staleness report                                     |                                                                               |
-| A8  | Validate: case study monitor                                   | Needs `CASE_STUDY_FEED_URL` repo variable when used.                          |
-| A9  | Optional: multi-check integration smoke (one PR)               | Use the A9 protocol below to keep results deterministic and repeatable.       |
-| A10 | Validate: spelling (`typos` / `_typos.toml`)                   | Add words to `[default.extend-identifiers]` as you hit false positives.       |
-| A11 | Validate: markdown structure (`markdownlint-cli2`)             | Not grammar; tuned for this corpus (see `.markdownlint.yaml`).                |
-| A12 | Validate: external links (`lychee` / `.lychee.toml`)           | Tune `exclude` if a host is flaky in CI.                                      |
+| ID  | Suggested issue title                                          | Notes                                                                                    |
+| --- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| A1  | Validate: terminology / banned terms (`terminology-check.yml`) | Overlaps conceptually with **typos**; terminology = policy, typos = spelling.            |
+| A2  | Validate: impact check                                         |                                                                                          |
+| A3  | Validate: smart suggestions                                    |                                                                                          |
+| A4  | Validate: new file gate                                        | See `scripts/README.md` (New file gate sign-off protocol for issue #9).                  |
+| A5  | Validate: doc coverage                                         |                                                                                          |
+| A6  | Validate: duplicate detector                                   |                                                                                          |
+| A7  | Validate: staleness report                                     |                                                                                          |
+| A8  | Validate: case study monitor                                   | Needs `CASE_STUDY_FEED_URL` repo variable when used.                                     |
+| A9  | Optional: multi-check integration smoke (one PR)               | See `scripts/README.md` (Multi-check integration smoke sign-off protocol for issue #15). |
+| A10 | Validate: spelling (`typos` / `_typos.toml`)                   | Add words to `[default.extend-identifiers]` as you hit false positives.                  |
+| A11 | Validate: markdown structure (`markdownlint-cli2`)             | Not grammar; tuned for this corpus (see `.markdownlint.yaml`).                           |
+| A12 | Validate: external links (`lychee` / `.lychee.toml`)           | Tune `exclude` if a host is flaky in CI.                                                 |
 
-
-### A9 protocol: multi-check integration smoke (one PR)
-
-Why this exists:
-
-- A single PR can trigger several workflows at once, and integration issues are easy to miss when each workflow is tested in isolation.
-- This protocol makes the smoke run repeatable, so two people get comparable results instead of one-off outcomes.
-- The goal is early detection of comment noise, missing checks, and unclear failure guidance before go-live.
-
-Use this when you want one realistic PR that exercises several workflows together and checks integration behavior.
-
-#### Preconditions
-
-- Run from a branch in this repository (not a fork) so PR comment upserts can write as expected.
-- Use existing files only; do not create new markdown files in this smoke PR.
-- Keep the PR as draft while testing.
-
-#### Deterministic file touch set
-
-- Edit one existing markdown file, for example `reference/launch-and-automation-backlog.md`.
-- Edit one existing automation/config file that still keeps checks green, for example `automation/messaging-impact-map.yml` or `_typos.toml`.
-- Optional for broader coverage: include `.markdownlint.yaml` or `.lychee.toml`.
-
-Expected checks for this scenario:
-
-- `Terminology Check`
-- `Impact Check`
-- `Smart Suggestions`
-- `Content Governance Checks`
-- `Prose and links` (`Spelling (typos)`, `Markdown structure (markdownlint)`, `Links (lychee)`)
-
-#### Execution sequence
-
-1. Open a draft PR with the baseline mixed change and verify all expected checks appear.
-2. Confirm each marker-managed PR comment is upserted in place (updated, not duplicated).
-3. Push one small follow-up commit to force reruns, then confirm comment idempotency again.
-4. Optional controlled failure pass: introduce one known lint or terminology failure, observe first-fix guidance, then revert in the next commit.
-5. Capture exact check names shown in the PR and compare with branch-protection required checks.
-
-#### Sign-off record for issue #15
-
-- Post `@brianamarie Sign-off: PASS | FAIL - <one line>`.
-- Add 3 to 5 bullets for observations and follow-up issues for any confusing UX.
 
 ---
 
@@ -224,7 +181,7 @@ Expected checks for this scenario:
 
 | Backlog row              | Suggested labels                                                                                                                                                                        |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| All **A** (validation)   | `Testing / sign-off` · `Automation & CI` · `Launch program` · `P0 - launch blocker` (use `P1 - important soon` for A9 if you treat it as optional).                                      |
+| All **A** (validation)   | `Testing / sign-off` · `Automation & CI` · `Launch program` · `P0 - launch blocker` (use `P1 - important soon` for A9 if you treat it as optional).                                     |
 | **N** (near-term builds) | `Feature / build` · `Automation & CI` · `Roadmap: soon` · `Launch program` or `**P1 - important soon`** (pick one priority label).                                                      |
 | **W** (next wave)        | `Feature / build` · `Automation & CI` · `Roadmap: later` · `**P2 - backlog`**.                                                                                                          |
 | **C** (content)          | `Content & messaging` or `Governance & policy` · `Go-live & repo setup` if repo-only · `Needs: legal review` / `Needs: product or GTM` as needed · `Launch program` · priority as fits. |
