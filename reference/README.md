@@ -12,4 +12,4 @@ Reference guidance for naming, terminology, style, and messaging support tables.
 - `launch-and-automation-backlog.md` (issues to open, label plan, and Actions inventory; working document)
 - `prose-links-validation-workflow.md`
 
-Review this directory before changing repository-wide names or claim language.
+Review this directory before changing repository-wide names or claim language in canonical content.
