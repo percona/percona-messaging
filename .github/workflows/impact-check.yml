@@ -49,15 +49,43 @@ jobs:
               github.rest.issues.listComments,
               { owner, repo, issue_number: pr_number, per_page: 100 }
             );
-            const found = comments.find((c) => c.body && c.body.includes(marker));
             let data = { all: false, paths: [] };
-            if (found) {
+            const markerComments = comments
+              .filter((c) => c.body && c.body.includes(marker))
+              .sort((a, b) => {
+                const aTime = Date.parse(a.updated_at || a.created_at || "") || 0;
+                const bTime = Date.parse(b.updated_at || b.created_at || "") || 0;
+                return bTime - aTime;
+              });
+
+            if (markerComments.length > 1) {
+              core.warning(
+                `Found ${markerComments.length} waiver marker comments; selecting latest valid payload.`
+              );
+            }
+
+            let selectedId = "";
+            for (const found of markerComments) {
               try {
                 const raw = found.body.split(marker)[1].trim();
-                Object.assign(data, JSON.parse(raw));
+                const parsed = JSON.parse(raw);
+                data = {
+                  all: Boolean(parsed.all),
+                  paths: Array.isArray(parsed.paths)
+                    ? [...new Set(parsed.paths.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                };
+                selectedId = String(found.id);
+                break;
               } catch (e) {
-                core.warning("Ignoring invalid waiver JSON: " + e);
+                core.warning(`Ignoring invalid waiver JSON in comment ${found.id}: ${e}`);
               }
+            }
+
+            if (selectedId) {
+              core.info(`Using waiver state from comment ${selectedId}.`);
+            } else if (markerComments.length > 0) {
+              core.warning("No valid waiver payload found; defaulting to empty waiver state.");
             }
             fs.writeFileSync("waivers.json", JSON.stringify(data));
 
