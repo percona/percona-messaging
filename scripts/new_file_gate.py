@@ -19,6 +19,28 @@ REQUIRED_HEADINGS = [
 EXCLUDED_PREFIXES = (".github/ISSUE_TEMPLATE/", ".cursor/")
 
 
+def build_pr_body_scaffold() -> str:
+    lines = ["## New markdown file gate (required only when adding new `.md` files)", ""]
+    prompts = {
+        "### Existing files reviewed first": "- List the specific files you reviewed and what each one does.",
+        "### Exact gap not covered by existing files": "- Explain what is still missing after reviewing existing canonical files.",
+        "### Why this must be a new canonical file": "- State why editing an existing file is not sufficient.",
+        "### Owner and maintenance plan": "- Name the owner and how this file will stay accurate over time.",
+        "### Decomposition and propagation plan": "- List related files and downstream assets that may need updates.",
+    }
+    for heading in REQUIRED_HEADINGS:
+        lines.append(heading)
+        lines.append("")
+        lines.append(
+            prompts.get(
+                heading,
+                "- Describe the required justification for this section with specific details.",
+            )
+        )
+        lines.append("")
+    return "\n".join(lines).rstrip()
+
+
 def git_added_markdown(base_ref: str, head_ref: str) -> list[str]:
     try:
         output = subprocess.check_output(
@@ -73,6 +95,14 @@ def build_report(files: list[str], missing_or_weak: list[str]) -> str:
     lines.append("Missing or insufficient required sections:")
     for item in missing_or_weak:
         lines.append(f"- {item}")
+    lines.append("")
+    lines.append(
+        "Copy and paste the scaffold below into your PR body, then replace placeholders with specific details:"
+    )
+    lines.append("")
+    lines.append("```md")
+    lines.append(build_pr_body_scaffold())
+    lines.append("```")
     return "\n".join(lines) + "\n"
 
 
