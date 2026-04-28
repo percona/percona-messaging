@@ -39,9 +39,14 @@ module.exports = async function upsertMarkerComment({
   const markerComments = comments
     .filter((c) => c.body && c.body.includes(marker))
     .sort((a, b) => {
-      const aTime = Date.parse(a.updated_at || a.created_at || "") || 0;
-      const bTime = Date.parse(b.updated_at || b.created_at || "") || 0;
-      return bTime - aTime;
+      // Marker comments are append-only state records, select the latest created
+      // comment to avoid stale payloads winning due to incidental edits.
+      const aTime = Date.parse(a.created_at || "") || 0;
+      const bTime = Date.parse(b.created_at || "") || 0;
+      if (bTime !== aTime) {
+        return bTime - aTime;
+      }
+      return (Number(b.id) || 0) - (Number(a.id) || 0);
     });
   const existing = markerComments[0];
 
