@@ -58,6 +58,6 @@ jobs:
         with:
           args: --config .lychee.toml --verbose --no-progress '**/*.md'
           fail: true
-          lycheeVersion: "0.14.1"
+          lycheeVersion: "v0.14.1"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
