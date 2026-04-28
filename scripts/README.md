@@ -18,6 +18,10 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `staleness_report.py`: builds scheduled stale-content maintenance reports
 - `quarterly_lychee_citation_review_issue.py`: builds the body for the quarterly CI-excluded citation URL review issue
 
+## GitHub workflow helper scripts
+
+- `github/upsert_marker_comment.js`: shared marker-based upsert helper for workflow-managed PR comments
+
 ## Workflow entry points
 
 - `.github/workflows/impact-check.yml` -> `impact_check.py`
