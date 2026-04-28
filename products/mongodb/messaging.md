@@ -8,7 +8,7 @@ MongoDB Community Edition is licensed under the Server Side Public License (SSPL
 
 Compared with MongoDB Enterprise Advanced or Atlas, Percona focuses on self-managed deployments backed by Percona's operational tooling and 24×7 support—without requiring Atlas-only integrations for core day‑2 operations (monitoring, backups, automation).
 
-MongoDB Vector Search and Full-Text Search are powered by `mongot`, a separate JVM-based search engine integrated into MongoDB's indexing and query workflows. With upstream Vector Search now source-available under SSPL and in public preview for community usage, Percona's plan is to validate and publish early builds (8.3 as a technical preview), then ship a fully integrated, observable experience (Operator + PMM dashboards/metrics, plus operational guidance) aligned to MongoDB 9.0 GA timing (estimated Sep/Oct 2026). 
+MongoDB Vector Search and Full-Text Search are powered by `mongot`, a separate JVM-based search engine integrated into MongoDB's indexing and query workflows. With upstream Vector Search now source-available under SSPL and in public preview for community usage, Percona's plan is to validate and publish early builds (8.3 as a technical preview), then ship a fully integrated, observable experience (Operator + PMM dashboards/metrics, plus operational guidance) aligned to MongoDB 9.0 GA timing (estimated Sep/Oct 2026).
 
 ### Customer Challenges and Value Alignment – MongoDB
 
