@@ -11,6 +11,21 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 - `**automation/**`: automation inputs (impact map, claim categories, and other config data).
 - `**data/**`: machine-readable inputs/outputs used by automation (for example case-study registry).
 
+## Documentation ownership boundary
+
+- Tracking backlog and issue intake live in [reference/launch-and-automation-backlog.md](reference/launch-and-automation-backlog.md).
+- Operational runbooks and sign-off protocols live in [scripts/README.md](scripts/README.md) under `Validation sign-off runbooks`.
+- Keep runbook procedure steps out of backlog trackers.
+- Backlog docs should point to canonical runbook sections.
+
+## Operational setup references
+
+- Labels: [.github/label-definitions.json](.github/label-definitions.json) and [scripts/apply_github_labels.sh](scripts/apply_github_labels.sh) (details in [scripts/README.md](scripts/README.md) under `GitHub labels`).
+- Project field and item automation commands: [gh project manual](https://cli.github.com/manual/gh_project).
+- Validation sign-off execution protocols: [scripts/README.md](scripts/README.md) under `Validation sign-off runbooks`.
+- Example `Launch track` field creation command:
+  - `gh project field-create <number> --owner percona --name "Launch track" --data-type SINGLE_SELECT --single-select-options "P0 Go-live,P1 Soon,P2 Later,Not launch"`
+
 ## Workflow map
 
 
@@ -90,6 +105,7 @@ When using AI to change automation, always include:
 ## Planned and candidate automation backlog
 
 This list is intentionally broader than current implementation so ideas are not lost before issues are opened.
+This section is tracking-only and should not duplicate runbook execution steps.
 
 ### Planned next (high-confidence, near-term)
 
