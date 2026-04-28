@@ -6,11 +6,13 @@ For organizations running MongoDB workloads requiring performance, reliability, 
 
 MongoDB Community Edition is licensed under the Server Side Public License (SSPL) (source-available), and Percona Server for MongoDB inherits this license for the database server. However, Percona-developed technologies and management components around the database, including Percona Backup for MongoDB, Percona ClusterSync for MongoDB, and Percona Operator for MongoDB, are released under the Apache 2.0 open source license. This keeps the operations stack auditable and portable while maintaining compatibility with MongoDB APIs and database clients.
 
-Compared with MongoDB Enterprise Advanced or Atlas, Percona focuses on self-managed deployments backed by Percona's operational tooling and 24×7 support—without requiring Atlas-only integrations for core day‑2 operations (monitoring, backups, automation).
+Compared with MongoDB Enterprise Advanced or Atlas, Percona focuses on self-managed deployments backed by Percona's operational tooling and 24×7 support, without requiring Atlas-only integrations for core day-2 operations (monitoring, backups, automation).
+
+PMM provides observability for backup operations and backup health indicators, while backup execution and policy management remain in dedicated Percona backup tooling.
 
 MongoDB's Vector Search and Full-Text Search capabilities are powered by `mongot`, a separate JVM-based service integrated into MongoDB's indexing and query workflows. With upstream Vector Search now source-available under SSPL and in public preview for community usage, Percona's plan is to validate and publish early builds (8.3 as a learning vehicle), then ship a fully integrated, observable experience (Operator + PMM dashboards/metrics, plus operational guidance) aligned to MongoDB 9.0 GA timing (estimated Sep/Oct 2026). Until then, treat Vector Search as Public Preview.
 
-### Customer Challenges and Value Alignment – MongoDB
+### Customer Challenges and Value Alignment: MongoDB
 
 **Optimized TCO**
 

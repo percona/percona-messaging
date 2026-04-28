@@ -65,8 +65,8 @@ The slash-command workflow stores waiver state in a hidden PR comment and re-run
 
 Waiver state resolution rule:
 
-- If multiple waiver marker comments exist, automation selects the latest valid JSON payload.
-- If the newest payload is malformed, automation falls back to the next newest valid payload.
+- If multiple waiver marker comments exist, automation selects the newest created comment with valid JSON.
+- If the newest created payload is malformed, automation falls back to the next newest valid payload.
 - If no valid payload exists, automation uses an empty waiver state.
 
 ## PR comment upsert standard
