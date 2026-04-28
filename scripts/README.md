@@ -30,6 +30,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `.github/workflows/staleness-report.yml` -> `staleness_report.py`
 - `.github/workflows/quarterly-citation-review.yml` -> `quarterly_lychee_citation_review_issue.py`
 - `.github/workflows/case-study-monitor.yml` -> `sync_case_studies.py`, `suggest_updates.py`
+- `.github/workflows/markdown-hygiene-autofix.yml` -> `markdownlint-cli2 --fix` with `automation/markdown-hygiene-autofix.jsonc`
 
 ## Validation sign-off runbooks
 
@@ -108,9 +109,9 @@ Expected checks for this scenario:
 4. Push one small follow-up commit to force reruns, then confirm check-set stability and idempotency again.
 5. If Tier A passes all thresholds, stop and sign off.
 6. If any threshold fails, run Tier B:
-   - Introduce one controlled lint or terminology failure.
-   - Verify first-fix guidance is clear and actionable.
-   - Revert the induced failure in the next commit.
+  - Introduce one controlled lint or terminology failure.
+  - Verify first-fix guidance is clear and actionable.
+  - Revert the induced failure in the next commit.
 
 ### Failure classes (for fast follow-up issue creation)
 
@@ -153,3 +154,13 @@ Local markdownlint commands (same tool as CI):
 
 - Check: `npx -y markdownlint-cli2@0.22.1 "**/*.md"`
 - Autofix whitespace: `npx -y markdownlint-cli2@0.22.1 --fix "**/*.md"`
+
+Issue #81 uses a dedicated hygiene-only config for safe PR auto-fixes:
+
+- Config: `automation/markdown-hygiene-autofix.jsonc` (`MD009`, `MD012`, `MD047` only).
+- Local check-only parity command: `npx -y markdownlint-cli2@0.22.1 --config automation/markdown-hygiene-autofix.jsonc "**/*.md"`.
+- Local parity command: `npx -y markdownlint-cli2@0.22.1 --config automation/markdown-hygiene-autofix.jsonc --fix "**/*.md"`.
+- Phase 1 (dry-run): set repository variable `MARKDOWN_HYGIENE_AUTO_PUSH_ENABLED=false` and run check mode plus fallback guidance only.
+- Phase 2 (auto-push): set `MARKDOWN_HYGIENE_AUTO_PUSH_ENABLED=true` for non-fork PR branches.
+- Promotion criteria: reruns stay idempotent (no extra bot commits or duplicate marker comments), and fixed diffs stay non-semantic.
+- Rollback switch: disable `.github/workflows/markdown-hygiene-autofix.yml` if regressions appear.
