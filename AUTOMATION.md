@@ -13,17 +13,19 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 
 ## Workflow map
 
-| Workflow                                          | Trigger                                     | Uses scripts                                                                                 | Uses config/data                                                    | Output                                            |
-| ------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
-| `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                      | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues     |
-| `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script      | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist        |
-| `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`     | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist    |
-| `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script      | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates             |
-| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks   |
-| `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch           | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue       |
-| `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch           | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data |
-| `.github/workflows/prose-and-links.yml`         | PR touching markdown or prose config        | _(none — uses marketplace actions)_                                                          | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health |
-| `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch | `scripts/quarterly_lychee_citation_review_issue.py`                                      | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
+
+| Workflow                                          | Trigger                                           | Uses scripts                                                                                 | Uses config/data                                                    | Output                                                             |
+| ------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                          | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues                      |
+| `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script            | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist                         |
+| `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`           | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
+| `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script            | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates                              |
+| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
+| `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch                 | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data                  |
+| `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
+| `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch  | `scripts/quarterly_lychee_citation_review_issue.py`                                          | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
+
 
 ## Where automation runs in the contributor flow
 
@@ -43,6 +45,22 @@ For false positives where maintainers agree no edit is needed in a listed `must_
 - Comment `/impact-ok <exact path>` to acknowledge one path at a time.
 
 The slash-command workflow stores waiver state in a hidden PR comment and re-runs the impact check so the checklist comment reflects waived items.
+
+## PR comment upsert standard
+
+Marker-managed PR comments must use the shared helper at `scripts/github/upsert_marker_comment.js`.
+
+- Keep marker strings stable. Treat them as persistent IDs.
+- Prefix the rendered comment body with the marker (`${marker}\n...`).
+- Use one marker per workflow comment type (for example impact checklist, governance report, smart suggestions).
+- Call the helper from `actions/github-script` steps instead of inlining list/update/create comment logic.
+
+Current workflows using this standard:
+
+- `.github/workflows/content-governance-checks.yml`
+- `.github/workflows/impact-check.yml`
+- `.github/workflows/impact-slash-commands.yml`
+- `.github/workflows/smart-suggestions.yml`
 
 ## AI and automation: how to use AI responsibly
 
