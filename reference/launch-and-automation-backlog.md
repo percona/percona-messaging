@@ -224,7 +224,7 @@ Expected checks for this scenario:
 
 | Backlog row              | Suggested labels                                                                                                                                                                        |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| All **A** (validation)   | `Testing / sign-off` · `Automation & CI` · `Launch program` · `**P0 - launch blocker`** (use `**P1 - important soon`** for A9 if you treat it as optional).                             |
+| All **A** (validation)   | `Testing / sign-off` · `Automation & CI` · `Launch program` · `P0 - launch blocker` (use `P1 - important soon` for A9 if you treat it as optional).                                      |
 | **N** (near-term builds) | `Feature / build` · `Automation & CI` · `Roadmap: soon` · `Launch program` or `**P1 - important soon`** (pick one priority label).                                                      |
 | **W** (next wave)        | `Feature / build` · `Automation & CI` · `Roadmap: later` · `**P2 - backlog`**.                                                                                                          |
 | **C** (content)          | `Content & messaging` or `Governance & policy` · `Go-live & repo setup` if repo-only · `Needs: legal review` / `Needs: product or GTM` as needed · `Launch program` · priority as fits. |
@@ -237,7 +237,7 @@ Expected checks for this scenario:
 
 ## Product-driven implementation ideas (for N/W backlog)
 
-- When offerings or positioning change, treat `**messaging-impact-map.yml`** and `**claim-types.yml`** as versioned alongside product (same release train).
+- When offerings or positioning change, treat `messaging-impact-map.yml` and `claim-types.yml` as versioned alongside product (same release train).
 - If you later adopt PR launch labels for GTM, add a small consistency check then (N1 was deferred).
 - Case study + staleness automation supports **proof-point** updates when marketing changes claims.
 - Decomposition assistant (N5) reduces **missed downstream** when pillar or product pages move.
