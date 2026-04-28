@@ -36,12 +36,19 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 ## Validation sign-off runbooks
 
-- Issue #9 new file gate: see `New file gate sign-off protocol (issue #9)` below.
-- Issue #15 multi-check integration smoke: see `Multi-check integration smoke sign-off protocol (issue #15)` below.
+Operational ownership note: this section is the canonical home for sign-off execution protocols. Backlog trackers should link here instead of duplicating procedure steps.
+
+- Issue #9 new file gate: see `New file gate sign-off protocol (issue #9)` below and [issue #9](https://github.com/percona/percona-messaging/issues/9).
+- Issue #15 multi-check integration smoke: see `Multi-check integration smoke sign-off protocol (issue #15)` below and [issue #15](https://github.com/percona/percona-messaging/issues/15).
 
 ## New file gate sign-off protocol (issue #9)
 
 Use this protocol to produce low-lift PASS or FAIL evidence for `new_file_gate.py` in `.github/workflows/content-governance-checks.yml`.
+
+### When to use this runbook
+
+- Use when validating issue #9 behavior before go-live sign-off.
+- Use after changing `new_file_gate.py`, the PR template fields it evaluates, or workflow wiring in `content-governance-checks.yml`.
 
 ### Preconditions
 
@@ -69,6 +76,11 @@ Expected outcomes:
 ## Multi-check integration smoke sign-off protocol (issue #15)
 
 Use this protocol for one realistic draft PR that triggers multiple workflows together and validates integration behavior.
+
+### When to use this runbook
+
+- Use when validating issue #15 integration behavior across multiple workflows on one PR.
+- Use after changes to workflow triggers, marker-comment upsert behavior, or automation inputs that can alter check-set composition.
 
 ### Preconditions
 
