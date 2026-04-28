@@ -22,7 +22,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 ## GitHub workflow helper scripts
 
 - `github/upsert_marker_comment.js`: shared marker-based upsert helper for workflow-managed PR comments
-  - when duplicate marker comments exist, the helper updates the latest marker comment and logs a warning
+  - when duplicate marker comments exist, the helper updates the newest created marker comment and logs a warning
 
 ## Workflow entry points
 

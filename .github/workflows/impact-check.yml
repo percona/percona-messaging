@@ -67,9 +67,12 @@ jobs:
             const markerComments = comments
               .filter((c) => c.body && c.body.includes(marker))
               .sort((a, b) => {
-                const aTime = Date.parse(a.updated_at || a.created_at || "") || 0;
-                const bTime = Date.parse(b.updated_at || b.created_at || "") || 0;
-                return bTime - aTime;
+                const aTime = Date.parse(a.created_at || "") || 0;
+                const bTime = Date.parse(b.created_at || "") || 0;
+                if (bTime !== aTime) {
+                  return bTime - aTime;
+                }
+                return (Number(b.id) || 0) - (Number(a.id) || 0);
               });
 
             if (markerComments.length > 1) {
