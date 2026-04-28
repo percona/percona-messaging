@@ -1,5 +1,10 @@
 [
   {
+    "name": "messaging",
+    "color": "0075CA",
+    "description": "Improvements or additions to messaging."
+  },
+  {
     "name": "Automation & CI",
     "color": "0E8A16",
     "description": "CI workflows, scripts, maps under automation/, and tooling."
@@ -73,5 +78,15 @@
     "name": "Needs: product or GTM",
     "color": "BFD4F2",
     "description": "Product, marketing, or GTM should confirm scope, naming, or positioning."
+  },
+  {
+    "name": "Downstream",
+    "color": "A371F7",
+    "description": "Outbound: repo canon changed; templates, datasheets, docs, web, or other surfaces need follow-up."
+  },
+  {
+    "name": "Inbound",
+    "color": "0288D1",
+    "description": "Inbound: ships, GTM, or external requests driving updates to canonical messaging in this repo."
   }
 ]

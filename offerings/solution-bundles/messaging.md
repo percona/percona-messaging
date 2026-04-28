@@ -4,7 +4,6 @@ Percona offers a set of focused, fixed-scope solution bundles designed to delive
 
 These bundles are **not** the only way Percona services can be combined or delivered; customers can tailor any engagement by adding Support, ExpertOps, or Consulting modules as needed. The fixed-scope bundles below simply provide a simplified path to achieve results.
 
-
 | Bundle                                                                                                                        | Outcomes delivered                                                                                       | What's included                                                                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Performance Optimization Bundle:** for teams needing measurable performance gains or relief from chronic performance issues | Better workload performance, reduced latency and bottlenecks, stabilized systems under load              | Performance tuning engagement (Consulting), proactive health assessment (Consulting), 6 months of Advanced Support, optional add-ons: architecture review or training |

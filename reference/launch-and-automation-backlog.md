@@ -3,7 +3,7 @@
 Use this file as the **source list** before creating issues on GitHub.  
 **Labels** are defined in `[.github/label-definitions.json](../.github/label-definitions.json)`; apply with `[scripts/apply_github_labels.sh](../scripts/apply_github_labels.sh)`.
 
-**Priority IDs in this doc** (`P0`, `P1`, `P2`) map to GitHub labels `**P0 - launch blocker`**, `**P1 - important soon**`, and `**P2 - backlog**` — one label per issue is enough for priority.
+**Priority IDs in this doc** (`P0`, `P1`, `P2`) map to GitHub labels `**P0 - launch blocker`**, `**P1 - important soon`**, and `**P2 - backlog**` — one label per issue is enough for priority.
 
 ## GitHub: opened issues (live)
 
@@ -11,34 +11,35 @@ Use this table to see what already exists on GitHub vs what is still only in the
 
 **Project board:** [Messaging go-live](https://github.com/orgs/percona/projects) — one backlog for all messaging-program work. Differentiate launch vs non-launch using the custom field **Launch track** (`P0 Go-live`, `P1 Soon`, `P2 Later`, `Not launch`) plus saved views (**Launch** = filter to `P0 Go-live`; **All** = no filter). Execution still uses **Workflow stage** (`Todo`, `Next`, `In progress`, `Needs review`, `Done`). GitHub’s built-in **Status** field is optional.
 
-**`gh` (field only):** to recreate **Launch track** on another org project, run  
+`**gh` (field only):** to recreate **Launch track** on another org project, run  
 `gh project field-create <number> --owner percona --name "Launch track" --data-type SINGLE_SELECT --single-select-options "P0 Go-live,P1 Soon,P2 Later,Not launch"`  
 (`gh project` cannot create saved views yet — add **Launch** / **All** in the project UI; the **Messaging go-live** project readme documents this.)
 
 
-| #   | Title                                                                                          | URL                                                                                                            |
-| --- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| 1   | Implement launch hygiene automation (labels, project membership, workflow stage, stale triage) | [https://github.com/percona/percona-messaging/issues/1](https://github.com/percona/percona-messaging/issues/1) |
-| 2   | Concept: legal-sensitive and competitive language go-live review                               | [https://github.com/percona/percona-messaging/issues/2](https://github.com/percona/percona-messaging/issues/2) |
-| 3   | PO: confirm and update CODEOWNERS handles                                                      | [https://github.com/percona/percona-messaging/issues/3](https://github.com/percona/percona-messaging/issues/3) |
-| 4   | Set branch protection for main (approval + status checks + restricted push)                    | [https://github.com/percona/percona-messaging/issues/4](https://github.com/percona/percona-messaging/issues/4) |
-| 5   | Future: notify stakeholders when canonical messaging changes (Slack/email)                     | [https://github.com/percona/percona-messaging/issues/5](https://github.com/percona/percona-messaging/issues/5) |
-| 6   | Validate: terminology and banned terms check (terminology-check.yml)                           | [https://github.com/percona/percona-messaging/issues/6](https://github.com/percona/percona-messaging/issues/6) |
-| 7   | Validate: impact check (impact-check.yml + impact_check.py)                                    | [https://github.com/percona/percona-messaging/issues/7](https://github.com/percona/percona-messaging/issues/7) |
-| 8   | Validate: smart suggestions (smart-suggestions.yml + suggest_updates.py)                       | [https://github.com/percona/percona-messaging/issues/8](https://github.com/percona/percona-messaging/issues/8) |
-| 9   | Validate: new file gate (content-governance-checks + new_file_gate.py)                         | [https://github.com/percona/percona-messaging/issues/9](https://github.com/percona/percona-messaging/issues/9) |
+| #   | Title                                                                                          | URL                                                                                                              |
+| --- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| 1   | Implement launch hygiene automation (labels, project membership, workflow stage, stale triage) | [https://github.com/percona/percona-messaging/issues/1](https://github.com/percona/percona-messaging/issues/1)   |
+| 2   | Concept: legal-sensitive and competitive language go-live review                               | [https://github.com/percona/percona-messaging/issues/2](https://github.com/percona/percona-messaging/issues/2)   |
+| 3   | PO: confirm and update CODEOWNERS handles                                                      | [https://github.com/percona/percona-messaging/issues/3](https://github.com/percona/percona-messaging/issues/3)   |
+| 4   | Set branch protection for main (approval + status checks + restricted push)                    | [https://github.com/percona/percona-messaging/issues/4](https://github.com/percona/percona-messaging/issues/4)   |
+| 5   | Future: notify stakeholders when canonical messaging changes (Slack/email)                     | [https://github.com/percona/percona-messaging/issues/5](https://github.com/percona/percona-messaging/issues/5)   |
+| 6   | Validate: terminology and banned terms check (terminology-check.yml)                           | [https://github.com/percona/percona-messaging/issues/6](https://github.com/percona/percona-messaging/issues/6)   |
+| 7   | Validate: impact check (impact-check.yml + impact_check.py)                                    | [https://github.com/percona/percona-messaging/issues/7](https://github.com/percona/percona-messaging/issues/7)   |
+| 8   | Validate: smart suggestions (smart-suggestions.yml + suggest_updates.py)                       | [https://github.com/percona/percona-messaging/issues/8](https://github.com/percona/percona-messaging/issues/8)   |
+| 9   | Validate: new file gate (content-governance-checks + new_file_gate.py)                         | [https://github.com/percona/percona-messaging/issues/9](https://github.com/percona/percona-messaging/issues/9)   |
 | 10  | Validate: doc coverage / navigation links (check_doc_coverage.py)                              | [https://github.com/percona/percona-messaging/issues/10](https://github.com/percona/percona-messaging/issues/10) |
-| 11  | Validate: duplicate content detector (duplicate_detector.py)                                 | [https://github.com/percona/percona-messaging/issues/11](https://github.com/percona/percona-messaging/issues/11) |
-| 12  | Validate: staleness report workflow (staleness-report.yml + staleness_report.py)              | [https://github.com/percona/percona-messaging/issues/12](https://github.com/percona/percona-messaging/issues/12) |
+| 11  | Validate: duplicate content detector (duplicate_detector.py)                                   | [https://github.com/percona/percona-messaging/issues/11](https://github.com/percona/percona-messaging/issues/11) |
+| 12  | Validate: staleness report workflow (staleness-report.yml + staleness_report.py)               | [https://github.com/percona/percona-messaging/issues/12](https://github.com/percona/percona-messaging/issues/12) |
 | 13  | Validate: case study monitor workflow (case-study-monitor.yml + sync_case_studies.py)          | [https://github.com/percona/percona-messaging/issues/13](https://github.com/percona/percona-messaging/issues/13) |
-| 14  | Validate: prose and links workflow (typos + markdownlint + lychee)                           | [https://github.com/percona/percona-messaging/issues/14](https://github.com/percona/percona-messaging/issues/14) |
-| 15  | Validate: PR smoke — multiple workflows on one change                                       | [https://github.com/percona/percona-messaging/issues/15](https://github.com/percona/percona-messaging/issues/15) |
-| 16  | Implement: reviewer SLA reminders for stalled PRs                                            | [https://github.com/percona/percona-messaging/issues/16](https://github.com/percona/percona-messaging/issues/16) |
-| 17  | Implement: track smart-suggestion quality (precision / recall over time)                     | [https://github.com/percona/percona-messaging/issues/17](https://github.com/percona/percona-messaging/issues/17) |
-| 18  | Implement: decomposition / propagation completeness check before merge                       | [https://github.com/percona/percona-messaging/issues/18](https://github.com/percona/percona-messaging/issues/18) |
-| 19  | Define product → social announcement workflow (timing, owners, and automation ideas)        | [https://github.com/percona/percona-messaging/issues/19](https://github.com/percona/percona-messaging/issues/19) |
-| 20  | Implement: canonical discoverability check (beyond new-file doc coverage)                     | [https://github.com/percona/percona-messaging/issues/20](https://github.com/percona/percona-messaging/issues/20) |
-| 21  | Implement: fixture-based regression tests for automation scripts                             | [https://github.com/percona/percona-messaging/issues/21](https://github.com/percona/percona-messaging/issues/21) |
+| 14  | Validate: prose and links workflow (typos + markdownlint + lychee)                             | [https://github.com/percona/percona-messaging/issues/14](https://github.com/percona/percona-messaging/issues/14) |
+| 15  | Validate: PR smoke — multiple workflows on one change                                          | [https://github.com/percona/percona-messaging/issues/15](https://github.com/percona/percona-messaging/issues/15) |
+| 16  | Implement: reviewer SLA reminders for stalled PRs                                              | [https://github.com/percona/percona-messaging/issues/16](https://github.com/percona/percona-messaging/issues/16) |
+| 17  | Implement: track smart-suggestion quality (precision / recall over time)                       | [https://github.com/percona/percona-messaging/issues/17](https://github.com/percona/percona-messaging/issues/17) |
+| 18  | Implement: decomposition / propagation completeness check before merge                         | [https://github.com/percona/percona-messaging/issues/18](https://github.com/percona/percona-messaging/issues/18) |
+| 19  | Define product → social announcement workflow (timing, owners, and automation ideas)           | [https://github.com/percona/percona-messaging/issues/19](https://github.com/percona/percona-messaging/issues/19) |
+| 20  | Implement: canonical discoverability check (beyond new-file doc coverage)                      | [https://github.com/percona/percona-messaging/issues/20](https://github.com/percona/percona-messaging/issues/20) |
+| 21  | Implement: fixture-based regression tests for automation scripts                               | [https://github.com/percona/percona-messaging/issues/21](https://github.com/percona/percona-messaging/issues/21) |
+
 
 **Project board policy:** the board is **inclusive** (program + launch + later work can all live here). Set **Launch track** on every card so the **Launch** saved view stays honest. Align **Launch track** with issue labels when you triage (for example `P0 - launch blocker` → **P0 Go-live**; roadmap automation → **P2 Later** or **Not launch**). Issue **#13** may stay off the project by policy if you prefer; if it is on the board, set **Not launch** or **P2 Later** unless it truly blocks go-live.
 
@@ -58,7 +59,7 @@ Do this **before** bulk-creating issues so labels exist and the **Project** (boa
   - After the fact: `gh project item-add` with the issue URL.
 5. **Open issues** one by one (or scripted); they should get labels from step 2 and the project from step 4.
 
-Run steps 2–4 on a machine with `**gh*`*, `**jq**`, and permission to change labels/projects for this repository (or use the GitHub web UI for labels and Projects). **Current remote in this clone:** `https://github.com/percona/percona-messaging.git` (edit this line if the canonical URL changes).
+Run steps 2–4 on a machine with `**gh`**, `**jq`**, and permission to change labels/projects for this repository (or use the GitHub web UI for labels and Projects). **Current remote in this clone:** `https://github.com/percona/percona-messaging.git` (edit this line if the canonical URL changes).
 
 ## Legend
 
@@ -77,15 +78,15 @@ Run steps 2–4 on a machine with `**gh*`*, `**jq**`, and permission to change l
 All workflows use `**actions/checkout@v4`** (official). Below: what is **pre-made** vs **repository-owned**.
 
 
-| Workflow                        | Marketplace / pre-built                                                                    | Custom (this repo)                                                                      | Could swap for more pre-built later                                                                                                                        |
-| ------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `terminology-check.yml`         | `actions/checkout` only                                                                    | [Vale](https://vale.sh/) + `.vale/styles/Percona/` (mirrors `reference/banned-terms.md`) | Keep rules aligned with the reference page; typos (`_typos.toml`) stays spelling-only. |
-| `impact-check.yml`              | `actions/checkout`, `actions/setup-python`, `actions/github-script`                        | `scripts/impact_check.py`                                                               | Comment upsert could use **sticky PR comment** actions; map logic stays custom.                                                                            |
-| `smart-suggestions.yml`         | checkout, setup-python, **github-script**                                                  | `scripts/suggest_updates.py`                                                            | Same as above for comments.                                                                                                                                |
-| `content-governance-checks.yml` | checkout, **github-script**                                                                | `new_file_gate.py`, `check_doc_coverage.py`, `duplicate_detector.py`                    | Gate/coverage/duplicate logic is inherently repo-specific.                                                                                                 |
-| `staleness-report.yml`          | checkout, **upload-artifact**, **github-script**                                           | `scripts/staleness_report.py`                                                           | Issue upsert could use a dedicated **create-or-update-issue** action; report body stays custom.                                                            |
-| `case-study-monitor.yml`        | checkout, setup-python, **peter-evans/create-pull-request**                                | `sync_case_studies.py`, `suggest_updates.py`                                            | PR creation is already a standard action; sync script is custom.                                                                                           |
-| `prose-and-links.yml`           | **crate-ci/typos**, **DavidAnson/markdownlint-cli2-action**, **lycheeverse/lychee-action** | Config only: `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`, `.markdownlintignore` | Fully pre-built runners; you only maintain config.                                                                                                         |
+| Workflow                        | Marketplace / pre-built                                                                    | Custom (this repo)                                                                       | Could swap for more pre-built later                                                             |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `terminology-check.yml`         | `actions/checkout` only                                                                    | [Vale](https://vale.sh/) + `.vale/styles/Percona/` (mirrors `reference/banned-terms.md`) | Keep rules aligned with the reference page; typos (`_typos.toml`) stays spelling-only.          |
+| `impact-check.yml`              | `actions/checkout`, `actions/setup-python`, `actions/github-script`                        | `scripts/impact_check.py`                                                                | Comment upsert could use **sticky PR comment** actions; map logic stays custom.                 |
+| `smart-suggestions.yml`         | checkout, setup-python, **github-script**                                                  | `scripts/suggest_updates.py`                                                             | Same as above for comments.                                                                     |
+| `content-governance-checks.yml` | checkout, **github-script**                                                                | `new_file_gate.py`, `check_doc_coverage.py`, `duplicate_detector.py`                     | Gate/coverage/duplicate logic is inherently repo-specific.                                      |
+| `staleness-report.yml`          | checkout, **upload-artifact**, **github-script**                                           | `scripts/staleness_report.py`                                                            | Issue upsert could use a dedicated **create-or-update-issue** action; report body stays custom. |
+| `case-study-monitor.yml`        | checkout, setup-python, **peter-evans/create-pull-request**                                | `sync_case_studies.py`, `suggest_updates.py`                                             | PR creation is already a standard action; sync script is custom.                                |
+| `prose-and-links.yml`           | **crate-ci/typos**, **DavidAnson/markdownlint-cli2-action**, **lycheeverse/lychee-action** | Config only: `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`, `.markdownlintignore`  | Fully pre-built runners; you only maintain config.                                              |
 
 
 The `actions/github-script` action is maintained by GitHub; your **inline JavaScript** is custom. Alternatives: `peter-evans/find-comment` with `create-or-update-comment`, or **marocchino/sticky-pull-request-comment**, if you want less JS in YAML.
@@ -95,20 +96,20 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 ## Implemented in repo — validate before go-live (**test**)
 
 
-| ID  | Suggested issue title                                          | Notes                                                                         |
-| --- | -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| A1  | Validate: terminology / banned terms (`terminology-check.yml`) | Overlaps conceptually with **typos**; terminology = policy, typos = spelling. |
-| A2  | Validate: impact check                                         |                                                                               |
-| A3  | Validate: smart suggestions                                    |                                                                               |
-| A4  | Validate: new file gate                                        |                                                                               |
-| A5  | Validate: doc coverage                                         |                                                                               |
-| A6  | Validate: duplicate detector                                   |                                                                               |
-| A7  | Validate: staleness report                                     |                                                                               |
-| A8  | Validate: case study monitor                                   | Needs `CASE_STUDY_FEED_URL` repo variable when used.                          |
-| A9  | Optional: multi-check integration smoke (one PR)               |                                                                               |
-| A10 | Validate: spelling (`typos` / `_typos.toml`)                   | Add words to `[default.extend-identifiers]` as you hit false positives.       |
-| A11 | Validate: markdown structure (`markdownlint-cli2`)             | Not grammar; tuned for this corpus (see `.markdownlint.yaml`).                |
-| A12 | Validate: external links (`lychee` / `.lychee.toml`)           | Tune `exclude` if a host is flaky in CI.                                      |
+| ID  | Suggested issue title                                          | Notes                                                                                    |
+| --- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| A1  | Validate: terminology / banned terms (`terminology-check.yml`) | Overlaps conceptually with **typos**; terminology = policy, typos = spelling.            |
+| A2  | Validate: impact check                                         |                                                                                          |
+| A3  | Validate: smart suggestions                                    |                                                                                          |
+| A4  | Validate: new file gate                                        | See `scripts/README.md` (New file gate sign-off protocol for issue #9).                  |
+| A5  | Validate: doc coverage                                         |                                                                                          |
+| A6  | Validate: duplicate detector                                   |                                                                                          |
+| A7  | Validate: staleness report                                     |                                                                                          |
+| A8  | Validate: case study monitor                                   | Needs `CASE_STUDY_FEED_URL` repo variable when used.                                     |
+| A9  | Optional: multi-check integration smoke (one PR)               | See `scripts/README.md` (Multi-check integration smoke sign-off protocol for issue #15). |
+| A10 | Validate: spelling (`typos` / `_typos.toml`)                   | Add words to `[default.extend-identifiers]` as you hit false positives.                  |
+| A11 | Validate: markdown structure (`markdownlint-cli2`)             | Not grammar; tuned for this corpus (see `.markdownlint.yaml`).                           |
+| A12 | Validate: external links (`lychee` / `.lychee.toml`)           | Tune `exclude` if a host is flaky in CI.                                                 |
 
 
 ---
@@ -127,12 +128,12 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 ### Near-term automation (from `AUTOMATION.md` / `OPEN-SOURCE-MESSAGING-PLAYBOOK.md`) — **build**
 
 
-| ID  | Title (short)                                                        |
-| --- | -------------------------------------------------------------------- |
-| N1  | **SKIP (for now)** — Launch-readiness label consistency (`ready-for-launch`, `go-live:*`): not needed until PR labels are an agreed GTM/release convention |
-| N3  | Reviewer SLA reminders — [opened as #16](https://github.com/percona/percona-messaging/issues/16) |
-| N4  | Suggestion precision / recall metrics — [opened as #17](https://github.com/percona/percona-messaging/issues/17) (**P2 / Roadmap: later** on issue) |
-| N5  | Decomposition-completeness assistant — [opened as #18](https://github.com/percona/percona-messaging/issues/18) (**P2 / Roadmap: later** on issue) |
+| ID  | Title (short)                                                                                                                                              |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| N1  | **SKIP (for now)** — Launch-readiness label consistency (`ready-for-launch`, `go-live:`*): not needed until PR labels are an agreed GTM/release convention |
+| N3  | Reviewer SLA reminders — [opened as #16](https://github.com/percona/percona-messaging/issues/16)                                                           |
+| N4  | Suggestion precision / recall metrics — [opened as #17](https://github.com/percona/percona-messaging/issues/17) (**P2 / Roadmap: later** on issue)         |
+| N5  | Decomposition-completeness assistant — [opened as #18](https://github.com/percona/percona-messaging/issues/18) (**P2 / Roadmap: later** on issue)          |
 
 
 ### Next wave — **build**
@@ -140,9 +141,9 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 
 | ID  | Title (short)                                                                                                                                                                         |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| W1  | Canonical link / discoverability beyond new files — [opened as #20](https://github.com/percona/percona-messaging/issues/20) (**P2 / Roadmap: later** on issue) |
-| W2  | Fixture-based regression tests for `scripts/` — [opened as #21](https://github.com/percona/percona-messaging/issues/21) (**P2 / Roadmap: later** on issue) |
-| W3  | **SKIP (for now)** — Rule drift report (terminology docs vs checks): over-engineered for current phase |
+| W1  | Canonical link / discoverability beyond new files — [opened as #20](https://github.com/percona/percona-messaging/issues/20) (**P2 / Roadmap: later** on issue)                        |
+| W2  | Fixture-based regression tests for `scripts/` — [opened as #21](https://github.com/percona/percona-messaging/issues/21) (**P2 / Roadmap: later** on issue)                            |
+| W3  | **SKIP (for now)** — Rule drift report (terminology docs vs checks): over-engineered for current phase                                                                                |
 | W4  | Auto-triage labels for issues                                                                                                                                                         |
 | W5  | PR change-risk / suggested reviewers                                                                                                                                                  |
 | W6  | Suggestion quality feedback loop                                                                                                                                                      |
@@ -180,7 +181,7 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 
 | Backlog row              | Suggested labels                                                                                                                                                                        |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| All **A** (validation)   | `Testing / sign-off` · `Automation & CI` · `Launch program` · `**P0 - launch blocker`** (use `**P1 - important soon**` for A9 if you treat it as optional).                             |
+| All **A** (validation)   | `Testing / sign-off` · `Automation & CI` · `Launch program` · `P0 - launch blocker` (use `P1 - important soon` for A9 if you treat it as optional).                                     |
 | **N** (near-term builds) | `Feature / build` · `Automation & CI` · `Roadmap: soon` · `Launch program` or `**P1 - important soon`** (pick one priority label).                                                      |
 | **W** (next wave)        | `Feature / build` · `Automation & CI` · `Roadmap: later` · `**P2 - backlog`**.                                                                                                          |
 | **C** (content)          | `Content & messaging` or `Governance & policy` · `Go-live & repo setup` if repo-only · `Needs: legal review` / `Needs: product or GTM` as needed · `Launch program` · priority as fits. |
@@ -193,7 +194,7 @@ The `actions/github-script` action is maintained by GitHub; your **inline JavaSc
 
 ## Product-driven implementation ideas (for N/W backlog)
 
-- When offerings or positioning change, treat `**messaging-impact-map.yml**` and `**claim-types.yml**` as versioned alongside product (same release train).
+- When offerings or positioning change, treat `messaging-impact-map.yml` and `claim-types.yml` as versioned alongside product (same release train).
 - If you later adopt PR launch labels for GTM, add a small consistency check then (N1 was deferred).
 - Case study + staleness automation supports **proof-point** updates when marketing changes claims.
 - Decomposition assistant (N5) reduces **missed downstream** when pillar or product pages move.

@@ -1,0 +1,213 @@
+name: Impact Slash Commands
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  actions: write
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  impact-ok:
+    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/impact-ok') && github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verify commenter is maintainer-level
+        id: authz
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const allowed = new Set(["OWNER", "MEMBER", "COLLABORATOR"]);
+            const assoc = context.payload.comment.author_association;
+            core.setOutput("allowed", allowed.has(assoc) ? "true" : "false");
+
+      - name: Reject unauthorized command
+        if: steps.authz.outputs.allowed != 'true'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: "⚠️ `/impact-ok` can only be used by Owner, Member, or Collaborator.",
+            });
+
+      - name: Stop when unauthorized
+        if: steps.authz.outputs.allowed != 'true'
+        run: exit 0
+
+      - name: Load PR refs
+        id: pr
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            core.setOutput("head_sha", pr.data.head.sha);
+            core.setOutput("head_ref", pr.data.head.ref);
+            core.setOutput("base_ref", pr.data.base.ref);
+
+      - name: Checkout PR head
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ steps.pr.outputs.head_sha }}
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: git fetch origin "${{ steps.pr.outputs.base_ref }}" --depth=1
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: ".github/requirements/ci.txt"
+
+      - name: Install dependencies
+        run: python -m pip install -r .github/requirements/ci.txt
+
+      - name: Merge command into waiver state
+        id: merge_waiver
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-impact-waiver-data:v1 -->";
+            const issue_number = context.issue.number;
+            const { owner, repo } = context.repo;
+            const body = context.payload.comment.body.trim();
+            const arg = body.replace(/^\/impact-ok\s*/i, "").trim();
+            const all = !arg || arg.toLowerCase() === "all";
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+
+            let data = { all: false, paths: [] };
+            if (existing) {
+              try {
+                const raw = existing.body.split(marker)[1].trim();
+                Object.assign(data, JSON.parse(raw));
+              } catch (e) {
+                core.warning("Resetting invalid waiver JSON: " + e);
+                data = { all: false, paths: [] };
+              }
+            }
+
+            if (all) {
+              data = { all: true, paths: [] };
+            } else {
+              data.all = false;
+              const set = new Set(data.paths || []);
+              set.add(arg);
+              data.paths = Array.from(set);
+            }
+
+            const hidden = `${marker}\n${JSON.stringify(data, null, 2)}`;
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body: hidden,
+            });
+
+            try {
+              await github.rest.reactions.createForIssueComment({
+                owner,
+                repo,
+                comment_id: context.payload.comment.id,
+                content: "rocket",
+              });
+            } catch (e) {
+              core.info("Reaction failed (ignored): " + e);
+            }
+
+            const summary = all ? "`/impact-ok all`" : "`/impact-ok " + arg + "`";
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: `🤖 Recorded ${summary}. Re-running Impact Check with updated waivers.`,
+            });
+
+            fs.writeFileSync("waivers.json", JSON.stringify(data));
+
+      - name: Re-run impact check with waivers
+        run: |
+          python scripts/impact_check.py \
+            --base "origin/${{ steps.pr.outputs.base_ref }}" \
+            --head "HEAD" \
+            --waiver-file waivers.json \
+            --output-json impact-report.json \
+            --output-md impact-report.md
+
+      - name: Upsert impact checklist comment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-impact-check -->";
+            const body = `${marker}\n` + fs.readFileSync("impact-report.md", "utf8");
+            const issue_number = context.issue.number;
+            const { owner, repo } = context.repo;
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body,
+            });
+
+      - name: Rerun latest Impact Check workflow
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const headSha = "${{ steps.pr.outputs.head_sha }}";
+            const headRef = "${{ steps.pr.outputs.head_ref }}";
+
+            const runs = await github.paginate(
+              github.rest.actions.listWorkflowRunsForRepo,
+              {
+                owner,
+                repo,
+                event: "pull_request",
+                branch: headRef,
+                per_page: 100,
+              }
+            );
+
+            const run = runs.find(
+              (r) => r.name === "Impact Check" && r.head_sha === headSha
+            );
+
+            if (!run) {
+              core.warning(
+                `No matching Impact Check run found for head SHA ${headSha}; skipping rerun.`
+              );
+              return;
+            }
+
+            await github.rest.actions.reRunWorkflow({
+              owner,
+              repo,
+              run_id: run.id,
+            });
+            core.info(`Requested rerun for Impact Check run ${run.id}.`);
