@@ -12,39 +12,39 @@
 # Strategic / narrative layers
 # =========================
 # /framework/                                  @briana-swift @gareth-case @andrey-glazkov @cindy-neely
-/framework/                                  @brianamarie
+/framework/                                  @brianamarie @Cinneely
 # /offerings/                                  @briana-swift @matt-kane @andrey-glazkov @cindy-neely
-/offerings/                                  @brianamarie
+/offerings/                                  @brianamarie @Cinneely
 # /use-cases-value-pillars/                    @briana-swift @gareth-case @matt-kane @cindy-neely
-/use-cases-value-pillars/                    @brianamarie
+/use-cases-value-pillars/                    @brianamarie @Cinneely
 # /reference/                                  @briana-swift @val-bogatyreva @cindy-neely
-/reference/                                  @brianamarie
+/reference/                                  @brianamarie @Cinneely
 
 # =========================
 # Product ownership
 # =========================
 # /products/mysql/                             @briana-swift @val-bogatyreva @dennis-kittrell
-/products/mysql/                             @brianamarie
-# /products/postgresql/                        @briana-swift @kai-wagner
-/products/postgresql/                        @brianamarie
+/products/mysql/                             @brianamarie @thefactremains
+# /products/postgresql/                        @briana-swift @kai-wagner @janwieremjewicz
+/products/postgresql/                        @brianamarie @ImTheKai @janwieremjewicz
 # /products/mongodb/                           @briana-swift @val-bogatyreva @puneet-kala
 /products/mongodb/                           @brianamarie
 # /products/valkey-redis/                      @briana-swift @kyle-davis
 /products/valkey-redis/                      @brianamarie
 # /products/pmm/                               @briana-swift @dave-poole
-/products/pmm/                               @brianamarie
+/products/pmm/                               @brianamarie @DavePoole30
 # /products/operators/                         @briana-swift @kate-obiidykhata @slava-sarzhan
-/products/operators/                         @brianamarie
+/products/operators/                         @brianamarie @obiyduhata @hors
 
 # =========================
 # Compliance-sensitive overrides (last match wins)
 # =========================
 # /reference/**/trademark*                     @briana-swift @jaimie-mckean @cindy-neely
-/reference/**/trademark*                     @brianamarie
+/reference/**/trademark*                     @brianamarie @Cinneely
 # /reference/**/legal*                         @briana-swift @jaimie-mckean @cindy-neely
-/reference/**/legal*                         @brianamarie
+/reference/**/legal*                         @brianamarie @Cinneely
 # /NOTICES.md                                  @briana-swift @jaimie-mckean @cindy-neely
-/NOTICES.md                                  @brianamarie
+/NOTICES.md                                  @brianamarie @Cinneely
 # /LICENSE                                     @briana-swift @jaimie-mckean
 /LICENSE                                     @brianamarie
 
@@ -52,10 +52,10 @@
 # Repo governance / workflow
 # =========================
 # /README.md                                   @briana-swift @cindy-neely
-/README.md                                   @brianamarie
+/README.md                                   @brianamarie @Cinneely
 # /CONTRIBUTING.md                             @briana-swift @cindy-neely
-/CONTRIBUTING.md                             @brianamarie
+/CONTRIBUTING.md                             @brianamarie @Cinneely
 # /.cursor/rules/                              @briana-swift @val-bogatyreva
 /.cursor/rules/                              @brianamarie
 # /.github/                                    @briana-swift @slava-sarzhan @kate-obiidykhata @cindy-neely
-/.github/                                    @brianamarie
+/.github/                                    @brianamarie @obiyduhata @hors @Cinneely
