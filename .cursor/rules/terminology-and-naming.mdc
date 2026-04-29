@@ -77,7 +77,14 @@ Never claim Percona develops Redis or MariaDB software.
 - OK: "Percona supports Redis users with operational expertise."
 - Not OK: "Percona builds software for Redis."
 
+### Generic MongoDB technology references
+
+- Use this for broad capability statements that are not naming a specific Percona product: "MongoDB-compatible environments" or "MongoDB services monitored by PMM."
+- Use exact product names for product-specific statements, for example "Percona Server for MongoDB" or "Percona Operator for MongoDB."
+- Keep feature scope explicit when relevant, for example "MongoDB only" when a PMM capability does not apply to MySQL or PostgreSQL.
+
 ### Commercial offerings
+
 | Full name | Acceptable short forms |
 | --- | --- |
 | Percona Expert Support | Expert Support, Percona Support, Support |
@@ -93,6 +100,7 @@ Use full name on first mention in a section; shorthand afterward.
 Keep "Support" attached when referencing SLAs or response times.
 
 ### Value pillars (for messaging framework alignment)
+
 | Core value | Full pillar label |
 | --- | --- |
 | Open source | Open Source Commitment |
