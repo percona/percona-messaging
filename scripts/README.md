@@ -18,6 +18,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `sync_case_studies.py`: syncs case-study data from an external JSON feed
 - `staleness_report.py`: builds scheduled stale-content maintenance reports
 - `quarterly_lychee_citation_review_issue.py`: builds the body for the quarterly CI-excluded citation URL review issue
+- `docs_whats_new_monitor.py`: optional **backup** intake for Percona Documentation What's New RSS items (`bootstrap`, `prepare`, `merge` subcommands); not a substitute for the normal Product release update workflow
 
 ## GitHub workflow helper scripts
 
@@ -32,6 +33,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `.github/workflows/staleness-report.yml` -> `staleness_report.py`
 - `.github/workflows/quarterly-citation-review.yml` -> `quarterly_lychee_citation_review_issue.py`
 - `.github/workflows/case-study-monitor.yml` -> `sync_case_studies.py`, `suggest_updates.py`
+- `.github/workflows/docs-whats-new-monitor.yml` -> `docs_whats_new_monitor.py`
 - `.github/workflows/markdown-hygiene-autofix.yml` -> `markdownlint-cli2 --fix` with `automation/markdown-hygiene-autofix.jsonc`
 
 ## Validation sign-off runbooks

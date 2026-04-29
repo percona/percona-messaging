@@ -1,0 +1,24 @@
+{
+  "guids": [
+    "https://docs.percona.com/new/2026/02/25/percona-operator-for-mongodb-1220-has-been-released/",
+    "https://docs.percona.com/new/2026/03/02/percona-distribution-for-mysql-8045-using-percona-xtradb-cluster-has-been-released/",
+    "https://docs.percona.com/new/2026/03/02/percona-distribution-for-postgresql-1791-1613-1517-and-1422-have-been-released/",
+    "https://docs.percona.com/new/2026/03/02/percona-distribution-for-postgresql-1831-has-been-released/",
+    "https://docs.percona.com/new/2026/03/02/percona-transparent-data-encryption-pg_tde-212-has-been-released/",
+    "https://docs.percona.com/new/2026/03/02/percona-xtradb-cluster-8045-36-has-been-released/",
+    "https://docs.percona.com/new/2026/03/02/pg_stat_monitor-232-has-been-released/",
+    "https://docs.percona.com/new/2026/03/09/percona-server-for-mysql-5744-57-has-been-released/",
+    "https://docs.percona.com/new/2026/03/12/percona-distribution-for-mysql-848-using-percona-server-for-mysql-has-been-released/",
+    "https://docs.percona.com/new/2026/03/12/percona-server-for-mysql-848-8-has-been-released/",
+    "https://docs.percona.com/new/2026/03/18/important-pg_upgrade-is-not-supported-with-encrypted-tables-pg_tde/",
+    "https://docs.percona.com/new/2026/03/19/percona-xtradb-cluster-5744-316510-has-been-released/",
+    "https://docs.percona.com/new/2026/04/01/percona-monitoring-and-management-370-has-been-released/",
+    "https://docs.percona.com/new/2026/04/01/percona-operator-for-postgresql-290-has-been-released/",
+    "https://docs.percona.com/new/2026/04/16/percona-xtradb-cluster-848-8-has-been-released/",
+    "https://docs.percona.com/new/2026/04/17/percona-operator-for-mysql-110-has-been-released/",
+    "https://docs.percona.com/new/2026/04/17/percona-toolkit-v371-3-has-been-released/",
+    "https://docs.percona.com/new/2026/04/21/etcd-security-update-available-for-percona-distribution-for-postgresql/",
+    "https://docs.percona.com/new/2026/04/22/percona-build-of-proxysql-306-has-been-released/",
+    "https://docs.percona.com/new/2026/04/22/percona-distribution-for-mysql-848-using-percona-xtradb-cluster-has-been-released/"
+  ]
+}

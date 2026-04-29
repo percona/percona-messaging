@@ -9,7 +9,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 - `**.github/workflows/**`: when automation runs (triggers, permissions, PR comments, scheduled jobs).
 - `**scripts/**`: what automation executes (Python logic for checks, reports, and sync tasks).
 - `**automation/**`: automation inputs (impact map, claim categories, and other config data).
-- `**data/**`: machine-readable inputs/outputs used by automation (for example case-study registry).
+- `**data/**`: machine-readable inputs/outputs used by automation (for example case-study registry and processed RSS GUID state).
 
 ## Documentation ownership boundary
 
@@ -40,7 +40,32 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch                 | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data                  |
 | `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
 | `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch  | `scripts/quarterly_lychee_citation_review_issue.py`                                          | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
+| `.github/workflows/docs-whats-new-monitor.yml` | Daily schedule + manual dispatch (opt-in) | `scripts/docs_whats_new_monitor.py` | RSS feed + `data/docs_whats_new_seen_guids.json` | New `product-update` issues (backup intake) |
 
+## Docs What's New monitor (optional)
+
+**Role:** This is a **secondary, catch-all safety net**, not the primary way canonical messaging stays current. Product and GTM should still drive versioned updates through the normal **Product release update** process (release artifacts, owners, and timelines). The monitor exists so that if something ships and **no one files an issue**, we still get a **triage signal** from the official Percona Documentation **What's New** RSS feed (not HTML scraping) before announcements age off the feed.
+
+When enabled, scheduled automation watches that feed and opens GitHub issues aligned with the **Product release update** template flow (`product-update` label, `[Release]` title prefix). Treat opened issues as **intake to confirm or close**, not as an authoritative release checklist.
+
+| Detail | Value |
+| ------ | ----- |
+| Workflow | [`.github/workflows/docs-whats-new-monitor.yml`](.github/workflows/docs-whats-new-monitor.yml) |
+| Script | [`scripts/docs_whats_new_monitor.py`](scripts/docs_whats_new_monitor.py) |
+| Feed | [`https://docs.percona.com/feed_rss_created.xml`](https://docs.percona.com/feed_rss_created.xml) (human hub: [What's new](https://docs.percona.com/new/)) |
+| State file | [`data/docs_whats_new_seen_guids.json`](data/docs_whats_new_seen_guids.json) |
+| Enable | Repository **Settings → Secrets and variables → Actions → Variables**: set `DOCS_WHATS_NEW_MONITOR_ENABLED` to `true` |
+| Labels | The workflow applies **`product-update`**, matching the [Product release update](.github/ISSUE_TEMPLATE/product-release-update.md) template; create that label on the repo if it does not exist yet. |
+
+**Cadence and limits:** the feed only exposes a bounded number of recent items; keep the workflow enabled and on a daily schedule so new announcements are not missed before they roll off the feed.
+
+**Dedupe behavior:** the workflow dedupes by searching for a stable GUID hash marker in existing issue bodies before creating a new issue. It does not open automation PRs for state updates.
+
+**Bootstrap / recovery** (refresh state without opening issues for everything currently in the feed):
+
+```bash
+python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
+```
 
 ## Where automation runs in the contributor flow
 
