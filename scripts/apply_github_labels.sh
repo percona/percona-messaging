@@ -16,6 +16,13 @@ if [[ ! -f "$JSON" ]]; then
   echo "Missing ${JSON}" >&2
   exit 1
 fi
+
+# One-time migration: rename legacy GitHub default label when needed.
+if gh label list --limit 200 --search "documentation" --json name | jq -e '.[] | select(.name=="documentation")' >/dev/null 2>&1 \
+  && ! gh label list --limit 200 --search "messaging" --json name | jq -e '.[] | select(.name=="messaging")' >/dev/null 2>&1; then
+  gh label edit "documentation" --name "messaging" --description "Improvements or additions to messaging"
+fi
+
 count=$(jq 'length' "$JSON")
 i=0
 while [[ "$i" -lt "$count" ]]; do

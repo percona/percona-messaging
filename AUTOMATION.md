@@ -11,21 +11,36 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 - `**automation/**`: automation inputs (impact map, claim categories, and other config data).
 - `**data/**`: machine-readable inputs/outputs used by automation (for example case-study registry and processed RSS GUID state).
 
+## Documentation ownership boundary
+
+- Tracking backlog and issue intake live in [reference/launch-and-automation-backlog.md](reference/launch-and-automation-backlog.md).
+- Operational runbooks and sign-off protocols live in [scripts/README.md](scripts/README.md) under `Validation sign-off runbooks`.
+- Keep runbook procedure steps out of backlog trackers.
+- Backlog docs should point to canonical runbook sections.
+
+## Operational setup references
+
+- Labels: [.github/label-definitions.json](.github/label-definitions.json) and [scripts/apply_github_labels.sh](scripts/apply_github_labels.sh) (details in [scripts/README.md](scripts/README.md) under `GitHub labels`).
+- Project field and item automation commands: [gh project manual](https://cli.github.com/manual/gh_project).
+- Validation sign-off execution protocols: [scripts/README.md](scripts/README.md) under `Validation sign-off runbooks`.
+- Example `Launch track` field creation command:
+  - `gh project field-create <number> --owner percona --name "Launch track" --data-type SINGLE_SELECT --single-select-options "P0 Go-live,P1 Soon,P2 Later,Not launch"`
+
 ## Workflow map
 
-| Workflow                                          | Trigger                                     | Uses scripts                                                                                 | Uses config/data                                                    | Output                                            |
-| ------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
-| `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                      | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues     |
-| `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script      | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist        |
-| `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`     | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist    |
-| `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script      | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates             |
-| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks   |
-| `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch           | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue       |
-| `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch           | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data |
-| `.github/workflows/prose-and-links.yml`         | PR touching markdown or prose config        | _(none — uses marketplace actions)_                                                          | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health |
-| `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch | `scripts/quarterly_lychee_citation_review_issue.py`                                      | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
-| `.github/workflows/docs-whats-new-monitor.yml`    | Daily schedule + manual dispatch (opt-in)     | `scripts/docs_whats_new_monitor.py`                                                          | RSS feed + `data/docs_whats_new_seen_guids.json`                    | New `product-update` issues (backup intake); PR updates GUID state |
 
+| Workflow                                          | Trigger                                           | Uses scripts                                                                                 | Uses config/data                                                    | Output                                                             |
+| ------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                          | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues                      |
+| `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script            | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist                         |
+| `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`           | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
+| `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script            | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates                              |
+| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
+| `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch                 | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data                  |
+| `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
+| `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch  | `scripts/quarterly_lychee_citation_review_issue.py`                                          | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
+| `.github/workflows/docs-whats-new-monitor.yml` | Daily schedule + manual dispatch (opt-in) | `scripts/docs_whats_new_monitor.py` | RSS feed + `data/docs_whats_new_seen_guids.json` | New `product-update` issues (backup intake) |
 
 ## Docs What's New monitor (optional)
 
@@ -43,6 +58,8 @@ When enabled, scheduled automation watches that feed and opens GitHub issues ali
 | Labels | The workflow applies **`product-update`**, matching the [Product release update](.github/ISSUE_TEMPLATE/product-release-update.md) template; create that label on the repo if it does not exist yet. |
 
 **Cadence and limits:** the feed only exposes a bounded number of recent items; keep the workflow enabled and on a daily schedule so new announcements are not missed before they roll off the feed.
+
+**Dedupe behavior:** the workflow dedupes by searching for a stable GUID hash marker in existing issue bodies before creating a new issue. It does not open automation PRs for state updates.
 
 **Bootstrap / recovery** (refresh state without opening issues for everything currently in the feed):
 
@@ -66,8 +83,32 @@ For false positives where maintainers agree no edit is needed in a listed `must_
 
 - Comment `/impact-ok all` to acknowledge all currently missing required paths.
 - Comment `/impact-ok <exact path>` to acknowledge one path at a time.
+- Comment `/impact-reset all` to clear all recorded waivers for the PR.
+- Comment `/impact-reset <exact path>` to remove one waiver. If `/impact-ok all` is active, this path-specific reset is stored as an explicit exception.
 
 The slash-command workflow stores waiver state in a hidden PR comment and re-runs the impact check so the checklist comment reflects waived items.
+
+Waiver state resolution rule:
+
+- If multiple waiver marker comments exist, automation selects the newest created comment with valid JSON.
+- If the newest created payload is malformed, automation falls back to the next newest valid payload.
+- If no valid payload exists, automation uses an empty waiver state.
+
+## PR comment upsert standard
+
+Marker-managed PR comments must use the shared helper at `scripts/github/upsert_marker_comment.js`.
+
+- Keep marker strings stable. Treat them as persistent IDs.
+- Prefix the rendered comment body with the marker (`${marker}\n...`).
+- Use one marker per workflow comment type (for example impact checklist, governance report, smart suggestions).
+- Call the helper from `actions/github-script` steps instead of inlining list/update/create comment logic.
+
+Current workflows using this standard:
+
+- `.github/workflows/content-governance-checks.yml`
+- `.github/workflows/impact-check.yml`
+- `.github/workflows/impact-slash-commands.yml`
+- `.github/workflows/smart-suggestions.yml`
 
 ## AI and automation: how to use AI responsibly
 
@@ -89,6 +130,7 @@ When using AI to change automation, always include:
 ## Planned and candidate automation backlog
 
 This list is intentionally broader than current implementation so ideas are not lost before issues are opened.
+This section is tracking-only and should not duplicate runbook execution steps.
 
 ### Planned next (high-confidence, near-term)
 
@@ -127,6 +169,7 @@ Use this quick filter so automation scope stays practical:
 ## Local validation
 
 See [scripts/README.md](scripts/README.md) for script-level usage.  
+For sign-off execution protocols, see the `Validation sign-off runbooks` section in [scripts/README.md](scripts/README.md), including issue #9 (`new file gate`) and issue #15 (`multi-check integration smoke`).
 When testing PR-based scripts locally, run against a base/head git range similar to CI.
 
 For spelling, links, and markdown structure, use the same tools as [prose-and-links.yml](.github/workflows/prose-and-links.yml): `typos` (see `_typos.toml`), `lychee` (see `.lychee.toml`), and `markdownlint-cli2` (see `.markdownlint.yaml`). Markdownlint enforces structure, not grammar or product voice.

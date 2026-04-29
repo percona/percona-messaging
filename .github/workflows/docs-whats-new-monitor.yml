@@ -23,9 +23,8 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write
+  contents: read
   issues: write
-  pull-requests: write
 
 jobs:
   notify:
@@ -62,7 +61,6 @@ jobs:
             const crypto = require("crypto");
             const { owner, repo } = context.repo;
             const items = JSON.parse(fs.readFileSync("new-items.json", "utf8"));
-            const processed = [];
 
             function markerFor(guid) {
               const h = crypto.createHash("sha256").update(guid).digest("hex").slice(0, 16);
@@ -77,7 +75,6 @@ jobs:
                 per_page: 1,
               });
               if (search.data.total_count > 0) {
-                processed.push(item.guid);
                 continue;
               }
 
@@ -120,32 +117,4 @@ jobs:
                 body,
                 labels: ["product-update"],
               });
-              processed.push(item.guid);
             }
-
-            fs.writeFileSync("processed-guids.json", JSON.stringify(processed));
-
-      - name: Merge processed GUIDs into state
-        if: ${{ steps.prep.outputs.count != '0' }}
-        run: |
-          python scripts/docs_whats_new_monitor.py merge \
-            --state data/docs_whats_new_seen_guids.json \
-            --guids-json processed-guids.json
-
-      - name: Pull request for state file
-        if: ${{ steps.prep.outputs.count != '0' }}
-        uses: peter-evans/create-pull-request@v6
-        with:
-          branch: automation/docs-whats-new-state
-          title: "Record processed What's New RSS GUIDs"
-          commit-message: "chore: merge docs What's New feed GUIDs into state"
-          body: |
-            Automated follow-up from **Docs What's New monitor**.
-
-            - Updates `data/docs_whats_new_seen_guids.json` so future runs do not re-file the same announcements.
-            - If this PR is empty or unnecessary, close it.
-
-            ## Reviewer checklist
-            - [ ] Merge if the GUID list change looks correct
-          add-paths: |
-            data/docs_whats_new_seen_guids.json

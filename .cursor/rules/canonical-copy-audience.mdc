@@ -1,0 +1,28 @@
+---
+description: Audience boundaries for canonical messaging markdown (no repo-internal instructions or reviewer-facing hedges)
+alwaysApply: true
+---
+
+# Canonical copy audience (hard rules)
+
+Applies to reusable messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` when the content is **canonical positioning**, not repo docs like `README.md`, `CONTRIBUTING.md`, or `.github/`.
+
+## Write for downstream reuse
+
+Assume readers include **customers, prospects, field sales, partners, analysts, press**, and internal teams pasting lines into decks and web. Prose must read as **finished positioning**, not notes to contributors.
+
+## Never put these in canonical messaging bodies
+
+- **Repository navigation:** paths such as `products/pmm/messaging.md`, `framework/…`, or “see `reference/…`” unless the sentence exists solely to describe **this repository’s layout** in contributor-facing docs (rare).
+- **Coordination instructions:** phrases like “align with … messaging,” “coordinate overlapping language with …,” “sync RTA copy after … lands,” “mirror issue #nn.” Put alignment work in the **PR description**, a **tracked issue**, or `reference/decomposition-and-propagation.md`-style guidance, not inside canonical modules.
+- **Reviewer hedges** framed as imperatives to writers: e.g. “without claiming parity unless approved,” “do not overstate X.” Replace with **reader-facing facts** (what Percona offers and how it differs) or remove.
+
+## Prefer instead
+
+- **Standalone sentences** that make sense without repo context; complete subjects and verbs in every sentence.
+- **Public citations** where proof is needed: release notes URLs, docs.percona.com links, public roadmap pages, not internal filenames.
+- **Cross-product consistency:** duplicate or tighten wording across modules in **actual prose**, or track propagation in issues/PRs.
+
+## Relationship to CONTRIBUTING
+
+`CONTRIBUTING.md` forbids moving internal planning into tracked canonical content. This rule makes that concrete for **AI-assisted edits**: canonical markdown is not the place for editorial assignments between files.
