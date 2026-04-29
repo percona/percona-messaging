@@ -198,4 +198,8 @@ jobs:
               issue_number,
               marker,
               body,
+              automationFooter: {
+                workflowFile: "markdown-hygiene-autofix.yml",
+                eventName: context.eventName,
+              },
             });

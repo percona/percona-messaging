@@ -235,6 +235,10 @@ jobs:
               issue_number,
               marker,
               body,
+              automationFooter: {
+                workflowFile: "impact-slash-commands.yml",
+                eventName: context.eventName,
+              },
             });
 
       - name: Rerun latest Impact Check workflow
