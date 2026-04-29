@@ -55,11 +55,13 @@ When enabled, scheduled automation watches that feed and opens GitHub issues ali
 | Feed | [`https://docs.percona.com/feed_rss_created.xml`](https://docs.percona.com/feed_rss_created.xml) (human hub: [What's new](https://docs.percona.com/new/)) |
 | State file | [`data/docs_whats_new_seen_guids.json`](data/docs_whats_new_seen_guids.json) |
 | Enable | Repository **Settings → Secrets and variables → Actions → Variables**: set `DOCS_WHATS_NEW_MONITOR_ENABLED` to `true` |
-| Labels | The workflow applies **`product-update`**, matching the [Product release update](.github/ISSUE_TEMPLATE/product-release-update.md) template; create that label on the repo if it does not exist yet. |
+| Labels | The workflow applies **`product-update`** (matching the [Product release update](.github/ISSUE_TEMPLATE/product-release-update.md) template) plus **`Area:*`** labels inferred from the announcement title (for example `Area: PostgreSQL`). Labels must exist in the repo (see [.github/label-definitions.json](.github/label-definitions.json)). |
 
 **Cadence and limits:** the feed only exposes a bounded number of recent items; keep the workflow enabled and on a daily schedule so new announcements are not missed before they roll off the feed.
 
 **Dedupe behavior:** the workflow dedupes by searching for a stable GUID hash marker in existing issue bodies before creating a new issue. It does not open automation PRs for state updates.
+
+**Area labeling:** classification uses keywords from the RSS title (and falls back to `Area: Cross-product` when no rule matches). Adjust mapping logic in [`.github/workflows/docs-whats-new-monitor.yml`](.github/workflows/docs-whats-new-monitor.yml) when naming patterns change.
 
 **Bootstrap / recovery** (refresh state without opening issues for everything currently in the feed):
 
