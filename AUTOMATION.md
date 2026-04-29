@@ -105,12 +105,14 @@ Marker-managed PR comments must use the shared helper at `scripts/github/upsert_
 - Prefix the rendered comment body with the marker (`${marker}\n...`).
 - Use one marker per workflow comment type (for example impact checklist, governance report, smart suggestions).
 - Call the helper from `actions/github-script` steps instead of inlining list/update/create comment logic.
+- For **human-visible** marker comments, pass `automationFooter: { workflowFile, eventName }` so the rendered comment ends with the triggering GitHub event, a link to the workflow file on `main`, and links to `AUTOMATION.md` (this section) and `automation/README.md`. Do **not** append this footer to hidden machine-readable marker payloads (for example waiver JSON comments).
 
 Current workflows using this standard:
 
 - `.github/workflows/content-governance-checks.yml`
 - `.github/workflows/impact-check.yml`
-- `.github/workflows/impact-slash-commands.yml`
+- `.github/workflows/impact-slash-commands.yml` (impact checklist comment only; waiver payload comments omit the footer)
+- `.github/workflows/markdown-hygiene-autofix.yml`
 - `.github/workflows/smart-suggestions.yml`
 
 ## AI and automation: how to use AI responsibly

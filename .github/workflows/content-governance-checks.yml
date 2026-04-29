@@ -97,6 +97,10 @@ jobs:
               issue_number,
               marker,
               body,
+              automationFooter: {
+                workflowFile: "content-governance-checks.yml",
+                eventName: context.eventName,
+              },
             });
 
       - name: Fail if any blocking governance check failed
