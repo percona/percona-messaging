@@ -62,6 +62,94 @@ jobs:
             const { owner, repo } = context.repo;
             const items = JSON.parse(fs.readFileSync("new-items.json", "utf8"));
 
+            const labelPages = await github.paginate(github.rest.repos.listLabelsForRepo, {
+              owner,
+              repo,
+              per_page: 100,
+            });
+            const existingLabelNames = new Set(labelPages.map((l) => l.name));
+
+            function areasForAnnouncementTitle(title) {
+              const areas = [];
+              const seen = new Set();
+              const add = (name) => {
+                if (!seen.has(name)) {
+                  seen.add(name);
+                  areas.push(name);
+                }
+              };
+
+              if (/Percona Monitoring and Management|\bPMM\b/i.test(title)) {
+                add("Area: PMM");
+              }
+
+              if (/Percona Operator for MySQL/i.test(title)) {
+                add("Area: Kubernetes operators");
+                add("Area: MySQL");
+              }
+              if (/Percona Operator for PostgreSQL/i.test(title)) {
+                add("Area: Kubernetes operators");
+                add("Area: PostgreSQL");
+              }
+              if (/Percona Operator for MongoDB/i.test(title)) {
+                add("Area: Kubernetes operators");
+                add("Area: MongoDB");
+              }
+              if (
+                !/^Percona Operator for (MySQL|PostgreSQL|MongoDB)/i.test(title) &&
+                /Percona Operator for\b/i.test(title)
+              ) {
+                add("Area: Kubernetes operators");
+              }
+
+              if (
+                /Percona Distribution for PostgreSQL|\bPatroni\b|\bpg_tde\b|pg_stat_monitor|\bpg_upgrade\b|\bPostgreSQL\b/i.test(
+                  title,
+                ) || /\bETCD\b.*PostgreSQL/i.test(title)
+              ) {
+                add("Area: PostgreSQL");
+              }
+
+              if (
+                /Percona Distribution for MySQL|Percona Server for MySQL|Percona XtraDB Cluster|\bProxySQL\b|Percona Toolkit|Percona XtraBackup/i.test(
+                  title,
+                )
+              ) {
+                add("Area: MySQL");
+              }
+
+              if (
+                /Percona Server for MongoDB|Percona Backup for MongoDB|ClusterSync|\bMongoDB\b/i.test(title)
+              ) {
+                add("Area: MongoDB");
+              }
+
+              if (/\bValkey\b|\bRedis\b/i.test(title)) {
+                add("Area: Valkey/Redis");
+              }
+
+              if (areas.length === 0) {
+                add("Area: Cross-product");
+              }
+
+              return areas;
+            }
+
+            function filterExistingLabels(names) {
+              const missing = [];
+              const kept = names.filter((n) => {
+                if (existingLabelNames.has(n)) return true;
+                missing.push(n);
+                return false;
+              });
+              if (missing.length > 0) {
+                core.warning(
+                  `Skipping unknown labels (create them or update mapping): ${missing.join(", ")}`,
+                );
+              }
+              return kept;
+            }
+
             function markerFor(guid) {
               const h = crypto.createHash("sha256").update(guid).digest("hex").slice(0, 16);
               return `<!-- whatsnew-feed:${h} -->`;
@@ -110,11 +198,14 @@ jobs:
                 `- Item GUID: ${item.guid}`,
               ].join("\n");
 
+              const areaLabels = areasForAnnouncementTitle(item.title);
+              const labels = filterExistingLabels(["product-update", ...areaLabels]);
+
               await github.rest.issues.create({
                 owner,
                 repo,
                 title,
                 body,
-                labels: ["product-update"],
+                labels,
               });
             }
