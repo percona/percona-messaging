@@ -1,0 +1,32 @@
+---
+description: Enforce present-state framing, scope disclosure, and citation placement in canonical messaging
+alwaysApply: true
+---
+
+# Canonical fact framing (hard rules)
+
+Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, and `offerings/`. Do not apply to contributor docs such as `README.md`, `CONTRIBUTING.md`, or `.github/`.
+
+Use this rule with `canonical-copy-audience.mdc` and `value-linking-quality.mdc`.
+
+## State shipped facts as current reality
+
+- In canonical body copy, describe shipped capabilities as present reality, for example "PMM has," "PMM includes," or "PMM supports."
+- Avoid in-body release framing such as "PMM 3.7 adds," "introduces," or "completes" when the capability is already available.
+- Use version or release phrasing only when timing is material to reader decisions, for example upgrade planning, compatibility boundaries, or deprecation windows.
+
+## Disclose engine scope inline
+
+- For engine-limited capabilities, include explicit scope in the same sentence or bullet.
+- Preferred pattern: "MongoDB only, not MySQL or PostgreSQL."
+- Do not move scope caveats into separate sections when the claim appears earlier in body copy.
+
+## Integrate feature evidence into value copy
+
+- Prefer integrating feature evidence into existing value or outcome bullets.
+- Use standalone feature or release bullets only when the feature is itself a top-level positioning pillar for that page.
+
+## Anchor citations at the claim
+
+- Prefer inline citation placement directly on the factual claim in canonical messaging pages.
+- Use end-of-section or bottom "Sources" blocks only when a page template explicitly requires that structure.
