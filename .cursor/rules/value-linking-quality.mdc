@@ -1,0 +1,30 @@
+---
+description: Keep canonical messaging outcome-led, concise, and customer-value linked
+alwaysApply: true
+---
+
+# Outcome-first quality bar (hard rules)
+
+Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, and `offerings/`.
+
+## Do not ship feature dumps
+
+- Do not list capabilities without customer impact.
+- For any release/version bullet, keep the structure: **what shipped** + **why it matters to customers**.
+- Keep detailed capability lists short in body copy, prefer one to two high-impact items unless a longer list is required for accuracy.
+
+## Required value linkage
+
+- Every capability statement must include at least one concrete operator or buyer outcome (for example reduced downtime risk, lower migration effort, fewer manual steps, better security posture, or improved recovery reliability).
+- If a sentence cannot state the outcome clearly, shorten or remove the capability detail.
+
+## Evidence and claim style
+
+- State sourced shipped facts directly in canonical copy, then cite public docs.
+- Avoid hedging phrasing like "release notes report" when the claim is present in the cited source.
+- Keep performance claims bounded and conditioned when the source includes test constraints.
+
+## Placement rules
+
+- Put cross-team alignment instructions in issues or PR descriptions, not canonical messaging bodies.
+- Keep canonical modules reader-facing and reusable by field, web, and sales teams without repo context.

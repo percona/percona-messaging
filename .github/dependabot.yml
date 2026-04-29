@@ -1,12 +1,41 @@
 version: 2
 updates:
+  # Keep action SHAs fresh after pinning them in workflows.
   - package-ecosystem: "github-actions"
     directory: "/"
+    # Open update PRs against the primary branch.
+    target-branch: "main"
     schedule:
+      # Weekly run cadence for pinned GitHub Action SHA updates.
       interval: "weekly"
+      day: "monday"
+      time: "05:00"
+      timezone: "UTC"
     open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "Automation & CI"
+    # Group updates so review stays focused and avoids PR spam.
+    groups:
+      github-actions-official:
+        applies-to: "version-updates"
+        patterns:
+          - "actions/*"
+      github-actions-third-party:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "actions/*"
+    # Keep PR branch names stable and readable for filtering.
+    pull-request-branch-name:
+      separator: "-"
     commit-message:
       prefix: "chore(deps)"
+      include: "scope"
+
+  # Keep workflow validation tooling pinned and current.
   - package-ecosystem: "pip"
     directory: "/.github/requirements"
     schedule:
