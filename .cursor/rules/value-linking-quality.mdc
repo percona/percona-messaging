@@ -1,11 +1,19 @@
 ---
 description: Keep canonical messaging outcome-led, concise, and customer-value linked
-alwaysApply: true
+globs:
+  - products/**/*
+  - framework/**/*
+  - use-cases-value-pillars/**/*
+  - offerings/**/*
+  - reference/**/*
+alwaysApply: false
 ---
 
 # Outcome-first quality bar (hard rules)
 
-Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, and `offerings/`.
+Portable baseline: `docs/agent-guidelines.md`.
+
+Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` when the content is canonical positioning (see `canonical-copy-audience.mdc`).
 
 ## Do not ship feature dumps
 

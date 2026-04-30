@@ -36,7 +36,8 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 - `offerings/solution-bundles/`: fixed-scope sold packages that combine services and outcomes
 - `products/`: product and database-specific messaging (MySQL, PostgreSQL, MongoDB, Valkey/Redis, PMM, Operators) plus competitive-safe overlays
 - `reference/`: canonical naming, banned terms, brand voice, governance references, and decomposition guidance
-- `.cursor/rules/`: editor guidance for AI-assisted workflows
+- `docs/`: portable agent baseline shared across editors and tools (see [docs/agent-guidelines.md](docs/agent-guidelines.md))
+- `.cursor/rules/`: Cursor-facing snippets aligned with that baseline
 - `automation/`: impact maps and claim categories for CI checks
 - `data/`: machine-readable registries used by automation
 - `scripts/`: CI and local automation entry points
@@ -55,9 +56,11 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 
 ## Working with AI assistants
 
-This repository works in any editor. AI-assisted editors can use `.cursor/rules/` for structured guidance, while other tools can rely on the same guidance in `reference/`.
+**Claude Code** loads **[CLAUDE.md](CLAUDE.md)** (pointer into AGENTS + baseline). Everyone else should still start from **[AGENTS.md](AGENTS.md)** and **[docs/agent-guidelines.md](docs/agent-guidelines.md)** for portable git boundaries and how messaging rules scope across directories. Cursor loads extra structured snippets from **`.cursor/rules/`**, which must stay aligned with that baseline.
 
-Marketing teams may also use separate internal writing instructions and prompts in tools like Claude. This repository remains the foundational messaging source those workflows should build from.
+Contributor-facing naming and voice references also live under **`reference/`**.
+
+Marketing teams may use separate internal writing instructions and prompts in tools like Claude. This repository remains the foundational messaging source those workflows should build from.
 
 ## Working in the open
 
