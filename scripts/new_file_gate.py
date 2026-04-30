@@ -6,7 +6,19 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
+import sys
 from pathlib import Path
+
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
+
+from governance_waiver import (
+    CHECK_NEW_FILE_GATE,
+    check_is_waived,
+    load_governance_waiver,
+    waiver_note_md,
+)
 
 REQUIRED_HEADINGS = [
     "### Existing files reviewed first",
@@ -112,6 +124,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--head", default="HEAD")
     parser.add_argument("--pr-body-file", required=True)
     parser.add_argument("--output-md", default="new-file-gate-report.md")
+    parser.add_argument("--waiver-file", default="", help="Optional governance waiver JSON path")
     return parser.parse_args()
 
 
@@ -134,9 +147,22 @@ def main() -> int:
             failed.append(heading)
 
     report = build_report(added, failed)
+    exit_code = 1 if failed else 0
+
+    waiver_path = Path(args.waiver_file) if args.waiver_file else None
+    waive_all, waived_checks, reset_checks = load_governance_waiver(waiver_path)
+    if exit_code != 0 and check_is_waived(
+        CHECK_NEW_FILE_GATE,
+        waive_all,
+        waived_checks,
+        reset_checks,
+    ):
+        report = report.rstrip() + waiver_note_md(CHECK_NEW_FILE_GATE)
+        exit_code = 0
+
     Path(args.output_md).write_text(report, encoding="utf-8")
     print(report)
-    return 1 if failed else 0
+    return exit_code
 
 
 if __name__ == "__main__":
