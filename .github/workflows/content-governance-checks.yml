@@ -8,6 +8,9 @@ on:
       - "scripts/new_file_gate.py"
       - "scripts/check_doc_coverage.py"
       - "scripts/duplicate_detector.py"
+      - "scripts/governance_waiver.py"
+      - ".github/workflows/content-governance-checks.yml"
+      - ".github/workflows/governance-slash-commands.yml"
 
 permissions:
   contents: read
@@ -31,6 +34,58 @@ jobs:
           mkdir -p .tmp
           printf '%s' "${{ github.event.pull_request.body }}" > .tmp/pr_body.md
 
+      - name: Build governance waiver state from hidden comment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-governance-waiver-data:v1 -->";
+            const pr_number = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number: pr_number, per_page: 100 }
+            );
+            let data = { all: false, checks: [], reset_checks: [] };
+            const markerComments = comments
+              .filter((c) => c.body && c.body.includes(marker))
+              .sort((a, b) => {
+                const aTime = Date.parse(a.created_at || "") || 0;
+                const bTime = Date.parse(b.created_at || "") || 0;
+                if (bTime !== aTime) {
+                  return bTime - aTime;
+                }
+                return (Number(b.id) || 0) - (Number(a.id) || 0);
+              });
+
+            if (markerComments.length > 1) {
+              core.warning(
+                `Found ${markerComments.length} governance waiver marker comments; selecting latest valid payload.`
+              );
+            }
+
+            for (const found of markerComments) {
+              try {
+                const raw = found.body.split(marker)[1].trim();
+                const parsed = JSON.parse(raw);
+                data = {
+                  all: Boolean(parsed.all),
+                  checks: Array.isArray(parsed.checks)
+                    ? [...new Set(parsed.checks.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                  reset_checks: Array.isArray(parsed.reset_checks)
+                    ? [...new Set(parsed.reset_checks.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                };
+                core.info(`Using governance waiver state from comment ${found.id}.`);
+                break;
+              } catch (e) {
+                core.warning(`Ignoring invalid governance waiver JSON in comment ${found.id}: ${e}`);
+              }
+            }
+
+            fs.writeFileSync("governance-waivers.json", JSON.stringify(data));
+
       - name: Run new-file gate
         id: new_file_gate
         continue-on-error: true
@@ -39,6 +94,7 @@ jobs:
             --base "origin/${{ github.base_ref }}" \
             --head "HEAD" \
             --pr-body-file ".tmp/pr_body.md" \
+            --waiver-file governance-waivers.json \
             --output-md "new-file-gate-report.md"
 
       - name: Run doc coverage check
@@ -48,6 +104,7 @@ jobs:
           python scripts/check_doc_coverage.py \
             --base "origin/${{ github.base_ref }}" \
             --head "HEAD" \
+            --waiver-file governance-waivers.json \
             --output-md "doc-coverage-report.md"
 
       - name: Run duplicate detector
@@ -57,6 +114,7 @@ jobs:
           python scripts/duplicate_detector.py \
             --base "origin/${{ github.base_ref }}" \
             --head "HEAD" \
+            --waiver-file governance-waivers.json \
             --output-md "duplicate-detector-report.md"
 
       - name: Add reports to workflow summary
@@ -84,7 +142,18 @@ jobs:
             const sections = files
               .filter((f) => fs.existsSync(f))
               .map((f) => fs.readFileSync(f, "utf8"));
-            const body = `${marker}\n` + sections.join("\n");
+            const footer = [
+              "",
+              "## Manual waiver commands (maintainers)",
+              "",
+              "- `/governance-ok all` or `/governance-all`",
+              "- `/governance-ok new-file`, `/governance-ok doc-coverage`, `/governance-ok duplicate`",
+              "- `/governance-reset all` or `/governance-reset` with the same token",
+              "",
+              "Waiver JSON is stored in a hidden PR comment (`messaging-governance-waiver-data:v1`), same pattern as Impact Check.",
+              "",
+            ].join("\n");
+            const body = `${marker}\n` + sections.join("\n") + footer;
 
             const { owner, repo } = context.repo;
             const issue_number = context.payload.pull_request.number;

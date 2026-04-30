@@ -35,7 +35,8 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script            | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist                         |
 | `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`, `/impact-reset`, or `/impact-all` | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
 | `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script            | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates                              |
-| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py`, `scripts/governance_waiver.py` | PR template + markdown corpus + hidden waiver comment               | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/governance-slash-commands.yml` | PR comments `/governance-ok`, `/governance-reset`, `/governance-all` | same governance scripts                                                                      | hidden waiver comment (`messaging-governance-waiver-data:v1`)      | Updates waivers, refreshes governance comment, reruns governance workflow |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
 | `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch                 | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data                  |
 | `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
@@ -91,9 +92,21 @@ For false positives where maintainers agree no edit is needed in a listed `must_
 
 The slash-command workflow stores waiver state in a hidden PR comment and re-runs the impact check so the checklist comment reflects waived items.
 
+## Content governance manual acknowledgement
+
+When maintainers agree a governance gate is satisfied outside automation (or the gate is a false positive):
+
+- Comment `/governance-ok all` or `/governance-all` to waive **all three** blocking gates for that PR (new file justification, doc navigation coverage, duplicate detector).
+- Comment `/governance-ok new-file`, `/governance-ok doc-coverage`, or `/governance-ok duplicate` to waive **one** gate at a time (aliases: `coverage` maps to doc coverage; `dupes` maps to duplicate).
+- Comment `/governance-reset all` to clear waiver state for the PR.
+- Comment `/governance-reset <same token>` to remove one waiver. While `/governance-ok all` is active, a path-specific reset records an exception (same pattern as Impact Check reset paths).
+
+The slash-command workflow stores JSON in a hidden PR comment (`messaging-governance-waiver-data:v1`), refreshes the visible governance report, and requests a rerun of **Content Governance Checks** so check status matches waiver state.
+
 Waiver state resolution rule:
 
-- If multiple waiver marker comments exist, automation selects the newest created comment with valid JSON.
+- Impact Check and Content Governance use **different** hidden markers (`messaging-impact-waiver-data:v1` vs `messaging-governance-waiver-data:v1`); each workflow only reads its own marker.
+- If multiple waiver marker comments exist for that marker, automation selects the newest created comment with valid JSON.
 - If the newest created payload is malformed, automation falls back to the next newest valid payload.
 - If no valid payload exists, automation uses an empty waiver state.
 
@@ -118,6 +131,7 @@ Marker-managed PR comments must use the shared helper at `scripts/github/upsert_
 Current workflows using this standard:
 
 - `.github/workflows/content-governance-checks.yml`
+- `.github/workflows/governance-slash-commands.yml` (governance report comment only; waiver payload comments omit the footer)
 - `.github/workflows/impact-check.yml`
 - `.github/workflows/impact-slash-commands.yml` (impact checklist comment only; waiver payload comments omit the footer)
 - `.github/workflows/markdown-hygiene-autofix.yml`
