@@ -4,7 +4,7 @@ Percona Messaging improves through small, reviewable changes. You do not need to
 
 ## Product managers and owners
 
-*Not a PM or product owner? Skip to **[Who can contribute](#who-can-contribute)**—everything from there down is shared guidance.*
+*Not a PM or product owner? Skip to **[Who can contribute](#who-can-contribute)**; everything from there down is shared guidance.*
 
 - **Open an issue** as soon as you know something is changing and will need to be **described** in canonical messaging. **Before go-live is normal and encouraged**—early issues are part of working transparently here, not something to avoid until launch week.
 - **Open a pull request** (draft is fine) as soon as you know **which product or feature** is changing. You do not need final copy first: a PR starts review and **runs automation** (terminology, impact hints, governance checks), which helps catch drift early.
@@ -23,6 +23,8 @@ There is still **no single automated path** from merged markdown to social, the 
 Anyone with useful context can contribute. That includes product owners, Solutions Marketing, developer advocates, designers, reviewers, and collaborators working from downstream assets back to the canonical source.
 
 ## Before you edit
+
+**AI-assisted edits:** Shared agent rules live in [`docs/agent-guidelines.md`](docs/agent-guidelines.md); [`.cursor/rules/`](.cursor/rules/) adds Cursor-only snippets and must stay aligned with that baseline on git boundaries and messaging scope.
 
 1. Find the canonical file that should hold the change.
 2. Check the relevant reference guidance in `reference/` and `.cursor/rules/`.

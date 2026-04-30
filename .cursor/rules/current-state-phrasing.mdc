@@ -1,11 +1,19 @@
 ---
 description: Enforce present-state framing, scope disclosure, and citation placement in canonical messaging
-alwaysApply: true
+globs:
+  - products/**/*
+  - framework/**/*
+  - use-cases-value-pillars/**/*
+  - offerings/**/*
+  - reference/**/*
+alwaysApply: false
 ---
 
 # Canonical fact framing (hard rules)
 
-Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, and `offerings/`. Do not apply to contributor docs such as `README.md`, `CONTRIBUTING.md`, or `.github/`.
+Portable baseline: `docs/agent-guidelines.md`.
+
+Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` when the content is canonical positioning. Do not apply to contributor docs such as `README.md`, `CONTRIBUTING.md`, or `.github/`.
 
 Use this rule with `canonical-copy-audience.mdc` and `value-linking-quality.mdc`.
 
