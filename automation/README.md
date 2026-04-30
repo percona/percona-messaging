@@ -16,6 +16,10 @@ For the full automation system map (workflows + scripts + config + AI usage), se
 - `scripts/suggest_updates.py` combines `messaging-impact-map.yml` and `claim-types.yml` to generate reviewer suggestions
 - `scripts/duplicate_detector.py` uses canonical markdown overlap checks to flag potential duplication
 
+## Coverage model
+
+Rules declare **`must_review`** paths (and optional **`suggest_globs`** for non-blocking breadth). There is no guarantee every propagation target under `framework/`, `products/`, `use-cases-value-pillars/`, or `offerings/` appears for a given change: if reviews keep finding gaps, add or tighten rules in **`messaging-impact-map.yml`** (and claim hints in **`claim-types.yml`** when using Smart Suggestions). See [AUTOMATION.md](../AUTOMATION.md) (`Impact Check and Smart Suggestions: scope and limits`).
+
 ## Related components
 
 - Workflow triggers and orchestration: [`.github/workflows/`](../.github/workflows/)

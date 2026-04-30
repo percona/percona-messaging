@@ -97,6 +97,14 @@ Waiver state resolution rule:
 - If the newest created payload is malformed, automation falls back to the next newest valid payload.
 - If no valid payload exists, automation uses an empty waiver state.
 
+## Impact Check and Smart Suggestions: scope and limits
+
+**Impact Check** (`impact-check.yml`, `scripts/impact_check.py`) evaluates pull request diffs against **`automation/messaging-impact-map.yml`**. It lists **`must_review`** paths when rule triggers match (file globs and optional diff regexes). It does **not** compute a full propagation graph across the repo, infer impact levels (low / medium / high), or replace the human flow in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) or **`.cursor/rules/impact-analysis.mdc`**.
+
+**Smart Suggestions** (`smart-suggestions.yml`, `scripts/suggest_updates.py`) combines the same impact map with **`automation/claim-types.yml`** to propose additional candidates. Treat both Impact Check and Smart Suggestions comments as **map-backed hints**: extend coverage by editing `messaging-impact-map.yml` (and claim hints) when reviews repeatedly surface misses.
+
+**Canonical messaging directories** (`framework/`, `products/`, `use-cases-value-pillars/`, `offerings/`) are routing targets for decomposition; automation only surfaces files that rules enumerate. Reviewers remain responsible for cross-module consistency when claims move.
+
 ## PR comment upsert standard
 
 Marker-managed PR comments must use the shared helper at `scripts/github/upsert_marker_comment.js`.
