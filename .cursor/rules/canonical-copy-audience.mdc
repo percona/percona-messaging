@@ -1,9 +1,17 @@
 ---
 description: Audience boundaries for canonical messaging markdown (no repo-internal instructions or reviewer-facing hedges)
-alwaysApply: true
+globs:
+  - products/**/*
+  - framework/**/*
+  - use-cases-value-pillars/**/*
+  - offerings/**/*
+  - reference/**/*
+alwaysApply: false
 ---
 
 # Canonical copy audience (hard rules)
+
+Portable baseline: `docs/agent-guidelines.md`.
 
 Applies to reusable messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` when the content is **canonical positioning**, not repo docs like `README.md`, `CONTRIBUTING.md`, or `.github/`.
 

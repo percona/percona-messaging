@@ -6,8 +6,20 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
+import sys
 from pathlib import Path
 from urllib.parse import urlparse
+
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
+
+from governance_waiver import (
+    CHECK_DOC_COVERAGE,
+    check_is_waived,
+    load_governance_waiver,
+    waiver_note_md,
+)
 
 EXCLUDED_PREFIXES = (
     ".github/",
@@ -96,6 +108,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--base", default="origin/main")
     parser.add_argument("--head", default="HEAD")
     parser.add_argument("--output-md", default="doc-coverage-report.md")
+    parser.add_argument("--waiver-file", default="", help="Optional governance waiver JSON path")
     return parser.parse_args()
 
 
@@ -136,9 +149,21 @@ def main() -> int:
         lines.append("All new docs are linked from repository navigation docs.")
     report = "\n".join(lines).strip() + "\n"
 
+    exit_code = 1 if missing else 0
+    waiver_path = Path(args.waiver_file) if args.waiver_file else None
+    waive_all, waived_checks, reset_checks = load_governance_waiver(waiver_path)
+    if exit_code != 0 and check_is_waived(
+        CHECK_DOC_COVERAGE,
+        waive_all,
+        waived_checks,
+        reset_checks,
+    ):
+        report = report.rstrip() + waiver_note_md(CHECK_DOC_COVERAGE)
+        exit_code = 0
+
     Path(args.output_md).write_text(report, encoding="utf-8")
     print(report)
-    return 1 if missing else 0
+    return exit_code
 
 
 if __name__ == "__main__":
