@@ -8,6 +8,8 @@ The data observability market is projected to grow from USD 3.15B in 2025 to USD
 
 PMM provides observability for backup operations and backup health indicators, while backup execution and policy management remain in dedicated Percona backup tooling.
 
+PMM pairs metrics and Query Analytics with Percona Advisors: bundled Security, Configuration, Performance, and Query checks that run inventory-scoped on a schedule or on demand, so one deployment surfaces live health, historical query insight, and automated risk signals for the engines you monitor.
+
 ### Customer Challenges and Value Alignment: PMM
 
 **Optimized TCO**
@@ -15,15 +17,17 @@ PMM provides observability for backup operations and backup health indicators, w
 
 **Performance and Reliability at Scale**
 - Query-level and engine analytics: PMM's QAN engine and exporters expose query execution plans, latency, and database-specific metrics like replication state and cache efficiency, so teams diagnose root causes faster. QAN covers completed workload history for optimization review. PMM also provides Real-time Query Analytics (RTA) for MongoDB-compatible environments monitored by PMM, with a live 1-5 second stream for active incidents, including long-running queries and lock contention. RTA currently supports MongoDB-compatible environments only, not MySQL or PostgreSQL.
-- Advisors for proactive tuning: PMM includes Percona Advisors, a rules-based framework that surfaces configuration and performance risks early so teams reduce surprise outages and expensive fire drills. Advisors and alert templates ship directly with PMM so operational guidance stays available without requiring Percona Platform connectivity.
+- Percona Advisors and reliability: Beyond metrics and QAN, advisor checks flag misconfigurations, degradation, and query-level problems early. PMM documentation also describes checks that address data loss and data corruption. Runs use configurable intervals or manual execution for engines in inventory, adding rules-based review alongside dashboards and analytics.
 - Engine-native replication metrics: PMM leverages each engine's native capabilities for replication monitoring. For PostgreSQL, PMM reads `pg_stat_wal_receiver` data via custom queries in `postgres_exporter` (namespace: `pg_custom_stat_wal_receiver`, columns include `lag_bytes`), providing accurate replication lag measurement without requiring external heartbeat tools. This is a concrete advantage for MySQL-to-PostgreSQL migration stories: PostgreSQL's built-in replication instrumentation replaces the need for tools like pt-heartbeat. *(Source: `postgres_exporter/queries-hr.yml#L32`; validated Feb 2026.)*
 - HA visibility for incident response: PMM surfaces replication and node health signals that help teams validate high availability behavior and shorten failover diagnosis.
 
 **Security, Sovereignty, and Compliance**
 - Granular access and auditability: Role-based access control (RBAC) and integration with standard authentication systems ensure that visibility is properly segmented and traceable, supporting secure deployment at scale and simplifying audit preparation.
+- Security-category advisors and local findings: Security advisors highlight common database security risks. Advisor check results stay on PMM Server for review and are not sent as part of telemetry ([PMM Advisor documentation](https://docs.percona.com/percona-monitoring-and-management/3/advisors/advisors.html)).
 - Data sovereignty and transparency: PMM is fully open source and self-hostable in air-gapped or private environments. All components are open for inspection, ensuring alignment with sovereignty requirements and eliminating dependency on opaque SaaS monitoring platforms.
 - No external Platform dependency for monitoring workflows: PMM has no Percona Platform connectivity in the UI or API, advisors and alert templates ship directly with PMM, and Percona Account login is not available. Use supported authentication methods such as basic auth, LDAP, OAuth, or SAML.
 
 **Adaptability for Emerging Workloads**
 - Kubernetes-native observability: PMM integrates directly with Percona Operators to automatically capture metrics from MySQL, PostgreSQL, and MongoDB clusters running in Kubernetes. Teams gain consistent visibility across hybrid and multi-cloud environments, improving reliability and cutting monitoring costs. Custom exporters are built-in to monitor additional systems such as Valkey/Redis or ProxySQL, providing a consistent observability model across hybrid and multi-cloud architectures.
+- Custom advisor checks: PMM supports developer-authored advisor checks so teams can encode organization-specific infrastructure rules or internal standards alongside the bundled Security, Configuration, Performance, and Query checks ([develop advisor checks](https://docs.percona.com/percona-monitoring-and-management/3/advisors/develop-advisor-checks.html)).
 - Valkey and Redis visibility: PMM includes metrics-based visibility for Valkey and Redis environments.
