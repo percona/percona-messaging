@@ -1,0 +1,376 @@
+name: Governance Slash Commands
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  actions: write
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  governance-waiver:
+    if: ${{ github.event.issue.pull_request && (startsWith(github.event.comment.body, '/governance-ok') || startsWith(github.event.comment.body, '/governance-reset') || startsWith(github.event.comment.body, '/governance-all')) && github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verify commenter is maintainer-level
+        id: authz
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const allowed = new Set(["OWNER", "MEMBER", "COLLABORATOR"]);
+            const assoc = context.payload.comment.author_association;
+            core.setOutput("allowed", allowed.has(assoc) ? "true" : "false");
+
+      - name: Reject unauthorized command
+        if: steps.authz.outputs.allowed != 'true'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: "⚠️ `/governance-ok`, `/governance-reset`, and `/governance-all` can only be used by Owner, Member, or Collaborator.",
+            });
+
+      - name: Stop when unauthorized
+        if: steps.authz.outputs.allowed != 'true'
+        run: exit 0
+
+      - name: Load PR refs
+        id: pr
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            core.setOutput("head_sha", pr.data.head.sha);
+            core.setOutput("head_ref", pr.data.head.ref);
+            core.setOutput("base_ref", pr.data.base.ref);
+
+      - name: Checkout PR head
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ steps.pr.outputs.head_sha }}
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: git fetch origin "${{ steps.pr.outputs.base_ref }}" --depth=1
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: ".github/requirements/ci.txt"
+
+      - name: Install dependencies
+        run: python -m pip install -r .github/requirements/ci.txt
+
+      - name: Merge command into governance waiver state
+        id: merge_waiver
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+
+            function normalizeCheckToken(raw) {
+              const t = String(raw || "")
+                .trim()
+                .toLowerCase()
+                .replace(/_/g, "-");
+              if (!t || t === "all") {
+                return "all";
+              }
+              if (t === "new-file" || t === "new-file-gate") {
+                return "new_file_gate";
+              }
+              if (t === "doc-coverage" || t === "coverage") {
+                return "doc_coverage";
+              }
+              if (t === "duplicate" || t === "dupes" || t === "duplicate-detector") {
+                return "duplicate_detector";
+              }
+              return "";
+            }
+
+            const marker = "<!-- messaging-governance-waiver-data:v1 -->";
+            const issue_number = context.issue.number;
+            const { owner, repo } = context.repo;
+            let body = context.payload.comment.body.trim();
+            if (/^\/governance-all\b/i.test(body)) {
+              body = body.replace(/^\/governance-all\b\s*/i, "/governance-ok all ");
+            }
+            const match = body.match(/^\/governance-(ok|reset)\b\s*(.*)$/is);
+            if (!match) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: "⚠️ Unsupported command format. Use `/governance-ok all`, `/governance-ok new-file`, `/governance-reset all`, `/governance-reset duplicate`, or `/governance-all`.",
+              });
+              fs.writeFileSync(
+                "governance-waivers.json",
+                JSON.stringify({ all: false, checks: [], reset_checks: [] })
+              );
+              return;
+            }
+
+            const command = match[1].toLowerCase();
+            const remainder = (match[2] || "").trim();
+            const firstLine = remainder.split(/\r?\n/)[0].trim();
+            const tokens = firstLine.split(/\s+/).filter(Boolean);
+            const firstToken = tokens[0] || "";
+            const all = !firstToken || firstToken.toLowerCase() === "all";
+            let canonical = "";
+            if (!all) {
+              canonical = normalizeCheckToken(firstToken);
+              if (!canonical) {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number,
+                  body:
+                    "⚠️ Unknown governance check token. Use `new-file`, `doc-coverage`, or `duplicate` (or `all`).",
+                });
+              }
+            }
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+            let data = { all: false, checks: [], reset_checks: [] };
+            const markerComments = comments
+              .filter((c) => c.body && c.body.includes(marker))
+              .sort((a, b) => {
+                const aTime = Date.parse(a.created_at || "") || 0;
+                const bTime = Date.parse(b.created_at || "") || 0;
+                if (bTime !== aTime) {
+                  return bTime - aTime;
+                }
+                return (Number(b.id) || 0) - (Number(a.id) || 0);
+              });
+
+            if (markerComments.length > 1) {
+              core.warning(
+                `Found ${markerComments.length} governance waiver marker comments; selecting latest valid payload.`
+              );
+            }
+
+            for (const existing of markerComments) {
+              try {
+                const raw = existing.body.split(marker)[1].trim();
+                const parsed = JSON.parse(raw);
+                data = {
+                  all: Boolean(parsed.all),
+                  checks: Array.isArray(parsed.checks)
+                    ? [...new Set(parsed.checks.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                  reset_checks: Array.isArray(parsed.reset_checks)
+                    ? [...new Set(parsed.reset_checks.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                };
+                core.info(`Loaded governance waiver state from comment ${existing.id}.`);
+                break;
+              } catch (e) {
+                core.warning(`Ignoring invalid governance waiver JSON in comment ${existing.id}: ${e}`);
+              }
+            }
+
+            if (!all && !canonical) {
+              fs.writeFileSync("governance-waivers.json", JSON.stringify(data));
+              return;
+            }
+
+            const waived = new Set(data.checks || []);
+            const reset = new Set(data.reset_checks || []);
+
+            if (command === "ok" && all) {
+              data = { all: true, checks: [], reset_checks: [] };
+            } else if (command === "ok") {
+              data.all = false;
+              waived.add(canonical);
+              reset.delete(canonical);
+              data.checks = Array.from(waived);
+              data.reset_checks = Array.from(reset);
+            } else if (all) {
+              data = { all: false, checks: [], reset_checks: [] };
+            } else {
+              if (data.all) {
+                reset.add(canonical);
+                data.reset_checks = Array.from(reset);
+              } else {
+                waived.delete(canonical);
+                data.checks = Array.from(waived);
+                data.reset_checks = Array.from(reset);
+              }
+            }
+
+            const hidden = `${marker}\n${JSON.stringify(data, null, 2)}`;
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body: hidden,
+            });
+
+            try {
+              await github.rest.reactions.createForIssueComment({
+                owner,
+                repo,
+                comment_id: context.payload.comment.id,
+                content: "rocket",
+              });
+            } catch (e) {
+              core.info("Reaction failed (ignored): " + e);
+            }
+
+            const summary = all
+              ? `\`/governance-${command} all\``
+              : `\`/governance-${command} ${firstToken}\``;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: `🤖 Recorded ${summary}. Re-running Content Governance Checks with updated waivers.`,
+            });
+
+            fs.writeFileSync("governance-waivers.json", JSON.stringify(data));
+
+      - name: Write PR body to file
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            fs.mkdirSync(".tmp", { recursive: true });
+            fs.writeFileSync(".tmp/pr_body.md", pr.data.body || "");
+
+      - name: Run new-file gate (slash refresh)
+        id: slash_new_file
+        continue-on-error: true
+        run: |
+          python scripts/new_file_gate.py \
+            --base "origin/${{ steps.pr.outputs.base_ref }}" \
+            --head "HEAD" \
+            --pr-body-file ".tmp/pr_body.md" \
+            --waiver-file governance-waivers.json \
+            --output-md "new-file-gate-report.md"
+
+      - name: Run doc coverage check (slash refresh)
+        id: slash_coverage
+        continue-on-error: true
+        run: |
+          python scripts/check_doc_coverage.py \
+            --base "origin/${{ steps.pr.outputs.base_ref }}" \
+            --head "HEAD" \
+            --waiver-file governance-waivers.json \
+            --output-md "doc-coverage-report.md"
+
+      - name: Run duplicate detector (slash refresh)
+        id: slash_duplicate
+        continue-on-error: true
+        run: |
+          python scripts/duplicate_detector.py \
+            --base "origin/${{ steps.pr.outputs.base_ref }}" \
+            --head "HEAD" \
+            --waiver-file governance-waivers.json \
+            --output-md "duplicate-detector-report.md"
+
+      - name: Upsert PR governance comment
+        if: always()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-content-governance -->";
+            const files = [
+              "new-file-gate-report.md",
+              "doc-coverage-report.md",
+              "duplicate-detector-report.md",
+            ];
+            const sections = files
+              .filter((f) => fs.existsSync(f))
+              .map((f) => fs.readFileSync(f, "utf8"));
+            const footer = [
+              "",
+              "## Manual waiver commands (maintainers)",
+              "",
+              "- `/governance-ok all` or `/governance-all`",
+              "- `/governance-ok new-file`, `/governance-ok doc-coverage`, `/governance-ok duplicate`",
+              "- `/governance-reset all` or `/governance-reset` with the same token",
+              "",
+              "Waiver JSON is stored in a hidden PR comment (`messaging-governance-waiver-data:v1`), same pattern as Impact Check.",
+              "",
+            ].join("\n");
+            const body = `${marker}\n` + sections.join("\n") + footer;
+            const issue_number = context.issue.number;
+            const { owner, repo } = context.repo;
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body,
+              automationFooter: {
+                workflowFile: "governance-slash-commands.yml",
+                eventName: context.eventName,
+              },
+            });
+
+      - name: Rerun latest Content Governance Checks workflow
+        if: always()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const headSha = "${{ steps.pr.outputs.head_sha }}";
+            const headRef = "${{ steps.pr.outputs.head_ref }}";
+
+            const runs = await github.paginate(
+              github.rest.actions.listWorkflowRunsForRepo,
+              {
+                owner,
+                repo,
+                event: "pull_request",
+                branch: headRef,
+                per_page: 100,
+              }
+            );
+
+            const run = runs.find(
+              (r) => r.name === "Content Governance Checks" && r.head_sha === headSha
+            );
+
+            if (!run) {
+              core.warning(
+                `No matching Content Governance Checks run found for head SHA ${headSha}; skipping rerun.`
+              );
+              return;
+            }
+
+            await github.rest.actions.reRunWorkflow({
+              owner,
+              repo,
+              run_id: run.id,
+            });
+            core.info(`Requested rerun for Content Governance Checks run ${run.id}.`);

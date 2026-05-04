@@ -6,7 +6,9 @@ The data observability market is projected to grow from USD 3.15B in 2025 to USD
 
 76% of companies in the 2025 Grafana 'State of Observability' survey report using open source observability tools; only 8% rely exclusively on commercial observability stacks. Unlike SaaS monitoring tools that abstract or restrict access to raw metrics, PMM is fully open source and deployable anywhere: on-prem, in the cloud, or integrated with Percona Operators for metric discovery. This provides consistent performance insight across environments, while keeping telemetry fully self-hosted and free of proprietary licensing.
 
-### Customer Challenges and Value Alignment – PMM
+PMM provides observability for backup operations and backup health indicators, while backup execution and policy management remain in dedicated Percona backup tooling.
+
+### Customer Challenges and Value Alignment: PMM
 
 **Optimized TCO**
 - Unified observability without licensing costs: PMM uses fully open source components and is free to deploy for MySQL, PostgreSQL, MongoDB, Valkey, and Redis environments, eliminating recurring licensing fees. PMM's REST API (nodes, services, agents) allows programmatic access to cluster inventory. The Query Analytics (QAN) component exposes execution-plan, latency, and resource-usage data for MySQL, PostgreSQL and MongoDB. Organizations consolidate tooling and reduce spend while maintaining deep insight at the database layer.
@@ -14,6 +16,7 @@ The data observability market is projected to grow from USD 3.15B in 2025 to USD
 **Performance and Reliability at Scale**
 - Query-level and engine analytics: PMM's QAN engine and exporters expose query execution plans, latency, and database-specific metrics like replication state and cache efficiency, so teams can diagnose root causes quickly, improve query performance, and prevent cascading slowdowns before they impact users.
 - Engine-native replication metrics: PMM leverages each engine's native capabilities for replication monitoring. For PostgreSQL, PMM reads `pg_stat_wal_receiver` data via custom queries in `postgres_exporter` (namespace: `pg_custom_stat_wal_receiver`, columns include `lag_bytes`), providing accurate replication lag measurement without requiring external heartbeat tools. This is a concrete advantage for MySQL-to-PostgreSQL migration stories: PostgreSQL's built-in replication instrumentation replaces the need for tools like pt-heartbeat. *(Source: `postgres_exporter/queries-hr.yml#L32`; validated Feb 2026.)*
+- HA visibility for incident response: PMM surfaces replication and node health signals that help teams validate high availability behavior and shorten failover diagnosis.
 - Advisors for proactive tuning: PMM includes Percona Advisors, a rules-based framework that runs best-practice checks for common performance and configuration issues, so organizations catch misconfigurations early, enforce best practices automatically, and reduce the operational burden on DBAs.
 
 **Security, Sovereignty, and Compliance**
@@ -22,3 +25,4 @@ The data observability market is projected to grow from USD 3.15B in 2025 to USD
 
 **Adaptability for Emerging Workloads**
 - Kubernetes-native observability: PMM integrates directly with Percona Operators to automatically capture metrics from MySQL, PostgreSQL, and MongoDB clusters running in Kubernetes. Teams gain consistent visibility across hybrid and multi-cloud environments, improving reliability and cutting monitoring costs. Custom exporters are built-in to monitor additional systems such as Valkey/Redis or ProxySQL, providing a consistent observability model across hybrid and multi-cloud architectures.
+- Valkey and Redis visibility: PMM includes existing metrics-based visibility for Valkey and Redis environments.

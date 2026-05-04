@@ -13,7 +13,7 @@
 
 ## What else might be affected
 
-For a structured pass (customer impact level, value pillars, when to update `framework/why-percona.md`), use **`.cursor/rules/impact-analysis.mdc`** in Cursor, or the full human flow in **`reference/decomposition-and-propagation.md`**. The **Impact Check** and **Smart Suggestions** bot comments on this PR are text-map **candidates**; triage them with that rule when decisions matter (they do not include the L/M/H rubric by themselves).
+For a structured pass (customer impact level, value pillars, when to update `framework/why-percona.md`), use **`.cursor/rules/impact-analysis.mdc`** in Cursor, or the full human flow in **`reference/decomposition-and-propagation.md`**. The **Impact Check** and **Smart Suggestions** bot comments on this PR are text-map **candidates**; triage them with that rule when decisions matter (they do not include the L/M/H rubric by themselves). Even when the bots are quiet, sanity-check whether **`framework/`**, **`products/`**, **`use-cases-value-pillars/`**, or **`offerings/`** need aligned edits when claims, naming, or pillars shift.
 
 ## New markdown file gate (required only when adding new `.md` files)
 
