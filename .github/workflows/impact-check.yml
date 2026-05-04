@@ -142,4 +142,8 @@ jobs:
               issue_number,
               marker,
               body,
+              automationFooter: {
+                workflowFile: "impact-check.yml",
+                eventName: context.eventName,
+              },
             });
