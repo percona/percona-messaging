@@ -75,4 +75,8 @@ jobs:
               issue_number,
               marker,
               body,
+              automationFooter: {
+                workflowFile: "smart-suggestions.yml",
+                eventName: context.eventName,
+              },
             });

@@ -4,6 +4,35 @@ function ensureString(value, name) {
   }
 }
 
+/**
+ * Appended to visible marker comments so readers can see trigger + docs.
+ * Do not use with hidden machine-readable marker payloads (for example waiver JSON).
+ */
+function buildAutomationFooter(owner, repo, { workflowFile, eventName }) {
+  ensureString(workflowFile, "automationFooter.workflowFile");
+  if (!/^[a-z0-9][a-z0-9_.-]*\.ya?ml$/i.test(workflowFile)) {
+    throw new Error(
+      "automationFooter.workflowFile must be a workflow filename (example: smart-suggestions.yml)",
+    );
+  }
+
+  const base = `https://github.com/${owner}/${repo}`;
+  const wfUrl = `${base}/blob/main/.github/workflows/${workflowFile}`;
+  const automationDocUrl = `${base}/blob/main/AUTOMATION.md#pr-comment-upsert-standard`;
+  const automationReadmeUrl = `${base}/blob/main/automation/README.md`;
+
+  const trigger =
+    typeof eventName === "string" && eventName.trim()
+      ? `Triggered by \`${eventName.trim()}\`. `
+      : "";
+
+  return (
+    `\n\n---\n\n<sub>${trigger}` +
+    `Workflow [\`${workflowFile}\`](${wfUrl}). ` +
+    `Docs: [AUTOMATION.md](${automationDocUrl}), [\`automation/README.md\`](${automationReadmeUrl}).</sub>`
+  );
+}
+
 module.exports = async function upsertMarkerComment({
   github,
   core,
@@ -12,6 +41,7 @@ module.exports = async function upsertMarkerComment({
   issue_number,
   marker,
   body,
+  automationFooter,
   perPage = 100,
 }) {
   if (!github) {
@@ -29,6 +59,10 @@ module.exports = async function upsertMarkerComment({
   if (!Number.isInteger(issue_number) || issue_number <= 0) {
     throw new Error("Expected positive integer issue_number");
   }
+
+  const effectiveBody = automationFooter
+    ? body + buildAutomationFooter(owner, repo, automationFooter)
+    : body;
 
   const comments = await github.paginate(github.rest.issues.listComments, {
     owner,
@@ -61,7 +95,7 @@ module.exports = async function upsertMarkerComment({
       owner,
       repo,
       comment_id: existing.id,
-      body,
+      body: effectiveBody,
     });
     core.info(
       `Updated marker comment ${existing.id} for issue ${issue_number} (${marker}).`,
@@ -73,7 +107,7 @@ module.exports = async function upsertMarkerComment({
     owner,
     repo,
     issue_number,
-    body,
+    body: effectiveBody,
   });
   core.info(
     `Created marker comment ${created.data.id} for issue ${issue_number} (${marker}).`,
