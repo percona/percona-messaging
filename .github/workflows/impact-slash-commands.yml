@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   impact-ok:
-    if: ${{ github.event.issue.pull_request && (startsWith(github.event.comment.body, '/impact-ok') || startsWith(github.event.comment.body, '/impact-reset')) && github.actor != 'github-actions[bot]' }}
+    if: ${{ github.event.issue.pull_request && (startsWith(github.event.comment.body, '/impact-ok') || startsWith(github.event.comment.body, '/impact-reset') || startsWith(github.event.comment.body, '/impact-all')) && github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +34,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: "⚠️ `/impact-ok` and `/impact-reset` can only be used by Owner, Member, or Collaborator.",
+              body: "⚠️ `/impact-ok`, `/impact-reset`, and `/impact-all` can only be used by Owner, Member, or Collaborator.",
             });
 
       - name: Stop when unauthorized
@@ -83,22 +83,31 @@ jobs:
             const marker = "<!-- messaging-impact-waiver-data:v1 -->";
             const issue_number = context.issue.number;
             const { owner, repo } = context.repo;
-            const body = context.payload.comment.body.trim();
+            let body = context.payload.comment.body.trim();
+            // Alias for waive-all; normalize so the same parser handles trailing discussion text.
+            if (/^\/impact-all\b/i.test(body)) {
+              body = body.replace(/^\/impact-all\b\s*/i, "/impact-ok all ");
+            }
             const match = body.match(/^\/impact-(ok|reset)\b\s*(.*)$/i);
             if (!match) {
               await github.rest.issues.createComment({
                 owner,
                 repo,
                 issue_number,
-                body: "⚠️ Unsupported command format. Use `/impact-ok all`, `/impact-ok <exact path>`, `/impact-reset all`, or `/impact-reset <exact path>`.",
+                body: "⚠️ Unsupported command format. Use `/impact-ok all`, `/impact-ok <exact path>`, `/impact-reset all`, `/impact-reset <exact path>`, or `/impact-all` (same as `/impact-ok all`).",
               });
               fs.writeFileSync("waivers.json", JSON.stringify({ all: false, paths: [], reset_paths: [] }));
               return;
             }
 
             const command = match[1].toLowerCase();
-            const arg = (match[2] || "").trim();
-            const all = !arg || arg.toLowerCase() === "all";
+            const remainder = (match[2] || "").trim();
+            // First line only; first token decides waive-all vs path (ignore same-line discussion after the path or "all").
+            const firstLine = remainder.split(/\r?\n/)[0].trim();
+            const tokens = firstLine.split(/\s+/).filter(Boolean);
+            const firstToken = tokens[0] || "";
+            const all = !firstToken || firstToken.toLowerCase() === "all";
+            const arg = all ? "" : firstToken;
 
             const comments = await github.paginate(
               github.rest.issues.listComments,
@@ -226,6 +235,10 @@ jobs:
               issue_number,
               marker,
               body,
+              automationFooter: {
+                workflowFile: "impact-slash-commands.yml",
+                eventName: context.eventName,
+              },
             });
 
       - name: Rerun latest Impact Check workflow

@@ -33,9 +33,10 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | ------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                          | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues                      |
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script            | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist                         |
-| `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`           | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
+| `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`, `/impact-reset`, or `/impact-all` | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
 | `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script            | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates                              |
-| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py` | PR template + markdown corpus                                       | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py`, `scripts/governance_waiver.py` | PR template + markdown corpus + hidden waiver comment               | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/governance-slash-commands.yml` | PR comments `/governance-ok`, `/governance-reset`, `/governance-all` | same governance scripts                                                                      | hidden waiver comment (`messaging-governance-waiver-data:v1`)      | Updates waivers, refreshes governance comment, reruns governance workflow |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
 | `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch                 | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data                  |
 | `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
@@ -83,18 +84,39 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contributor-facing workflow behavior 
 
 For false positives where maintainers agree no edit is needed in a listed `must_review` file:
 
-- Comment `/impact-ok all` to acknowledge all currently missing required paths.
-- Comment `/impact-ok <exact path>` to acknowledge one path at a time.
+- Comment `/impact-ok all` to acknowledge all currently missing required paths (you can add a short note on the same line after `all`; only the first word on the first line is read as the argument).
+- Comment `/impact-all` as a shortcut for `/impact-ok all`.
+- Comment `/impact-ok <exact path>` to acknowledge one path at a time (same rule: optional same-line text after the path is ignored).
 - Comment `/impact-reset all` to clear all recorded waivers for the PR.
 - Comment `/impact-reset <exact path>` to remove one waiver. If `/impact-ok all` is active, this path-specific reset is stored as an explicit exception.
 
 The slash-command workflow stores waiver state in a hidden PR comment and re-runs the impact check so the checklist comment reflects waived items.
 
+## Content governance manual acknowledgement
+
+When maintainers agree a governance gate is satisfied outside automation (or the gate is a false positive):
+
+- Comment `/governance-ok all` or `/governance-all` to waive **all three** blocking gates for that PR (new file justification, doc navigation coverage, duplicate detector).
+- Comment `/governance-ok new-file`, `/governance-ok doc-coverage`, or `/governance-ok duplicate` to waive **one** gate at a time (aliases: `coverage` maps to doc coverage; `dupes` maps to duplicate).
+- Comment `/governance-reset all` to clear waiver state for the PR.
+- Comment `/governance-reset <same token>` to remove one waiver. While `/governance-ok all` is active, a path-specific reset records an exception (same pattern as Impact Check reset paths).
+
+The slash-command workflow stores JSON in a hidden PR comment (`messaging-governance-waiver-data:v1`), refreshes the visible governance report, and requests a rerun of **Content Governance Checks** so check status matches waiver state.
+
 Waiver state resolution rule:
 
-- If multiple waiver marker comments exist, automation selects the newest created comment with valid JSON.
+- Impact Check and Content Governance use **different** hidden markers (`messaging-impact-waiver-data:v1` vs `messaging-governance-waiver-data:v1`); each workflow only reads its own marker.
+- If multiple waiver marker comments exist for that marker, automation selects the newest created comment with valid JSON.
 - If the newest created payload is malformed, automation falls back to the next newest valid payload.
 - If no valid payload exists, automation uses an empty waiver state.
+
+## Impact Check and Smart Suggestions: scope and limits
+
+**Impact Check** (`impact-check.yml`, `scripts/impact_check.py`) evaluates pull request diffs against **`automation/messaging-impact-map.yml`**. It lists **`must_review`** paths when rule triggers match (file globs and optional diff regexes). It does **not** compute a full propagation graph across the repo, infer impact levels (low / medium / high), or replace the human flow in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) or **`.cursor/rules/impact-analysis.mdc`**.
+
+**Smart Suggestions** (`smart-suggestions.yml`, `scripts/suggest_updates.py`) combines the same impact map with **`automation/claim-types.yml`** to propose additional candidates. Treat both Impact Check and Smart Suggestions comments as **map-backed hints**: extend coverage by editing `messaging-impact-map.yml` (and claim hints) when reviews repeatedly surface misses.
+
+**Canonical messaging directories** (`framework/`, `products/`, `use-cases-value-pillars/`, `offerings/`) are routing targets for decomposition; automation only surfaces files that rules enumerate. Reviewers remain responsible for cross-module consistency when claims move.
 
 ## PR comment upsert standard
 
@@ -104,12 +126,15 @@ Marker-managed PR comments must use the shared helper at `scripts/github/upsert_
 - Prefix the rendered comment body with the marker (`${marker}\n...`).
 - Use one marker per workflow comment type (for example impact checklist, governance report, smart suggestions).
 - Call the helper from `actions/github-script` steps instead of inlining list/update/create comment logic.
+- For **human-visible** marker comments, pass `automationFooter: { workflowFile, eventName }` so the rendered comment ends with the triggering GitHub event, a link to the workflow file on `main`, and links to `AUTOMATION.md` (this section) and `automation/README.md`. Do **not** append this footer to hidden machine-readable marker payloads (for example waiver JSON comments).
 
 Current workflows using this standard:
 
 - `.github/workflows/content-governance-checks.yml`
+- `.github/workflows/governance-slash-commands.yml` (governance report comment only; waiver payload comments omit the footer)
 - `.github/workflows/impact-check.yml`
-- `.github/workflows/impact-slash-commands.yml`
+- `.github/workflows/impact-slash-commands.yml` (impact checklist comment only; waiver payload comments omit the footer)
+- `.github/workflows/markdown-hygiene-autofix.yml`
 - `.github/workflows/smart-suggestions.yml`
 
 ## AI and automation: how to use AI responsibly

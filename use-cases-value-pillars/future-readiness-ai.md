@@ -22,3 +22,4 @@ Percona enables AI, vector search, and hybrid data workloads through open, secur
 - **Hybrid and multi-cloud flexibility:** Percona Operators orchestrate consistent deployments across on-prem and cloud clusters, enabling AI pipelines to train or infer near the data source while maintaining governance.
 - **Data integrity and compliance:** Encryption, RBAC, and transparent audit logs preserve control over sensitive data used in AI training, supporting GDPR, HIPAA, and ISO 27001 alignment.
 - **Predictable performance and cost:** ExpertOps tuning and rightsized infrastructure optimize indexing, caching, and query execution for AI workloads.
+- **Guardrails that scale with the stack:** PMM supports custom Percona Advisor checks so organizations can extend bundled Security, Configuration, Performance, and Query coverage when new services, engines, or internal policies appear, keeping operational standards aligned with hybrid and polyglot data architectures.
