@@ -9,10 +9,24 @@ on:
       - ".github/requirements/ci.txt"
       - ".github/workflows/impact-check.yml"
       - ".github/workflows/impact-slash-commands.yml"
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Pull request number to comment on"
+        required: true
+        type: number
+      base_ref:
+        description: "Base branch name used for diff"
+        required: true
+        type: string
 
 permissions:
   contents: read
   pull-requests: write
+
+env:
+  EFFECTIVE_BASE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.base_ref || github.base_ref }}
+  EFFECTIVE_PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
 
 jobs:
   impact-check:
@@ -35,7 +49,7 @@ jobs:
         run: python -m pip install -r .github/requirements/ci.txt
 
       - name: Fetch base branch
-        run: git fetch origin "${{ github.base_ref }}" --depth=1
+        run: git fetch origin "${{ env.EFFECTIVE_BASE_REF }}" --depth=1
 
       - name: Build waiver state from hidden comment
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -43,21 +57,55 @@ jobs:
           script: |
             const fs = require("fs");
             const marker = "<!-- messaging-impact-waiver-data:v1 -->";
-            const pr_number = context.payload.pull_request.number;
+            const pr_number = Number(process.env.EFFECTIVE_PR_NUMBER);
             const { owner, repo } = context.repo;
             const comments = await github.paginate(
               github.rest.issues.listComments,
               { owner, repo, issue_number: pr_number, per_page: 100 }
             );
-            const found = comments.find((c) => c.body && c.body.includes(marker));
             let data = { all: false, paths: [] };
-            if (found) {
+            const markerComments = comments
+              .filter((c) => c.body && c.body.includes(marker))
+              .sort((a, b) => {
+                const aTime = Date.parse(a.created_at || "") || 0;
+                const bTime = Date.parse(b.created_at || "") || 0;
+                if (bTime !== aTime) {
+                  return bTime - aTime;
+                }
+                return (Number(b.id) || 0) - (Number(a.id) || 0);
+              });
+
+            if (markerComments.length > 1) {
+              core.warning(
+                `Found ${markerComments.length} waiver marker comments; selecting latest valid payload.`
+              );
+            }
+
+            let selectedId = "";
+            for (const found of markerComments) {
               try {
                 const raw = found.body.split(marker)[1].trim();
-                Object.assign(data, JSON.parse(raw));
+                const parsed = JSON.parse(raw);
+                data = {
+                  all: Boolean(parsed.all),
+                  paths: Array.isArray(parsed.paths)
+                    ? [...new Set(parsed.paths.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                  reset_paths: Array.isArray(parsed.reset_paths)
+                    ? [...new Set(parsed.reset_paths.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                };
+                selectedId = String(found.id);
+                break;
               } catch (e) {
-                core.warning("Ignoring invalid waiver JSON: " + e);
+                core.warning(`Ignoring invalid waiver JSON in comment ${found.id}: ${e}`);
               }
+            }
+
+            if (selectedId) {
+              core.info(`Using waiver state from comment ${selectedId}.`);
+            } else if (markerComments.length > 0) {
+              core.warning("No valid waiver payload found; defaulting to empty waiver state.");
             }
             fs.writeFileSync("waivers.json", JSON.stringify(data));
 
@@ -65,7 +113,7 @@ jobs:
         id: impact
         run: |
           python scripts/impact_check.py \
-            --base "origin/${{ github.base_ref }}" \
+            --base "origin/${{ env.EFFECTIVE_BASE_REF }}" \
             --head "HEAD" \
             --waiver-file waivers.json \
             --output-json impact-report.json \
@@ -84,20 +132,18 @@ jobs:
             const marker = "<!-- messaging-impact-check -->";
             const body = `${marker}\n` + fs.readFileSync("impact-report.md", "utf8");
             const { owner, repo } = context.repo;
-            const issue_number = context.payload.pull_request.number;
-
-            const comments = await github.paginate(
-              github.rest.issues.listComments,
-              { owner, repo, issue_number, per_page: 100 }
-            );
-            const existing = comments.find((c) => c.body && c.body.includes(marker));
-            if (existing) {
-              await github.rest.issues.updateComment({
-                owner,
-                repo,
-                comment_id: existing.id,
-                body
-              });
-            } else {
-              await github.rest.issues.createComment({ owner, repo, issue_number, body });
-            }
+            const issue_number = Number(process.env.EFFECTIVE_PR_NUMBER);
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body,
+              automationFooter: {
+                workflowFile: "impact-check.yml",
+                eventName: context.eventName,
+              },
+            });
