@@ -5,6 +5,8 @@ alwaysApply: true
 
 # Terminology and naming (hard rules)
 
+Portable baseline for git automation and rule layering: `docs/agent-guidelines.md`.
+
 These rules apply to every file in this repo. They are non-negotiable.
 
 ## Banned terms
