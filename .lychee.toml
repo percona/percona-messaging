@@ -17,10 +17,10 @@ exclude = [
   "^mailto:", # local validation only
   # McKinsey DE often times out or blocks datacenter IPs in CI; keep citation in prose.
   "^https://www\\.mckinsey\\.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024$",
-  # Gartner: still returns 403 from many automated / datacenter clients (including GitHub
-  # Actions) even with a browser-like User-Agent—WAF behavior, not a broken URL for readers.
-  # Link remains in markdown; CI skips only this URL so lychee does not fail the build.
-  "^https://www\\.gartner\\.com/en/articles/reduce-your-data-architecture-complexity-with-polyglot-persistence$",
+  # Gartner: returns 403 from many automated / datacenter clients (including GitHub Actions)
+  # even with a browser-like User-Agent—WAF behavior, not broken URLs for readers.
+  # Exclude the whole host so new citations do not need per-URL regex churn.
+  "^https://www\\.gartner\\.com/",
   # Big Data Wire (IDC survey): 403 to automated clients in CI.
   "^https://www\\.bigdatawire\\.com/this-just-in/idc-survey-finds-data-sovereignty-and-compliance-issues-shaping-it-decisions/$",
   # Akamai press release: 403 to automated clients in CI.
