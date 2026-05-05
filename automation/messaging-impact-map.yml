@@ -39,6 +39,13 @@ rules:
       - "reference/canonical-naming.md"
       - "reference/banned-terms.md"
       - "framework/core-positioning.md"
+      - "framework/why-percona.md"
+      - "offerings/expert-support.md"
+      - "offerings/expertops.md"
+      - "offerings/expert-consulting.md"
+    suggest_globs:
+      - "use-cases-value-pillars/*.md"
+      - "products/**/messaging.md"
 
   - id: offering-name-or-tier-change
     description: Offering naming updates should stay aligned across offering pages.
@@ -57,3 +64,38 @@ rules:
       - "offerings/expertops.md"
       - "offerings/expert-consulting.md"
       - "reference/canonical-naming.md"
+      - "framework/core-positioning.md"
+    suggest_globs:
+      - "products/**/messaging.md"
+      - "use-cases-value-pillars/*.md"
+
+  - id: product-messaging-module-touch
+    description: Product messaging modules often need checks against company framing and shared pillars or offerings.
+    severity: warn
+    triggers:
+      file_globs:
+        - "products/**/messaging.md"
+    must_review:
+      - "framework/core-positioning.md"
+      - "framework/why-percona.md"
+    suggest_globs:
+      - "use-cases-value-pillars/*.md"
+      - "offerings/*.md"
+      - "products/**/competitive.md"
+
+  - id: framework-story-touch
+    description: Core framework story files usually need mutual consistency and may warrant aligned product or offering language.
+    severity: warn
+    triggers:
+      file_globs:
+        - "framework/core-positioning.md"
+        - "framework/why-percona.md"
+        - "framework/executive-summary.md"
+    must_review:
+      - "framework/core-positioning.md"
+      - "framework/why-percona.md"
+      - "framework/executive-summary.md"
+    suggest_globs:
+      - "offerings/*.md"
+      - "use-cases-value-pillars/*.md"
+      - "products/**/messaging.md"

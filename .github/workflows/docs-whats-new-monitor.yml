@@ -1,0 +1,211 @@
+# Backup intake: opens a GitHub issue (label: product-update) when Percona Documentation
+# publishes a new "What's new" announcement, using the official RSS feed — not HTML scraping.
+# This is NOT the primary release-messaging process; it is an opt-in safety net so we notice
+# ships that might otherwise miss a Product release update issue before items roll off the feed.
+#
+# Feed: https://docs.percona.com/feed_rss_created.xml
+# Hub: https://docs.percona.com/new/
+#
+# The RSS item count is bounded (~20 items); schedule often enough that new entries
+# are caught before they roll off the feed. Weekly is a minimum; daily is safer.
+#
+# Enable: Repository → Settings → Secrets and variables → Actions → Variables:
+#   DOCS_WHATS_NEW_MONITOR_ENABLED = true
+#
+# First-time / recovery: to backfill state without opening issues:
+#   python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
+
+name: Docs What's New monitor
+
+on:
+  schedule:
+    - cron: "0 15 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ vars.DOCS_WHATS_NEW_MONITOR_ENABLED == 'true' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Prepare new RSS items
+        id: prep
+        env:
+          FEED_URL: https://docs.percona.com/feed_rss_created.xml
+        run: |
+          python scripts/docs_whats_new_monitor.py prepare \
+            --feed "${FEED_URL}" \
+            --state data/docs_whats_new_seen_guids.json \
+            --output-json new-items.json
+          count=$(python -c "import json; print(len(json.load(open('new-items.json'))))")
+          echo "count=${count}" >> "${GITHUB_OUTPUT}"
+
+      - name: Open issues for new announcements
+        if: ${{ steps.prep.outputs.count != '0' }}
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require("fs");
+            const crypto = require("crypto");
+            const { owner, repo } = context.repo;
+            const items = JSON.parse(fs.readFileSync("new-items.json", "utf8"));
+
+            const labelPages = await github.paginate(github.rest.repos.listLabelsForRepo, {
+              owner,
+              repo,
+              per_page: 100,
+            });
+            const existingLabelNames = new Set(labelPages.map((l) => l.name));
+
+            function areasForAnnouncementTitle(title) {
+              const areas = [];
+              const seen = new Set();
+              const add = (name) => {
+                if (!seen.has(name)) {
+                  seen.add(name);
+                  areas.push(name);
+                }
+              };
+
+              if (/Percona Monitoring and Management|\bPMM\b/i.test(title)) {
+                add("Area: PMM");
+              }
+
+              if (/Percona Operator for MySQL/i.test(title)) {
+                add("Area: Kubernetes operators");
+                add("Area: MySQL");
+              }
+              if (/Percona Operator for PostgreSQL/i.test(title)) {
+                add("Area: Kubernetes operators");
+                add("Area: PostgreSQL");
+              }
+              if (/Percona Operator for MongoDB/i.test(title)) {
+                add("Area: Kubernetes operators");
+                add("Area: MongoDB");
+              }
+              if (
+                !/^Percona Operator for (MySQL|PostgreSQL|MongoDB)/i.test(title) &&
+                /Percona Operator for\b/i.test(title)
+              ) {
+                add("Area: Kubernetes operators");
+              }
+
+              if (
+                /Percona Distribution for PostgreSQL|\bPatroni\b|\bpg_tde\b|pg_stat_monitor|\bpg_upgrade\b|\bPostgreSQL\b/i.test(
+                  title,
+                ) || /\bETCD\b.*PostgreSQL/i.test(title)
+              ) {
+                add("Area: PostgreSQL");
+              }
+
+              if (
+                /Percona Distribution for MySQL|Percona Server for MySQL|Percona XtraDB Cluster|\bProxySQL\b|Percona Toolkit|Percona XtraBackup/i.test(
+                  title,
+                )
+              ) {
+                add("Area: MySQL");
+              }
+
+              if (
+                /Percona Server for MongoDB|Percona Backup for MongoDB|ClusterSync|\bMongoDB\b/i.test(title)
+              ) {
+                add("Area: MongoDB");
+              }
+
+              if (/\bValkey\b|\bRedis\b/i.test(title)) {
+                add("Area: Valkey/Redis");
+              }
+
+              if (areas.length === 0) {
+                add("Area: Cross-product");
+              }
+
+              return areas;
+            }
+
+            function filterExistingLabels(names) {
+              const missing = [];
+              const kept = names.filter((n) => {
+                if (existingLabelNames.has(n)) return true;
+                missing.push(n);
+                return false;
+              });
+              if (missing.length > 0) {
+                core.warning(
+                  `Skipping unknown labels (create them or update mapping): ${missing.join(", ")}`,
+                );
+              }
+              return kept;
+            }
+
+            function markerFor(guid) {
+              const h = crypto.createHash("sha256").update(guid).digest("hex").slice(0, 16);
+              return `<!-- whatsnew-feed:${h} -->`;
+            }
+
+            for (const item of items) {
+              const marker = markerFor(item.guid);
+              const q = `repo:${owner}/${repo} is:issue in:body ${marker}`;
+              const search = await github.rest.search.issuesAndPullRequests({
+                q,
+                per_page: 1,
+              });
+              if (search.data.total_count > 0) {
+                continue;
+              }
+
+              const title = `[Release] ${item.title}`.slice(0, 250);
+              const body = [
+                marker,
+                "",
+                "_This issue was opened automatically as a **backup intake** signal from the [Percona Documentation What's New](https://docs.percona.com/new/) RSS feed ([feed_rss_created.xml](https://docs.percona.com/feed_rss_created.xml)). It does **not** replace the normal Product release update process—confirm coverage, dedupe if someone already filed an issue, or close if not relevant to canonical messaging in this repo._",
+                "",
+                "## Product and version",
+                "",
+                `_(from announcement)_ **${item.title}** — edit if you have a cleaner product/version line._`,
+                "",
+                "## Release artifact (link)",
+                "",
+                item.link || "_TBD_",
+                "",
+                "## What's new in this release (messaging-relevant)",
+                "",
+                item.description || "_See announcement link._",
+                "",
+                "## What messaging needs updating",
+                "",
+                "_Unknown — needs triage (list paths under `products/`, `framework/`, etc. when known)._",
+                "",
+                "## Release date",
+                "",
+                item.pubDate || "_TBD_",
+                "",
+                "## Source",
+                "",
+                `- RSS: https://docs.percona.com/feed_rss_created.xml`,
+                `- Item GUID: ${item.guid}`,
+              ].join("\n");
+
+              const areaLabels = areasForAnnouncementTitle(item.title);
+              const labels = filterExistingLabels(["product-update", ...areaLabels]);
+
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels,
+              });
+            }

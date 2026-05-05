@@ -12,7 +12,7 @@ Modern data estates are spread across many systems, creating operational sprawl 
 
 - **Run:** Hardened open source and source-available database tooling with built-in encryption, backup tooling, and enterprise extensions
 - **Operate:** Kubernetes Operators that automate day-1 and day-2 deployment, scaling, backup, and failover workflows
-- **Observe:** Percona Monitoring and Management (PMM) observability for query analytics and system health
+- **Observe:** Percona Monitoring and Management (PMM) observability for query analytics and system health across database environments
 
 **Expertise**
 

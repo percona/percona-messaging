@@ -4,11 +4,11 @@
 
 For organizations operating Redis-compatible in-memory workloads requiring sub-millisecond performance, scalability, and open source freedom across on-prem, cloud, and hybrid environments, Percona provides enterprise-grade performance, security, and lifecycle assurance for both Redis and Valkey, without proprietary lock-in or loss of continuity.
 
-Since Valkey's creation in March 2024 as a BSD-licensed fork under the Linux Foundation, Percona engineers have been active contributors and maintainers in key areas like replication and memory management. Percona gives organizations flexibility to maintain current deployments while optionally transitioning to open source Valkey, backed by 24×7 support and PMM observability.
+Since Valkey's creation in March 2024 as a BSD-licensed fork under the Linux Foundation, Percona engineers have been active contributors and maintainers in key areas like replication and memory management. Percona gives organizations flexibility to maintain current deployments while optionally transitioning to open source Valkey, backed by 24×7 support and existing PMM observability support.
 
 Percona's approach is explicitly customer-first. We provide individualized guidance on whether to remain on Redis, transition to Valkey, or adopt a hybrid posture, based entirely on each customer's stability, cost, and compliance requirements.
 
-### Customer Challenges and Value Alignment – Valkey/Redis
+### Customer Challenges and Value Alignment: Valkey/Redis
 
 **Optimized TCO**
 - Business continuity and cost predictability: Percona ensures continuity by supporting both Redis and Valkey. Customers can maintain existing Redis environments and migrate to Valkey at their own pace with Percona's expert planning and zero-downtime execution. Valkey originated from the Redis 7.2 codebase and preserves the same protocol, RDB snapshot, and AOF persistence formats, allowing drop-in compatibility for most Redis 7.2 deployments. Percona's dual-support model delivers predictable costs and long-term freedom without license risk, vendor dependency, or forced upgrades.
