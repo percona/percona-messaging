@@ -11,13 +11,13 @@
 # =========================
 # Strategic / narrative layers
 # =========================
-# /framework/                                  @briana-swift @gareth-case @andrey-glazkov @cindy-neely
-/framework/                                  @brianamarie @Cinneely
-# /offerings/                                  @briana-swift @matt-kane @andrey-glazkov @cindy-neely
+# /framework/                                  @briana-swift @gareth-case @andrey-glazkov @cindy-neely @val-bogatyreva
+/framework/                                  @brianamarie @Cinneely 
+# /offerings/                                  @briana-swift @matt-kane @andrey-glazkov @cindy-neely @val-bogatyreva
 /offerings/                                  @brianamarie @Cinneely
-# /use-cases-value-pillars/                    @briana-swift @gareth-case @matt-kane @cindy-neely
+# /use-cases-value-pillars/                    @briana-swift @gareth-case @matt-kane @cindy-neely @val-bogatyreva
 /use-cases-value-pillars/                    @brianamarie @Cinneely
-# /reference/                                  @briana-swift @val-bogatyreva @cindy-neely
+# /reference/                                  @briana-swift @val-bogatyreva @cindy-neely @val-bogatyreva
 /reference/                                  @brianamarie @Cinneely
 
 # =========================
@@ -27,7 +27,7 @@
 /products/mysql/                             @brianamarie @thefactremains
 # /products/postgresql/                        @briana-swift @kai-wagner @janwieremjewicz
 /products/postgresql/                        @brianamarie @ImTheKai @janwieremjewicz
-# /products/mongodb/                           @briana-swift @val-bogatyreva @puneet-kala
+# /products/mongodb/                           @briana-swift @val-bogatyreva @puneet-kala 
 /products/mongodb/                           @brianamarie
 # /products/valkey-redis/                      @briana-swift @kyle-davis
 /products/valkey-redis/                      @brianamarie
@@ -51,11 +51,11 @@
 # =========================
 # Repo governance / workflow
 # =========================
-# /README.md                                   @briana-swift @cindy-neely
+# /README.md                                   @briana-swift @cindy-neely @val-bogatyreva
 /README.md                                   @brianamarie @Cinneely
-# /CONTRIBUTING.md                             @briana-swift @cindy-neely
+# /CONTRIBUTING.md                             @briana-swift @cindy-neely @val-bogatyreva
 /CONTRIBUTING.md                             @brianamarie @Cinneely
-# /.cursor/rules/                              @briana-swift @val-bogatyreva
+# /.cursor/rules/                              @briana-swift
 /.cursor/rules/                              @brianamarie
-# /.github/                                    @briana-swift @slava-sarzhan @kate-obiidykhata @cindy-neely
-/.github/                                    @brianamarie @obiyduhata @hors @Cinneely
+# /.github/                                    @briana-swift
+/.github/                                    @brianamarie
