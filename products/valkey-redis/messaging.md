@@ -11,18 +11,23 @@ Percona's approach is explicitly customer-first. We provide individualized guida
 ### Customer Challenges and Value Alignment: Valkey/Redis
 
 **Optimized TCO**
+
 - Business continuity and cost predictability: Percona ensures continuity by supporting both Redis and Valkey. Customers can maintain existing Redis environments and migrate to Valkey at their own pace with Percona's expert planning and zero-downtime execution. Valkey originated from the Redis 7.2 codebase and preserves the same protocol, RDB snapshot, and AOF persistence formats, allowing drop-in compatibility for most Redis 7.2 deployments. Percona's dual-support model delivers predictable costs and long-term freedom without license risk, vendor dependency, or forced upgrades.
 - Eliminating licensing fees: Organizations running Redis Enterprise can reduce operational costs depending on need by transitioning to Percona-supported Valkey, retaining performance and reliability while eliminating proprietary subscription fees.
 
 **Performance and Reliability at Scale**
+
 - Predictable performance: Valkey maintains broad API and protocol compatibility with Redis 7.2, ensuring seamless workload migration and interoperability. Linux Foundation benchmark results (Oct 2025) reported up to 40% higher application throughput with Valkey 9.0 compared to 8.1, extending earlier AWS performance testing findings that Valkey 7.2 achieved equal or slightly higher throughput than Redis 7.1 in Elasticache under identical workloads.
 - Operational tuning: Percona Experts apply advanced tuning (memory allocation, connection pooling, replication configuration) to optimize latency and consistent performance under heavy concurrency.
+- PMM visibility scope: PMM provides dedicated Valkey and Redis dashboards for commands, memory, clients, latency, replication, and slowlog (Source: [https://docs.percona.com/percona-monitoring-and-management/3/install-pmm/install-pmm-client/connect-database/valkey-redis.html](https://docs.percona.com/percona-monitoring-and-management/3/install-pmm/install-pmm-client/connect-database/valkey-redis.html); Date: 2026-04-27). QAN stored metrics remain scoped to MySQL, PostgreSQL, and MongoDB (Source: [https://docs.percona.com/percona-monitoring-and-management/3/use/qan/QAN-stored-metrics.html](https://docs.percona.com/percona-monitoring-and-management/3/use/qan/QAN-stored-metrics.html); Date: 2026-04-27). Customer impact: clarifies that Valkey and Redis receive full PMM dashboard observability while query-level QAN analysis remains on MySQL, PostgreSQL, and MongoDB.
 
 **Security, Sovereignty, and Compliance**
+
 - Governance transparency: Redis 7.4–7.9 remain source-available, following Redis's open source licensing history prior to 7.4; Redis 8+ introduces AGPLv3, an open source license, alongside RSALv2/SSPLv1. Valkey, launched under and governed by the Linux Foundation, continues under the BSD 3-Clause license. Valkey 9 advances that model with a formal, predictable release cadence and Special Interest Groups (SIGs) that maintain public, community-driven roadmaps. Percona supports both Redis and Valkey, offering customers verifiable transparency, configuration control, and a no-lock-in path toward an open future.
 - Enterprise controls: Percona extends its managed security framework with TLS encryption, LDAP/SASL authentication, and auditing policies to Valkey deployments for alignment with GDPR, HIPAA, and PCI-DSS. Customers can enforce consistent encryption and access standards across hybrid and multi-cloud architectures, ensuring data sovereignty and regulatory readiness without relying on opaque vendor-managed layers.
 
 **Adaptability for Emerging Workloads**
+
 - AI and vector readiness: Valkey's open development model accelerates innovation, including early support for vector similarity search. Valkey introduced the open source valkey-search module in 2024, supporting vector similarity search and other AI-driven workloads on top of the Valkey 7.2 codebase.
 - Hybrid and multi-cloud flexibility: With PMM observability and Kubernetes integration, Percona helps customers operate Redis and Valkey clusters across clouds while preserving visibility, governance, and cost control.
 - Future freedom: By supporting both ecosystems in parallel, Percona gives customers a choice-driven path: stay on Redis with support continuity, or migrate to Valkey when ready, without disruption or forced upgrades. Percona's collaboration within the Valkey community ensures stable performance and validated integration for emerging workloads.
