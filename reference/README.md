@@ -9,6 +9,7 @@ Reference guidance for naming, terminology, style, and messaging support tables.
 - `brand-voice.md`
 - `content-governance.md`
 - `decomposition-and-propagation.md`
-- `launch-and-automation-backlog.md` (issues to open, label plan, and Actions inventory; working document)
+- `launch-and-automation-backlog.md` (tracking backlog and issue intake only; runbooks live in [scripts/README.md](../scripts/README.md))
+- `prose-links-validation-workflow.md`
 
-Review this directory before changing repository-wide names or claim language.
+Review this directory before changing repository-wide names or claim language in canonical files.

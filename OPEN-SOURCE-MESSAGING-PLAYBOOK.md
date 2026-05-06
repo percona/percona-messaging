@@ -58,7 +58,7 @@ Revisit once you have a few months of throughput data (volume of PRs, reviewer l
 ### Automation touchpoints in the loop
 
 - **During drafting/review:** terminology and governance checks run via pull request workflows (see `[.github/workflows/](.github/workflows/)`).
-- **During impact assessment:** impact map and suggestion logic identify likely propagation targets (see [automation/messaging-impact-map.yml](automation/messaging-impact-map.yml) and [automation/claim-types.yml](automation/claim-types.yml)).
+- **During impact assessment:** impact map and suggestion logic surface **rule-backed** propagation hints (see [automation/messaging-impact-map.yml](automation/messaging-impact-map.yml) and [automation/claim-types.yml](automation/claim-types.yml)). They complement, but do not replace, structured decomposition in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md).
 - **During quality control:** duplicate and coverage/new-file checks guard against one-off sprawl and undiscoverable docs.
 - **During maintenance:** staleness/case-study monitoring supports periodic housekeeping issues.
 
@@ -284,7 +284,6 @@ These items are usually tracked as issues (for example under the `automation` la
 ## Action tracker template
 
 Optional: use this table as a lightweight monthly tracker if it helps your team.
-
 
 | Month   | Priority                          | Owner | Status                   | Key output          | Notes                          |
 | ------- | --------------------------------- | ----- | ------------------------ | ------------------- | ------------------------------ |
