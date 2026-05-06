@@ -70,6 +70,16 @@ When enabled, scheduled automation watches that feed and opens GitHub issues ali
 python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
 ```
 
+
+### Impact Check waivers (`/impact-ok`)
+
+When **required** impact rules list `must_review` files that you will **not** edit in this PR, a maintainer (**Owner**, **Member**, or **Collaborator**) can acknowledge that in-band:
+
+- Comment **`/impact-ok all`** on the PR to waive every missing required path for the current diff (equivalent to applying the **`impact-check-waived`** label, which `impact-check.yml` still merges into waiver state).
+- Comment **`/impact-ok <path>`** once per file, using the **exact** backticked path from the checklist (example: `/impact-ok reference/canonical-naming.md`).
+
+The workflow [`.github/workflows/impact-slash-commands.yml`](.github/workflows/impact-slash-commands.yml) stores state in a hidden PR comment (`<!-- messaging-impact-waiver-data:v1 -->` + JSON), then re-runs `impact_check.py` and **updates the same checklist comment** as the normal Impact Check. Remove waivers or re-run checks if the diff changes materially. Restrict who can use slash commands by repo role (same as label bypass).
+
 ## Where automation runs in the contributor flow
 
 1. Contributor opens a PR.
