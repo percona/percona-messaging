@@ -213,9 +213,6 @@ def main() -> int:
     waiver_path = Path(args.waiver_file) if args.waiver_file else None
     waive_all, waived_paths, reset_paths = load_waiver_state(waiver_path)
 
-    waiver_path = Path(args.waiver_file) if args.waiver_file else None
-    waive_all, waived_paths = load_waiver_state(waiver_path)
-
     files = changed_files(args.base_ref, args.head_ref)
     diff_text = changed_diff(args.base_ref, args.head_ref)
     report, has_blocker = build_report(rules, files, diff_text, waive_all, waived_paths, reset_paths)
