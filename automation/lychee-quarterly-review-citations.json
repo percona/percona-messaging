@@ -3,8 +3,13 @@
   "citations": [
     {
       "url": "https://www.gartner.com/en/articles/reduce-your-data-architecture-complexity-with-polyglot-persistence",
-      "rationale": "Gartner returns 403 to GitHub Actions (WAF); citation remains in prose.",
+      "rationale": "Gartner returns 403 to GitHub Actions (WAF); CI excludes all https://www.gartner.com/ URLs.",
       "markdown_files": ["use-cases-value-pillars/cost-optimization.md"]
+    },
+    {
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-06-02-gartner-predicts-by-2028-80-percent-of-genai-business-apps-will-be-developed-on-existing-data-management-platforms",
+      "rationale": "Gartner returns 403 to GitHub Actions (WAF); CI excludes all https://www.gartner.com/ URLs.",
+      "markdown_files": ["use-cases-value-pillars/future-readiness-ai.md"]
     },
     {
       "url": "https://www.mckinsey.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024",
