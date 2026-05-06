@@ -1,0 +1,42 @@
+name: PR reviewer SLA reminder
+
+on:
+  schedule:
+    # Weekdays only (UTC); aligns with business-day SLA counting.
+    - cron: "35 13 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      business_day_threshold:
+        description: "Business days without review activity before nudging"
+        required: false
+        default: "3"
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Scan open PRs and upsert reminders
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          THRESHOLD: >-
+            ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.business_day_threshold || vars.REVIEW_SLA_BUSINESS_DAYS || '3' }}
+          SKIP_LABELS: ${{ vars.REVIEW_SLA_SKIP_LABELS || 'no-review-sla-nudge' }}
+        with:
+          script: |
+            const raw = process.env.THRESHOLD || "3";
+            const threshold = Number(raw.trim());
+            if (!Number.isFinite(threshold) || threshold < 1) {
+              core.setFailed(`Invalid THRESHOLD "${raw}" (expected positive integer).`);
+              return;
+            }
+            const run = require("./scripts/github/pr_reviewer_sla_reminder.js");
+            await run({ github, core, context, threshold });
