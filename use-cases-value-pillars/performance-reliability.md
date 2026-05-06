@@ -15,7 +15,7 @@ For most enterprises, the question isn't "Is our database fast?" but "Is it pred
 
 ### The Solution: Percona Experts
 
-Percona's reliability model combines 24×7 Support, ExpertOps Proactive Database Management, and other expert hands-on services to deliver predictable performance and outcomes under any workload. Where most vendors promise tools, Percona provides teams that use those tools to ensure results.
+Percona's reliability model combines free software with 24×7 Support, ExpertOps Proactive Database Management, and other expert hands-on services to deliver predictable performance and outcomes under any workload. Where most vendors promise tools, Percona provides teams that use those tools to ensure results.
 
 - **24×7 Expert Coverage:** Global Percona engineers monitor telemetry, analyze query patterns, and tune systems continuously, often resolving performance anomalies before they impact operations.
 - **Automated Resilience:** Recovery and upgrade paths stay repeatable across environments. ExpertOps grounds day-two work in PMM, XtraBackup, and Operators. PostgreSQL HA builds on Patroni validated through distribution releases ([Patroni 4.1.2 update for Percona Distribution for PostgreSQL](https://docs.percona.com/new/2026/04/24/patroni-412-update-for-percona-distribution-for-postgresql/)); on Kubernetes, Percona Operator for PostgreSQL runs Patroni with Kubernetes-native coordination.
