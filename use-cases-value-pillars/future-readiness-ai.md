@@ -13,6 +13,7 @@ AI, ML, and real-time analytics depend on data mobility and trust, but current d
 - **Compliance drag:** Using regulated or customer data in AI training pipelines adds exposure if encryption, audit trails, and access policies differ across environments. 70% of organizations report data-governance difficulties in their AI efforts ([McKinsey](https://www.mckinsey.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024)).
 - **Unpredictable scaling costs:** Elastic AI workloads spike compute and storage demand, and per-core or per-query pricing models compound waste.
 - **Operational silos:** Specialized AI databases create skills gaps, slowing deployment and increasing dependency on vendor-specific expertise.
+- **Spend concentrates on AI-ready platforms:** By **2028**, [Gartner expects **80%** of GenAI business applications to be developed on **existing data management platforms**](https://www.gartner.com/en/newsroom/press-releases/2025-06-02-gartner-predicts-by-2028-80-percent-of-genai-business-apps-will-be-developed-on-existing-data-management-platforms). Enterprises reduce duplicate tooling and governance overhead when they plan vector retrieval, security, and lifecycle operations on standardized database estates instead of expanding parallel niche engines.
 
 ### The Solution: Open Infrastructure for AI Evolution
 
@@ -23,3 +24,4 @@ Percona enables AI, vector search, and hybrid data workloads through open, secur
 - **Data integrity and compliance:** Encryption, RBAC, and transparent audit logs preserve control over sensitive data used in AI training, supporting GDPR, HIPAA, and ISO 27001 alignment.
 - **Predictable performance and cost:** ExpertOps tuning and rightsized infrastructure optimize indexing, caching, and query execution for AI workloads.
 - **Guardrails that scale with the stack:** PMM supports custom Percona Advisor checks so organizations can extend bundled Security, Configuration, Performance, and Query coverage when new services, engines, or internal policies appear, keeping operational standards aligned with hybrid and polyglot data architectures.
+
