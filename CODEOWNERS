@@ -33,8 +33,8 @@
 /products/valkey-redis/                      @brianamarie
 # /products/pmm/                               @briana-swift @dave-poole
 /products/pmm/                               @brianamarie @DavePoole30
-# /products/operators/                         @briana-swift @kate-obiidykhata @slava-sarzhan
-/products/operators/                         @brianamarie @obiyduhata @hors
+# /products/operators/                         @briana-swift @kate-obiidykhata 
+/products/operators/                         @brianamarie @obiyduhata 
 
 # =========================
 # Compliance-sensitive overrides (last match wins)
