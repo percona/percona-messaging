@@ -1,0 +1,10 @@
+version: 1
+rules:
+  - id: fixture-suggest-rule
+    description: Suggest reviewing companion when trigger file changes.
+    triggers:
+      file_globs:
+        - "products/fixture-suggest.md"
+      diff_regex: []
+    must_review:
+      - "framework/fixture-suggest-target.md"
