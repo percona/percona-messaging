@@ -38,6 +38,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py`, `scripts/governance_waiver.py` | PR template + markdown corpus + hidden waiver comment               | PR governance comment; fails on blocking checks                    |
 | `.github/workflows/governance-slash-commands.yml` | PR comments `/governance-ok`, `/governance-reset`, `/governance-all` | same governance scripts                                                                      | hidden waiver comment (`messaging-governance-waiver-data:v1`)      | Updates waivers, refreshes governance comment, reruns governance workflow |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
+| `.github/workflows/pr-reviewer-sla-reminder.yml` | Weekday schedule + manual dispatch                | `scripts/github/pr_reviewer_sla_reminder.js`                                                 | optional repo variables (threshold, skip labels)                     | Upserts a single PR comment when review queue latency exceeds threshold |
 | `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch                 | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data                  |
 | `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
 | `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch  | `scripts/quarterly_lychee_citation_review_issue.py`                                          | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
@@ -70,6 +71,32 @@ When enabled, scheduled automation watches that feed and opens GitHub issues ali
 python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
 ```
 
+## Reviewer queue SLA reminder
+
+**Role:** Reduce silent pull request aging by posting a single, marker-managed reminder when a PR has waited too long for **human review activity** (approvals, review comments, or request-changes reviews). This is **not** [content staleness](.github/workflows/staleness-report.yml), impact checklist noise, or propagation tooling. Tracked as [percona-messaging#16](https://github.com/percona/percona-messaging/issues/16).
+
+| Detail | Value |
+| ------ | ----- |
+| Workflow | [`.github/workflows/pr-reviewer-sla-reminder.yml`](.github/workflows/pr-reviewer-sla-reminder.yml) |
+| Script | [`scripts/github/pr_reviewer_sla_reminder.js`](scripts/github/pr_reviewer_sla_reminder.js) |
+| Schedule | Weekdays only (UTC cron in the workflow file), plus **Actions → Run workflow** for manual runs |
+| Default threshold | **3** business days without review activity |
+
+**Definitions:**
+
+- **Review activity** uses the latest `submitted_at` timestamp from [`pulls.listReviews`](https://docs.github.com/en/rest/pulls/reviews?apiVersion=2022-11-28#list-reviews-for-a-pull-request). If there are no submitted reviews yet, the baseline is the PR `created_at`.
+- **Business days** count UTC calendar weekdays (Monday through Friday) **after** that baseline through today; weekends are skipped.
+
+**Noise controls:**
+
+- At most **one reminder per stall episode** for a given baseline: reruns update nothing until review activity moves the baseline forward or the PR is no longer stalled.
+- When a PR drops below the threshold, automation **deletes** the SLA marker comment if one exists.
+- Add label **`no-review-sla-nudge`** (case-insensitive match) to skip a PR. Override or extend the skip list with repository variable **`REVIEW_SLA_SKIP_LABELS`** as a comma-separated label list (default when unset: `no-review-sla-nudge`).
+- **Draft** PRs and PRs from **forks** are skipped.
+
+**Review pings:** the comment mentions **currently requested reviewers and teams** on the PR (`requested_reviewers` / `requested_teams`). When GitHub has not requested anyone yet, the checklist still posts without `@` mentions.
+
+**Configuration:** set repository variable **`REVIEW_SLA_BUSINESS_DAYS`** to override the default threshold on scheduled runs. Manual **`workflow_dispatch`** runs use the workflow input first, then fall back to that variable, then `3`.
 
 ### Impact Check waivers (`/impact-ok`)
 
@@ -145,6 +172,7 @@ Current workflows using this standard:
 - `.github/workflows/impact-check.yml`
 - `.github/workflows/impact-slash-commands.yml` (impact checklist comment only; waiver payload comments omit the footer)
 - `.github/workflows/markdown-hygiene-autofix.yml`
+- `.github/workflows/pr-reviewer-sla-reminder.yml`
 - `.github/workflows/smart-suggestions.yml`
 
 ## AI and automation: how to use AI responsibly
@@ -172,7 +200,6 @@ This section is tracking-only and should not duplicate runbook execution steps.
 ### Planned next (high-confidence, near-term)
 
 - PR launch-readiness label consistency checks (`ready-for-launch`, `go-live:`*)
-- Reviewer-SLA reminder automations for aging approvals
 - Confidence tracking for suggestion precision/recall over time
 
 ### Candidate next wave (needs scoping)
