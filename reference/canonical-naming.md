@@ -18,3 +18,9 @@
 | Product          | **Percona Monitoring and Management (PMM)** | PMM                                                              | Treat as a product or capability used across offerings rather than part of an offer name.                                                                                                                                                                                                  |
 | Lifecycle model  | **Run / Operate / Observe**                 | None                                                             | **Internal only.** Used to describe the software lifecycle framing.                                                                                                                                                                                                                        |
 | Support tiers    | **Advanced Support**, **Premium Support**   | None                                                             | Keep "Support" attached for clarity when referencing SLAs or response times.                                                                                                                                                                                                               |
+
+## MongoDB wording in capability copy
+
+- For generic capability coverage, use "MongoDB-compatible environments" or "MongoDB services monitored by PMM."
+- For product-specific copy, use the exact product name, for example "Percona Server for MongoDB" or "Percona Operator for MongoDB."
+- When a capability does not apply across engines, state scope directly, for example "MongoDB only" and "not MySQL or PostgreSQL."
