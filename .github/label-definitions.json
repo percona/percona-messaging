@@ -1,5 +1,10 @@
 [
   {
+    "name": "messaging",
+    "color": "0075CA",
+    "description": "Improvements or additions to messaging."
+  },
+  {
     "name": "Automation & CI",
     "color": "0E8A16",
     "description": "CI workflows, scripts, maps under automation/, and tooling."

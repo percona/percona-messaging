@@ -1,0 +1,12 @@
+---
+description: Portable baseline alignment and explicit git boundaries for AI-assisted edits
+alwaysApply: true
+---
+
+# Agent baseline (Cursor)
+
+**Git:** Do not commit, push, merge, or open a pull request unless the user explicitly requests that action. Casual wrap-up language is not permission.
+
+**Portable baseline (full policy and scope):** `docs/agent-guidelines.md`.
+
+**Canonical messaging guardrails** in sibling `.mdc` files apply when editing canonical positioning under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` (see baseline). **Terminology and naming** in `terminology-and-naming.mdc` stays repo-wide unless an edit is purely non-prose automation.

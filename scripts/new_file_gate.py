@@ -6,7 +6,19 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
+import sys
 from pathlib import Path
+
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
+
+from governance_waiver import (
+    CHECK_NEW_FILE_GATE,
+    check_is_waived,
+    load_governance_waiver,
+    waiver_note_md,
+)
 
 REQUIRED_HEADINGS = [
     "### Existing files reviewed first",
@@ -17,6 +29,28 @@ REQUIRED_HEADINGS = [
 ]
 
 EXCLUDED_PREFIXES = (".github/ISSUE_TEMPLATE/", ".cursor/")
+
+
+def build_pr_body_scaffold() -> str:
+    lines = ["## New markdown file gate (required only when adding new `.md` files)", ""]
+    prompts = {
+        "### Existing files reviewed first": "- List the specific files you reviewed and what each one does.",
+        "### Exact gap not covered by existing files": "- Explain what is still missing after reviewing existing canonical files.",
+        "### Why this must be a new canonical file": "- State why editing an existing file is not sufficient.",
+        "### Owner and maintenance plan": "- Name the owner and how this file will stay accurate over time.",
+        "### Decomposition and propagation plan": "- List related files and downstream assets that may need updates.",
+    }
+    for heading in REQUIRED_HEADINGS:
+        lines.append(heading)
+        lines.append("")
+        lines.append(
+            prompts.get(
+                heading,
+                "- Describe the required justification for this section with specific details.",
+            )
+        )
+        lines.append("")
+    return "\n".join(lines).rstrip()
 
 
 def git_added_markdown(base_ref: str, head_ref: str) -> list[str]:
@@ -73,6 +107,14 @@ def build_report(files: list[str], missing_or_weak: list[str]) -> str:
     lines.append("Missing or insufficient required sections:")
     for item in missing_or_weak:
         lines.append(f"- {item}")
+    lines.append("")
+    lines.append(
+        "Copy and paste the scaffold below into your PR body, then replace placeholders with specific details:"
+    )
+    lines.append("")
+    lines.append("```md")
+    lines.append(build_pr_body_scaffold())
+    lines.append("```")
     return "\n".join(lines) + "\n"
 
 
@@ -82,6 +124,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--head", default="HEAD")
     parser.add_argument("--pr-body-file", required=True)
     parser.add_argument("--output-md", default="new-file-gate-report.md")
+    parser.add_argument("--waiver-file", default="", help="Optional governance waiver JSON path")
     return parser.parse_args()
 
 
@@ -104,9 +147,22 @@ def main() -> int:
             failed.append(heading)
 
     report = build_report(added, failed)
+    exit_code = 1 if failed else 0
+
+    waiver_path = Path(args.waiver_file) if args.waiver_file else None
+    waive_all, waived_checks, reset_checks = load_governance_waiver(waiver_path)
+    if exit_code != 0 and check_is_waived(
+        CHECK_NEW_FILE_GATE,
+        waive_all,
+        waived_checks,
+        reset_checks,
+    ):
+        report = report.rstrip() + waiver_note_md(CHECK_NEW_FILE_GATE)
+        exit_code = 0
+
     Path(args.output_md).write_text(report, encoding="utf-8")
     print(report)
-    return 1 if failed else 0
+    return exit_code
 
 
 if __name__ == "__main__":
