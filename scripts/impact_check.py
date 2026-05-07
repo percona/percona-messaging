@@ -100,6 +100,13 @@ def build_report(
         waived = [path for path in waived_base if path not in reset_paths]
         missing_for_block = [path for path in missing if path not in waived]
 
+        if waive_all:
+            missing_for_block = []
+            waived_here = list(missing)
+        else:
+            missing_for_block = [p for p in missing if p not in waived_paths]
+            waived_here = [p for p in missing if p in waived_paths]
+
         severity = (rule.get("severity") or "warn").lower()
         if severity == "required" and missing_for_block:
             has_blocker = True
@@ -122,7 +129,7 @@ def build_report(
 
 
 def markdown_report(report: dict[str, Any]) -> str:
-    lines = []
+    lines: list[str] = []
     lines.append("## Messaging Impact Check")
     lines.append("")
     changed = report.get("changed_files", [])
@@ -154,6 +161,8 @@ def markdown_report(report: dict[str, Any]) -> str:
             lines.append(rule["description"])
         lines.append("")
         lines.append("Required review files:")
+        waived_set = set(rule.get("waived", []))
+        missing_set = set(rule.get("missing", []))
         for path in rule["must_review"]:
             if path in rule["touched"]:
                 lines.append(f"- [x] `{path}`")
