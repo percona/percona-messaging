@@ -37,6 +37,24 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `.github/workflows/case-study-monitor.yml` -> `sync_case_studies.py`, `suggest_updates.py`
 - `.github/workflows/docs-whats-new-monitor.yml` -> `docs_whats_new_monitor.py`
 - `.github/workflows/markdown-hygiene-autofix.yml` -> `markdownlint-cli2 --fix` with `automation/markdown-hygiene-autofix.jsonc`
+- `.github/workflows/scripts-tests.yml` -> `pytest` over `scripts/tests/` (fixture regression suite for Python automation)
+
+## Regression tests (pytest)
+
+Fixture-driven tests guard core behavior in `impact_check.py`, `suggest_updates.py`, and `new_file_gate.py` without calling the GitHub API (tracked as [issue #21](https://github.com/percona/percona-messaging/issues/21)).
+
+**Local run** (from repository root; reuse the same dependency pin file as workflows):
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+python -m pip install -r .github/requirements/ci.txt
+python -m pytest -q
+```
+
+**Layout:** tests live under `scripts/tests/`, YAML and sample inputs under `scripts/tests/fixtures/`. Configuration is in `pytest.ini` at the repo root (`pythonpath` includes `scripts/` so imports match workflow execution).
+
+**Integration marker:** one test exercises real `git` against a temporary repository; if `git init` cannot write `.git` (restricted environments), pytest skips that case with a short reason. GitHub Actions runners execute it normally.
 
 ## Validation sign-off runbooks
 
