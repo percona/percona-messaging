@@ -1,0 +1,19 @@
+version: 1
+rules:
+  - id: fixture-required-companion
+    description: Fixture rule — touch trigger path; companion must be reviewed.
+    severity: required
+    triggers:
+      file_globs:
+        - "products/fixture-trigger.md"
+    must_review:
+      - "framework/fixture-companion.md"
+
+  - id: fixture-warn-only
+    description: Fixture warn rule.
+    severity: warn
+    triggers:
+      file_globs:
+        - "products/fixture-warn.md"
+    must_review:
+      - "framework/fixture-warn-companion.md"

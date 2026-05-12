@@ -43,6 +43,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
 | `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch  | `scripts/quarterly_lychee_citation_review_issue.py`                                          | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
 | `.github/workflows/docs-whats-new-monitor.yml` | Daily schedule + manual dispatch (opt-in) | `scripts/docs_whats_new_monitor.py` | RSS feed + `data/docs_whats_new_seen_guids.json` | New `product-update` issues (backup intake) |
+| `.github/workflows/scripts-tests.yml` | PR touching `scripts/**`, `pytest.ini`, workflow file, or `.github/requirements/ci.txt` | pytest suite (`scripts/tests`) | pinned deps in `.github/requirements/ci.txt` | Fails on automation script regressions |
 
 ## Docs What's New monitor (optional)
 
