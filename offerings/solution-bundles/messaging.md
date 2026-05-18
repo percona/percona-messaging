@@ -1,8 +1,10 @@
 # Solution Bundles
 
-Percona offers a set of focused, fixed-scope solution bundles designed to deliver fast, measurable outcomes using the same engagement models described earlier: Expert Support, ExpertOps, and Expert Consulting and Services. These bundles represent our most common, high-impact use cases, and are based on what customers ask for most frequently.
+Enterprise teams do not all need the same relationship with Percona. Some need dependable escalation when they run the environment themselves (**Percona Expert Support**). Some need proactive, hands-on operational partnership (**Percona ExpertOps**). Some arrive with a specific, bounded outcome and want expert project work plus Support around a clear deliverable and timeline.
 
-These bundles are **not** the only way Percona services can be combined or delivered; customers can tailor any engagement by adding Support, ExpertOps, or Consulting modules as needed. The fixed-scope bundles below simply provide a simplified path to achieve results.
+**Solution bundles** are a practical starting point for that third pattern: fixed-scope packages that combine **Percona Expert Consulting and Services** with a period of **Advanced Support** (or optional Support tiers where noted in the matrix). They deliver measurable outcomes without requiring a fully custom engagement for every buyer.
+
+These bundles are **not** the only way Percona services can be combined or delivered; customers can tailor any engagement by adding Support, ExpertOps, or Consulting modules as needed. Other project work (for example migrations, HA/DR implementation, or architecture reviews) remains available through Expert Consulting and Services. The fixed-scope bundles below package recurring outcomes for known buyer moments.
 
 
 | Bundle                                                                                                                                                                                                                                                | Outcomes delivered                                                                                                                               | What's included                                                                                                                                                                                                                                                                                                                            |
