@@ -1,12 +1,12 @@
 # Percona Messaging
 
-Percona is an open source company. Our messaging should be managed with open source practices too.
+Percona is an open source company, and we apply open source practices to our messaging as well.
 
-Percona Messaging is the canonical source for reusable messaging, naming guidance, and contribution workflows. It treats messaging as shared open source infrastructure: versioned, reviewable, and easy to reuse across framework messaging, offerings, products, and shared customer narratives.
+Percona Messaging is the canonical source for reusable messaging, naming guidance, and contribution workflows. It applies the same collaborative principles we use in open source development: versioned content, visible review, and reusable source material across frameworks, offerings, products, and customer narratives.
 
 ## Why this repository exists
 
-Messaging becomes harder to trust when source material is scattered, ownership is unclear, and review happens in too many places. This repository applies open source ways of working to messaging with durable files, visible review, explicit ownership, and a clear history of what changed and why.
+Messaging becomes inconsistent when source material is scattered, ownership is unclear, and review happens in too many places. This repository applies open source ways of working to messaging with durable files, visible review, explicit ownership, and a clear history of what changed and why.
 
 It keeps durable messaging in tracked markdown so contributors can find the current source, propose changes through pull requests, and understand how decisions are made.
 
@@ -24,9 +24,9 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 
 ## Who this repository is for
 
-- Contributors drafting or updating messaging
+- Contributors creating or updating messaging
 - Domain owners reviewing for accuracy and alignment
-- Teams adapting canonical messaging into other formats
+- Teams adapting approved messaging into other formats
 
 ## Repository map
 
