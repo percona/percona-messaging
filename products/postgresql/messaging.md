@@ -6,7 +6,7 @@ For organizations running PostgreSQL applications requiring performance, reliabi
 
 The distribution also includes the pg_tde extension for transparent data-at-rest encryption and integrates with external key management systems like Hashicorp Vault, Thales CipherTrust, Fortanix SDKMS, Open Bao, and Akeyless. Together with Percona Monitoring and Management (PMM) and the Percona Operator for PostgreSQL, organizations gain consistent visibility and automation across hybrid and Kubernetes-based environments.
 
-Percona sustains that operational stack in the open, including continued collaboration with the pgBackRest project as the community backup foundation many teams standardize on for catalog management and PiTR-capable restores.
+Percona sustains that operational stack in the open and is a [coalition sponsor of pgBackRest](https://pgbackrest.org/news.html#will-continue) alongside other organizations funding long-term maintenance of the community backup foundation teams standardize on for catalog management and PiTR-capable restores.
 
 Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, Percona provides enterprise-grade resilience and tooling without license restrictions, vendor-specific APIs, or feature gating, backed by 24x7 global support.
 
