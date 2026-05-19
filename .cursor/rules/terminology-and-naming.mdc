@@ -129,10 +129,18 @@ Keep "Support" attached when referencing SLAs or response times.
 
 ## MariaDB scope
 
-Percona supports **MariaDB Community versions only**. Do not:
+Percona supports **MariaDB Community versions only** under Expert Support and ExpertOps. Do not:
 - Use "any MariaDB version"
-- Imply coverage of MariaDB Enterprise editions
+- Imply coverage of MariaDB Enterprise editions under standard Support entitlements
 - Claim Percona develops MariaDB software
+
+**Support vs consulting:** Expert Support and ExpertOps = MariaDB Community in published scope. Non-Community editions, versions outside that scope, and migration programs = Expert Consulting and Services.
+
+**Migration copy:** Prefer **controlled migration** and validation in the customer environment. Do not claim MariaDB is a drop-in replacement for Percona Server for MySQL across all versions and features.
+
+**Product framing:** `products/mariadb/messaging.md` (no `competitive.md` for this lane unless approved later).
+
+**Defer until product confirms:** SkySQL competitive hooks; MaxScale or Community 10.3-and-earlier matrices beyond the generic Community guardrail.
 
 ## Third-party trademark rules
 

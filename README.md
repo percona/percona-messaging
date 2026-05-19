@@ -34,7 +34,7 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 - `use-cases-value-pillars/`: shared value-pillar messaging (cost, performance, security/compliance, future readiness) and cross-product scenarios
 - `offerings/`: core services messaging, including Expert Support, Expert Consulting, and managed services (`ExpertOps`)
 - `offerings/solution-bundles/`: fixed-scope sold packages that combine services and outcomes
-- `products/`: product and database-specific messaging (MySQL, PostgreSQL, MongoDB, Valkey/Redis, PMM, Operators) plus competitive-safe overlays
+- `products/`: product and database-specific messaging (MySQL, MariaDB, PostgreSQL, MongoDB, Valkey/Redis, PMM, Operators) plus competitive-safe overlays
 - `reference/`: canonical naming, banned terms, brand voice, governance references, and decomposition guidance
 - `docs/`: portable agent baseline shared across editors and tools (see [docs/agent-guidelines.md](docs/agent-guidelines.md))
 - `.cursor/rules/`: Cursor-facing snippets aligned with that baseline
