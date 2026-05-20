@@ -29,6 +29,10 @@ Percona eliminates operational complexity through automation, open standards, an
 - **Operational efficiency signals in Kubernetes environments:** [Recent MySQL Operator improvements](https://docs.percona.com/percona-operator-for-mysql/pxc/ReleaseNotes/Kubernetes-Operator-for-PXC-RN1.17.0.html) and [Percona Operator for MySQL 1.1.0](https://docs.percona.com/percona-operator-for-mysql/ps/ReleaseNotes/Kubernetes-Operator-for-PS-RN1.1.0.html) add backup queuing, automatic backup suspension during unhealthy states, and zstd compression, which can help reduce avoidable backup overhead and storage waste at scale.
 - **Downstream savings:** Beyond the visible cost savings, unplanned downtime and performance instability cost enterprises an estimated $400 billion annually ([Splunk, 2023](https://www.splunk.com/en_us/blog/cio-office/cost-of-downtime-from-global-executives.html)), while every hour of outage can exceed $2.3 million in high-value industries like automotive (Siemens, 2024). [Optimum Instruments stabilized customer-facing latency and cut downtime incidents](https://experience.percona.com/case-study/optimum-instruments/) with PMM's standardized monitoring and proactive automation.
 
+### Use cases
+
+- **Multi-database vendor consolidation:** Multiple database support vendors mean duplicate fees, overlapping SLAs, and slower resolution when incidents span engines. Percona consolidates Expert Support and ExpertOps under one SLA and master agreement for MySQL, MariaDB (Community), PostgreSQL, MongoDB-compatible, Valkey, and Redis, with one engineering organization for mixed estates instead of per-engine support contracts.
+
 ### Customer Evidence
 
 **[Protectall: eliminated licensing costs; unified governance across MySQL + PostgreSQL](https://experience.percona.com/case-study/protectall/)**
