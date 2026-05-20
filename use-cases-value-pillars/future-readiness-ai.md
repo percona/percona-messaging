@@ -25,3 +25,8 @@ Percona enables AI, vector search, and hybrid data workloads through open, secur
 - **Predictable performance and cost:** ExpertOps tuning and rightsized infrastructure optimize indexing, caching, and query execution for AI workloads.
 - **Guardrails that scale with the stack:** PMM supports custom Percona Advisor checks so organizations can extend bundled Security, Configuration, Performance, and Query coverage when new services, engines, or internal policies appear, keeping operational standards aligned with hybrid and polyglot data architectures.
 
+### Use cases
+
+- **Vector search on existing PostgreSQL:** Teams want embeddings and similarity search without a separate proprietary AI database tier. Percona packages pgvector where documented for PostgreSQL releases, with Operators and PMM for governed deployment and observability on customer-chosen infrastructure.
+- **Hybrid AI data pipelines:** AI workloads bridge SQL, document, and cache data across environments, but gated vendor features fragment governance and cost. Percona open distributions, encryption and RBAC, Operators for consistent hybrid deployment, and ExpertOps tuning keep pipelines on a portable stack instead of parallel niche engines.
+- **Self-managed database service replacing cloud DBaaS:** Teams want DBaaS-like automation without hyperscaler lock-in, opaque pricing, or gated AI features on a proprietary control plane. Percona Operators, PMM, and ExpertOps provide provisioning, backup, scaling, and observability on infrastructure the customer operates, with open distributions and Expert Support when internal teams need escalation.

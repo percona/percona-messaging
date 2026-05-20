@@ -31,7 +31,9 @@ Percona eliminates operational complexity through automation, open standards, an
 
 ### Use cases
 
-- **Multi-database vendor consolidation:** Multiple database support vendors mean duplicate fees, overlapping SLAs, and slower resolution when incidents span engines. Percona consolidates Expert Support and ExpertOps under one SLA and master agreement for MySQL, MariaDB (Community), PostgreSQL, MongoDB-compatible, Valkey, and Redis, with one engineering organization for mixed estates instead of per-engine support contracts.
+- **Multi-database vendor consolidation:** Multiple database support vendors mean duplicate fees, overlapping SLAs, and slower resolution when incidents span engines. Percona consolidates Expert Support and ExpertOps under one SLA and master agreement for MySQL, MariaDB (Community), PostgreSQL, MongoDB-compatible, Valkey, and Redis.
+- **Proprietary licensing and EOL pressure:** Extended-support premiums and per-core license math inflate run-rate without improving operations. Percona software is open source or source-available at $0 license cost; Expert Support and Expert Consulting help teams plan EOL transitions against published lifecycle evidence instead of panic renewals.
+- **DBaaS repatriation and cloud cost reset:** DBaaS sizing floors and bundled support inflate waste when utilization does not match billed tiers. Percona ExpertOps and PMM align operations to actual usage on customer-chosen infrastructure, with Operators and rightsizing patterns that reduce markup-heavy managed tiers.
 
 ### Customer Evidence
 
