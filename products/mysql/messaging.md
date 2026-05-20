@@ -2,7 +2,7 @@
 
 ## Percona for MySQL {#percona-for-mysql}
 
-For organizations running MySQL applications requiring enterprise-grade performance, reliability, security, sovereignty, and compliance across on-prem, cloud, and hybrid environments, Percona's MySQL solutions, including Percona Server for MySQL, Percona XtraDB Cluster, XtraBackup, ProxySQL, Orchestrator, and Percona Toolkit, provide a fully open source, production- and performance-tested foundation for critical workloads. The Percona Distribution for MySQL offers a curated, lifecycle-managed assembly of these components, while the optional Kubernetes Operator and Percona Monitoring and Management (PMM) provide automated operations and unified observability.
+For organizations running MySQL applications requiring enterprise-grade performance, reliability, security, sovereignty, and compliance across on-prem, cloud, and hybrid environments, Percona's MySQL solutions, including Percona Server for MySQL, Percona XtraDB Cluster, Percona XtraBackup, ProxySQL, Orchestrator, Percona Toolkit, and common MySQL ecosystem components such as HAProxy, MySQL Router, and MySQL Shell, provide a fully open source, production- and performance-tested foundation for critical workloads. The Percona Distribution for MySQL offers a curated, lifecycle-managed assembly of these components, while the optional Kubernetes Operator and Percona Monitoring and Management (PMM) provide automated operations and unified observability.
 
 Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers the same reliability, scalability, and lifecycle assurance, backed by 24×7 Expert Support, without vendor lock-in, feature gating, or unpredictable costs, and with full transparency and data ownership across environments.
 
@@ -19,10 +19,38 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 
 **Security, Sovereignty, and Compliance**
 
-- Security and compliance: Regulated industries need strong encryption, auditing, and data residency assurance. Percona Server for MySQL includes FIPS 140-2–validated builds, auditing via the Audit Log Plugin or the newer Audit Log Component (depending on version), open audit plugin, and integration with LDAP and Kerberos with the Percona Authentication Plugin (PAM) for secure access, supporting compliance with frameworks like HIPAA, GDPR, and PCI-DSS. Percona Toolkit 3.7.1-3 messaging in this cycle is security-focused, centered on remediation updates, not new feature positioning. Recent Percona XtraDB Cluster releases also include audit policy consistency improvements across cluster nodes, reinforcing reliable policy enforcement in distributed environments.
+- Security and compliance: Regulated industries need strong encryption, auditing, and data residency assurance. Percona Server for MySQL includes auditing via the Audit Log Plugin or the newer Audit Log Component (depending on version), integration with LDAP and Kerberos through the Percona Authentication Plugin (PAM), and FIPS-capable binaries in standard builds (from Percona Server for MySQL 8.4.0-5 onward; FIPS mode depends on a FIPS-enabled host OpenSSL stack and documented configuration; see [FIPS compliance](https://docs.percona.com/percona-server/8.4/fips.html)). Percona Toolkit 3.7.1-3 messaging in this cycle is security-focused, centered on remediation updates, not new feature positioning. Recent Percona XtraDB Cluster releases include audit policy consistency improvements across cluster nodes, reinforcing reliable policy enforcement in distributed environments.
 
 **Adaptability for Emerging Workloads**
 
 - Multi-environment operations: Running MySQL on Kubernetes or across multi-cloud requires specialized expertise. Percona Kubernetes Operator for MySQL has separate lines for Percona XtraDB Cluster and Percona Server for MySQL. The Percona Server for MySQL operator line is production-grade automation for MySQL on Kubernetes, with point-in-time recovery (PITR) and incremental backups in technical preview, while the Percona XtraDB Cluster line is mature production. Together, they automate backups, scaling, and upgrades based on deployment requirements.
 - Current shipped operator signals: Percona Operator for MySQL 1.1.0 (Percona Server for MySQL line) delivers production-grade Kubernetes automation with PITR and incremental backups in technical preview, plus compression updates, while Percona Operator for MySQL 1.19.1 (Percona XtraDB Cluster line) shipped with fixes such as the ProxySQL crash-loop scenario in cross-site replication setups. Detailed release-specific operator narrative is maintained in the Operators lane.
 - Continuous reliability investment: Percona XtraDB Cluster releases continue to harden the HA stack, including improvements for state transfer behavior, trigger consistency, and maintenance operations in rolling update paths.
+
+### Sales enablement
+
+**Elevator pitch**
+
+Percona makes MySQL operations easier for developers and database practitioners. Our open source software and Expert Support help teams run demanding workloads with better performance, scalability, availability, and visibility, without proprietary licensing or feature gating.
+
+**Purpose**
+
+MySQL is powerful, but teams running diverse infrastructure often face release cadence gaps, subscription-only features, and rising costs as workloads grow. Percona helps organizations adopt and operate MySQL on their own terms: build, deploy, manage, customize, and scale with transparent software, expert support, and optional ExpertOps for proactive operations.
+
+**Conversation starters**
+
+- Is your current vendor flexible when scaling MySQL up and down? (Open source Percona software can adapt quickly without license escalation.)
+- What is keeping you from moving off MySQL Community or Enterprise Edition? (Expert Support and migration services help reduce downtime and data-loss risk.)
+- Are you satisfied with the cost and support you receive from Oracle for MySQL? (Many teams compare Percona for comparable operational capabilities without proprietary licensing.)
+- What databases besides MySQL does your team support? (Percona provides multi-engine expertise across MySQL, PostgreSQL, MongoDB, and Valkey.)
+- What is your plan for Oracle MySQL 8.0 end of life on 2026-04-30? (Migrate or upgrade with Percona, or use post-EOL coverage while you plan.)
+- Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Distribution for MySQL and Percona Server for MySQL provide open, inspectable components and documented FIPS mode without Enterprise licensing.)
+- Are you enabling FIPS on the database layer today? (Confirm OS OpenSSL FIPS readiness and Percona Server for MySQL configuration against public FIPS documentation.)
+
+**Public resources**
+
+- [Percona for MySQL software](https://www.percona.com/software/mysql-database)
+- [Alternative to Enterprise MySQL](https://www.percona.com/alternative-to-enterprise-mysql)
+- [Upgrade to MySQL 8.0 with Percona](https://www.percona.com/upgrading-to-mysql-8-0-with-percona)
+- [Post-MySQL 5.7 EOL support](https://www.percona.com/post-mysql-5-7-eol-support)
+- [FIPS compliance for Percona Server for MySQL](https://docs.percona.com/percona-server/8.4/fips.html)
