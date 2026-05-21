@@ -12,4 +12,6 @@ Percona offers three complementary ways to meet customer needs across the full l
 - **ExpertOps** is *proactive and operational*: a flexible partnership where Percona engineers handle the parts of day-to-day database operations customers want support with, ranging from full operational ownership to shared workflows or targeted help with high-risk tasks.
 - **Expert Consulting and Services** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as migrations, deep performance tuning, and architectural changes at the level of involvement the customer needs.
 
+When the need is a defined outcome on fixed scope with Consulting and Support packaged together, see [solution bundles](solution-bundles/messaging.md).
+
 Per-file messaging: [expert-support.md](expert-support.md), [expertops.md](expertops.md), [expert-consulting.md](expert-consulting.md). For packaged sold bundles, use `offerings/solution-bundles/`.
