@@ -1,0 +1,25 @@
+:root {
+  --theme-color: #e8531a;
+  --text-color-base: #2c3e50;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.sidebar {
+  background-color: #fafafa;
+}
+
+.markdown-section {
+  max-width: 52rem;
+  line-height: 1.65;
+}
+
+.markdown-section h1 {
+  font-size: 2rem;
+}
+
+.app-name-link {
+  font-weight: 600;
+}
