@@ -1,0 +1,90 @@
+{
+  "schema_version": "2.0-runtime",
+  "description": "Runtime persona routing data for customer-facing prep and messaging decisions.",
+  "personas": [
+    {
+      "persona_id": "dba_sre_platform",
+      "role_labels": ["DBA", "SRE", "Platform Engineer", "SysAdmin", "Database Operations"],
+      "cares_about": ["uptime", "performance", "reliability", "observability", "safe operations"],
+      "priorities": ["incident response", "optimization", "HA/DR readiness", "automation"],
+      "objections": ["migration downtime risk", "manual toil", "insufficient support depth"],
+      "message_style": ["technical", "direct", "evidence-first", "implementation-aware"],
+      "channels": ["technical discovery call", "solution review", "runbook-oriented follow-up"],
+      "typically_involved_stage": ["technical validation", "proof of concept", "implementation planning"],
+      "best_outputs": ["technical call prep", "risk and mitigation brief", "operational objection handling"],
+      "do_not_do": ["generic executive language only", "feature claims without operational impact"]
+    },
+    {
+      "persona_id": "developer_app_team",
+      "role_labels": ["Developer", "Application Engineer", "QA Engineer"],
+      "cares_about": ["delivery speed", "developer productivity", "stable environments", "fast troubleshooting"],
+      "priorities": ["faster release cycles", "clear tooling guidance", "reduced setup complexity"],
+      "objections": ["tooling friction", "slow provisioning", "unclear handoff to operations"],
+      "message_style": ["clear", "practical", "outcome-focused", "low jargon unless requested"],
+      "channels": ["enablement call", "technical email", "implementation notes"],
+      "typically_involved_stage": ["early technical discovery", "trial", "adoption planning"],
+      "best_outputs": ["developer-focused prep brief", "adoption checklist", "technical follow-up email"],
+      "do_not_do": ["contract-heavy framing", "long strategic narrative without practical next steps"]
+    },
+    {
+      "persona_id": "it_manager_director_vp",
+      "role_labels": ["IT Manager", "Director of Engineering", "VP Engineering", "Head of Platform"],
+      "cares_about": ["team efficiency", "delivery reliability", "scalable operating model", "cost control"],
+      "priorities": ["capacity planning", "vendor support confidence", "fewer escalations"],
+      "objections": ["staffing gaps", "complex operating overhead", "unclear ownership during incidents"],
+      "message_style": ["outcomes-first", "structured", "balanced technical and business depth"],
+      "channels": ["planning call", "stakeholder update", "decision-support memo"],
+      "typically_involved_stage": ["solution shortlist", "vendor comparison", "rollout planning"],
+      "best_outputs": ["manager call prep", "value summary by team impact", "role-based meeting agenda"],
+      "do_not_do": ["deep low-level detail without linking team impact", "pure brand language"]
+    },
+    {
+      "persona_id": "cto_cio_exec",
+      "role_labels": ["CTO", "CIO", "VP Technology", "Executive Sponsor"],
+      "cares_about": ["business continuity", "risk reduction", "vendor freedom", "cost predictability"],
+      "priorities": ["strategic resilience", "governance readiness", "long-term flexibility"],
+      "objections": ["vendor lock-in", "concentration risk", "unpredictable costs"],
+      "message_style": ["concise", "strategic", "decision-oriented", "proof-backed"],
+      "channels": ["executive briefing", "decision call", "one-page summary"],
+      "typically_involved_stage": ["business case approval", "final decision", "renewal strategy"],
+      "best_outputs": ["executive prep brief", "decision memo", "risk-cost summary"],
+      "do_not_do": ["feature dump", "high detail with no business implication"]
+    },
+    {
+      "persona_id": "procurement_legal_compliance",
+      "role_labels": ["Procurement Manager", "IT Sourcing", "Legal", "Compliance Lead", "DPO"],
+      "cares_about": ["contract clarity", "audit readiness", "vendor risk", "predictable spend"],
+      "priorities": ["MSA/SLA clarity", "controls evidence", "renewal and review efficiency"],
+      "objections": ["new vendor onboarding burden", "pricing volatility", "unclear accountability"],
+      "message_style": ["plain language", "control-mapped", "risk-aware", "no unnecessary jargon"],
+      "channels": ["procurement review call", "compliance summary", "contracting follow-up"],
+      "typically_involved_stage": ["vendor intake", "negotiation", "compliance sign-off", "renewal"],
+      "best_outputs": ["procurement brief", "controls mapping summary", "negotiation support notes"],
+      "do_not_do": ["deep implementation detail without control relevance", "vague claims"]
+    },
+    {
+      "persona_id": "services_users_influencers",
+      "role_labels": ["Users", "Influencers", "Practitioners", "Senior Engineers"],
+      "cares_about": ["fast issue resolution", "practical expert guidance", "daily operational support"],
+      "priorities": ["restoration speed", "hands-on help", "proactive operations advice"],
+      "objections": ["slow support response", "generic recommendations", "poor escalation experience"],
+      "message_style": ["practical", "incident-aware", "outcome-specific"],
+      "channels": ["support-oriented call prep", "incident follow-up", "operational Q&A"],
+      "typically_involved_stage": ["active operations", "incident response", "implementation support"],
+      "best_outputs": ["operations prep brief", "restoration-focused messaging", "technical Q&A support"],
+      "do_not_do": ["executive-only business framing", "contract-first narrative"]
+    },
+    {
+      "persona_id": "services_buyers_decision_makers",
+      "role_labels": ["Buyers", "Decision Makers", "Senior Managers", "Department Heads"],
+      "cares_about": ["TCO", "contract flexibility", "strategic outcomes", "risk reduction"],
+      "priorities": ["budget predictability", "partnership reliability", "service model fit"],
+      "objections": ["unclear ROI", "rigid terms", "support model mismatch"],
+      "message_style": ["business-oriented", "clear tradeoffs", "evidence-backed"],
+      "channels": ["buyer call prep", "stakeholder memo", "commercial follow-up"],
+      "typically_involved_stage": ["commercial evaluation", "approval", "renewal or expansion"],
+      "best_outputs": ["buyer-focused brief", "ROI and risk summary", "decision support email"],
+      "do_not_do": ["overly technical narrative", "long tactical details without business outcomes"]
+    }
+  ]
+}
