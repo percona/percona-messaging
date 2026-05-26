@@ -2,7 +2,7 @@
 
 ## Operate and Observe {#operate-and-observe}
 
-As organizations move stateful databases into Kubernetes and hybrid-cloud environments, the challenge shifts from simply running systems to observing and operating them efficiently and in real time. Percona's open source operations stack unifies automation and observability across MySQL, PostgreSQL, and MongoDB clusters, reducing hands-on overhead and eliminating vendor lock-in.
+As organizations move stateful databases into Kubernetes and hybrid-cloud environments, the challenge shifts from simply running systems to observing and operating them efficiently and in real time. In this context, cloud native database operations means running databases with Kubernetes-native control planes, declarative lifecycle automation, and integrated observability that can scale across environments. Percona's open source operations stack unifies automation and observability across MySQL, PostgreSQL, and MongoDB clusters, reducing hands-on overhead and eliminating vendor lock-in.
 
 Percona Operators define database clusters as Kubernetes Custom Resources (CRDs), automating common Day-1 and Day-2 operations (like deployment, scaling, backups, and failover) with declarative precision. After establishing a production foundation, the next challenge is operational scale and visibility. Percona Monitoring and Management (PMM) extends that automation with database-native observability, surfacing query analytics, system metrics, and performance trends through integrated Prometheus and Grafana dashboards.
 
@@ -12,7 +12,7 @@ Together, these components deliver a transparent, cloud-neutral operations layer
 
 ## Percona Kubernetes Operators (MySQL, PostgreSQL, MongoDB) {#percona-kubernetes-operators}
 
-For engineering organizations managing stateful workloads across Kubernetes and hybrid infrastructures, Percona Kubernetes Operators provide a production-grade automation framework built for consistency and control. According to the Data on Kubernetes 2024 survey, databases remain the most common workload running on Kubernetes for the third year in a row. In Data on Kubernetes 2021 survey, operators were cited as the key automation mechanism for hybrid and multi-cloud deployments. Each Operator defines MySQL, PostgreSQL, and MongoDB clusters as Kubernetes Custom Resources (CRDs), integrating lifecycle management (provisioning, scaling, upgrades, backups, and failover) into the same declarative model developers already use for application workloads.
+For engineering organizations managing stateful workloads across Kubernetes and hybrid infrastructures, Percona Kubernetes Operators provide a production-grade automation framework built for consistency and control. According to the Data on Kubernetes 2024 survey, databases remain the most common workload running on Kubernetes for the third year in a row. In Data on Kubernetes 2021 survey, operators were cited as the key automation mechanism for hybrid and multi-cloud deployments. Each Operator defines MySQL, PostgreSQL, and MongoDB clusters as Kubernetes Custom Resources (CRDs), integrating lifecycle management (provisioning, scaling, upgrades, backups, and failover) into the same declarative model developers already use for application workloads. This cloud native operating model helps teams standardize Day 1 and Day 2 work across engines while preserving infrastructure choice and governance control.
 
 Modern teams need database operations that move at product speed without giving up control, visibility, or flexibility. Percona Operators let platform teams standardize deployment, scaling, backup, and recovery with Kubernetes-native automation that is fully declarative. Unlike public DBaaS offerings that can limit infrastructure and operating model choices, Percona Operators enable an in-house DBaaS approach that preserves transparency, portability, and governance across environments. Civo, a cloud-native provider, launched its DBaaS using the Percona Operator for MySQL rather than developing its own, accelerating time-to-market and cutting engineering overhead while maintaining open source flexibility. The result is deterministic operations, predictable performance, and full sovereignty over database environments across any cloud or on-prem infrastructure.
 
@@ -39,4 +39,38 @@ Modern teams need database operations that move at product speed without giving 
 - Multi-cloud and hybrid portability: Percona Operators run on any CNCF-conformant Kubernetes, including OpenShift, Amazon EKS, Google GKE, Azure AKS, and on-prem clusters. Teams can move workloads freely without rewriting automation or getting trapped by a single cloud vendor. The [Percona Operator for MySQL cross-site replication](https://docs.percona.com/percona-operator-for-mysql/pxc/dr-replication.html) enables multi-environment continuity with replication between Kubernetes sites.
 - Integration with cloud-native toolchains: Operators expose APIs for CI/CD pipelines and policy engines, with support for Prometheus, Grafana, and PMM (Percona Monitoring and Management), so database operations fit naturally into platform engineering workflows and support rapid, reliable delivery. [PostgreSQL Operator architecture](https://docs.percona.com/percona-operator-for-postgresql/latest/architecture.html) also highlights integration components such as Patroni, pgBackRest for PostgreSQL backup catalog management and PiTR-oriented workflows, and pgBouncer that align with platform engineering operating models. A dedicated CRD Helm chart (Operator for MongoDB 1.22.0+) improves compatibility with GitOps tools like ArgoCD and FluxCD by letting Helm manage all resources, including CRDs.
 - Modernization path for legacy operations: Operators replace ticket-driven, manual database lifecycle tasks with declarative workflows for provisioning, upgrades, backups, and recovery. This gives teams a practical migration path from monolithic operations toward microservices-ready database delivery in Kubernetes, with lower operational risk during transition. [PostgreSQL major version upgrade workflow](https://docs.percona.com/percona-operator-for-postgresql/latest/update-db-major.html) introduces `PerconaPGUpgrade` to codify controlled upgrade execution in Kubernetes.
+
+### Sales enablement: cloud native database operations
+
+Percona supports teams that need to run MySQL, PostgreSQL, and MongoDB on Kubernetes with predictable operations, visibility, and control, without being locked into a single cloud provider's DBaaS model.
+
+**Best-fit customer profiles**
+
+- Platform engineering teams building internal database services on Kubernetes
+- SRE and DevOps teams standardizing Day 2 operations across multiple database engines
+- Organizations with compliance, residency, or sovereignty requirements across cloud and on-prem environments
+- Teams modernizing from VM-based database operations to Kubernetes-native workflows
+
+**Technical signals to qualify**
+
+- Current or planned Kubernetes footprint for stateful workloads
+- Operational pain around backup, recovery, scaling, or failover consistency
+- Need for GitOps-compatible control and auditability via declarative resources
+- Requirement for integrated observability across database fleets
+- Preference for open source tooling and cloud portability
+
+**Discovery questions**
+
+- Which database operations are still manual in your Kubernetes environments today?
+- Where do incidents most often start: failover, backup and recovery, scaling events, or visibility gaps?
+- How are you balancing standardization across engines with team-level autonomy?
+- What compliance or governance requirements influence where and how you run databases?
+- Where would expert help accelerate outcomes, architecture planning, reliability tuning, or ongoing operations?
+
+**Public resources**
+
+- [Percona Operators documentation](https://docs.percona.com/percona-operator-for-mysql/pxc/index.html)
+- [Percona Operator for PostgreSQL documentation](https://docs.percona.com/percona-operator-for-postgresql/latest/index.html)
+- [Percona Operator for MongoDB documentation](https://docs.percona.com/percona-operator-for-mongodb/index.html)
+- [Percona Monitoring and Management (PMM)](https://docs.percona.com/percona-monitoring-and-management/index.html)
 
