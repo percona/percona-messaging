@@ -15,6 +15,9 @@ accept = ["200", "204", "206", "301", "302", "303", "307", "308", "429"]
 
 exclude = [
   "^mailto:", # local validation only
+  # Local dev preview; not reachable from CI or GitHub-rendered markdown.
+  "^http://localhost(:[0-9]+)?(/.*)?$",
+  "^http://127\\.0\\.0\\.1(:[0-9]+)?(/.*)?$",
   # McKinsey DE often times out or blocks datacenter IPs in CI; keep citation in prose.
   "^https://www\\.mckinsey\\.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024$",
   # Gartner: returns 403 from many automated / datacenter clients (including GitHub Actions)
