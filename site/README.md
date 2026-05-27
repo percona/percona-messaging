@@ -27,7 +27,7 @@ From the repository root:
 python3 -m http.server 8080
 ```
 
-Open [http://localhost:8080/](http://localhost:8080/) in a browser.
+Open `http://localhost:8080/` in a browser.
 
 ## Updating navigation
 
