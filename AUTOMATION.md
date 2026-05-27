@@ -62,7 +62,7 @@ When enabled, scheduled automation watches that feed and opens GitHub issues ali
 
 **Cadence and limits:** the feed only exposes a bounded number of recent items; keep the workflow enabled and on a daily schedule so new announcements are not missed before they roll off the feed.
 
-**Dedupe behavior:** the workflow dedupes by searching for a stable GUID hash marker in existing issue bodies before creating a new issue. It does not open automation PRs for state updates.
+**Dedupe behavior:** two layers: (1) `prepare` skips RSS item GUIDs already listed in `data/docs_whats_new_seen_guids.json`; (2) before opening an issue, the workflow searches for the stable `whatsnew-feed:<hash>` token in existing issue bodies (open or closed). After each run, processed GUIDs are merged into the state file and committed to the default branch so items are not re-queued when the feed still lists them.
 
 **Area labeling:** classification uses keywords from the RSS title (and falls back to `Area: Cross-product` when no rule matches). Adjust mapping logic in [`.github/workflows/docs-whats-new-monitor.yml`](.github/workflows/docs-whats-new-monitor.yml) when naming patterns change.
 
