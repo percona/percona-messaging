@@ -16,7 +16,8 @@
 #   python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
 #
 # After each run with new items, the workflow merges processed GUIDs into the state file and
-# commits to the default branch so the same feed item is not re-queued on the next schedule.
+# opens an automation PR (same pattern as case-study-monitor) so updates work with branch
+# protection on main without a bot bypass.
 
 name: Docs What's New monitor
 
@@ -28,6 +29,7 @@ on:
 permissions:
   contents: write
   issues: write
+  pull-requests: write
 
 jobs:
   notify:
@@ -241,11 +243,19 @@ jobs:
             --print-changed | tr -d '[:space:]')
           echo "changed=${changed}" >> "${GITHUB_OUTPUT}"
 
-      - name: Commit seen GUID state
+      - name: Open pull request for seen GUID state
         if: ${{ steps.prep.outputs.count != '0' && steps.merge_state.outputs.changed == 'true' }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/docs_whats_new_seen_guids.json
-          git commit -m "chore(data): record Docs What's New RSS guids processed by monitor"
-          git push
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          branch: automation/docs-whats-new-state
+          title: "chore(data): record Docs What's New RSS guids processed by monitor"
+          commit-message: "chore(data): record Docs What's New RSS guids processed by monitor"
+          body: |
+            ## Summary
+            Automated update of `data/docs_whats_new_seen_guids.json` after the Docs What's New monitor processed RSS items.
+
+            ## Review checklist
+            - [ ] Diff is GUID-only (no unexpected edits)
+            - [ ] Merge promptly so the next scheduled run does not re-queue the same items on `main`
+          add-paths: |
+            data/docs_whats_new_seen_guids.json
