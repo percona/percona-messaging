@@ -24,8 +24,8 @@ Percona's reliability model combines free software with 24×7 Support, ExpertOps
 
 ### Use cases
 
-- **Business continuity:** Manual backups, untested failover, and inconsistent recovery runbooks increase downtime and data-loss risk. Percona combines XtraBackup (hot full and incremental MySQL backups), Percona Backup for MongoDB, Operators for Kubernetes backup and restore, and PMM for backup job health, failed-backup alerts, and point-in-time recovery where engines support it, with Expert Support for 24×7 recovery, ExpertOps for proactive day-two backup and HA operations, and Expert Consulting for DR drills and HA architecture design.
-- **Peak traffic and seasonal scale:** Event-driven load exposes weak pooling, replication, and failover baselines. ExpertOps covers spike periods and steady-state tuning afterward; PMM and Operators support scale-out patterns, with Patroni-backed PostgreSQL HA on Kubernetes where teams need coordinated failover under load.
+- **Business continuity:** Faster, tested recovery across engines with clearer ownership when incidents occur. Percona Experts combine backup and restore tooling (XtraBackup, Percona Backup for MongoDB, Operators), PMM for backup job health and failed-backup alerts, and point-in-time recovery where engines support it, with Expert Support for recovery, ExpertOps for day-two backup and HA operations, and Expert Consulting for DR drills and HA design.
+- **Peak traffic and seasonal scale:** Sustain throughput and failover through demand spikes without rebuilding the stack each season. Percona Experts tune pooling, replication, and failover before and after peak periods; PMM and Operators support scale-out, including Patroni-backed PostgreSQL HA on Kubernetes where teams need coordinated failover under load.
 
 ### Customer Evidence
 
