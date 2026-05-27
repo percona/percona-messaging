@@ -12,11 +12,11 @@
 # Strategic / narrative layers
 # =========================
 # /framework/                                  @briana-swift @gareth-case @andrey-glazkov @cindy-neely @val-bogatyreva
-/framework/                                  @brianamarie @Cinneely 
+/framework/                                  @brianamarie  
 # /offerings/                                  @briana-swift @matt-kane @andrey-glazkov @cindy-neely @val-bogatyreva
-/offerings/                                  @brianamarie @Cinneely
+/offerings/                                  @brianamarie 
 # /use-cases-value-pillars/                    @briana-swift @gareth-case @matt-kane @cindy-neely @val-bogatyreva
-/use-cases-value-pillars/                    @brianamarie @Cinneely
+/use-cases-value-pillars/                    @brianamarie 
 # /reference/                                  @briana-swift @val-bogatyreva @cindy-neely @val-bogatyreva
 /reference/                                  @brianamarie @Cinneely
 
@@ -32,7 +32,7 @@
 # /products/valkey-redis/                      @briana-swift @kyle-davis
 /products/valkey-redis/                      @brianamarie
 # /products/pmm/                               @briana-swift @dave-poole
-/products/pmm/                               @brianamarie @DavePoole30
+/products/pmm/                               @brianamarie @DavePoole30 @tichomir
 # /products/operators/                         @briana-swift @kate-obiidykhata 
 /products/operators/                         @brianamarie @obiyduhata 
 
