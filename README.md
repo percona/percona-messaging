@@ -27,6 +27,16 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 - Contributors creating or updating messaging
 - Domain owners reviewing for accuracy and alignment
 - Teams adapting approved messaging into other formats
+- Field, marketing, and partners who need readable approved copy without browsing the GitHub file tree
+
+## Reader site (GitHub Pages)
+
+Approved messaging is also available as a browsable site (Docsify on GitHub Pages), built directly from the markdown in this repository.
+
+- **URL (after merge and Pages setup):** [https://percona.github.io/percona-messaging/](https://percona.github.io/percona-messaging/)
+- **Setup:** repository Settings → Pages → deploy from `main`, folder `/ (root)`. See [site/README.md](site/README.md).
+- **Not search-indexed:** share the link directly; it is not intended for organic search.
+- **Changes:** edit markdown here as usual; merging to `main` updates the site.
 
 ## Repository map
 
