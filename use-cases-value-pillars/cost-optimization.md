@@ -31,9 +31,9 @@ Percona eliminates operational complexity through automation, open standards, an
 
 ### Use cases
 
-- **Multi-database vendor consolidation:** Multiple database support vendors mean duplicate fees, overlapping SLAs, and slower resolution when incidents span engines. Percona consolidates Expert Support and ExpertOps under one SLA and master agreement for MySQL, MariaDB (Community), PostgreSQL, MongoDB-compatible, Valkey, and Redis.
-- **Proprietary licensing and EOL pressure:** Extended-support premiums and per-core license math inflate run-rate without improving operations. Percona software is open source or source-available at $0 license cost; Expert Support and Expert Consulting help teams plan EOL transitions against published lifecycle evidence instead of panic renewals.
-- **DBaaS repatriation and cloud cost reset:** DBaaS sizing floors and bundled support inflate waste when utilization does not match billed tiers. Percona ExpertOps and PMM align operations to actual usage on customer-chosen infrastructure, with Operators and rightsizing patterns that reduce markup-heavy managed tiers.
+- **Multi-database vendor consolidation:** One relationship for database support across engines reduces duplicate fees, conflicting SLAs, and slow handoffs when incidents cross systems. Percona consolidates agreements for Expert Support, ExpertOps, and consulting across MySQL, MariaDB (Community), PostgreSQL, MongoDB-compatible environments, Valkey, and Redis so teams coordinate renewal, escalation, and scope in one place.
+- **Proprietary licensing and EOL pressure:** Lower run-rate by removing per-core license fees and last-minute extended support renewals that do not improve operations. Percona database software uses open source or source available licenses without license fees; Percona Expert Support and Expert Consulting and Services help teams plan end of life moves using published lifecycle policy and release notes.
+- **DBaaS repatriation and cloud cost reset:** Match capacity and spend to actual use on infrastructure you choose, not DBaaS minimum tiers and bundled markup. Percona Experts use PMM, Operators, and rightsizing on customer infrastructure to align operations with utilization and reduce waste from managed service premiums.
 
 ### Customer Evidence
 
