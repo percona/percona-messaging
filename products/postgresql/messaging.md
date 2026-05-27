@@ -14,6 +14,7 @@ Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, P
 
 - Open source without compromise: The Percona Distribution for PostgreSQL consolidates trusted community components into one enterprise-validated package, eliminating the cost and complexity of proprietary add-ons. Türk Telekom eliminated licensing costs, cut query times substantially, and boosted customer satisfaction by delivering high availability and resilience across critical services with Percona Distribution for PostgreSQL.
 - Migration clarity when PostgreSQL licensing or managed-service roadmaps change: Vendor bundles and subscription models evolve on timelines teams do not control. Percona publishes positioning on portable PostgreSQL software versus proprietary distributions and managed PostgreSQL stacks ([Percona Software for PostgreSQL](https://www.percona.com/postgresql/software)), which helps organizations compare options on cleared public materials and plan moves without proprietary APIs that trap operational state.
+- Legacy RDBMS exit to PostgreSQL for TCO: Teams exiting proprietary or legacy RDBMS footprints can reduce license and support spend by landing on Percona Distribution for PostgreSQL with assessment-led migration through [Percona Expert Consulting and Services](https://www.percona.com/services/consulting). Scope and source-to-target patterns are confirmed during assessment.
 
 **Performance and Reliability at Scale**
 
