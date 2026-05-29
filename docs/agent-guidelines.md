@@ -52,6 +52,16 @@ For those paths, combine this baseline with **[reference/canonical-naming.md](..
 - **[GOVERNANCE.md](../GOVERNANCE.md)** for ownership, approvals, and canonical status when changes warrant it.
 - **[AUTOMATION.md](../AUTOMATION.md)** for how CI relates to this repository (agents still follow the git boundaries above).
 
+## Persona routing for execution support
+
+For role-aware output such as call prep, outbound email, campaign variant, or objection handling:
+
+- Use **[data/personas-inventory.json](../data/personas-inventory.json)** as the persona source.
+- Follow **`.cursor/rules/persona-routing.mdc`** for role routing behavior in Cursor.
+- If role is unclear, ask one short clarifying question.
+- If multiple roles are present, split output by role instead of blending one generic message.
+- Keep campaign prose in execution workflows unless explicitly promoted into canonical modules.
+
 ## Out of scope for this baseline
 
 Automated enforcement (pre-commit hooks, new CI gates) is a **separate** decision and issue. This document describes expectations for agents and contributors, not new automation.

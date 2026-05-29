@@ -1,0 +1,33 @@
+---
+description: Route role-aware prep and messaging using persona inventory
+alwaysApply: true
+---
+
+# Persona routing for customer-facing prep
+
+Use `data/personas-inventory.json` as the single persona source.
+
+When a request is customer-facing preparation, for example call prep, outbound email, campaign variant, or objection handling:
+
+- infer the primary role from the prompt, for example DBA, SRE, CTO, CIO, Procurement, Legal, Compliance, IT manager
+- if role is unclear, ask one short clarifying question
+- match the best `persona_id` by `role_labels`
+- extract only role-relevant fields from the matching persona card:
+  - `cares_about`
+  - `priorities`
+  - `objections`
+  - `message_style`
+  - `typically_involved_stage`
+  - `best_outputs`
+  - `do_not_do`
+- if multiple roles are present, split output by role instead of blending one generic response
+- combine persona guidance with factual product messaging from canonical files
+
+Default output emphasis by role:
+
+- DBA or SRE: operational reliability, incident handling, performance, implementation risk
+- IT manager or VP engineering: team efficiency, delivery reliability, staffing and operating model
+- CTO or CIO: strategic risk, continuity, portability, cost predictability
+- Procurement or Legal or Compliance: contract clarity, controls evidence, audit and governance readiness
+
+Do not copy persona source prose verbatim into canonical product messaging files.
