@@ -13,11 +13,28 @@ Linked from https://docs.percona.com/new/ (see <link rel="alternate" ... rss+xml
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.request import Request, urlopen
+
+
+def feed_marker_hash(guid: str) -> str:
+    """Stable 16-hex id embedded in issue bodies and used for GitHub search dedupe."""
+    digest = hashlib.sha256(guid.strip().encode("utf-8")).hexdigest()
+    return digest[:16]
+
+
+def feed_marker_html(guid: str) -> str:
+    """HTML comment marker stored at the top of backup-intake issue bodies."""
+    return f"<!-- whatsnew-feed:{feed_marker_hash(guid)} -->"
+
+
+def feed_marker_search_token(guid: str) -> str:
+    """Token for GitHub issue search (avoid angle brackets and comment syntax)."""
+    return f"whatsnew-feed:{feed_marker_hash(guid)}"
 
 
 def fetch_rss(feed_url: str) -> bytes:
@@ -51,6 +68,8 @@ def parse_rss_items(xml_bytes: bytes) -> list[dict]:
                 "link": (link_el.text or "").strip() if link_el is not None else "",
                 "description": (desc_el.text or "").strip() if desc_el is not None else "",
                 "pubDate": (pub_el.text or "").strip() if pub_el is not None else "",
+                "feed_marker": feed_marker_hash(guid),
+                "feed_marker_search": feed_marker_search_token(guid),
             }
         )
     return out
@@ -96,6 +115,8 @@ def cmd_merge(args: argparse.Namespace) -> int:
     processed_path = Path(args.guids_json)
     if not processed_path.is_file():
         print("No guids file; nothing to merge.", file=sys.stderr)
+        if args.print_changed:
+            print("false")
         return 0
     data = json.loads(processed_path.read_text(encoding="utf-8"))
     if not isinstance(data, list):
@@ -105,11 +126,14 @@ def cmd_merge(args: argparse.Namespace) -> int:
     seen = load_seen(args.state)
     before = len(seen)
     seen |= to_add
-    if len(seen) == before:
+    changed = len(seen) != before
+    if changed:
+        save_seen(args.state, seen)
+        print(f"Merged {len(to_add)} guid(s); state now {len(seen)} total.", file=sys.stderr)
+    else:
         print("State unchanged.", file=sys.stderr)
-        return 0
-    save_seen(args.state, seen)
-    print(f"Merged {len(to_add)} guid(s); state now {len(seen)} total.", file=sys.stderr)
+    if args.print_changed:
+        print("true" if changed else "false")
     return 0
 
 
@@ -134,6 +158,11 @@ def main() -> int:
     p_merge = sub.add_parser("merge", help="Union guids from JSON array file into state file.")
     p_merge.add_argument("--state", type=Path, default=default_state)
     p_merge.add_argument("--guids-json", type=Path, required=True)
+    p_merge.add_argument(
+        "--print-changed",
+        action="store_true",
+        help="Print true/false to stdout when state file changes (for CI).",
+    )
     p_merge.set_defaults(func=cmd_merge)
 
     args = parser.parse_args()
