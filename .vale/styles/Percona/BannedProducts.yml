@@ -6,3 +6,8 @@ ignorecase: true
 tokens:
   - Everest
   - ProBuilds
+  - Percona Pro Builds
+  - Pro Builds
+  - Pro build
+raw:
+  - (?i)\bPercona (?:Server for|Operator for|Backup for|Distribution for|for) [^\n.,;:]{1,60}?\sPro\b
