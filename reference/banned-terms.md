@@ -9,7 +9,10 @@ This is the tool-agnostic reference for terms that must never appear in Percona 
 Never use in any Percona content:
 
 - **Everest**: remove entirely, rewrite surrounding sentence
-- **ProBuilds**: remove entirely, rewrite surrounding sentence
+- **ProBuilds**, **Pro Builds**, and **Pro build** (any spacing, as a Percona delivery program or SKU label): remove entirely; use the canonical product name and public documentation for the capability
+- **Pro** as a Percona product tier or suffix on database software (for example Percona Server for MySQL Pro, Percona Server for MongoDB Pro): remove; use the canonical product name only. No Pro tier exists on Percona database products
+
+**Not banned:** third-party names such as Ubuntu 22.04 Pro, and **ExpertOps Proactive** Database Management.
 
 ## Deprecated terminology (replace on sight)
 
