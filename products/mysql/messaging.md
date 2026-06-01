@@ -54,3 +54,4 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - [Upgrade to MySQL 8.0 with Percona](https://www.percona.com/upgrading-to-mysql-8-0-with-percona)
 - [Post-MySQL 5.7 EOL support](https://www.percona.com/post-mysql-5-7-eol-support)
 - [FIPS compliance for Percona Server for MySQL](https://docs.percona.com/percona-server/8.4/fips.html)
+- [MySQL Vector and Binlog Server roadmap](https://www.percona.com/blog/building-the-future-of-mysql-announcing-plans-for-mysql-vector-support-and-a-mysql-binlog-server/)
