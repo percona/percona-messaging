@@ -6,6 +6,12 @@ For organizations running MySQL applications requiring enterprise-grade performa
 
 Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers the same reliability, scalability, and lifecycle assurance, backed by 24×7 Expert Support, without vendor lock-in, feature gating, or unpredictable costs, and with full transparency and data ownership across environments.
 
+### Current release line (2026)
+
+**Percona Server for MySQL 8.4.8-8** is the current line release for single-server deployments (shipped 2026-03-12). **Percona Distribution for MySQL 8.4.8** ships in two variants: a **PS-based distribution** aligned with that Percona Server line, and a **PXC-based distribution** for high-availability cluster deployments (GA 2026-04-16). Name the variant when an asset is cluster-specific versus single-instance.
+
+Oracle MySQL **8.0** reached end of life on **2026-04-30**. Teams still on 8.0 need a migration, upgrade, or supported post-EOL path; teams on **8.4** should plan from the Percona **8.4.8** lines above rather than treating 8.0 as the default reference release.
+
 ### Customer Challenges and Value Alignment – MySQL
 
 **Optimized TCO**
@@ -23,8 +29,7 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 
 **Adaptability for Emerging Workloads**
 
-- Multi-environment operations: Running MySQL on Kubernetes or across multi-cloud requires specialized expertise. Percona Kubernetes Operator for MySQL has separate lines for Percona XtraDB Cluster and Percona Server for MySQL. The Percona Server for MySQL operator line is production-grade automation for MySQL on Kubernetes, with point-in-time recovery (PITR) and incremental backups in technical preview, while the Percona XtraDB Cluster line is mature production. Together, they automate backups, scaling, and upgrades based on deployment requirements.
-- Current shipped operator signals: Percona Operator for MySQL 1.1.0 (Percona Server for MySQL line) delivers production-grade Kubernetes automation with PITR and incremental backups in technical preview, plus compression updates, while Percona Operator for MySQL 1.19.1 (Percona XtraDB Cluster line) shipped with fixes such as the ProxySQL crash-loop scenario in cross-site replication setups. Detailed release-specific operator narrative is maintained in the Operators lane.
+- Kubernetes operator choice by topology: Percona maintains **three** MySQL operator deployment paths on Kubernetes. The [Percona Operator for MySQL (PXC)](https://docs.percona.com/percona-operator-for-mysql/pxc/index.html) line automates **Percona XtraDB Cluster** for synchronous multi-primary HA. The [Percona Operator for MySQL (Percona Server)](https://docs.percona.com/percona-operator-for-mysql/ps/index.html) line delivers production-grade automation for **standalone Percona Server for MySQL**, with point-in-time recovery and incremental backups in technical preview where documented. The same Percona Server for MySQL operator line ships **MySQL Group Replication** as its GA topology (distinct from the PXC operator), offering strongly consistent HA with asynchronous replication in technical preview where documented. Pick the path that matches your HA model.
 - Continuous reliability investment: Percona XtraDB Cluster releases continue to harden the HA stack, including improvements for state transfer behavior, trigger consistency, and maintenance operations in rolling update paths.
 
 ### Sales enablement
@@ -43,8 +48,7 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - What is keeping you from moving off MySQL Community or Enterprise Edition? (Expert Support and migration services help reduce downtime and data-loss risk.)
 - Are you satisfied with the cost and support you receive from Oracle for MySQL? (Many teams compare Percona for comparable operational capabilities without proprietary licensing.)
 - What databases besides MySQL does your team support? (Percona provides multi-engine expertise across MySQL, PostgreSQL, MongoDB, and Valkey.)
-- Now that Oracle MySQL 8.0 reached end of life on 2026-04-30, are you still running 8.0 without a supported path? (Migrate or upgrade with Percona, or use post-EOL coverage while you finish your plan.)
-- Are you planning vector search or AI workloads on MySQL without adding another datastore? (Percona is developing native MySQL Vector indexing and a dedicated Binlog Server for reliable point-in-time recovery and replication at scale.)
+- Now that Oracle MySQL 8.0 reached end of life on 2026-04-30, are you still running 8.0? Do you have a plan for support or continuity? (Migrate or upgrade with Percona, or use post-EOL coverage while you finish your plan.)
 - Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Distribution for MySQL and Percona Server for MySQL provide open, inspectable components and documented FIPS mode without Enterprise licensing.)
 - Are you enabling FIPS on the database layer today? (Confirm OS OpenSSL FIPS readiness and Percona Server for MySQL configuration against public FIPS documentation.)
 
@@ -55,4 +59,3 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - [Upgrade to MySQL 8.0 with Percona](https://www.percona.com/upgrading-to-mysql-8-0-with-percona)
 - [Post-MySQL 5.7 EOL support](https://www.percona.com/post-mysql-5-7-eol-support)
 - [FIPS compliance for Percona Server for MySQL](https://docs.percona.com/percona-server/8.4/fips.html)
-- [MySQL Vector and Binlog Server roadmap](https://www.percona.com/blog/building-the-future-of-mysql-announcing-plans-for-mysql-vector-support-and-a-mysql-binlog-server/)
