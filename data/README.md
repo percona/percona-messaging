@@ -5,7 +5,7 @@ This directory stores canonical machine-readable registries used by messaging au
 ## Files
 
 - `case-studies.json`: tracked case-study registry used for scheduled sync and suggestion workflows
-- `docs_whats_new_seen_guids.json`: RSS item GUIDs already processed by the optional Docs What's New **backup** monitor (see [AUTOMATION.md](../AUTOMATION.md))
+- `docs_whats_new_seen_guids.json`: RSS item GUIDs already handled by the optional Docs What's New **backup** monitor (issue opened or skipped as duplicate). Updated via automation PRs from the monitor workflow after each run; see [AUTOMATION.md](../AUTOMATION.md).
 
 ## Notes
 

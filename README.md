@@ -27,6 +27,16 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 - Contributors creating or updating messaging
 - Domain owners reviewing for accuracy and alignment
 - Teams adapting approved messaging into other formats
+- Field, marketing, and partners who need readable approved copy without browsing the GitHub file tree
+
+## Reader site (GitHub Pages)
+
+Approved messaging is also available as a browsable site (Docsify on GitHub Pages), built directly from the markdown in this repository.
+
+- **URL (after merge and Pages setup):** [https://percona.github.io/percona-messaging/](https://percona.github.io/percona-messaging/)
+- **Setup:** repository Settings → Pages → deploy from `main`, folder `/ (root)`. See [site/README.md](site/README.md).
+- **Not search-indexed:** share the link directly; it is not intended for organic search.
+- **Changes:** edit markdown here as usual; merging to `main` updates the site.
 
 ## Repository map
 
@@ -34,7 +44,7 @@ It keeps durable messaging in tracked markdown so contributors can find the curr
 - `use-cases-value-pillars/`: shared value-pillar messaging (cost, performance, security/compliance, future readiness) and cross-product scenarios
 - `offerings/`: core services messaging, including Expert Support, Expert Consulting, and managed services (`ExpertOps`)
 - `offerings/solution-bundles/`: fixed-scope sold packages that combine services and outcomes
-- `products/`: product and database-specific messaging (MySQL, PostgreSQL, MongoDB, Valkey/Redis, PMM, Operators) plus competitive-safe overlays
+- `products/`: product and database-specific messaging (MySQL, PostgreSQL, MongoDB, Valkey/Redis, PMM, Operators)
 - `reference/`: canonical naming, banned terms, brand voice, governance references, and decomposition guidance
 - `docs/`: portable agent baseline shared across editors and tools (see [docs/agent-guidelines.md](docs/agent-guidelines.md))
 - `.cursor/rules/`: Cursor-facing snippets aligned with that baseline
