@@ -21,7 +21,8 @@ Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, P
 - High-availability and disaster recovery made simple: The Percona Distribution for PostgreSQL includes Patroni to automate failover for high availability and coordinate switchovers for maintenance tasks, and pgBackRest for backup catalog management and Point-in-Time Recovery (PiTR) when data must be restored after higher-impact incidents. Reference patterns and implementation guidance are in [High availability for PostgreSQL](https://www.percona.com/ha-for-postgresql). Distribution releases keep Patroni HA automation and its coordination stack release-tested through upgrade cadence across supported PostgreSQL majors. Automated failover minimises recovery time and outage impact.
 - Logical replication for migration and scale-out: Percona Distribution for PostgreSQL on PostgreSQL 18 supports parallel logical replication for faster initial data synchronization during replica build and major-version migration, reducing cutover risk and replication catch-up time.
 - Built-in replication lag monitoring: PostgreSQL provides native, accurate replication lag tracking through `pg_stat_wal_receiver` and WAL LSN comparison, without requiring external heartbeat tooling. PMM surfaces this data via the `pg_custom_stat_wal_receiver_lag_bytes` metric (sourced from `postgres_exporter`). Teams migrating from MySQL (where external tools like pt-heartbeat are common for lag measurement) gain this capability out of the box with PostgreSQL.
-- Horizontal scale and legacy tooling: Expert Support and consulting cover Citus sharding coordinated with Patroni HA on customer deployments where Citus runs alongside the distribution stack (Citus is not packaged in the standard distribution build; see [third-party components](https://docs.percona.com/postgresql/18/third-party.html)). Advisory Expert Support is also available for estates that still run barman or repmgr alongside PostgreSQL where migration to pgBackRest and Patroni is phased.
+- Horizontal scale and legacy tooling: Expert Support and consulting cover Citus sharding and timescale time-series workloads on customer-managed PostgreSQL coordinated with Patroni HA where those extensions run alongside the distribution stack (neither Citus nor timescale is packaged in the standard distribution build; see [third-party components](https://docs.percona.com/postgresql/18/third-party.html)). Advisory Expert Support is also available for estates that still run barman or repmgr alongside PostgreSQL where migration to pgBackRest and Patroni is phased.
+- Deep PostgreSQL observability extensions: Advisory Support covers pg_stat_kcache and pg_wait_sampling for kernel-level query resource visibility and sampled wait-event analysis; pg_wait_sampling integrates with PMM for unified wait analysis where teams deploy both.
 
 **Security, Sovereignty, and Compliance**
 
@@ -33,5 +34,24 @@ Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, P
 
 - Cloud-native operations: The Percona Operator for PostgreSQL automates deployment, scaling, and failover in Kubernetes environments, delivering consistent governance and portability across any cloud.
 - Platform portability: Percona Distribution for PostgreSQL ships packages for current Ubuntu LTS releases, including Ubuntu 26.04 on AMD64 and ARM64, so teams can standardize database deployments on their long-term support platform images without retooling the stack.
-- AI and analytics readiness: Teams run embeddings and vector search on PostgreSQL using pgvector packaged with other tested distribution components ([third-party components](https://docs.percona.com/postgresql/18/third-party.html)), avoiding a separate AI-only datastore for many workloads. Optional extensions beyond that validated set, including pgvectorscale when packaged for a given distribution release, are listed alongside other tested components in distribution documentation, which ties sizing and performance conversations to binaries customers deploy rather than benchmark scenarios that omit packaging constraints.
+- AI and analytics readiness: Teams run embeddings and vector search on PostgreSQL using pgvector packaged with other tested distribution components ([third-party components](https://docs.percona.com/postgresql/18/third-party.html)), avoiding a separate AI-only datastore for many workloads. Percona Expert Support includes advisory guidance for pgvector production tuning. pgvectorscale is available through advisory Support tiers and is not packaged in Percona Distribution for PostgreSQL.
 - Geospatial workloads: PostGIS ships as a validated third-party component; Expert Support and consulting cover coordinated PostgreSQL and PostGIS upgrades, dependency checks, and spatial workload regression planning ([PostGIS deployment](https://docs.percona.com/postgresql/17/solutions/postgis-deploy.html)).
+
+### Conversation starters
+
+- How long does it take your team to configure vanilla PostgreSQL for a new production environment? (The distribution ships HA, backup, and security components release-tested together.)
+- What do you do when PostgreSQL is down? (Percona Expert Support provides SLA-backed escalation.)
+- How do you ensure PostgreSQL infrastructure performs well under load? (Support, ExpertOps, and consulting cover tuning and architecture.)
+- How do you meet uptime and incident-response requirements from regulators or customers?
+- How much internal PostgreSQL expertise does your team have today?
+- If you already have a support contract: How has your experience been with your current vendor?
+- If migrating from Oracle or another proprietary RDBMS: How will you handle configuration, schema and data migration, compatibility, and HA architecture?
+
+### Public resources
+
+- [Percona Software for PostgreSQL](https://www.percona.com/postgresql/software)
+- [High availability for PostgreSQL](https://www.percona.com/ha-for-postgresql)
+- [pg_tde documentation](https://docs.percona.com/pg-tde/)
+- [Percona Distribution for PostgreSQL release notes](https://docs.percona.com/postgresql/latest/release-notes/release-notes.html)
+- [Support for PostgreSQL](https://www.percona.com/services/support/postgresql-support)
+- [Database comparison (MySQL, MongoDB, PostgreSQL, MariaDB)](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb)
