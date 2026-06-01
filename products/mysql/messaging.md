@@ -43,7 +43,8 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - What is keeping you from moving off MySQL Community or Enterprise Edition? (Expert Support and migration services help reduce downtime and data-loss risk.)
 - Are you satisfied with the cost and support you receive from Oracle for MySQL? (Many teams compare Percona for comparable operational capabilities without proprietary licensing.)
 - What databases besides MySQL does your team support? (Percona provides multi-engine expertise across MySQL, PostgreSQL, MongoDB, and Valkey.)
-- What is your plan for Oracle MySQL 8.0 end of life on 2026-04-30? (Migrate or upgrade with Percona, or use post-EOL coverage while you plan.)
+- Now that Oracle MySQL 8.0 reached end of life on 2026-04-30, are you still running 8.0 without a supported path? (Migrate or upgrade with Percona, or use post-EOL coverage while you finish your plan.)
+- Are you planning vector search or AI workloads on MySQL without adding another datastore? (Percona is developing native MySQL Vector indexing and a dedicated Binlog Server for reliable point-in-time recovery and replication at scale.)
 - Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Distribution for MySQL and Percona Server for MySQL provide open, inspectable components and documented FIPS mode without Enterprise licensing.)
 - Are you enabling FIPS on the database layer today? (Confirm OS OpenSSL FIPS readiness and Percona Server for MySQL configuration against public FIPS documentation.)
 
@@ -54,3 +55,4 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - [Upgrade to MySQL 8.0 with Percona](https://www.percona.com/upgrading-to-mysql-8-0-with-percona)
 - [Post-MySQL 5.7 EOL support](https://www.percona.com/post-mysql-5-7-eol-support)
 - [FIPS compliance for Percona Server for MySQL](https://docs.percona.com/percona-server/8.4/fips.html)
+- [MySQL Vector and Binlog Server roadmap](https://www.percona.com/blog/building-the-future-of-mysql-announcing-plans-for-mysql-vector-support-and-a-mysql-binlog-server/)
