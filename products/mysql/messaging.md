@@ -2,22 +2,16 @@
 
 ## Percona for MySQL {#percona-for-mysql}
 
-For organizations running MySQL applications requiring enterprise-grade performance, reliability, security, sovereignty, and compliance across on-prem, cloud, and hybrid environments, Percona's MySQL solutions, including Percona Server for MySQL, Percona XtraDB Cluster, Percona XtraBackup, ProxySQL, Orchestrator, Percona Toolkit, and common MySQL ecosystem components such as HAProxy, MySQL Router, and MySQL Shell, provide a fully open source, production- and performance-tested foundation for critical workloads. The Percona Distribution for MySQL offers a curated, lifecycle-managed assembly of these components, while the optional Kubernetes Operator and Percona Monitoring and Management (PMM) provide automated operations and unified observability.
+For organizations running MySQL applications requiring enterprise-grade performance, reliability, security, sovereignty, and compliance across on-prem, cloud, and hybrid environments, Percona's MySQL solutions, including Percona Server for MySQL, Percona XtraDB Cluster, Percona XtraBackup, ProxySQL, Orchestrator, Percona Toolkit, and common MySQL ecosystem components such as HAProxy, MySQL Router, and MySQL Shell, provide a fully open source, production- and performance-tested foundation for critical workloads. The Percona Distribution for MySQL offers curated, lifecycle-managed assemblies for single-instance (Percona Server-based) and high-availability cluster (PXC-based) deployments, while the optional Kubernetes Operator and Percona Monitoring and Management (PMM) provide automated operations and unified observability.
 
 Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers the same reliability, scalability, and lifecycle assurance, backed by 24×7 Expert Support, without vendor lock-in, feature gating, or unpredictable costs, and with full transparency and data ownership across environments.
-
-### Current release line (2026)
-
-**Percona Server for MySQL 8.4.8-8** is the current line release for single-server deployments (shipped 2026-03-12). **Percona Distribution for MySQL 8.4.8** ships in two variants: a **PS-based distribution** aligned with that Percona Server line, and a **PXC-based distribution** for high-availability cluster deployments (GA 2026-04-16). Name the variant when an asset is cluster-specific versus single-instance.
-
-Oracle MySQL **8.0** reached end of life on **2026-04-30**. Teams still on 8.0 need a migration, upgrade, or supported post-EOL path; teams on **8.4** should plan from the Percona **8.4.8** lines above rather than treating 8.0 as the default reference release.
 
 ### Customer Challenges and Value Alignment – MySQL
 
 **Optimized TCO**
 
 - Open source with enterprise-grade capabilities: Percona Server for MySQL is a fully open source, enhanced, and backward-compatible replacement for MySQL Community Edition. It serves as a functional alternative to Oracle MySQL Enterprise Edition, delivering many comparable or extended capabilities without proprietary licensing or feature gating.
-- EOL pressure and rising costs: Organizations running MySQL 5.7 or 8.0 face Oracle EOL deadlines or costly RDS extended support. The date-certain external deadline in this cycle is Oracle MySQL 8.0 EOL on 2026-04-30. Percona offers post-EOL security and maintenance coverage, helping customers maintain stability or migrate safely without inflated licensing costs. Percona Server for MySQL continues this commitment with backported fixes and lifecycle coverage options documented in Percona lifecycle policy and release notes. Time To Pet avoided expensive proprietary EOL extensions by migrating safely to Percona Server for MySQL, gaining years of headroom for future growth and full lifecycle assurance.
+- EOL pressure and rising costs: Organizations running MySQL 5.7 or 8.0 face Oracle EOL deadlines or costly RDS extended support. The date-certain external deadline in this cycle is Oracle MySQL 8.0 EOL on 2026-04-30. Percona offers post-EOL security and maintenance coverage, helping customers maintain stability or migrate safely without inflated licensing costs. Teams planning beyond 8.0 should align on Percona Server for MySQL and Percona Distribution for MySQL on supported 8.4 lines rather than treating 8.0 as the default reference release. Percona Server for MySQL continues this commitment with backported fixes and lifecycle coverage options documented in Percona lifecycle policy and release notes. Time To Pet avoided expensive proprietary EOL extensions by migrating safely to Percona Server for MySQL, gaining years of headroom for future growth and full lifecycle assurance.
 
 **Performance and Reliability at Scale**
 
