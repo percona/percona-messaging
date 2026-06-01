@@ -28,6 +28,7 @@ MongoDB Vector Search and Full-Text Search are powered by `mongot`, a separate J
 **Security, Sovereignty, and Compliance**
 
 - Encrypted open source: Community builds lack enterprise controls for regulated industries. Percona Server for MongoDB includes transparent data-at-rest encryption with external key management (KMIP-compatible providers, HashiCorp Vault, OpenBao), advanced authentication and authorization integrations (LDAP/AD, Kerberos, OpenID Connect, AWS IAM), FIPS 140-2–validated cryptographic mode, auditing, and log redaction to support GDPR, HIPAA, and PCI-DSS requirements.
+- Enterprise directory auth continuity: [MongoDB deprecated LDAP authentication and authorization in MongoDB 8.0](https://www.mongodb.com/docs/manual/core/ldap-deprecation/) and plans removal in a future major release; MongoDB Enterprise Advanced and Atlas are dropping LDAP support. Percona Server for MongoDB maintains long-term LDAP/AD support on [supported releases](https://www.percona.com/services/policies/percona-software-support-lifecycle) so teams keep existing directory identity infrastructure without forced migration to vendor-specific identity platforms. OpenID Connect remains available where teams want modern federated auth alongside LDAP.
 
 **Adaptability for Emerging Workloads**
 
