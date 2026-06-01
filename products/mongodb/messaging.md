@@ -27,7 +27,7 @@ MongoDB Vector Search and Full-Text Search are powered by `mongot`, a separate J
 **Security, Sovereignty, and Compliance**
 
 - Encrypted source-available database with enterprise controls: Community builds lack enterprise controls for regulated industries. Percona Server for MongoDB includes transparent data-at-rest encryption with external key management (KMIP-compatible providers, HashiCorp Vault, OpenBao), advanced authentication and authorization integrations (LDAP/AD, Kerberos, OpenID Connect, AWS IAM), auditing, and log redaction, supporting GDPR, HIPAA, and PCI-DSS requirements on infrastructure customers operate.
-- FIPS 140-3 validated cryptography for regulated sectors: Federal, healthcare, and financial workloads often require FIPS-compliant modules for database network TLS and authentication. FIPS mode uses validated cryptography on those paths, helping teams meet FIPS 140-3 mandates while keeping MongoDB data and keys on self-managed infrastructure they control.
+- FIPS 140-3 compliance: Federal, healthcare, and financial programs often require FIPS 140-3 validated cryptographic modules for database network TLS and authentication. Percona Server for MongoDB includes native support for running a FIPS 140-3-compliant OpenSSL module for data encryption in transit and at rest. It also means that TLS, SCRAM, and X.509 authentication can use validated OpenSSL cryptography on supported platforms. Teams can run on self-managed infrastructure they control while configuring FIPS mode to support program requirements; full compliance still depends on OS, certificates, auth choices, and any at-rest encryption controls your auditors require.
 
 **Adaptability for Emerging Workloads**
 
