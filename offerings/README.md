@@ -1,6 +1,6 @@
 # Offerings
 
-This directory contains canonical messaging for commercial offerings.
+This directory contains canonical messaging for commercial offerings. Each offering has its own subdirectory; use **`messaging.md`** for positioning and buyer-facing language. ExpertOps also has **`expertops/service-catalog.md`** for subscription and delivery detail.
 
 ## How the three offerings work together
 
@@ -12,6 +12,34 @@ Percona offers three complementary ways to meet customer needs across the full l
 - **ExpertOps** is *proactive and operational*: a flexible partnership where Percona engineers handle the parts of day-to-day database operations customers want support with, ranging from full operational ownership to shared workflows or targeted help with high-risk tasks.
 - **Expert Consulting and Services** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as migrations, deep performance tuning, and architectural changes at the level of involvement the customer needs.
 
-When the need is a defined outcome on fixed scope with Consulting and Support packaged together, see [solution bundles](solution-bundles/messaging.md).
+## Which offering?
 
-Per-file messaging: [expert-support.md](expert-support.md), [expertops.md](expertops.md), [expert-consulting.md](expert-consulting.md). For packaged sold bundles, use `offerings/solution-bundles/`.
+The main fork is **who runs day-to-day database operations**:
+
+- **Your team executes** → [Expert Support](expert-support/messaging.md): Percona guides; you operate production.
+- **Percona executes in your environment** → [ExpertOps](expertops.md): hands-on operational partnership.
+
+Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (migrations, architecture, deep tuning) alongside either steady-state offering. **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
+
+Percona also offers **database training** as a complementary service. Training builds in-house skill; it is not a substitute for ExpertOps operational coverage or Expert Support for production incidents.
+
+## Directory layout
+
+```
+offerings/
+  expert-support/messaging.md
+  expertops.md                    # ExpertOps positioning
+  expertops/service-catalog.md    # Subscription and delivery detail
+  expert-consulting/messaging.md
+  solution-bundles/               # Fixed-scope Consulting + Support packages
+```
+
+| Path | Purpose |
+| --- | --- |
+| [expert-support/messaging.md](expert-support/messaging.md) | Expert Support positioning |
+| [expertops.md](expertops.md) | ExpertOps positioning |
+| [expertops/service-catalog.md](expertops/service-catalog.md) | ExpertOps deliverables, SLAs, hours, onboarding, access |
+| [expert-consulting/messaging.md](expert-consulting/messaging.md) | Expert Consulting and Services positioning |
+| [solution-bundles/messaging.md](solution-bundles/messaging.md) | Packaged Consulting + Support bundles |
+
+**Messaging vs. service catalog:** `messaging.md` files and `expertops.md` answer *what the offering is, who it is for, and why it matters*. `expertops/service-catalog.md` answers *what a subscription includes and how delivery works*. Keep positioning out of the catalog and keep SLA or deliverable tables out of positioning unless a one-line pointer is enough.
