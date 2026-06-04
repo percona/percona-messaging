@@ -45,7 +45,7 @@ Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, P
 - How do you meet uptime and incident-response requirements from regulators or customers?
 - How much internal PostgreSQL expertise does your team have today?
 - If you already have a support contract: How has your experience been with your current vendor?
-- If migrating from Oracle or another proprietary RDBMS: How will you handle configuration, schema and data migration, compatibility, and HA architecture?
+- If migrating from Oracle or another proprietary database: How will you handle configuration, schema and data migration, compatibility, and HA architecture?
 
 ### Public resources
 
