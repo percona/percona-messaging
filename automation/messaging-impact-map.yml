@@ -17,9 +17,7 @@ rules:
       - "use-cases-value-pillars/cost-optimization.md"
       - "framework/core-positioning.md"
       - "products/postgresql/messaging.md"
-      - "products/postgresql/competitive.md"
     suggest_globs:
-      - "products/**/competitive.md"
       - "use-cases-value-pillars/*.md"
 
   - id: licensing-or-open-source-claims
@@ -81,7 +79,6 @@ rules:
     suggest_globs:
       - "use-cases-value-pillars/*.md"
       - "offerings/*.md"
-      - "products/**/competitive.md"
 
   - id: framework-story-touch
     description: Core framework story files usually need mutual consistency and may warrant aligned product or offering language.
