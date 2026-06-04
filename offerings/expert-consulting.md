@@ -11,7 +11,7 @@ Consulting handles the hard, high-skill, complex work, like setting up new envir
 ## Common scenarios
 
 - **Migrations and upgrades:** Complex or high-risk moves delivered as defined projects, including planning and hands-on execution where scoped.
-- **Legacy migration to open source:** Assessment-led moves when license drag or vendor risk incentivizes organizations to use open source. 
+- **Legacy migration to open source:** Assessment-led moves when license drag or vendor risk incentivizes organizations to use open source.
 - **Assessments:** Structured health, performance, security, or compliance reviews with clear recommendations and deliverables.
 - **Architecture and modernization:** Major design decisions and modernization paths across cloud, on-premises, hybrid, and Kubernetes environments.
 - **Deep performance work:** Schema, query, configuration, and scaling work when bottlenecks or unclear storage and query behavior exceed advisory support scope.
