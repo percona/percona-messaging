@@ -13,9 +13,12 @@ These rules apply to every file in this repo. They are non-negotiable.
 
 Never add, keep, or reintroduce references to:
 - `Everest`
-- `ProBuilds`
+- `ProBuilds`, `Pro Builds`, or `Pro build` (any spacing or engine) as a Percona delivery program or SKU label
+- `Pro` as a Percona product tier or suffix on database software (for example Percona Server for MySQL Pro, Percona Server for MongoDB Pro, Percona Operator for PostgreSQL Pro)
 
-If you encounter either term in any file, remove it entirely (do not replace with a euphemism) and rewrite the surrounding sentence to preserve meaning.
+If you encounter these terms, remove them entirely (do not replace with a euphemism) and rewrite the surrounding sentence using canonical product names and public documentation.
+
+**Not banned:** third-party names such as Ubuntu 22.04 Pro, and **ExpertOps Proactive** Database Management.
 
 ## Terminology corrections
 
