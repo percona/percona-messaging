@@ -8,18 +8,11 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 
 ### Customer Challenges and Value Alignment – MySQL
 
-**In-place replacement for MySQL Enterprise Edition**
-
-Percona Server for MySQL is a drop-in, binary-compatible replacement for the matching MySQL version, so teams move from Oracle MySQL Community or Enterprise Edition in place without re-architecting applications or changing connection libraries, using standard MySQL upgrade and replication paths. Enterprise parity features ship in standard open source builds without proprietary licensing. For the full itemized comparison across engines, see [Percona feature comparison](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb).
-
-**Enterprise parity at a glance**
-
-- **Enterprise parity:** Audit logging (including Audit Log Filter), PAM / LDAP / FIDO authentication, Data masking, Thread pool, External key management (HashiCorp Vault, KMIP, AWS KMS keyring), FIPS mode (standard PS and PXC builds from 8.4.7 onward).
-- **Beyond Enterprise:** MyRocks, binary log and temporary file encryption, enforce-encryption, backup locks, kill idle transactions, per-table / per-index / per-user / per-thread counters, user statistics, extended slow query logging, deeper INFORMATION_SCHEMA (95 tables vs 65 in Community), per-column compression, and more ([feature comparison](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb)).
-
 **Optimized TCO**
 
-- In-place Enterprise replacement without license escalation: Teams retire Oracle MySQL Enterprise subscriptions while keeping applications on a backward-compatible MySQL code line. Enterprise parity and beyond-Enterprise capabilities ship in open source builds, so operational teams stop paying for feature gating without a rip-and-replace migration ([upgrade documentation](https://docs.percona.com/percona-server/8.4/upgrade.html)).
+- Drop-in, in-place Enterprise replacement without license escalation: Percona Server for MySQL is binary compatible with the matching MySQL version, so teams move from Oracle MySQL Community or Enterprise Edition without re-architecting applications or changing connection libraries, using standard MySQL upgrade and replication paths. Teams retire Oracle MySQL Enterprise subscriptions while keeping applications on a backward-compatible code line; Enterprise parity and beyond-Enterprise capabilities ship in open source builds, so operational teams stop paying for feature gating without a rip-and-replace migration ([upgrade documentation](https://docs.percona.com/percona-server/8.4/upgrade.html), [feature comparison](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb)).
+- Enterprise parity: Audit logging (including Audit Log Filter), PAM / LDAP / FIDO authentication, Data masking, Thread pool, External key management (HashiCorp Vault, KMIP, AWS KMS keyring), FIPS mode (standard PS and PXC builds from 8.4.7 onward).
+- Beyond Enterprise: MyRocks, binary log and temporary file encryption, enforce-encryption, backup locks, kill idle transactions, per-table / per-index / per-user / per-thread counters, user statistics, extended slow query logging, deeper INFORMATION_SCHEMA (95 tables vs 65 in Community), per-column compression, and more ([feature comparison](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb)).
 - EOL pressure and rising costs: Organizations running MySQL 5.7 or 8.0 face Oracle EOL deadlines or costly RDS extended support. The date-certain external deadline in this cycle is Oracle MySQL 8.0 EOL on 2026-04-30. Percona offers post-EOL security and maintenance coverage, helping customers maintain stability or migrate safely without inflated licensing costs. Teams planning beyond 8.0 should align on Percona Server for MySQL and Percona Distribution for MySQL on supported 8.4 lines rather than treating 8.0 as the default reference release. Percona Server for MySQL continues this commitment with backported fixes and lifecycle coverage options documented in Percona lifecycle policy and release notes. Time To Pet avoided expensive proprietary EOL extensions by migrating safely to Percona Server for MySQL, gaining years of headroom for future growth and full lifecycle assurance.
 
 **Performance and Reliability at Scale**
