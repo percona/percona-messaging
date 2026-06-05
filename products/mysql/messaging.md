@@ -8,6 +8,12 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 
 ### Customer Challenges and Value Alignment – MySQL
 
+**In-place replacement for MySQL Enterprise Edition**
+
+- Drop-in compatibility: Percona Server for MySQL is binary compatible with the matching MySQL version, so teams move from Oracle MySQL Community or Enterprise Edition in place without re-architecting applications or changing connection libraries, using standard MySQL upgrade and replication paths. This keeps migration effort and downtime risk low ([upgrade documentation](https://docs.percona.com/percona-server/8.4/upgrade.html)).
+- Open source equivalents for paid Enterprise capabilities: Percona Server for MySQL provides, as open source, capabilities Oracle restricts to MySQL Enterprise Edition or omits from Community: PAM and LDAP authentication, Audit Log (comparable to MySQL Enterprise Audit), Data Masking, a connection Thread Pool, and keyring integration with HashiCorp Vault, KMIP, and AWS KMS. Regulated teams meet authentication, audit, and encryption requirements without Enterprise licensing. FIPS-capable binaries ship in standard builds from Percona Server for MySQL 8.4.0-5 onward; FIPS mode depends on a FIPS-enabled host OpenSSL stack and documented configuration ([feature comparison](https://docs.percona.com/percona-server/8.4/feature-comparison.html), [FIPS compliance](https://docs.percona.com/percona-server/8.4/fips.html)).
+- Capabilities beyond Enterprise Edition: MyRocks, expanded INFORMATION_SCHEMA and per-object performance counters, user statistics, extended slow query logging, binary log and temp file encryption, backup locks, and tools to reclaim resources from idle transactions go beyond what Community or Enterprise Edition offer. Percona Server for MySQL is a functional superset with no proprietary licensing or feature gating, so teams gain operational headroom and visibility without paying for restricted features ([feature comparison](https://docs.percona.com/percona-server/8.4/feature-comparison.html)).
+
 **Optimized TCO**
 
 - Open source with enterprise-grade capabilities: Percona Server for MySQL is a fully open source, enhanced, and backward-compatible replacement for MySQL Community Edition. It serves as a functional alternative to Oracle MySQL Enterprise Edition, delivering many comparable or extended capabilities without proprietary licensing or feature gating.
