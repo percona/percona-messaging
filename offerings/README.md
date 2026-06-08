@@ -16,8 +16,8 @@ Percona offers three complementary ways to meet customer needs across the full l
 
 The main fork is **who runs day-to-day database operations**:
 
-- **Your team executes** → [Expert Support](expert-support/messaging.md): Percona guides; you operate production.
-- **Percona executes in your environment** → [ExpertOps](expertops.md): hands-on operational partnership.
+- **Your team executes**: [Expert Support](expert-support/messaging.md): Percona guides; you operate production.
+- **Percona executes in your environment**: [ExpertOps](expertops.md): hands-on operational partnership.
 
 Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (migrations, architecture, deep tuning) alongside either steady-state offering. **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
 

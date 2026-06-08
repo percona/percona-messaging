@@ -61,8 +61,8 @@ Additional hour blocks are available when teams need capacity beyond the include
 | --- | --- | --- |
 | **S1** | 30 minutes | 15 minutes |
 | **S2** | 90 minutes | 60 minutes |
-| **S3** | 24 hours (business days) | 4 hours |
-| **S4** | 48 hours (business days) | 24 hours |
+| **S3** | 24 hours (weekdays) | 4 hours |
+| **S4** | 48 hours (weekdays) | 24 hours |
 
 Premium tier also defines **ongoing** response targets for open S1 and S2 incidents (1 hour and 4 hours respectively). Coverage is **24×7, follow-the-sun**.
 
