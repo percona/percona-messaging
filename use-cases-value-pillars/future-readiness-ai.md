@@ -15,6 +15,7 @@ AI, ML, and real-time analytics depend on data mobility and trust, but current d
 - **Unpredictable scaling costs:** Elastic AI workloads spike compute and storage demand, and per-core or per-query pricing models compound waste. [Deloitte](https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/ai-infrastructure-compute-strategy.html) reports many organizations reevaluate cloud API and inference spend when cloud costs approach 60% to 70% of equivalent on-premises hardware for steady-state workloads.
 - **Operational silos:** Specialized AI databases create skills gaps, slowing deployment and increasing dependency on vendor-specific expertise.
 - **Spend concentrates on AI-ready platforms:** By **2028**, [Gartner expects **80%** of GenAI business applications to be developed on **existing data management platforms**](https://www.gartner.com/en/newsroom/press-releases/2025-06-02-gartner-predicts-by-2028-80-percent-of-genai-business-apps-will-be-developed-on-existing-data-management-platforms). Enterprises reduce duplicate tooling and governance overhead when they plan vector retrieval, security, and lifecycle operations on standardized database estates instead of expanding parallel niche engines.
+- **AI project failure from weak data foundations:** Gartner predicts organizations will abandon 60% of AI projects through 2026 due to insufficient data quality. 97% of senior data and technology leaders report pipeline failures have slowed analytics or AI programs, underscoring how fragile data infrastructure constrains AI delivery ([Fivetran Enterprise Data Infrastructure Benchmark, 2026](https://www.fivetran.com/resources/reports/the-enterprise-data-infrastructure-benchmark-report-2026)). Vector search is increasingly gated behind proprietary licensing even when teams already operate PostgreSQL or Valkey.
 
 ### The Solution: Open Infrastructure for AI Evolution
 
@@ -25,6 +26,7 @@ Percona enables AI, vector search, and hybrid data workloads through open, secur
 - **Data integrity and compliance:** Encryption, RBAC, and transparent audit logs preserve control over sensitive data used in AI training, supporting GDPR, HIPAA, and ISO 27001 alignment.
 - **Predictable performance and cost:** ExpertOps tuning and rightsized infrastructure optimize indexing, caching, and query execution for AI workloads.
 - **Guardrails that scale with the stack:** PMM supports custom Percona Advisor checks so organizations can extend bundled Security, Configuration, Performance, and Query coverage when new services, engines, or internal policies appear, keeping operational standards aligned with hybrid and polyglot data architectures.
+- **Packaged AI readiness:** The [AI Readiness Bundle](../offerings/solution-bundles/messaging.md) accelerates pgvector setup, observability, indexing, and concurrency tuning on PostgreSQL for teams adopting vector search without procuring a separate vector database contract.
 
 ### Use cases
 
