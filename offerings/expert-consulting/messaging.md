@@ -8,7 +8,7 @@ Consulting handles the hard, high-skill, complex work, like setting up new envir
 - **Problems Expert Consulting solves:** Complex migrations or upgrades, scaling and performance bottlenecks, architecture uncertainty or decisions with high long-term impact, security or compliance gaps, and unclear patterns in query performance or storage behavior.
 - **Outcomes Expert Consulting delivers:** Expert-built migration or upgrade plans, faster performance through schema/query/configuration tuning, secure and well-architected environments, clear recommendations and action plans, reduced risk during critical transitions, and structured modernization paths across cloud, on-premises, hybrid, and Kubernetes environments as needed.
 
-Consulting is project-based and time-boxed. It complements steady-state [Expert Support](../expert-support/messaging.md) or [ExpertOps](../expertops.md); it does not replace either. Pre-packaged Consulting + Support engagements are [solution bundles](../solution-bundles/messaging.md).
+Consulting is project-based and time-boxed. It complements steady-state [Expert Support](../expert-support/messaging.md) or [ExpertOps](../expertops/messaging.md); it does not replace either. Pre-packaged Consulting + Support engagements are [solution bundles](../solution-bundles/messaging.md).
 
 ## Common scenarios
 

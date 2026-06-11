@@ -4,7 +4,7 @@ Enterprise teams do not all need the same relationship with Percona. Some need d
 
 **Solution bundles** are a practical starting point for that third pattern: fixed-scope packages that combine **Percona Expert Consulting and Services** with a period of **Advanced Support** (or optional Support tiers where noted in the matrix). They deliver measurable outcomes without requiring a fully custom engagement for every buyer.
 
-**Bundles are not ExpertOps.** They do not include ongoing hands-on operational ownership, 24×7 alert response in the customer environment, or ExpertOps subscription deliverables. When a buyer needs Percona to run operations, [ExpertOps](../expertops.md) is the base offering; use bundles for scoped Consulting + Support around a defined outcome.
+**Bundles are not ExpertOps.** They do not include ongoing hands-on operational ownership, 24×7 alert response in the customer environment, or ExpertOps subscription deliverables. When a buyer needs Percona to run operations, [ExpertOps](../expertops/messaging.md) is the base offering; use bundles for scoped Consulting + Support around a defined outcome.
 
 Use a **bundle** when scope and timeline match a row in the matrix below. Use **custom Consulting + Support** when engines, duration, or scope do not fit a package. Portfolio context: [Offerings overview](../README.md).
 
