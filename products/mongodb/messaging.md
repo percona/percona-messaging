@@ -17,6 +17,7 @@ MongoDB Vector Search and Full-Text Search are powered by `mongot`, a separate J
 **Optimized TCO**
 
 - High licensing costs and vendor lock-in: MongoDB Enterprise Advanced and Atlas introduce restrictive licensing and escalating subscription fees. Percona Server for MongoDB removes license cost while retaining major enterprise features, cutting total database spend by up to 50%. BBVA (global bank) chose Percona for its MongoDB workload migration to avoid license costs.
+- End-of-life continuity and migration path: For MongoDB releases that have reached end of life in the community, Percona offers Extended Lifecycle Support (ELS): security updates, stability fixes, and migration planning toward a supported release. ELS is a bridge, not a permanent alternative to upgrading.
 
 **Performance and Reliability at Scale**
 
