@@ -39,7 +39,7 @@ rules:
       - "framework/core-positioning.md"
       - "framework/why-percona.md"
       - "offerings/expert-support/messaging.md"
-      - "offerings/expertops.md"
+      - "offerings/expertops/messaging.md"
       - "offerings/expert-consulting/messaging.md"
     suggest_globs:
       - "use-cases-value-pillars/*.md"
@@ -59,7 +59,7 @@ rules:
         - "(?i)managed services"
     must_review:
       - "offerings/expert-support/messaging.md"
-      - "offerings/expertops.md"
+      - "offerings/expertops/messaging.md"
       - "offerings/expert-consulting/messaging.md"
       - "reference/canonical-naming.md"
       - "framework/core-positioning.md"
