@@ -41,7 +41,7 @@ jobs:
 
             const issues = await github.paginate(
               github.rest.issues.listForRepo,
-              { owner, repo, state: "open", labels: "maintenance", per_page: 100 }
+              { owner, repo, state: "open", labels: "maintenance,Content & messaging", per_page: 100 }
             );
             const existing = issues.find((i) => i.body && i.body.includes(marker));
 

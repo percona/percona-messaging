@@ -42,6 +42,14 @@ def test_build_body_lists_registry_entries(tmp_path: Path) -> None:
     assert "2026-05-01T12:00:00Z" in body
 
 
+def test_load_registry_tolerates_invalid_json(tmp_path: Path) -> None:
+    registry_path = tmp_path / "case-studies.json"
+    registry_path.write_text("{not json", encoding="utf-8")
+    registry = reminder.load_registry(registry_path)
+    assert registry["case_studies"] == []
+    assert registry["last_reviewed_utc"] == ""
+
+
 def test_load_registry_accepts_legacy_last_synced_field(tmp_path: Path) -> None:
     registry_path = tmp_path / "case-studies.json"
     registry_path.write_text(

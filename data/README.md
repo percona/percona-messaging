@@ -10,4 +10,5 @@ This directory stores canonical machine-readable registries used by messaging au
 ## Notes
 
 - Keep this data factual and sourceable.
-- Automated sync workflows may update this file through pull requests.
+- `case-studies.json` is updated manually via pull request when maintainers adopt published proof.
+- `docs_whats_new_seen_guids.json` is updated by automation pull requests from the Docs What's New monitor after each run.
