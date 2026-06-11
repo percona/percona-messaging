@@ -9,10 +9,9 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `impact_check.py`: checks changed files against `automation/messaging-impact-map.yml`
   - applies waiver state from slash commands (`/impact-ok`, `/impact-reset`, `/impact-all`) including path-specific resets when `all` is active
 - `suggest_updates.py`: generates deterministic suggestion candidates for impacted files
-- `governance_waiver.py`: loads maintainer waiver JSON for `new_file_gate.py`, `check_doc_coverage.py`, and `duplicate_detector.py` (same hidden-comment pattern as Impact Check)
+- `governance_waiver.py`: loads maintainer waiver JSON for `new_file_gate.py` and `check_doc_coverage.py` (same hidden-comment pattern as Impact Check)
 - `new_file_gate.py`: enforces required PR justification fields when new markdown files are added (supports `--waiver-file`)
 - `check_doc_coverage.py`: verifies new markdown docs are linked from repository navigation docs (supports `--waiver-file`)
-- `duplicate_detector.py`: detects high-overlap markdown content to reduce duplication (supports `--waiver-file`)
 
 ## External signal script
 
@@ -30,7 +29,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 - `.github/workflows/impact-check.yml` -> `impact_check.py`
 - `.github/workflows/smart-suggestions.yml` -> `suggest_updates.py`
-- `.github/workflows/content-governance-checks.yml` -> `new_file_gate.py`, `check_doc_coverage.py`, `duplicate_detector.py`, `governance_waiver.py`
+- `.github/workflows/content-governance-checks.yml` -> `new_file_gate.py`, `check_doc_coverage.py`, `governance_waiver.py`
 - `.github/workflows/governance-slash-commands.yml` -> merges `/governance-ok`, `/governance-reset`, `/governance-all` comments into waiver state and reruns Content Governance Checks
 - `.github/workflows/staleness-report.yml` -> `staleness_report.py`
 - `.github/workflows/quarterly-citation-review.yml` -> `quarterly_lychee_citation_review_issue.py`

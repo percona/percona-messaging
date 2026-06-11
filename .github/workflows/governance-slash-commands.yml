@@ -95,9 +95,6 @@ jobs:
               if (t === "doc-coverage" || t === "coverage") {
                 return "doc_coverage";
               }
-              if (t === "duplicate" || t === "dupes" || t === "duplicate-detector") {
-                return "duplicate_detector";
-              }
               return "";
             }
 
@@ -114,7 +111,7 @@ jobs:
                 owner,
                 repo,
                 issue_number,
-                body: "⚠️ Unsupported command format. Use `/governance-ok all`, `/governance-ok new-file`, `/governance-reset all`, `/governance-reset duplicate`, or `/governance-all`.",
+                body: "⚠️ Unsupported command format. Use `/governance-ok all`, `/governance-ok new-file`, `/governance-reset all`, or `/governance-all`.",
               });
               fs.writeFileSync(
                 "governance-waivers.json",
@@ -138,7 +135,7 @@ jobs:
                   repo,
                   issue_number,
                   body:
-                    "⚠️ Unknown governance check token. Use `new-file`, `doc-coverage`, or `duplicate` (or `all`).",
+                    "⚠️ Unknown governance check token. Use `new-file`, `doc-coverage`, or `all`.",
                 });
               }
             }
@@ -283,16 +280,6 @@ jobs:
             --waiver-file governance-waivers.json \
             --output-md "doc-coverage-report.md"
 
-      - name: Run duplicate detector (slash refresh)
-        id: slash_duplicate
-        continue-on-error: true
-        run: |
-          python scripts/duplicate_detector.py \
-            --base "origin/${{ steps.pr.outputs.base_ref }}" \
-            --head "HEAD" \
-            --waiver-file governance-waivers.json \
-            --output-md "duplicate-detector-report.md"
-
       - name: Upsert PR governance comment
         if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -303,7 +290,6 @@ jobs:
             const files = [
               "new-file-gate-report.md",
               "doc-coverage-report.md",
-              "duplicate-detector-report.md",
             ];
             const sections = files
               .filter((f) => fs.existsSync(f))
@@ -313,7 +299,7 @@ jobs:
               "## Manual waiver commands (maintainers)",
               "",
               "- `/governance-ok all` or `/governance-all`",
-              "- `/governance-ok new-file`, `/governance-ok doc-coverage`, `/governance-ok duplicate`",
+              "- `/governance-ok new-file`, `/governance-ok doc-coverage`",
               "- `/governance-reset all` or `/governance-reset` with the same token",
               "",
               "Waiver JSON is stored in a hidden PR comment (`messaging-governance-waiver-data:v1`), same pattern as Impact Check.",
