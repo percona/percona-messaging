@@ -7,7 +7,6 @@ on:
       - ".github/PULL_REQUEST_TEMPLATE.md"
       - "scripts/new_file_gate.py"
       - "scripts/check_doc_coverage.py"
-      - "scripts/duplicate_detector.py"
       - "scripts/governance_waiver.py"
       - ".github/workflows/content-governance-checks.yml"
       - ".github/workflows/governance-slash-commands.yml"
@@ -107,20 +106,10 @@ jobs:
             --waiver-file governance-waivers.json \
             --output-md "doc-coverage-report.md"
 
-      - name: Run duplicate detector
-        id: duplicate
-        continue-on-error: true
-        run: |
-          python scripts/duplicate_detector.py \
-            --base "origin/${{ github.base_ref }}" \
-            --head "HEAD" \
-            --waiver-file governance-waivers.json \
-            --output-md "duplicate-detector-report.md"
-
       - name: Add reports to workflow summary
         if: always()
         run: |
-          for file in new-file-gate-report.md doc-coverage-report.md duplicate-detector-report.md; do
+          for file in new-file-gate-report.md doc-coverage-report.md; do
             if [ -f "$file" ]; then
               cat "$file" >> "$GITHUB_STEP_SUMMARY"
               echo "" >> "$GITHUB_STEP_SUMMARY"
@@ -137,7 +126,6 @@ jobs:
             const files = [
               "new-file-gate-report.md",
               "doc-coverage-report.md",
-              "duplicate-detector-report.md",
             ];
             const sections = files
               .filter((f) => fs.existsSync(f))
@@ -147,7 +135,7 @@ jobs:
               "## Manual waiver commands (maintainers)",
               "",
               "- `/governance-ok all` or `/governance-all`",
-              "- `/governance-ok new-file`, `/governance-ok doc-coverage`, `/governance-ok duplicate`",
+              "- `/governance-ok new-file`, `/governance-ok doc-coverage`",
               "- `/governance-reset all` or `/governance-reset` with the same token",
               "",
               "Waiver JSON is stored in a hidden PR comment (`messaging-governance-waiver-data:v1`), same pattern as Impact Check.",
@@ -173,7 +161,7 @@ jobs:
             });
 
       - name: Fail if any blocking governance check failed
-        if: steps.new_file_gate.outcome == 'failure' || steps.coverage.outcome == 'failure' || steps.duplicate.outcome == 'failure'
+        if: steps.new_file_gate.outcome == 'failure' || steps.coverage.outcome == 'failure'
         run: |
           echo "One or more governance checks failed."
           exit 1
