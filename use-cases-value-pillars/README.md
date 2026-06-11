@@ -15,9 +15,9 @@ Do not add a new top-level pillar file for a use case. Add a bullet under the pa
 
 ## Current files (value pillars)
 
-- [cost-optimization.md](cost-optimization.md) (use cases: proprietary licensing, DBA talent shortage, EOL transition, vendor consolidation, reduce cloud spend, workload tuning and rightsizing)
-- [performance-reliability.md](performance-reliability.md) (use cases: business continuity, peak traffic, multi-engine Kubernetes operations, regional expansion, unified observability across heterogeneous estates)
-- [security-sovereignty-compliance.md](security-sovereignty-compliance.md) (use cases: audit-ready, data governance, regional data residency, US extraterritorial access risk, multi-tenant isolation, payments and PCI-DSS Level 1; sovereignty evidence table)
-- [future-readiness-ai.md](future-readiness-ai.md) (use cases: RAG on PostgreSQL, vector search on Valkey)
+- [cost-optimization.md](cost-optimization.md) (use cases: proprietary licensing drag, DBA talent shortage, database end-of-life migration, reduce database vendor sprawl, cut cloud database costs, workload tuning and rightsizing)
+- [performance-reliability.md](performance-reliability.md) (use cases: database backup and recovery, peak traffic and seasonal scale, multi-database Kubernetes operations, multi-region database replication, unified observability across heterogeneous estates)
+- [security-sovereignty-compliance.md](security-sovereignty-compliance.md) (use cases: audit-ready compliance, data governance and access control, database data residency, database data sovereignty and US jurisdiction risk, database multi-tenancy on Kubernetes, payments and PCI-DSS Level 1; sovereignty evidence table)
+- [future-readiness-ai.md](future-readiness-ai.md) (use cases: RAG on PostgreSQL, vector search on Valkey / Redis, AI data pipelines across hybrid cloud)
 
 Add new use cases when a distinct situation is not already covered by that file's Solution section. Cross-link to `offerings/solution-bundles/` when a sold package is a strong fit.
