@@ -11,7 +11,7 @@ Consulting handles the hard, high-skill, complex work, like setting up new envir
 ## Common scenarios
 
 - **Migrations and upgrades:** Complex or high-risk moves delivered as defined projects, including planning and hands-on execution where scoped.
-- **Legacy RDBMS migration to open source:** Assessment-led projects when license, support, or vendor roadmap risk drives the case. Source-to-target combinations and execution depth are scoped and quoted after assessment, not assumed for every engine pair.
+- **Legacy migration to open source:** Assessment-led moves when license drag or vendor risk drives open source targets. Percona leads assessment and scoping; customers contract with Percona. Heterogeneous paths (including MySQL, MariaDB, Oracle, and SQL Server to PostgreSQL) may include partner migration tooling for schema conversion, real-time replication, and automated data validation together with Percona Expert Consulting, after assessment.
 - **Assessments:** Structured health, performance, security, or compliance reviews with clear recommendations and deliverables.
 - **Architecture and modernization:** Major design decisions and modernization paths across cloud, on-premises, hybrid, and Kubernetes environments.
 - **Deep performance work:** Schema, query, configuration, and scaling work when bottlenecks or unclear storage and query behavior exceed advisory support scope.
