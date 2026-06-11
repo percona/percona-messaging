@@ -1,0 +1,71 @@
+# Monthly upsert of a single maintenance issue prompting review of published case studies.
+# Replaces the former feed-based case-study-monitor workflow (no public JSON feed exists).
+
+name: Case study maintenance reminder
+
+on:
+  schedule:
+    # 15:00 UTC on the 1st of each month
+    - cron: "0 15 1 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.11"
+
+      - name: Build issue body
+        run: python scripts/case_study_maintenance_reminder.py
+
+      - name: Upsert maintenance issue
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-case-study-maintenance -->";
+            const body = fs.readFileSync("case-study-maintenance-issue.md", "utf8");
+            const title = "Case study proof-point maintenance";
+            const { owner, repo } = context.repo;
+
+            const issues = await github.paginate(
+              github.rest.issues.listForRepo,
+              { owner, repo, state: "open", labels: "maintenance", per_page: 100 }
+            );
+            const existing = issues.find((i) => i.body && i.body.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                title,
+                body
+              });
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body: "Refreshed checklist for the latest scheduled run."
+              });
+              return;
+            }
+
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title,
+              body,
+              labels: ["maintenance", "Content & messaging"]
+            });
