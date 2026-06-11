@@ -16,6 +16,7 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 **Performance and Reliability at Scale**
 
 - Performance degradation under load: High-concurrency applications often face throughput drops and latency spikes. Percona Server for MySQL includes thread pooling, user statistics, and other extended instrumentation for better resource management. Layer7 processes 200M calls, 3M SMS, and 680M+ transactions per month on Percona Server for MySQL, and achieved zero unplanned downtime with 24x7 ExpertOps Proactive Database Management (previously Managed Services).
+- Backup and restore across environments: [Percona XtraBackup](https://docs.percona.com/new/2026/06/04/percona-xtrabackup-8035-36-has-been-released/) provides hot backup and restore for MySQL-compatible servers on bare metal, VMs, and cloud object stores, including the release supplied with [Percona Distribution for MySQL 8.0.46](https://docs.percona.com/new/2026/06/10/percona-distribution-for-mysql-8046-using-percona-server-for-mysql-has-been-released/). Percona XtraBackup removes backups correctly from Azure Data Lake Storage Gen2 accounts with hierarchical namespace enabled, where deletion previously failed, and streamlines sparse file handling to reduce backup overhead on thin-provisioned storage, helping teams keep retention policies enforceable and recovery paths tested.
 
 **Security, Sovereignty, and Compliance**
 
