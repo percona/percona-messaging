@@ -14,4 +14,6 @@ Percona offers three complementary ways to meet customer needs across the full l
 
 When the need is a defined outcome on fixed scope with Consulting and Support packaged together, see [solution bundles](solution-bundles/messaging.md).
 
+Engine-specific Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) belongs under `products/{engine}/`, not in offering files here. Offering files describe how Support, ExpertOps, and Consulting work across all supported engines.
+
 Per-file messaging: [expert-support.md](expert-support.md), [expertops.md](expertops.md), [expert-consulting.md](expert-consulting.md). For packaged sold bundles, use `offerings/solution-bundles/`.
