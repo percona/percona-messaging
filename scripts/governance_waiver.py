@@ -7,13 +7,11 @@ from pathlib import Path
 
 CHECK_NEW_FILE_GATE = "new_file_gate"
 CHECK_DOC_COVERAGE = "doc_coverage"
-CHECK_DUPLICATE_DETECTOR = "duplicate_detector"
 
 KNOWN_CHECKS = frozenset(
     {
         CHECK_NEW_FILE_GATE,
         CHECK_DOC_COVERAGE,
-        CHECK_DUPLICATE_DETECTOR,
     }
 )
 
