@@ -12,9 +12,9 @@
 
 - Offerings
   - [Overview](/offerings/README.md)
-  - [Expert Support](/offerings/expert-support.md)
-  - [ExpertOps](/offerings/expertops.md)
-  - [Expert Consulting and Services](/offerings/expert-consulting.md)
+  - [Expert Support](/offerings/expert-support/messaging.md)
+  - [ExpertOps](/offerings/expertops/messaging.md)
+  - [Expert Consulting and Services](/offerings/expert-consulting/messaging.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
 - Products
