@@ -16,7 +16,7 @@ Percona **Expert Support** covers **MariaDB Community versions only**, not Maria
 
 - Multi-database vendor consolidation: Teams already working with Percona for MySQL, PostgreSQL, MongoDB-compatible environments, Valkey, or Redis can add **MariaDB Community** Expert Support without taking on a separate database vendor relationship, duplicate SLAs, or slower handoffs when incidents cross engines.
 - Support scope in contract: Expert Support names **MariaDB Community versions only**, so teams know what is covered before a production incident. Estates outside that scope start with a consulting assessment.
-- MySQL Galera Cluster end of life: MariaDB has announced 2026-09-30 as the end of life for maintenance and regular binary releases of MySQL Galera Cluster. Forced HA replatforms are costly even when the database engine itself keeps running. Organizations still on **MySQL Galera Cluster** can plan a move to **Percona XtraDB Cluster** on Percona's maintained Galera fork (releases and long-term support continue on Percona lifecycle terms) or to **Percona Server for MySQL** with MySQL Group Replication when that topology fits better. Teams already on Percona XtraDB Cluster need no migration ([continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/), [Percona for MySQL software](https://www.percona.com/software/mysql-database)).
+- MySQL Galera Cluster end of life: MariaDB has announced 2026-09-30 as the end of life for maintenance and regular binary releases of **MySQL Galera Cluster**. For teams on MySQL Galera Cluster, **Percona XtraDB Cluster** is the natural Galera-to-Galera replacement, with a simpler migration path than crossing database engines. Percona continues to maintain, release, and support PXC on the same lifecycle terms as today; teams already on PXC need no migration ([continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/), [Percona for MySQL software](https://www.percona.com/software/mysql-database)).
 
 **Performance and Reliability at Scale**
 
@@ -28,7 +28,7 @@ Percona **Expert Support** covers **MariaDB Community versions only**, not Maria
 
 - Are you running MariaDB Community or Enterprise in production? (Standard Expert Support covers MariaDB Community only; consulting can scope broader estates.)
 - Do you already use Percona for other databases and maintain MariaDB separately? (MariaDB Community can sit on the same Percona Support relationship.)
-- Are you on MySQL Galera Cluster and tracking its 2026-09-30 end of life? (Plan a move to Percona XtraDB Cluster or Group Replication; PXC customers already on Percona need no migration.)
+- Are you tracking MySQL Galera Cluster's 2026-09-30 end of life? (For MySQL Galera Cluster users, Percona XtraDB Cluster is the natural Galera path; existing PXC customers need no migration.)
 - What MariaDB-specific components or workloads keep you on MariaDB today? (Percona supports Community production now; consulting can scope migration only when those requirements change.)
 
 **Public resources**
