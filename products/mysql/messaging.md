@@ -11,7 +11,7 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 **Optimized TCO**
 
 - Open source with enterprise-grade capabilities: Percona Server for MySQL is a fully open source, enhanced, and backward-compatible replacement for MySQL Community Edition. It serves as a functional alternative to Oracle MySQL Enterprise Edition, delivering many comparable or extended capabilities without proprietary licensing or feature gating.
-- EOL pressure and rising costs: Organizations running MySQL 5.7 or 8.0 face Oracle EOL deadlines or costly RDS extended support. The date-certain external deadline in this cycle is Oracle MySQL 8.0 EOL on 2026-04-30. Percona offers post-EOL security and maintenance coverage, helping customers maintain stability or migrate safely without inflated licensing costs. Teams planning beyond 8.0 should align on Percona Server for MySQL and Percona Distribution for MySQL on supported 8.4 lines rather than treating 8.0 as the default reference release. Percona Server for MySQL continues this commitment with backported fixes and lifecycle coverage options documented in Percona lifecycle policy and release notes. Time To Pet avoided expensive proprietary EOL extensions by migrating safely to Percona Server for MySQL, gaining years of headroom for future growth and full lifecycle assurance.
+- EOL pressure and rising costs: Organizations running MySQL 5.7 or 8.0 face Oracle EOL deadlines or costly RDS extended support. MySQL 8.0 reached End of Life in the community on 21 April 2026. Upgrading to MySQL 8.4 is recommended. For organizations that need more time on MySQL 8.0, Percona offers Extended Life Support (ELS): security and stability updates, optional migration planning, and a clear path to a supported release. ELS subscribers access pre-built binaries through a private repository; community members can build from publicly available source on a quarterly cadence. Percona does not use extended support to lock customers on end-of-life versions. ELS is a bridge while you plan and execute your upgrade. Percona continues Extended Life Support (ELS) for MySQL 5.7 for customers who cannot move to 8.x immediately. Oracle community support for MySQL 5.7 ended in November 2023. Percona Server for MySQL documents ELS and lifecycle coverage options in Percona lifecycle policy and release notes. Time To Pet avoided expensive proprietary EOL extensions by migrating safely to Percona Server for MySQL, gaining years of headroom for future growth and full lifecycle assurance.
 
 **Performance and Reliability at Scale**
 
@@ -42,7 +42,7 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - What is keeping you from moving off MySQL Community or Enterprise Edition? (Expert Support and migration services help reduce downtime and data-loss risk.)
 - Are you satisfied with the cost and support you receive from Oracle for MySQL? (Many teams compare Percona for comparable operational capabilities without proprietary licensing.)
 - What databases besides MySQL does your team support? (Percona provides multi-engine expertise across MySQL, PostgreSQL, MongoDB, and Valkey.)
-- Now that Oracle MySQL 8.0 reached end of life on 2026-04-30, are you still running 8.0? Do you have a plan for support or continuity? (Migrate or upgrade with Percona, or use post-EOL coverage while you finish your plan.)
+- Now that MySQL 8.0 reached End of Life in the community on 21 April 2026, are you still running 8.0? Do you have a plan for support or continuity? (Migrate or upgrade with Percona, or use Extended Life Support (ELS) while you finish your plan.)
 - Are you planning vector search or AI workloads on MySQL without adding another datastore? (Percona is developing native MySQL Vector indexing and a dedicated Binlog Server for reliable point-in-time recovery and replication at scale.)
 - Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Distribution for MySQL and Percona Server for MySQL provide open, inspectable components and documented FIPS mode without Enterprise licensing.)
 - Are you enabling FIPS on the database layer today? (Confirm OS OpenSSL FIPS readiness and Percona Server for MySQL configuration against public FIPS documentation.)
@@ -52,6 +52,6 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - [Percona for MySQL software](https://www.percona.com/software/mysql-database)
 - [Alternative to Enterprise MySQL](https://www.percona.com/alternative-to-enterprise-mysql)
 - [Upgrade to MySQL 8.0 with Percona](https://www.percona.com/upgrading-to-mysql-8-0-with-percona)
-- [Post-MySQL 5.7 EOL support](https://www.percona.com/post-mysql-5-7-eol-support)
+- [MySQL 5.7 Extended Life Support (ELS)](https://www.percona.com/post-mysql-5-7-eol-support)
 - [FIPS compliance for Percona Server for MySQL](https://docs.percona.com/percona-server/8.4/fips.html)
 - [MySQL Vector and Binlog Server roadmap](https://www.percona.com/blog/building-the-future-of-mysql-announcing-plans-for-mysql-vector-support-and-a-mysql-binlog-server/)
