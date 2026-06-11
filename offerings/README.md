@@ -25,17 +25,13 @@ Percona also offers **database training** as a complementary service. Training b
 
 ## Directory layout
 
-```
-offerings/
-  expert-support/messaging.md
-  expertops/messaging.md
-  expert-consulting/messaging.md
-  solution-bundles/               # Fixed-scope Consulting + Support packages
-```
-
 | Path | Purpose |
 | --- | --- |
 | [expert-support/messaging.md](expert-support/messaging.md) | Expert Support positioning |
 | [expertops/messaging.md](expertops/messaging.md) | ExpertOps positioning |
 | [expert-consulting/messaging.md](expert-consulting/messaging.md) | Expert Consulting and Services positioning |
 | [solution-bundles/messaging.md](solution-bundles/messaging.md) | Packaged Consulting + Support bundles |
+
+Engine-specific Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) belongs under `products/{engine}/`, not in offering files here. Offering files describe how Support, ExpertOps, and Consulting work across all supported engines.
+
+
