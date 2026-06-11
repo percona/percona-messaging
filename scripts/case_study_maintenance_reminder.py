@@ -26,7 +26,10 @@ CANONICAL_LOCATIONS = [
 def load_registry(path: Path) -> dict:
     if not path.exists():
         return {"version": 1, "last_reviewed_utc": "", "case_studies": []}
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {"version": 1, "last_reviewed_utc": "", "case_studies": []}
     if not isinstance(payload, dict):
         return {"version": 1, "last_reviewed_utc": "", "case_studies": []}
     studies = payload.get("case_studies")
