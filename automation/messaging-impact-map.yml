@@ -38,9 +38,9 @@ rules:
       - "reference/banned-terms.md"
       - "framework/core-positioning.md"
       - "framework/why-percona.md"
-      - "offerings/expert-support.md"
-      - "offerings/expertops.md"
-      - "offerings/expert-consulting.md"
+      - "offerings/expert-support/messaging.md"
+      - "offerings/expertops/messaging.md"
+      - "offerings/expert-consulting/messaging.md"
     suggest_globs:
       - "use-cases-value-pillars/*.md"
       - "products/**/messaging.md"
@@ -50,7 +50,7 @@ rules:
     severity: warn
     triggers:
       file_globs:
-        - "offerings/*.md"
+        - "offerings/**/*.md"
         - "reference/*.md"
       diff_regex:
         - "(?i)expert support"
@@ -58,9 +58,9 @@ rules:
         - "(?i)consulting"
         - "(?i)managed services"
     must_review:
-      - "offerings/expert-support.md"
-      - "offerings/expertops.md"
-      - "offerings/expert-consulting.md"
+      - "offerings/expert-support/messaging.md"
+      - "offerings/expertops/messaging.md"
+      - "offerings/expert-consulting/messaging.md"
       - "reference/canonical-naming.md"
       - "framework/core-positioning.md"
     suggest_globs:
