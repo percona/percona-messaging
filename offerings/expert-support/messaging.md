@@ -8,6 +8,8 @@ Expert Support provides 24×7 incident response, troubleshooting, and advisory g
 - **Problems Expert Support solves:** Outages and other urgent incidents, replication or high availability failures, performance regressions, uncertain upgrade or migration plans, lifecycle and EOL transition risk, and hard architectural questions.
 - **Outcomes Expert Support delivers:** Faster incident resolution with clear SLAs, confident execution of customer-led changes, reduced operational risk through expert validation, access to upstream-level engineering knowledge, and clearer decision support for lifecycle and EOL transitions based on published release and policy signals.
 
+Unlike [ExpertOps](../expertops/messaging.md), Expert Support is reactive and advisory: Percona guides and your team executes operational work in production.
+
 ## Common scenarios
 
 - **Production incidents:** Outage response and restoration when production is at risk, with SLA-backed escalation.
