@@ -19,6 +19,17 @@
     "https://docs.percona.com/new/2026/04/17/percona-toolkit-v371-3-has-been-released/",
     "https://docs.percona.com/new/2026/04/21/etcd-security-update-available-for-percona-distribution-for-postgresql/",
     "https://docs.percona.com/new/2026/04/22/percona-build-of-proxysql-306-has-been-released/",
-    "https://docs.percona.com/new/2026/04/22/percona-distribution-for-mysql-848-using-percona-xtradb-cluster-has-been-released/"
+    "https://docs.percona.com/new/2026/04/22/percona-distribution-for-mysql-848-using-percona-xtradb-cluster-has-been-released/",
+    "https://docs.percona.com/new/2026/04/24/patroni-412-update-for-percona-distribution-for-postgresql/",
+    "https://docs.percona.com/new/2026/04/30/percona-monitoring-and-management-371-has-been-released/",
+    "https://docs.percona.com/new/2026/05/15/percona-distribution-for-postgresql-17101--1614-1518-and-1423-have-been-released/",
+    "https://docs.percona.com/new/2026/05/15/percona-transparent-data-encryption-pg_tde-220-has-been-released/",
+    "https://docs.percona.com/new/2026/05/20/percona-distribution-for-postgresql-1841-has-been-released/",
+    "https://docs.percona.com/new/2026/05/22/percona-operator-for-postgresql-300-has-been-released/",
+    "https://docs.percona.com/new/2026/05/28/percona-monitoring-and-management-380-has-been-released/",
+    "https://docs.percona.com/new/2026/06/04/percona-xtrabackup-8035-36-has-been-released/",
+    "https://docs.percona.com/new/2026/06/05/percona-operator-for-mysql-based-on-percona-xtradb-cluster-1200-has-been-released/",
+    "https://docs.percona.com/new/2026/06/10/percona-distribution-for-mysql-8046-using-percona-server-for-mysql-has-been-released/",
+    "https://docs.percona.com/new/2026/06/10/percona-server-for-mysql-8046-37-has-been-released/"
   ]
 }
