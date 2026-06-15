@@ -16,3 +16,5 @@ Unlike [ExpertOps](../expertops/messaging.md), Expert Support is reactive and ad
 - **Planned changes:** Expert review and guidance on upgrades, migrations, and configuration changes the customer team executes.
 - **Performance and availability:** Replication, high availability, and performance regressions when internal teams need help getting unstuck.
 - **Lifecycle and EOL:** Upgrade path and transition decisions grounded in published release and policy signals.
+- **Kubernetes operator planning:** Architecture and cutover plan review for Percona Operator deployments (topology, storage, backups, PMM integration); the customer platform team executes install and Day-2 runbooks, with expert validation at key gates.
+- **Operator production escalations:** SLA-backed incident response and advisory troubleshooting for failover, backup and recovery, replication, and upgrade failures on customer-run operator clusters.
