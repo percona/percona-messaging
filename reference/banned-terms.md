@@ -21,6 +21,7 @@ Never use in any Percona content:
 | Managed Services | Percona ExpertOps                | "Managed Services" acceptable only for historical context ("formerly Managed Services") |
 | Percona Link     | Percona ClusterSync              | "Previously Percona Link" acceptable for historical context                             |
 | GR ticket / GR   | Jira ticket / Jira design ticket | Always use Jira terminology                                                             |
+| post-EOL support, Post-EOL Support, Percona EOL Support, Extended Life Support | **Extended Lifecycle Support (ELS)** | Program name for MySQL and MongoDB post-EOL coverage. EOL alone is deadline state, not the program SKU. |
 
 ## Formatting rules
 
