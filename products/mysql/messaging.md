@@ -16,6 +16,9 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 **Performance and Reliability at Scale**
 
 - Performance degradation under load: High-concurrency applications often face throughput drops and latency spikes. Percona Server for MySQL includes thread pooling, user statistics, and other extended instrumentation for better resource management. Layer7 processes 200M calls, 3M SMS, and 680M+ transactions per month on Percona Server for MySQL, and achieved zero unplanned downtime with 24x7 ExpertOps Proactive Database Management (previously Managed Services).
+- High availability without vendor roadmap dependency: **Percona XtraDB Cluster** runs Percona's own open source Galera fork for synchronous multi-primary HA with split-brain prevention and WAN-friendly weighted quorum, a vendor-independent HA home that does not depend on another vendor's roadmap. **MySQL Group Replication** is supported through the [Percona Operator for MySQL (Percona Server)](https://docs.percona.com/percona-operator-for-mysql/ps/index.html) (GA since November 2025) or on Percona Distribution for MySQL deployments. Percona supports whichever topology fits your architecture; neither path depends on a vendor's roadmap.
+- MySQL Galera Cluster end of life: MariaDB has announced 2026-09-30 as the end of life for maintenance and regular binary releases of **MySQL Galera Cluster**. For teams still on MySQL Galera Cluster, **Percona XtraDB Cluster** is the natural replacement: both use Galera synchronous multi-primary HA, so the migration path is far simpler than crossing to a different database engine. Percona continues to maintain, release, and support PXC on the same lifecycle terms as today, including our own open Galera fork; teams already on PXC need no migration. **MySQL Group Replication** remains a supported alternative when that topology fits better ([continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/)).
+- Continuous reliability investment: Percona XtraDB Cluster releases continue to harden the HA stack, including improvements for state transfer behavior, trigger consistency, and maintenance operations in rolling update paths.
 
 **Security, Sovereignty, and Compliance**
 
@@ -24,7 +27,6 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 **Adaptability for Emerging Workloads**
 
 - Kubernetes operator choice by topology: Percona maintains **three** MySQL operator deployment paths on Kubernetes. The [Percona Operator for MySQL (PXC)](https://docs.percona.com/percona-operator-for-mysql/pxc/index.html) line automates **Percona XtraDB Cluster** for synchronous multi-primary HA. The [Percona Operator for MySQL (Percona Server)](https://docs.percona.com/percona-operator-for-mysql/ps/index.html) line delivers production-grade automation for **standalone Percona Server for MySQL**, with point-in-time recovery and incremental backups in technical preview where documented. The same Percona Server for MySQL operator line ships **MySQL Group Replication** as its GA topology (distinct from the PXC operator), offering strongly consistent HA with asynchronous replication in technical preview where documented. Pick the path that matches your HA model.
-- Continuous reliability investment: Percona XtraDB Cluster releases continue to harden the HA stack, including improvements for state transfer behavior, trigger consistency, and maintenance operations in rolling update paths.
 
 ### Sales enablement
 
@@ -46,9 +48,12 @@ MySQL is powerful, but teams running diverse infrastructure often face release c
 - Are you planning vector search or AI workloads on MySQL without adding another datastore? (Percona is developing native MySQL Vector indexing and a dedicated Binlog Server for reliable point-in-time recovery and replication at scale.)
 - Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Distribution for MySQL and Percona Server for MySQL provide open, inspectable components and documented FIPS mode without Enterprise licensing.)
 - Are you enabling FIPS on the database layer today? (Confirm OS OpenSSL FIPS readiness and Percona Server for MySQL configuration against public FIPS documentation.)
+- Which HA model fits your architecture: synchronous multi-primary (Percona XtraDB Cluster / Galera) or Group Replication? (Percona supports both through software, operators, and Expert Support; pick the topology that matches your requirements.)
+- Are you on MySQL Galera Cluster and tracking its 2026-09-30 end of life? (PXC is the natural Galera-to-Galera replacement; Percona continues releases and long-term support as before.)
 
 **Public resources**
 
+- [Continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/)
 - [Percona for MySQL software](https://www.percona.com/software/mysql-database)
 - [Alternative to Enterprise MySQL](https://www.percona.com/alternative-to-enterprise-mysql)
 - [Upgrade to MySQL 8.0 with Percona](https://www.percona.com/upgrading-to-mysql-8-0-with-percona)
