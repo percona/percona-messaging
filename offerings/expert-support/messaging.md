@@ -15,4 +15,4 @@ Unlike [ExpertOps](../expertops/messaging.md), Expert Support is reactive and ad
 - **Production incidents:** Outage response and restoration when production is at risk, with SLA-backed escalation.
 - **Planned changes:** Expert review and guidance on upgrades, migrations, and configuration changes the customer team executes.
 - **Performance and availability:** Replication, high availability, and performance regressions when internal teams need help getting unstuck.
-- **Lifecycle and EOL:** Upgrade path and transition decisions grounded in published release and policy signals.
+- **Extended Lifecycle Support (ELS):** When database versions reach End of Life (EOL), Percona experts help teams plan upgrades, align CVE backports to their risk window, and move to supported releases. Expert Support covers Extended Lifecycle Support (ELS) for MySQL and MongoDB, grounded in published release and lifecycle policy.
