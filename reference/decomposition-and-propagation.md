@@ -155,7 +155,7 @@ Anchor prompts with repository policy, not generic model defaults:
 
 ### Step 6: Post-merge maintenance
 
-- **Automation now:** scheduled jobs can open maintenance artifacts (for example staleness/case-study workflows).
+- **Automation now:** scheduled jobs can open maintenance artifacts (for example staleness and case study maintenance reminders).
 - **Human now:** triage maintenance items and feed durable learnings back through issues/PRs.
 
 <details>
