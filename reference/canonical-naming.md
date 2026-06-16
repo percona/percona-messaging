@@ -19,6 +19,18 @@
 | Lifecycle model  | **Run / Operate / Observe**                 | None                                                             | **Internal only.** Used to describe the software lifecycle framing.                                                                                                                                                                                                                        |
 | Support tiers    | **Advanced Support**, **Premium Support**   | None                                                             | Keep "Support" attached for clarity when referencing SLAs or response times.                                                                                                                                                                                                               |
 
+## End-of-life program naming (ELS)
+
+Percona’s paid program for security and stability updates after a database version reaches End of Life (EOL) is **Extended Lifecycle Support (ELS)**. Use this name for MySQL and MongoDB in customer-facing copy. Retain **End of Life (EOL)** only for deadline state (community or vendor EOL dates), not as a program label.
+
+| Context | Use this | Not this |
+| --- | --- | --- |
+| Percona post-EOL program (MySQL, MongoDB) | **Extended Lifecycle Support (ELS)** | Extended Life Support, post-EOL support, Post-EOL Support, Percona EOL Support |
+| Third-party vendor extended support | vendor extended support, RDS extended support | (Do not relabel as Percona ELS) |
+| EOL as a date or state | End of Life (EOL), community EOL, reached end of life | EOL Support (as a program SKU) |
+
+Live web paths and legacy PDFs may still say post-EOL support until commercial assets are updated. Canonical messaging in this repo should use **Extended Lifecycle Support (ELS)** so future edits do not drift back to deprecated program names.
+
 ## MongoDB wording in capability copy
 
 - For generic capability coverage, use "MongoDB-compatible environments" or "MongoDB services monitored by PMM."
