@@ -16,7 +16,6 @@ PMM provides observability for backup operations and backup health indicators, w
 
 - High licensing costs and vendor lock-in: MongoDB Enterprise Advanced and Atlas introduce restrictive licensing and escalating subscription fees. Percona Server for MongoDB removes license cost while retaining major enterprise features, cutting total database spend by up to 50%. BBVA (global bank) chose Percona for its MongoDB workload migration to avoid license costs.
 - Migration with expert-led cutover: Teams moving from MongoDB Enterprise Advanced, Atlas, or Community to self-managed Percona Server for MongoDB need production to stay available while the target is validated. [Percona ClusterSync for MongoDB](https://docs.percona.com/percona-clustersync-for-mongodb/) provides cluster-to-cluster synchronization, near-zero-downtime migration, and a controlled cutover. Percona Expert Support and ExpertOps help teams validate architecture, plan cutover timing, and run checks against [supported deployments](https://docs.percona.com/percona-clustersync-for-mongodb/system-requirements.html) so the target environment is performant and operationally supportable before go-live.
-- End-of-life continuity: For MongoDB releases that have reached end of life in the community, Percona offers Extended Lifecycle Support (ELS) with security updates, stability fixes, and migration planning toward a supported release.
 
 **Performance and Reliability at Scale**
 
