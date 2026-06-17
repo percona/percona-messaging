@@ -59,7 +59,7 @@ Revisit once you have a few months of throughput data (volume of PRs, reviewer l
 
 - **During drafting/review:** terminology and governance checks run via pull request workflows (see `[.github/workflows/](.github/workflows/)`).
 - **During impact assessment:** impact map and suggestion logic surface **rule-backed** propagation hints (see [automation/messaging-impact-map.yml](automation/messaging-impact-map.yml) and [automation/claim-types.yml](automation/claim-types.yml)). They complement, but do not replace, structured decomposition in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md).
-- **During quality control:** duplicate and coverage/new-file checks guard against one-off sprawl and undiscoverable docs.
+- **During quality control:** new-file and doc coverage checks guard against one-off sprawl and undiscoverable docs.
 - **During maintenance:** staleness and case study maintenance reminders support periodic housekeeping issues.
 
 **Worth measuring as you go:** per-check or per-category **true positive rate** (did it catch a real miss?); **false positive burden** (how often contributors dismiss or work around a check); and **coverage** (what share of merged messaging PRs touched paths the impact map cares about). Those three tell you whether to tighten rules, widen training, or adjust AI scope for other teams copying the model.
@@ -91,7 +91,7 @@ The program has tended to run with these defaults (they can flex):
 - Tightened `README.md` repository map with explicit examples (including managed services / `ExpertOps`).
 - Added decomposition routing guidance in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) and linked it from [CONTRIBUTING.md](CONTRIBUTING.md), [GOVERNANCE.md](GOVERNANCE.md), and [README.md](README.md).
 
-**Worth measuring as you go:** new-file versus update-existing ratio (sprawl signal); duplicate or near-duplicate claims caught before merge; and how often decomposition guidance gets cited in PR discussion (adoption of the default path).
+**Worth measuring as you go:** new-file versus update-existing ratio (sprawl signal); and how often decomposition guidance gets cited in PR discussion (adoption of the default path).
 
 ### Workstream 2: Governance and ownership
 
@@ -111,7 +111,7 @@ The program has tended to run with these defaults (they can flex):
 ### Workstream 3: Automation program
 
 - **3.1 Tool-fit design:** start from the use case, then pick a mechanism (deterministic rule, AI-assisted check, or hybrid).
-- **3.2 Failure-mode mapping:** each automation maps to a failure mode the team cares about (for example naming drift, missed propagation, duplicate content, stale docs), with scope sized to match maturity.
+- **3.2 Failure-mode mapping:** each automation maps to a failure mode the team cares about (for example naming drift, missed propagation, stale docs), with scope sized to match maturity.
 - **3.3 Scope reassessment:** as coverage grows, it is reasonable to revisit whether a rule, hybrid, or other approach still fits.
 - **3.4 Rollout tracking:** milestones and owners for automation land wherever the program tracks execution (often issues).
 
