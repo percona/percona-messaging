@@ -34,6 +34,8 @@ Exact boundaries are agreed at onboarding and recorded in the subscription.
 - **Seasonal or event traffic:** Dedicated operational coverage during spikes and steady-state tuning afterward.
 - **Post-migration day-two operations:** Consistent backup behavior, policy alignment, and monitoring after cutover (for example, migration to Percona Operator for MongoDB on Kubernetes).
 - **Staffing gaps:** 24/7 operational coverage without full-time hires.
+- **Operator fleet operations:** Hands-on monitoring, backup validation, tuning, patching, and upgrade execution for MySQL, PostgreSQL, and MongoDB clusters on Percona Operators when customers want Percona to run Day-2 work instead of advising on it.
+- **Operator migration and cutover (scoped):** Percona-led moves to operator-managed clusters from VMs, managed services, or legacy StatefulSets, plus post-cutover stabilization, when migration and operational hours are defined in the agreement.
 - **DBaaS exit or hybrid operations:** Operational partnership after moving from managed database services to customer-controlled infrastructure while retaining expert coverage.
 
 ## Customer evidence
