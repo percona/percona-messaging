@@ -60,7 +60,7 @@ Revisit once you have a few months of throughput data (volume of PRs, reviewer l
 - **During drafting/review:** terminology and governance checks run via pull request workflows (see `[.github/workflows/](.github/workflows/)`).
 - **During impact assessment:** impact map and suggestion logic surface **rule-backed** propagation hints (see [automation/messaging-impact-map.yml](automation/messaging-impact-map.yml) and [automation/claim-types.yml](automation/claim-types.yml)). They complement, but do not replace, structured decomposition in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md).
 - **During quality control:** new-file and doc coverage checks guard against one-off sprawl and undiscoverable docs.
-- **During maintenance:** staleness/case-study monitoring supports periodic housekeeping issues.
+- **During maintenance:** staleness and case study maintenance reminders support periodic housekeeping issues.
 
 **Worth measuring as you go:** per-check or per-category **true positive rate** (did it catch a real miss?); **false positive burden** (how often contributors dismiss or work around a check); and **coverage** (what share of merged messaging PRs touched paths the impact map cares about). Those three tell you whether to tighten rules, widen training, or adjust AI scope for other teams copying the model.
 
@@ -117,7 +117,7 @@ The program has tended to run with these defaults (they can flex):
 
 #### Workstream 3 story
 
-- Established checks and scaffolding for terminology, impact, smart suggestions, content governance gates, and staleness and case-study monitoring.
+- Established checks and scaffolding for terminology, impact, smart suggestions, content governance gates, staleness reporting, and case study maintenance reminders.
 - Added support scripts and maps in [scripts/README.md](scripts/README.md), [automation/README.md](automation/README.md), and [data/README.md](data/README.md).
 - Updated contribution and governance docs so automation behavior is documented where contributors look first.
 
