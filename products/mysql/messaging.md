@@ -58,7 +58,7 @@ MySQL is powerful, but teams running diverse infrastructure often face subscript
 - Are you satisfied with the cost and support you receive from Oracle for MySQL? (Many teams compare Percona for comparable operational capabilities without proprietary licensing.)
 - What databases besides MySQL does your team support? (Percona provides multi-engine expertise across MySQL, PostgreSQL, MongoDB, and Valkey.)
 - Now that MySQL 8.0 reached End of Life in the community on 21 April 2026, are you still running 8.0? Do you have a plan for support or continuity? (Migrate or upgrade with Percona, or use Extended Lifecycle Support (ELS) while you finish your plan.)
-- Are you planning vector search or AI workloads on MySQL without adding another datastore? (Percona is developing native MySQL Vector indexing and a dedicated Binlog Server for reliable point-in-time recovery and replication at scale.)
+- Are you planning vector search or AI workloads on MySQL without adding another datastore? (Percona is developing native MySQL vector capabilities and a dedicated Binlog Server for reliable point-in-time recovery and replication at scale.)
 - Are you on MySQL Galera Cluster and tracking its 2026-09-30 end of life? (PXC is the natural Galera-to-Galera replacement; Percona continues releases and long-term support as before.)
 
 **Public resources**
