@@ -26,7 +26,8 @@
 # /products/mysql/                             @briana-swift @val-bogatyreva @dennis-kittrell
 /products/mysql/                             @brianamarie @thefactremains
 # /products/postgresql/                        @briana-swift @kai-wagner @janwieremjewicz
-/products/postgresql/                        @brianamarie @ImTheKai @janwieremjewicz
+# PG product experts are requested manually; see PostgreSQL review cadence in CONTRIBUTING.md.
+/products/postgresql/                        @brianamarie
 # /products/mongodb/                           @briana-swift @val-bogatyreva @puneet-kala 
 /products/mongodb/                           @brianamarie
 # /products/valkey-redis/                      @briana-swift @kyle-davis

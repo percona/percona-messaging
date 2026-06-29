@@ -8,9 +8,13 @@ Expert Support provides 24×7 incident response, troubleshooting, and advisory g
 - **Problems Expert Support solves:** Outages and other urgent incidents, replication or high availability failures, performance regressions, uncertain upgrade or migration plans, lifecycle and EOL transition risk, and hard architectural questions.
 - **Outcomes Expert Support delivers:** Faster incident resolution with clear SLAs, confident execution of customer-led changes, reduced operational risk through expert validation, access to upstream-level engineering knowledge, and clearer decision support for lifecycle and EOL transitions based on published release and policy signals.
 
+Unlike [ExpertOps](../expertops/messaging.md), Expert Support is reactive and advisory: Percona guides and your team executes operational work in production.
+
 ## Common scenarios
 
 - **Production incidents:** Outage response and restoration when production is at risk, with SLA-backed escalation.
 - **Planned changes:** Expert review and guidance on upgrades, migrations, and configuration changes the customer team executes.
 - **Performance and availability:** Replication, high availability, and performance regressions when internal teams need help getting unstuck.
-- **Lifecycle and EOL:** Upgrade path and transition decisions grounded in published release and policy signals.
+- **Extended Lifecycle Support (ELS):** When database versions reach End of Life (EOL), Percona experts help teams plan upgrades, align CVE backports to their risk window, and move to supported releases. Expert Support covers Extended Lifecycle Support (ELS) for MySQL and MongoDB, grounded in published release and lifecycle policy.
+- **Kubernetes operator planning:** Architecture and cutover plan review for databases on Kubernetes (topology, storage, backups, PMM integration); the customer platform team executes install and Day-2 runbooks, with expert validation at key gates.
+- **Operator production escalations:** SLA-backed incident response and advisory troubleshooting for failover, backup and recovery, replication, and upgrade failures on customer-run operator clusters.
