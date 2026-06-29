@@ -9,7 +9,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 - `**.github/workflows/**`: when automation runs (triggers, permissions, PR comments, scheduled jobs).
 - `**scripts/**`: what automation executes (Python logic for checks, reports, and sync tasks).
 - `**automation/**`: automation inputs (impact map, claim categories, and other config data).
-- `**data/**`: machine-readable inputs/outputs used by automation (for example case-study registry and processed RSS GUID state).
+- `**data/**`: machine-readable inputs/outputs used by automation (for example the manual case-study registry and processed RSS GUID state).
 
 ## Documentation ownership boundary
 
@@ -35,11 +35,11 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script            | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist                         |
 | `.github/workflows/impact-slash-commands.yml`     | PR comments beginning with `/impact-ok`, `/impact-reset`, or `/impact-all` | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
 | `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script            | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates                              |
-| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/duplicate_detector.py`, `scripts/governance_waiver.py` | PR template + markdown corpus + hidden waiver comment               | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/governance_waiver.py` | PR template + markdown corpus + hidden waiver comment               | PR governance comment; fails on blocking checks                    |
 | `.github/workflows/governance-slash-commands.yml` | PR comments `/governance-ok`, `/governance-reset`, `/governance-all` | same governance scripts                                                                      | hidden waiver comment (`messaging-governance-waiver-data:v1`)      | Updates waivers, refreshes governance comment, reruns governance workflow |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
 | `.github/workflows/pr-reviewer-sla-reminder.yml` | Weekday schedule + manual dispatch                | `scripts/github/pr_reviewer_sla_reminder.js`                                                 | optional repo variables (threshold, skip labels)                     | Upserts a single PR comment when review queue latency exceeds threshold |
-| `.github/workflows/case-study-monitor.yml`        | Weekly schedule + manual dispatch                 | `scripts/sync_case_studies.py`, `scripts/suggest_updates.py`                                 | external feed -> `data/case-studies.json`                           | Creates/updates automation PR with refreshed data                  |
+| `.github/workflows/case-study-maintenance-reminder.yml` | Monthly schedule + manual dispatch           | `scripts/case_study_maintenance_reminder.py`                                                 | `data/case-studies.json` (manual registry)                          | Upserts a maintenance issue to review published case studies         |
 | `.github/workflows/prose-and-links.yml`           | PR touching markdown or prose config              | *(none, uses marketplace actions)*                                                           | `_typos.toml`, `.lychee.toml`, `.markdownlint.yaml`                 | Spelling, markdown structure, external link health                 |
 | `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch  | `scripts/quarterly_lychee_citation_review_issue.py`                                          | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
 | `.github/workflows/docs-whats-new-monitor.yml` | Daily schedule + manual dispatch (opt-in) | `scripts/docs_whats_new_monitor.py` | RSS feed + `data/docs_whats_new_seen_guids.json` | New `product-update` issues (backup intake) |
@@ -62,7 +62,7 @@ When enabled, scheduled automation watches that feed and opens GitHub issues ali
 
 **Cadence and limits:** the feed only exposes a bounded number of recent items; keep the workflow enabled and on a daily schedule so new announcements are not missed before they roll off the feed.
 
-**Dedupe behavior:** two layers: (1) `prepare` skips RSS item GUIDs already listed in `data/docs_whats_new_seen_guids.json` on `main`; (2) before opening an issue, the workflow searches for the stable `whatsnew-feed:<hash>` token in existing issue bodies (open or closed). After each run with new items, processed GUIDs are merged into the state file and proposed on branch `automation/docs-whats-new-state` via an automation PR (same pattern as [case-study-monitor.yml](.github/workflows/case-study-monitor.yml)), so state updates do not require bypassing branch protection on `main`. Issue search still prevents duplicate intake if the state PR is not merged yet; merge state PRs promptly so `prepare` stops re-queuing feed items.
+**Dedupe behavior:** two layers: (1) `prepare` skips RSS item GUIDs already listed in `data/docs_whats_new_seen_guids.json` on `main`; (2) before opening an issue, the workflow searches for the stable `whatsnew-feed:<hash>` token in existing issue bodies (open or closed). After each run with new items, processed GUIDs are merged into the state file and proposed on branch `automation/docs-whats-new-state` via an automation PR so state updates do not require bypassing branch protection on `main`. Issue search still prevents duplicate intake if the state PR is not merged yet; merge state PRs promptly so `prepare` stops re-queuing feed items.
 
 **Area labeling:** classification uses keywords from the RSS title (and falls back to `Area: Cross-product` when no rule matches). Adjust mapping logic in [`.github/workflows/docs-whats-new-monitor.yml`](.github/workflows/docs-whats-new-monitor.yml) when naming patterns change.
 
@@ -71,6 +71,19 @@ When enabled, scheduled automation watches that feed and opens GitHub issues ali
 ```bash
 python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
 ```
+
+## Case study maintenance reminder
+
+**Role:** Percona publishes customer case studies on the public web, but there is no stable machine-readable feed. This workflow replaces the former feed-based case study monitor with a **monthly human review** prompt.
+
+| Detail | Value |
+| ------ | ----- |
+| Workflow | [`.github/workflows/case-study-maintenance-reminder.yml`](.github/workflows/case-study-maintenance-reminder.yml) |
+| Script | [`scripts/case_study_maintenance_reminder.py`](scripts/case_study_maintenance_reminder.py) |
+| Registry | [`data/case-studies.json`](data/case-studies.json) (maintainers update via pull request when proof is adopted) |
+| Schedule | 1st of each month (UTC cron in the workflow file), plus **Actions → Run workflow** for manual runs |
+
+**Behavior:** upserts a single open maintenance issue (marker `<!-- messaging-case-study-maintenance -->`). Each run refreshes the checklist and links to public catalogs. When an open issue already exists, the workflow updates the body and adds a short comment noting the refresh.
 
 ## Reviewer queue SLA reminder
 
@@ -134,8 +147,8 @@ The slash-command workflow stores waiver state in a hidden PR comment and re-run
 
 When maintainers agree a governance gate is satisfied outside automation (or the gate is a false positive):
 
-- Comment `/governance-ok all` or `/governance-all` to waive **all three** blocking gates for that PR (new file justification, doc navigation coverage, duplicate detector).
-- Comment `/governance-ok new-file`, `/governance-ok doc-coverage`, or `/governance-ok duplicate` to waive **one** gate at a time (aliases: `coverage` maps to doc coverage; `dupes` maps to duplicate).
+- Comment `/governance-ok all` or `/governance-all` to waive **both** blocking gates for that PR (new file justification, doc navigation coverage).
+- Comment `/governance-ok new-file` or `/governance-ok doc-coverage` to waive **one** gate at a time (alias: `coverage` maps to doc coverage).
 - Comment `/governance-reset all` to clear waiver state for the PR.
 - Comment `/governance-reset <same token>` to remove one waiver. While `/governance-ok all` is active, a path-specific reset records an exception (same pattern as Impact Check reset paths).
 

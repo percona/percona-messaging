@@ -9,14 +9,13 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `impact_check.py`: checks changed files against `automation/messaging-impact-map.yml`
   - applies waiver state from slash commands (`/impact-ok`, `/impact-reset`, `/impact-all`) including path-specific resets when `all` is active
 - `suggest_updates.py`: generates deterministic suggestion candidates for impacted files
-- `governance_waiver.py`: loads maintainer waiver JSON for `new_file_gate.py`, `check_doc_coverage.py`, and `duplicate_detector.py` (same hidden-comment pattern as Impact Check)
+- `governance_waiver.py`: loads maintainer waiver JSON for `new_file_gate.py` and `check_doc_coverage.py` (same hidden-comment pattern as Impact Check)
 - `new_file_gate.py`: enforces required PR justification fields when new markdown files are added (supports `--waiver-file`)
 - `check_doc_coverage.py`: verifies new markdown docs are linked from repository navigation docs (supports `--waiver-file`)
-- `duplicate_detector.py`: detects high-overlap markdown content to reduce duplication (supports `--waiver-file`)
 
 ## External signal script
 
-- `sync_case_studies.py`: syncs case-study data from an external JSON feed
+- `case_study_maintenance_reminder.py`: builds the body for the monthly case study proof-point maintenance issue
 - `staleness_report.py`: builds scheduled stale-content maintenance reports
 - `quarterly_lychee_citation_review_issue.py`: builds the body for the quarterly CI-excluded citation URL review issue
 - `docs_whats_new_monitor.py`: optional **backup** intake for Percona Documentation What's New RSS items (`bootstrap`, `prepare`, `merge` subcommands); not a substitute for the normal Product release update workflow
@@ -30,18 +29,18 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 - `.github/workflows/impact-check.yml` -> `impact_check.py`
 - `.github/workflows/smart-suggestions.yml` -> `suggest_updates.py`
-- `.github/workflows/content-governance-checks.yml` -> `new_file_gate.py`, `check_doc_coverage.py`, `duplicate_detector.py`, `governance_waiver.py`
+- `.github/workflows/content-governance-checks.yml` -> `new_file_gate.py`, `check_doc_coverage.py`, `governance_waiver.py`
 - `.github/workflows/governance-slash-commands.yml` -> merges `/governance-ok`, `/governance-reset`, `/governance-all` comments into waiver state and reruns Content Governance Checks
 - `.github/workflows/staleness-report.yml` -> `staleness_report.py`
 - `.github/workflows/quarterly-citation-review.yml` -> `quarterly_lychee_citation_review_issue.py`
-- `.github/workflows/case-study-monitor.yml` -> `sync_case_studies.py`, `suggest_updates.py`
+- `.github/workflows/case-study-maintenance-reminder.yml` -> `case_study_maintenance_reminder.py`
 - `.github/workflows/docs-whats-new-monitor.yml` -> `docs_whats_new_monitor.py`
 - `.github/workflows/markdown-hygiene-autofix.yml` -> `markdownlint-cli2 --fix` with `automation/markdown-hygiene-autofix.jsonc`
 - `.github/workflows/scripts-tests.yml` -> `pytest` over `scripts/tests/` (fixture regression suite for Python automation)
 
 ## Regression tests (pytest)
 
-Fixture-driven tests guard core behavior in `impact_check.py`, `suggest_updates.py`, and `new_file_gate.py` without calling the GitHub API (tracked as [issue #21](https://github.com/percona/percona-messaging/issues/21)).
+Fixture-driven tests guard core behavior in `impact_check.py`, `suggest_updates.py`, `new_file_gate.py`, and `case_study_maintenance_reminder.py` without calling the GitHub API (tracked as [issue #21](https://github.com/percona/percona-messaging/issues/21)).
 
 **Local run** (from repository root; reuse the same dependency pin file as workflows):
 
@@ -61,7 +60,35 @@ python -m pytest -q
 Operational ownership note: this section is the canonical home for sign-off execution protocols. Backlog trackers should link here instead of duplicating procedure steps.
 
 - Issue #9 new file gate: see `New file gate sign-off protocol (issue #9)` below and [issue #9](https://github.com/percona/percona-messaging/issues/9).
+- Issue #13 case study maintenance reminder: see `Case study maintenance reminder sign-off protocol (issue #13)` below and [issue #13](https://github.com/percona/percona-messaging/issues/13).
 - Issue #15 multi-check integration smoke: see `Multi-check integration smoke sign-off protocol (issue #15)` below and [issue #15](https://github.com/percona/percona-messaging/issues/15).
+
+## Case study maintenance reminder sign-off protocol (issue #13)
+
+Use this protocol to produce low-lift PASS or FAIL evidence for [`.github/workflows/case-study-maintenance-reminder.yml`](../.github/workflows/case-study-maintenance-reminder.yml) and [`case_study_maintenance_reminder.py`](case_study_maintenance_reminder.py).
+
+### When to use this runbook
+
+- Use when validating issue #13 behavior before go-live sign-off.
+- Use after changing the workflow, the reminder script, or `data/case-studies.json` schema.
+
+### Preconditions
+
+- Merge this pull request (or run from a branch that includes the new workflow) so `workflow_dispatch` is available.
+- No repository variable is required (unlike the former feed-based monitor).
+
+### Deterministic scenarios
+
+1. **Create path:** run **Actions → Case study maintenance reminder → Run workflow** once. Confirm one open issue is created with marker `<!-- messaging-case-study-maintenance -->`, title `Case study proof-point maintenance`, labels `maintenance` and `Content & messaging`, public catalog links, and the maintainer checklist.
+2. **Upsert path:** run the workflow again while that issue is still open. Confirm the issue body refreshes (run date updates) and a short refresh comment is added; confirm no duplicate issue is created.
+3. **Recreate path:** close the maintenance issue, run the workflow again, and confirm a new issue is created.
+
+### Sign-off record
+
+- Post `@brianamarie Sign-off: PASS | FAIL - <one line>` on [issue #13](https://github.com/percona/percona-messaging/issues/13).
+- Add 3 to 5 bullets covering create, upsert, and recreate outcomes.
+
+**Note:** [Issue #13](https://github.com/percona/percona-messaging/issues/13) still describes the removed feed-based monitor in its opening text. This runbook is the canonical validation procedure until that issue body is updated separately.
 
 ## New file gate sign-off protocol (issue #9)
 

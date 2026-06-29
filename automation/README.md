@@ -14,7 +14,6 @@ For the full automation system map (workflows + scripts + config + AI usage), se
 
 - `scripts/impact_check.py` reads `messaging-impact-map.yml` during pull request checks
 - `scripts/suggest_updates.py` combines `messaging-impact-map.yml` and `claim-types.yml` to generate reviewer suggestions
-- `scripts/duplicate_detector.py` uses canonical markdown overlap checks to flag potential duplication
 
 ## Coverage model
 

@@ -32,9 +32,9 @@ Field setup guidance for `Launch track` is maintained in [AUTOMATION.md](../AUTO
 | 8   | Validate: smart suggestions (smart-suggestions.yml + suggest_updates.py)                       | [https://github.com/percona/percona-messaging/issues/8](https://github.com/percona/percona-messaging/issues/8)   |
 | 9   | Validate: new file gate (content-governance-checks + new_file_gate.py)                         | [https://github.com/percona/percona-messaging/issues/9](https://github.com/percona/percona-messaging/issues/9)   |
 | 10  | Validate: doc coverage / navigation links (check_doc_coverage.py)                              | [https://github.com/percona/percona-messaging/issues/10](https://github.com/percona/percona-messaging/issues/10) |
-| 11  | Validate: duplicate content detector (duplicate_detector.py)                                   | [https://github.com/percona/percona-messaging/issues/11](https://github.com/percona/percona-messaging/issues/11) |
+| 11  | ~~Validate: duplicate content detector (duplicate_detector.py)~~ **Removed:** check dropped as low signal ([issue #11](https://github.com/percona/percona-messaging/issues/11)) | [https://github.com/percona/percona-messaging/issues/11](https://github.com/percona/percona-messaging/issues/11) |
 | 12  | Validate: staleness report workflow (staleness-report.yml + staleness_report.py)               | [https://github.com/percona/percona-messaging/issues/12](https://github.com/percona/percona-messaging/issues/12) |
-| 13  | Validate: case study monitor workflow (case-study-monitor.yml + sync_case_studies.py)          | [https://github.com/percona/percona-messaging/issues/13](https://github.com/percona/percona-messaging/issues/13) |
+| 13  | Validate: case study maintenance reminder (case-study-maintenance-reminder.yml)              | [https://github.com/percona/percona-messaging/issues/13](https://github.com/percona/percona-messaging/issues/13) |
 | 14  | Validate: prose and links workflow (typos + markdownlint + lychee)                             | [https://github.com/percona/percona-messaging/issues/14](https://github.com/percona/percona-messaging/issues/14) |
 | 15  | Validate: PR smoke, multiple workflows on one change                                           | [https://github.com/percona/percona-messaging/issues/15](https://github.com/percona/percona-messaging/issues/15) |
 | 16  | Implement: reviewer SLA reminders for stalled PRs                                              | [https://github.com/percona/percona-messaging/issues/16](https://github.com/percona/percona-messaging/issues/16) |
@@ -91,9 +91,9 @@ Use these implementation docs instead of adding execution detail here:
 | A3  | Validate: smart suggestions                                    |                                                                                          |
 | A4  | Validate: new file gate                                        | See `scripts/README.md` (New file gate sign-off protocol for issue #9).                  |
 | A5  | Validate: doc coverage                                         |                                                                                          |
-| A6  | Validate: duplicate detector                                   |                                                                                          |
+| A6  | ~~Validate: duplicate detector~~ **Removed** (see issue #11)                                   |                                                                                          |
 | A7  | Validate: staleness report                                     |                                                                                          |
-| A8  | Validate: case study monitor                                   | Needs `CASE_STUDY_FEED_URL` repo variable when used.                                     |
+| A8  | Validate: case study maintenance reminder                      | Monthly upsert; no repo variable required.                                               |
 | A9  | Optional: multi-check integration smoke (one PR)               | See `scripts/README.md` (Multi-check integration smoke sign-off protocol for issue #15). |
 | A10 | Validate: spelling (`typos` / `_typos.toml`)                   | Use operational docs for tool configuration details.                                     |
 | A11 | Validate: markdown structure (`markdownlint-cli2`)             | Not grammar; tuned for this corpus (see `.markdownlint.yaml`).                           |
@@ -184,7 +184,7 @@ Use these implementation docs instead of adding execution detail here:
 
 - When offerings or positioning change, treat `messaging-impact-map.yml` and `claim-types.yml` as versioned alongside product (same release train).
 - If you later adopt PR launch labels for GTM, add a small consistency check then (N1 was deferred).
-- Case study + staleness automation supports **proof-point** updates when marketing changes claims.
+- Case study maintenance reminder + staleness automation supports **proof-point** updates when marketing changes claims.
 - Decomposition assistant (N5) reduces **missed downstream** when pillar or product pages move.
 - **W9** (downstream-asset registry + notifications) closes the loop when messaging ships but **GTM and web** own slides and pages outside the repo.
 

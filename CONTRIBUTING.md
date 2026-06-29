@@ -64,6 +64,16 @@ Use the same CLI locally as CI:
 - Alignment with the existing framework and surrounding pages
 - Clear notes about downstream impact when a core term or position changes
 
+## PostgreSQL review cadence
+
+PostgreSQL product experts are not auto-requested on every pull request. Tag them manually when product accuracy needs their review.
+
+- Where possible, batch PostgreSQL messaging changes into biweekly pull requests instead of one-off requests on unrelated work.
+- Batch pull requests should hand-pick PostgreSQL-relevant deltas and clearly label the review surface (files, sections, or claims).
+- When pillar or framework files repeat the same PostgreSQL fact from different angles, ask reviewers to start with the canonical wording in `products/postgresql/messaging.md`, not every repeated block.
+- A docs or technical-writing first pass should happen before Jan or Kai where possible, with PostgreSQL experts reserved for product-accuracy questions. That split is not always feasible for now.
+- Target reviewer effort is about fifteen minutes. If the review looks larger, stop and ask for a short live review instead of dropping a giant pull request.
+
 ## Definition of done
 
 - The right canonical file has been updated

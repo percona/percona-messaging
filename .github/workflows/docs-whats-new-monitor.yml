@@ -16,8 +16,7 @@
 #   python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_seen_guids.json
 #
 # After each run with new items, the workflow merges processed GUIDs into the state file and
-# opens an automation PR (same pattern as case-study-monitor) so updates work with branch
-# protection on main without a bot bypass.
+# opens an automation PR so updates work with branch protection on main without a bot bypass.
 
 name: Docs What's New monitor
 
@@ -38,7 +37,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Python
         uses: actions/setup-python@v6
