@@ -53,7 +53,7 @@ MySQL is powerful, but teams running diverse infrastructure often face subscript
 
 **Conversation starters**
 
-- Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Server for MySQL and Percona Distribution for MySQL provide Enterprise-parity audit, authentication, masking, and FIPS capabilities in standard open source builds without Enterprise licensing.)
+- Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Server for MySQL and Percona Distribution for MySQL provide Enterprise-parity audit, authentication (including server-side OpenID Connect), masking, external KMS and local encrypted keyring options, and FIPS capabilities in standard open source builds without Enterprise licensing.)
 - Are you enabling FIPS on the database layer today? (FIPS-capable binaries ship in all supported Percona Server for MySQL builds from 8.4.0-5 onward, and Percona XtraDB Cluster supports FIPS. Confirm OS OpenSSL FIPS readiness and documented configuration.)
 - What is keeping you from moving off MySQL Enterprise Edition? (Migration from MySQL Community Edition is drop-in and in place on a backward-compatible code line. Moving off MySQL Enterprise Edition is feature parity with a straightforward switch; configured Enterprise components do not carry over and must be re-created with equivalent Percona components. Expert Support and migration services help reduce downtime and data-loss risk.)
 - Which HA model fits your architecture: synchronous multi-primary (Percona XtraDB Cluster / Galera) or Group Replication? (Percona supports both through software, operators, and Expert Support; pick the topology that matches your requirements.)
@@ -62,10 +62,11 @@ MySQL is powerful, but teams running diverse infrastructure often face subscript
 - What databases besides MySQL does your team support? (Percona provides multi-engine expertise across MySQL, PostgreSQL, MongoDB, and Valkey.)
 - Now that Oracle MySQL 8.0 reached end of life on 2026-04-30, are you still running 8.0? Do you have a plan for support or continuity? (Migrate or upgrade with Percona, or use Extended Lifecycle Support (ELS) while you finish your plan.)
 - Are you planning vector search or AI workloads on MySQL without adding another datastore? (Percona is developing native MySQL Vector indexing and a dedicated Binlog Server for reliable point-in-time recovery and replication at scale.)
-- Do compliance requirements keep you on MySQL Enterprise Edition? (Percona Distribution for MySQL and Percona Server for MySQL provide open, inspectable components and documented FIPS mode without Enterprise licensing.)
+- Do you need inspectable, self-managed security controls without Enterprise licensing? (Percona Distribution for MySQL and Percona Server for MySQL ship open components, documented FIPS mode, and Enterprise-parity audit and authentication on infrastructure you operate.)
 - Are you enabling FIPS on the database layer today? (Confirm OS OpenSSL FIPS readiness and Percona Server for MySQL configuration against public FIPS documentation.)
 - Do your developers want to write stored procedures and functions in JavaScript without moving to MySQL Enterprise Edition? (Percona Server for MySQL offers JavaScript stored routines as a Tech Preview; try it and send feedback through the Percona Forums to help shape it.)
 - Are you on MySQL Galera Cluster and tracking its 2026-09-30 end of life? (PXC is the natural Galera-to-Galera replacement; Percona continues releases and long-term support as before.)
+- Are you standardizing MySQL authentication on OpenID Connect while Oracle keeps that plugin in MySQL Enterprise Edition? (Percona Server for MySQL provides server-side OpenID Connect authentication in open source builds, including on Percona XtraDB Cluster on the same release.)
 
 **Public resources**
 
