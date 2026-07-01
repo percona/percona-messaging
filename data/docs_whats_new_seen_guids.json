@@ -1,5 +1,10 @@
 {
   "guids": [
+    "https://docs.percona.com/new/2026/01/22/percona-transparent-data-encryption-pg_tde-211-has-been-released/",
+    "https://docs.percona.com/new/2026/01/26/percona-xtrabackup-8035-35-has-been-released/",
+    "https://docs.percona.com/new/2026/02/05/percona-monitoring-and-management-360-has-been-released/",
+    "https://docs.percona.com/new/2026/02/17/percona-distribution-for-mysql-8045-using-percona-server-for-mysql-has-been-released/",
+    "https://docs.percona.com/new/2026/02/17/percona-server-for-mysql-8045-36-has-been-released/",
     "https://docs.percona.com/new/2026/02/25/percona-operator-for-mongodb-1220-has-been-released/",
     "https://docs.percona.com/new/2026/03/02/percona-distribution-for-mysql-8045-using-percona-xtradb-cluster-has-been-released/",
     "https://docs.percona.com/new/2026/03/02/percona-distribution-for-postgresql-1791-1613-1517-and-1422-have-been-released/",
@@ -31,6 +36,9 @@
     "https://docs.percona.com/new/2026/06/05/percona-operator-for-mysql-based-on-percona-xtradb-cluster-1200-has-been-released/",
     "https://docs.percona.com/new/2026/06/10/percona-distribution-for-mysql-8046-using-percona-server-for-mysql-has-been-released/",
     "https://docs.percona.com/new/2026/06/10/percona-server-for-mysql-8046-37-has-been-released/",
-    "https://docs.percona.com/new/2026/06/16/percona-monitoring-and-management-381-has-been-released/"
+    "https://docs.percona.com/new/2026/06/16/percona-monitoring-and-management-381-has-been-released/",
+    "https://docs.percona.com/new/2026/06/17/percona-backup-for-mongodb-2150-has-been-released/",
+    "https://docs.percona.com/new/2026/06/18/percona-server-for-mysql-5744-58-has-been-released/",
+    "https://docs.percona.com/new/2026/06/24/percona-xtrabackup-840-6-has-been-released/"
   ]
 }
