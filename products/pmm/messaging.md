@@ -43,6 +43,6 @@ PMM pairs metrics and Query Analytics with Percona Advisors: bundled Security, C
   - How are slow-query regressions, replication lag, and cache memory pressure currently detected and escalated?
   - What telemetry control, access boundaries, or auditability requirements must observability satisfy?
   - Are licensing or vendor lock-in constraints driving a move toward self-hosted, open source observability?
-- **Fit indicators:** PMM fit is strongest when teams need a self-hosted observability surface with local telemetry control, role-based access boundaries, and one operational view across mixed engines.
+- **Fit indicators:** PMM fit is strongest when teams need a self-hosted observability surface with local telemetry control, role-based access boundaries, and one operational view across mixed engines, including estates where automated or agent-driven workloads increase pressure to catch latency, query, and access regressions before they propagate across dependent systems.
 - **Supported technologies:** PMM covers database observability for MySQL, PostgreSQL, MongoDB, Valkey, and Redis-compatible deployments, backup observability for PBM surfaces, and a Grafana plus VictoriaMetrics (Prometheus-compatible) observability stack.
 

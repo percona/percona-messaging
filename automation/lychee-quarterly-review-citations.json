@@ -17,6 +17,11 @@
       "markdown_files": ["use-cases-value-pillars/future-readiness-ai.md"]
     },
     {
+      "url": "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/building-the-foundations-for-agentic-ai-at-scale",
+      "rationale": "McKinsey often blocks or times out datacenter IPs in CI.",
+      "markdown_files": ["use-cases-value-pillars/future-readiness-ai.md"]
+    },
+    {
       "url": "https://www.bigdatawire.com/this-just-in/idc-survey-finds-data-sovereignty-and-compliance-issues-shaping-it-decisions/",
       "rationale": "Big Data Wire returns 403 to automated clients in CI.",
       "markdown_files": ["use-cases-value-pillars/security-sovereignty-compliance.md"]
