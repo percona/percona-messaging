@@ -18,6 +18,6 @@ Do not add a new top-level pillar file for a use case. Add a bullet under the pa
 - [cost-optimization.md](cost-optimization.md) (use cases: proprietary licensing, extended lifecycle support (ELS), vendor consolidation, reduce cloud spend, workload tuning and rightsizing)
 - [performance-reliability.md](performance-reliability.md) (use cases: business continuity, peak traffic, multi-engine Kubernetes operations, regional expansion)
 - [security-sovereignty-compliance.md](security-sovereignty-compliance.md) (use cases: audit-ready, data governance, regional data residency, US extraterritorial access risk, multi-tenant isolation; sovereignty evidence table)
-- [future-readiness-ai.md](future-readiness-ai.md) (use cases: RAG on PostgreSQL, vector search on Valkey)
+- [future-readiness-ai.md](future-readiness-ai.md) (use cases: RAG on PostgreSQL, self-managed MySQL without managed vector, MySQL with a separate vector store, similarity lookup next to transactional data)
 
 Add new use cases when a distinct situation is not already covered by that file's Solution section. Cross-link to `offerings/solution-bundles/` when a sold package is a strong fit.
