@@ -1,5 +1,285 @@
 {
-  "version": 1,
-  "last_reviewed_utc": "",
-  "case_studies": []
+  "version": 2,
+  "last_reviewed_utc": "2026-07-07T10:05:00Z",
+  "case_studies": [
+    {
+      "id": "bbva",
+      "customer": "BBVA",
+      "title": "MongoDB workload migration; license cost and lock-in avoidance",
+      "url": "https://www.percona.com/customer-story/bbva-migrates-document-oriented-database-nosql-workloads-to-percona-avoiding-license-costs-and-lock-in/",
+      "status": "adopted_in_messaging",
+      "products": ["mongodb"],
+      "primary_pillar": "cost-optimization",
+      "secondary_pillars": ["performance-reliability"],
+      "headline_stats": [
+        "Avoided MongoDB Enterprise license costs and vendor lock-in",
+        "Migrated document-oriented workloads to Percona Server for MongoDB"
+      ],
+      "use_cases": ["licensing", "migration", "vendor_lock_in"],
+      "canonical_locations": [
+        "products/mongodb/messaging.md"
+      ]
+    },
+    {
+      "id": "carpages-ca",
+      "customer": "Carpages.ca",
+      "title": "Zero-downtime migrations and Kubernetes portability",
+      "url": "https://www.percona.com/about-percona/case-studies/carpagesca",
+      "status": "adopted_in_messaging",
+      "products": ["mysql", "kubernetes", "pmm"],
+      "primary_pillar": "performance-reliability",
+      "secondary_pillars": ["future-readiness-ai"],
+      "headline_stats": [
+        "Zero-downtime migrations across Kubernetes environments",
+        "60-100% traffic growth handling with continuous uptime",
+        "Unified Percona Server for MySQL, XtraDB Cluster, ProxySQL, Operator, and PMM"
+      ],
+      "use_cases": ["kubernetes", "migration", "portability", "high_availability"],
+      "canonical_locations": [
+        "framework/why-percona.md"
+      ]
+    },
+    {
+      "id": "leadbyte",
+      "customer": "LeadByte",
+      "title": "Aurora to Percona XtraDB Cluster migration",
+      "url": "https://www.percona.com/about-percona/case-studies/leadbyte-migrates-from-aws-to-percona",
+      "status": "adopted_in_messaging",
+      "products": ["mysql"],
+      "primary_pillar": "cost-optimization",
+      "secondary_pillars": ["performance-reliability"],
+      "headline_stats": [
+        "Migrated from AWS Aurora to self-managed Percona XtraDB Cluster",
+        "Higher availability and performance",
+        "Eliminated cloud licensing premiums"
+      ],
+      "use_cases": ["migration", "cloud_portability", "licensing", "high_availability"],
+      "canonical_locations": [
+        "framework/why-percona.md"
+      ]
+    },
+    {
+      "id": "minsait",
+      "customer": "Minsait",
+      "title": "Tier-one telecom MongoDB migration to Google Cloud",
+      "url": "https://www.percona.com/customer-story/minsait-migrates-tier-1-telecoms-customers-to-mongodb-on-google-cloud-with-percona/",
+      "status": "adopted_in_messaging",
+      "products": ["mongodb", "kubernetes"],
+      "offerings": ["expertops"],
+      "primary_pillar": "cost-optimization",
+      "secondary_pillars": ["performance-reliability"],
+      "headline_stats": [
+        "Tier-one telecom workloads on Google Cloud",
+        "Significant cost savings versus prior DBaaS deployment",
+        "Business-critical billing platform supported with ExpertOps"
+      ],
+      "use_cases": ["migration", "kubernetes", "telecom", "dbaas_cost"],
+      "canonical_locations": [
+        "products/mongodb/messaging.md",
+        "offerings/expertops/messaging.md"
+      ]
+    },
+    {
+      "id": "optimum-instruments",
+      "customer": "Optimum Instruments",
+      "title": "ExpertOps and PMM reduce downtime and staffing burden",
+      "url": "https://experience.percona.com/case-study/optimum-instruments/",
+      "status": "adopted_in_messaging",
+      "products": ["mysql", "pmm"],
+      "offerings": ["expertops"],
+      "primary_pillar": "cost-optimization",
+      "secondary_pillars": ["performance-reliability"],
+      "headline_stats": [
+        "~250 MySQL servers",
+        "20+ engineer hours per month saved on manual backups",
+        "Avoided a DBA hire",
+        "40% reduction in downtime incidents"
+      ],
+      "use_cases": ["staffing", "downtime", "monitoring", "migration"],
+      "canonical_locations": [
+        "use-cases-value-pillars/cost-optimization.md",
+        "use-cases-value-pillars/performance-reliability.md",
+        "offerings/expertops/messaging.md"
+      ]
+    },
+    {
+      "id": "protectall",
+      "customer": "Protectall",
+      "title": "Licensing elimination and unified MySQL + PostgreSQL governance",
+      "url": "https://experience.percona.com/case-study/protectall/",
+      "status": "adopted_in_messaging",
+      "products": ["mysql", "postgresql", "pmm"],
+      "primary_pillar": "cost-optimization",
+      "headline_stats": [
+        "Replaced Oracle MySQL Enterprise for significant yearly license savings",
+        "Standardized observability with PMM",
+        "Planned PostgreSQL rollout alongside MySQL"
+      ],
+      "use_cases": ["licensing", "governance", "multi_database"],
+      "canonical_locations": [
+        "use-cases-value-pillars/cost-optimization.md"
+      ]
+    },
+    {
+      "id": "sailthru-zeta",
+      "customer": "Sailthru by Zeta",
+      "title": "$1M annual savings switching from MongoDB Enterprise to Percona Server for MongoDB",
+      "url": "https://www.percona.com/customer-story/sailthru/",
+      "status": "adopted_in_messaging",
+      "products": ["mongodb", "pmm"],
+      "offerings": ["expert_consulting"],
+      "primary_pillar": "cost-optimization",
+      "secondary_pillars": ["performance-reliability"],
+      "headline_stats": [
+        "Cut more than $1 million annually in MongoDB licensing and backup renewal costs",
+        "Drop-in replacement from MongoDB Enterprise with no application changes",
+        "Percona Backup for MongoDB delivered backup resilience at a fraction of the renewal cost"
+      ],
+      "use_cases": ["licensing", "migration", "backup", "vendor_lock_in"],
+      "canonical_locations": [
+        "products/mongodb/messaging.md",
+        "use-cases-value-pillars/cost-optimization.md"
+      ],
+      "last_verified_utc": "2026-07-07T10:15:00Z"
+    },
+    {
+      "id": "foretees",
+      "customer": "ForeTees",
+      "title": "2-4x faster database recovery with Percona ExpertOps",
+      "url": "https://www.percona.com/customer-story/foretees-improves-db-recovery-2-4x-with-percona-expertops/",
+      "status": "adopted_in_messaging",
+      "products": ["mariadb", "mysql"],
+      "offerings": ["expertops", "expert_consulting"],
+      "primary_pillar": "performance-reliability",
+      "secondary_pillars": ["cost-optimization"],
+      "headline_stats": [
+        "ForeTees estimates recovery from downtime is two to four times faster after backup and disaster recovery improvements",
+        "24x7 senior database engineer coverage without added headcount",
+        "Performance concern resolved before it affected club-facing operations"
+      ],
+      "use_cases": ["disaster_recovery", "staffing", "downtime", "peak_traffic"],
+      "canonical_locations": [
+        "offerings/expertops/messaging.md",
+        "use-cases-value-pillars/performance-reliability.md"
+      ],
+      "last_verified_utc": "2026-07-07T10:10:00Z"
+    },
+    {
+      "id": "epsilon",
+      "customer": "Epsilon",
+      "title": "100M+ daily email transactions on Percona XtraDB Cluster and ProxySQL",
+      "url": "https://www.percona.com/customer-story/epsilon-supports-100m-daily-emails-with-percona-xtradb-cluster-and-proxysql/",
+      "status": "adopted_in_messaging",
+      "products": ["mysql"],
+      "offerings": ["expert_support"],
+      "primary_pillar": "performance-reliability",
+      "secondary_pillars": ["cost-optimization"],
+      "headline_stats": [
+        "More than 100 million daily email transactions sustained on Harmony metadata layer",
+        "Split-brain risk reduced with synchronous Percona XtraDB Cluster replication",
+        "ProxySQL routes high-concurrency connections during peak mailing windows"
+      ],
+      "use_cases": ["high_availability", "peak_traffic", "split_brain", "marketing_automation"],
+      "canonical_locations": [
+        "products/mysql/messaging.md",
+        "use-cases-value-pillars/performance-reliability.md"
+      ],
+      "last_verified_utc": "2026-07-07T10:20:00Z"
+    },
+    {
+      "id": "gofundme",
+      "customer": "GoFundMe",
+      "title": "MySQL 5.7 to 8.0 migration with minimal downtime and avoided EOL cloud costs",
+      "url": "https://www.percona.com/customer-story/gofundme-avoids-downtime-and-extra-cloud-costs-with-percona-mysql-migration/",
+      "status": "candidate",
+      "products": ["mysql"],
+      "offerings": ["expert_consulting"],
+      "primary_pillar": "cost-optimization",
+      "secondary_pillars": ["performance-reliability"],
+      "headline_stats": [
+        "MySQL 5.7 to 8.0 migration completed ahead of schedule with minimal downtime",
+        "Avoided significant additional costs from running end-of-life MySQL on cloud platform",
+        "Platform processes roughly 2.5 donations per second; brief downtime would disrupt global fundraising"
+      ],
+      "use_cases": ["migration", "eol_upgrade", "cloud_cost", "minimal_downtime"],
+      "notes": "Adopt in messaging: strong EOL migration proof for MySQL 8 upgrade narrative. Suggested copy homes: products/mysql/messaging.md (EOL pressure bullet), offerings/expert-consulting/messaging.md, use-cases-value-pillars/cost-optimization.md."
+    },
+    {
+      "id": "peak-games",
+      "customer": "Peak Games",
+      "title": "Database efficiency and uptime for millions of daily active users",
+      "url": "https://www.percona.com/customer-story/peak-improves-database-efficiency-and-uptime-with-percona/",
+      "status": "candidate",
+      "products": ["mysql"],
+      "offerings": ["expertops"],
+      "primary_pillar": "performance-reliability",
+      "secondary_pillars": ["cost-optimization"],
+      "headline_stats": [
+        "Millions of daily active users on online games with fast, uninterrupted experience",
+        "Schema review on every change for performance best practices",
+        "Instance right-sizing lowered costs despite growing data"
+      ],
+      "use_cases": ["gaming", "peak_traffic", "downtime", "staffing"],
+      "notes": "Adopt in messaging: gaming-scale uptime proof for ExpertOps. Use customer name Peak Games in copy to avoid confusion with Financial Peak Readiness Bundle. Suggested copy homes: offerings/expertops/messaging.md, use-cases-value-pillars/performance-reliability.md (peak traffic section)."
+    },
+    {
+      "id": "lookout",
+      "customer": "Lookout",
+      "title": "70% infrastructure footprint reduction and nearly $500K annual OPEX savings",
+      "url": "https://www.percona.com/customer-story/lookout-uses-percona-cloud-expertise-to-reduce-footprint-and-maintain-uptime/",
+      "status": "adopted_in_messaging",
+      "products": ["pmm"],
+      "offerings": ["expertops"],
+      "primary_pillar": "cost-optimization",
+      "secondary_pillars": ["performance-reliability"],
+      "headline_stats": [
+        "Nearly $500,000 per year OPEX decrease",
+        "70% reduction in infrastructure footprint (35 primary/replica pairs to 10 instances)",
+        "PMM visibility into query and metric health during architecture simplification on AWS Aurora"
+      ],
+      "use_cases": ["cloud_cost", "rightsizing", "monitoring", "high_availability"],
+      "canonical_locations": [
+        "use-cases-value-pillars/cost-optimization.md",
+        "offerings/expertops/messaging.md",
+        "products/pmm/messaging.md"
+      ],
+      "last_verified_utc": "2026-07-07T10:25:00Z"
+    },
+    {
+      "id": "amplifon",
+      "customer": "Amplifon",
+      "title": "Healthcare MySQL migration to AWS Aurora with zero data loss",
+      "url": "https://www.percona.com/customer-story/amplifon-completes-mysql-migration-to-aws-aurora-with-percona-database-experts/",
+      "status": "candidate",
+      "products": ["mysql"],
+      "offerings": ["expert_consulting"],
+      "primary_pillar": "performance-reliability",
+      "secondary_pillars": ["security-sovereignty-compliance"],
+      "headline_stats": [
+        "Phased MySQL 5.7 to MySQL 8.0 on AWS Aurora 3.0 migration with minimal downtime",
+        "Parallel pt-upgrade testing surfaced compatibility risks before production cutover",
+        "Zero patient data loss across mission-critical healthcare systems"
+      ],
+      "use_cases": ["migration", "healthcare", "minimal_downtime", "cloud_modernization"],
+      "notes": "Adopt in messaging: fills Expert Consulting proof gap. Suggested copy home: offerings/expert-consulting/messaging.md. Emphasize de-risked migration methodology, not vendor-neutral stack replacement (destination was Aurora)."
+    },
+    {
+      "id": "kiho",
+      "customer": "Kiho",
+      "title": "ExpertOps automation and database optimization for field-work platform growth",
+      "url": "https://learn.percona.com/hubfs/Case-Studies/Kiho_Case-Study.pdf",
+      "status": "candidate",
+      "products": ["mariadb"],
+      "offerings": ["expertops"],
+      "primary_pillar": "performance-reliability",
+      "secondary_pillars": ["cost-optimization"],
+      "headline_stats": [
+        "High-availability primary-replica replication with automated backups",
+        "24x7 monitoring and proactive issue resolution",
+        "Reduced internal team workload during U.S. market expansion"
+      ],
+      "use_cases": ["staffing", "high_availability", "growth"],
+      "notes": "Registry only for now: percona.com customer-story URL for Kiho currently serves Lookout content (site bug). PDF is the verified source. Lower priority than ForeTees and Peak Games for ExpertOps proof because metrics are qualitative. Consider after Tier 1 adoptions."
+    }
+  ]
 }
