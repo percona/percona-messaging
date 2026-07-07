@@ -4,8 +4,6 @@ on:
   pull_request:
     paths:
       - "scripts/**"
-      - "data/case-studies.json"
-      - "data/case-studies.schema.json"
       - "pytest.ini"
       - ".github/workflows/scripts-tests.yml"
       - ".github/requirements/ci.txt"
@@ -30,9 +28,6 @@ jobs:
 
       - name: Install dependencies
         run: python -m pip install -r .github/requirements/ci.txt
-
-      - name: Validate case study registry
-        run: python scripts/validate_case_study_registry.py
 
       - name: Run script regression tests
         run: python -m pytest -q

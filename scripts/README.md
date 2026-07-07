@@ -16,8 +16,6 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 ## External signal script
 
 - `case_study_maintenance_reminder.py`: builds the body for the monthly case study proof-point maintenance issue
-- `case_study_registry.py`: shared load/validate helpers for `data/case-studies.json`
-- `validate_case_study_registry.py`: validates registry structure and canonical location references
 - `staleness_report.py`: builds scheduled stale-content maintenance reports
 - `quarterly_lychee_citation_review_issue.py`: builds the body for the quarterly CI-excluded citation URL review issue
 - `docs_whats_new_monitor.py`: optional **backup** intake for Percona Documentation What's New RSS items (`bootstrap`, `prepare`, `merge` subcommands); not a substitute for the normal Product release update workflow
