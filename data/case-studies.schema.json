@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/percona/percona-messaging/data/case-studies.schema.json",
+  "title": "Case study registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "case_studies"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 2
+    },
+    "last_reviewed_utc": {
+      "type": "string"
+    },
+    "case_studies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/case_study"
+      }
+    }
+  },
+  "$defs": {
+    "case_study": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "customer", "title", "url", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "customer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "published",
+            "adopted_in_messaging",
+            "candidate",
+            "retired"
+          ]
+        },
+        "published_date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "mysql",
+              "mongodb",
+              "postgresql",
+              "mariadb",
+              "redis",
+              "valkey",
+              "pmm",
+              "kubernetes"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "offerings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "expert_support",
+              "expertops",
+              "expert_consulting"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "primary_pillar": {
+          "type": "string",
+          "enum": [
+            "cost-optimization",
+            "performance-reliability",
+            "security-sovereignty-compliance",
+            "future-readiness-ai"
+          ]
+        },
+        "secondary_pillars": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "cost-optimization",
+              "performance-reliability",
+              "security-sovereignty-compliance",
+              "future-readiness-ai"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "headline_stats": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "use_cases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "canonical_locations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string"
+        },
+        "last_verified_utc": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

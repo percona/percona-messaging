@@ -81,6 +81,7 @@ python scripts/docs_whats_new_monitor.py bootstrap --state data/docs_whats_new_s
 | Workflow | [`.github/workflows/case-study-maintenance-reminder.yml`](.github/workflows/case-study-maintenance-reminder.yml) |
 | Script | [`scripts/case_study_maintenance_reminder.py`](scripts/case_study_maintenance_reminder.py) |
 | Registry | [`data/case-studies.json`](data/case-studies.json) (maintainers update via pull request when proof is adopted) |
+| Validation | [`scripts/validate_case_study_registry.py`](scripts/validate_case_study_registry.py) in [Scripts regression tests](.github/workflows/scripts-tests.yml) when the registry changes |
 | Schedule | 1st of each month (UTC cron in the workflow file), plus **Actions → Run workflow** for manual runs |
 
 **Behavior:** upserts a single open maintenance issue (marker `<!-- messaging-case-study-maintenance -->`). Each run refreshes the checklist and links to public catalogs. When an open issue already exists, the workflow updates the body and adds a short comment noting the refresh.
