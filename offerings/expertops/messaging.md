@@ -41,6 +41,8 @@ Exact boundaries are agreed at onboarding and recorded in the subscription.
 ## Customer evidence
 
 - **[Optimum Instruments](https://experience.percona.com/case-study/optimum-instruments/):** ~250 MySQL servers; Percona ExpertOps and PMM reduced downtime incidents, reclaimed 20+ engineer hours per month on manual backups, and avoided a DBA hire.
+- **[ForeTees](https://www.percona.com/customer-story/foretees-improves-db-recovery-2-4x-with-percona-expertops/):** Club management platform on MariaDB for tee-time reservations, events, dining, and point-of-sale; Percona ExpertOps provides 24×7 senior database engineer coverage without added headcount. After backup and disaster recovery improvements, ForeTees estimates recovery from downtime is two to four times faster, and Percona resolved a performance concern before it affected club-facing operations.
+- **[Lookout](https://www.percona.com/customer-story/lookout-uses-percona-cloud-expertise-to-reduce-footprint-and-maintain-uptime/):** Mobile security company on AWS Aurora; Percona ExpertOps audited database architecture and helped simplify from 35 sharded primary/replica pairs to 10 instances, cutting nearly $500,000 in annual OPEX while PMM tracked query and metric health through the transition.
 - **Minsait (telecom, Spain):** Tier-one workloads migrated to Percona Server for MongoDB on Google Cloud with the Percona Operator for MongoDB; ExpertOps operational assistance supported a business-critical billing platform with significant cost savings versus prior DBaaS deployment.
 
 Use public case study links when available; do not invent metrics for customers without published proof.
