@@ -41,7 +41,7 @@ Do not collapse capability language, program name, partner references, and bundl
 | Capability subtitle | Assessment-led programs from evaluation to production. One Percona team, open source targets, support after go-live. | Secondary line under the headline. |
 | Program name | **PACE** (Percona Assisted Cutover Engine) | Services delivery program only. Full expansion on first customer-facing mention in an asset; thereafter **PACE**. |
 | Program usage | Use PACE as a section, band, or secondary callout | Do not replace the capability headline. Do not write "Percona PACE." |
-| Partner | **HexaCluster** | Max one to two mentions per asset. "You contract with Percona." Prefer HexaCluster over HexaRocket in customer-facing copy; HexaRocket is partner tooling used during delivery, not a Percona product to lead with. |
+| Partner | **HexaCluster** | Percona resells the migration package; customers contract with Percona, not HexaCluster. Prefer HexaCluster over HexaRocket in customer-facing copy; HexaRocket is partner migration software used during delivery. |
 | Modernization vs migration | **Migration** for same-engine moves; **modernization** for cross-engine replatforming | Use both in capability copy when the audience spans homogeneous and heterogeneous paths. |
 
 Canonical copy blocks live in [migration-program/messaging.md](../offerings/migration-program/messaging.md).

@@ -8,27 +8,39 @@ Large heterogeneous exits and multi-phase modernization need accountable deliver
 
 ## PACE program
 
-**PACE** (Percona Assisted Cutover Engine) is Percona's structured program for assessment, cutover, and post-migration support on complex legacy estates. It gives your teams shared language for a multi-phase move to open source, with Percona leading end to end and partner-assisted tooling where the estate requires it.
+**PACE** (Percona Assisted Cutover Engine) is Percona's structured program to help customers migrate proprietary database workloads, such as Oracle or SQL Server estates, to open source alternatives quickly and safely. PostgreSQL is the most common target; MySQL and MariaDB are in scope where assessment confirms the fit.
 
-PACE is the Services program name for migration and modernization delivery. It is not a software SKU, a partner product name, or a substitute for the capability headline above. Use **PACE** after the first expansion in a given asset; do not write "Percona PACE."
+PACE packages assessment, migration execution, cutover, and post-migration support into one accountable engagement. Customers contract with Percona only. Percona resells the full package, including partner migration software and services, so buyers have a single accountable relationship for transformation to open source without transacting separately with the migration partner.
 
-Delivery runs through [Percona Expert Consulting and Services](../expert-consulting/messaging.md) with optional [Expert Support](../expert-support/messaging.md) on the target environment. Bundle packaging for jumpstart, full transition, or hypercare tiers is out of scope for this canonical module until commercial packaging is published.
+**Delivered by Percona**
 
-## Partner-assisted heterogeneous moves
+- Assessment coordination, scoping, and accountable program delivery through [Percona Expert Consulting and Services](../expert-consulting/messaging.md)
+- Optional design and setup of target open source environments
+- [Expert Support](../expert-support/messaging.md) on the destination stack after go-live
 
-For complex heterogeneous moves, Percona partners with HexaCluster, specialists in database migration and modernization. You contract with Percona.
+**Delivered by HexaCluster through the partnership**
 
-HexaCluster appears at most once or twice in a customer-facing asset. Percona leads assessment, scoping, delivery, and support. Prefer HexaCluster over HexaRocket in external copy; HexaRocket is partner tooling used during delivery, not a Percona offering to advertise.
+- Migration software and tooling, including HexaRocket
+- Professional services for schema and code conversion, compatibility remediation, validation, and cutover execution
+- Project management and coordination during the migration
 
-## Common scope
+Senior architecture and target-environment tuning may be delivered by Percona, HexaCluster, or both teams depending on project scope.
 
-- **Sources:** Oracle, SQL Server, commercial PostgreSQL (including EDB estates with Oracle compatibility), Oracle MySQL Enterprise Edition, MariaDB Enterprise, MongoDB Atlas and Enterprise Advanced, Sybase, DB2, SAP HANA, Redis Enterprise, and other legacy platforms.
-- **Targets:** PostgreSQL, MySQL, and MariaDB (open source) for cross-engine moves; Percona Server for MongoDB (source available, SSPL); Valkey for teams leaving proprietary Redis offerings.
-- **Homogeneous migration:** Same-engine moves, for example on-premises to cloud on one stack or onto Percona software within the same database family.
-- **Heterogeneous modernization:** Replatforming across engine families when license cost, vendor lock-in, or consolidation goals drive a new open source target.
+## Focus migration paths
 
-Cutover approaches target near-zero downtime where application and operational constraints allow. Paths, timeline, and post-migration Support scope are set during assessment.
+Assessment confirms source, target, and deployment model. Common PACE paths include:
 
-## How buyers encounter this on web and in the field
+| Source | Open source targets |
+| --- | --- |
+| Oracle | PostgreSQL, MariaDB |
+| SQL Server | PostgreSQL |
+| Sybase ASE (SAP ASE) | PostgreSQL |
+| IBM DB2 | PostgreSQL |
+| EDB Advanced Server (EnterpriseDB / PPAS) | PostgreSQL |
+| MySQL | PostgreSQL, MySQL |
+| MariaDB | PostgreSQL, MariaDB |
+| Cassandra | PostgreSQL |
 
-Web and campaign assets lead with **database modernization and migration**. **PACE** appears as a program band, section, or secondary subtitle. Jumpstart, full transition, and hypercare bundle tiers are commercial packaging; they are not part of this v1 capability module.
+Targets may run self-managed, on Percona software, or on supported managed database services across major cloud providers. Other source and target combinations may be feasible; assessment sets the path.
+
+Cutover approaches target near-zero downtime where application and operational constraints allow. Migration tooling automates much of the move; consulting covers schema, compatibility, and validation work the estate still requires.
