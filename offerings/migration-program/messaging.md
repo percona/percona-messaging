@@ -10,7 +10,7 @@ Large heterogeneous exits and multi-phase modernization need accountable deliver
 
 **PACE** (Percona Assisted Cutover Engine) is Percona's structured program to help customers migrate proprietary database workloads, such as Oracle or SQL Server estates, to open source alternatives quickly and safely. PostgreSQL is the most common target; MySQL and MariaDB are in scope where assessment confirms the fit.
 
-PACE packages assessment, migration execution, cutover, and post-migration support into one accountable engagement. Customers contract with Percona only. Percona resells the full package, including partner migration software and services, so buyers have a single accountable relationship for transformation to open source without transacting separately with the migration partner.
+PACE packages assessment, migration execution, cutover, and post-migration support into one accountable engagement. Customers contract with Percona only. Percona coordinates the full program, including partner migration software and specialist services, so buyers have one relationship for transformation to open source.
 
 **Delivered by Percona**
 
