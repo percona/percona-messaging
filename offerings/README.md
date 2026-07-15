@@ -19,7 +19,7 @@ The main fork is **who runs day-to-day database operations**:
 - **Your team executes**: [Expert Support](expert-support/messaging.md): Percona guides; you operate production.
 - **Percona executes in your environment**: [ExpertOps](expertops/messaging.md): hands-on operational partnership.
 
-Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (migrations, architecture, deep tuning) alongside either steady-state offering. **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
+Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (migrations, architecture, deep tuning) alongside either steady-state offering. **[Database modernization and migration](migration-program/messaging.md)** is the canonical capability and **PACE** program naming for legacy exit work delivered through Consulting. **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
 
 Percona also offers **database training** as a complementary service. Training builds in-house skill; it is not a substitute for ExpertOps operational coverage or Expert Support for production incidents.
 
@@ -41,6 +41,7 @@ When the need is a defined outcome on fixed scope with Consulting and Support pa
 | [expert-support/messaging.md](expert-support/messaging.md) | Expert Support positioning |
 | [expertops/messaging.md](expertops/messaging.md) | ExpertOps positioning |
 | [expert-consulting/messaging.md](expert-consulting/messaging.md) | Expert Consulting and Services positioning |
+| [migration-program/messaging.md](migration-program/messaging.md) | Database modernization and migration capability; PACE program naming |
 | [solution-bundles/messaging.md](solution-bundles/messaging.md) | Packaged Consulting + Support bundles |
 
 Engine-specific Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) belongs under `products/{engine}/`, not in offering files here. Offering files describe how Support, ExpertOps, and Consulting work across all supported engines.
