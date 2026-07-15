@@ -2,7 +2,7 @@
 
 **Assessment-led programs from evaluation to production. One Percona team, open source targets, support after go-live.**
 
-Legacy and proprietary database estates drive renewal pressure, license drag, and operational risk. Percona helps teams assess exit paths, migrate or modernize to open source and source-available targets, and stabilize production after cutover with Expert Support on the destination environment.
+Legacy and proprietary database estates drive renewal pressure, license drag, and operational risk. Percona helps teams assess exit paths, migrate or modernize to open source targets, and stabilize production after cutover with Expert Support on the destination environment.
 
 This capability headline works on its own for web, search, and buyer conversations. The program name below gives Services and field teams shared language for how Percona runs complex moves; it does not replace modernization and migration as the top-level buyer message.
 
