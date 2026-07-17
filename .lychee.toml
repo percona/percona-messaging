@@ -32,6 +32,9 @@ exclude = [
   "^https://www\\.datacamp\\.com/doc/mysql/mysql-innodb-buffer-pool-tuning$",
   # NetApp-hosted IDC PDF (Akamai edge): 403 to automated clients in CI.
   "^https://www\\.netapp\\.com/media/110879-idc-workload-impacts-storage-info-brief\\.pdf$",
+  # UNCTAD data-protection overview: 403/524 to automated clients and often
+  # times out under load; Briana verified the live page loads (slowly) on 2026-07-17.
+  "^https://unctad\\.org/page/data-protection-and-privacy-legislation-worldwide$",
 ]
 
 # Expand as needed when a host is consistently flaky in CI
