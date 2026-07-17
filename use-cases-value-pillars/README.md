@@ -15,7 +15,7 @@ Do not add a new top-level pillar file for a use case. Add a bullet under the pa
 
 ## Current files (value pillars)
 
-- [cost-optimization.md](cost-optimization.md) (use cases: proprietary licensing, extended lifecycle support (ELS), vendor consolidation, reduce cloud spend, workload tuning and rightsizing, legacy migration and modernization to open source)
+- [cost-optimization.md](cost-optimization.md) (use cases: proprietary licensing, extended lifecycle support (ELS), vendor consolidation, reduce cloud spend, workload tuning and rightsizing, database modernization and migration)
 - [performance-reliability.md](performance-reliability.md) (use cases: business continuity, peak traffic, multi-engine Kubernetes operations, regional expansion)
 - [security-sovereignty-compliance.md](security-sovereignty-compliance.md) (use cases: audit-ready, data governance, regional data residency, US extraterritorial access risk, multi-tenant isolation; sovereignty evidence table)
 - [future-readiness-ai.md](future-readiness-ai.md) (use cases: RAG on PostgreSQL, self-managed MySQL without managed vector, MySQL with a separate vector store, similarity lookup next to transactional data)
