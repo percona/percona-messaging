@@ -2,15 +2,16 @@
 
 This directory contains canonical messaging for commercial offerings. Each offering has its own subdirectory; use **`messaging.md`** for positioning and buyer-facing language.
 
-## How the three offerings work together
+## How offerings work together
 
 Because Percona has no proprietary licensing business, our Expert Support, ExpertOps, and Expert Consulting and Services teams are accountable only to the customer's outcome. We advise customers on the best path for their environment, and our advice is not tied to product quotas or platform lock-in. Customers rely on Percona to support combinations of upstream technologies, Percona distributions, and supported database engines on customer-chosen infrastructure (including cloud-managed and private-cloud platforms), knowing our guidance is based on technical merit and engine-level expertise, not proprietary platform operations. This neutrality makes our guidance unusually honest.
 
-Percona offers three complementary ways to meet customer needs across the full lifecycle of database operations.
+Percona offers complementary ways to meet customer needs across the full lifecycle of database operations.
 
-- **Expert Support** is *reactive and advisory*: customers own execution, and Percona engineers respond when issues or questions arise.
-- **ExpertOps** is *proactive and operational*: a flexible partnership where Percona engineers handle the parts of day-to-day database operations customers want support with, ranging from full operational ownership to shared workflows or targeted help with high-risk tasks.
-- **Expert Consulting and Services** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as migrations, deep performance tuning, and architectural changes at the level of involvement the customer needs.
+- **[Expert Support](expert-support/messaging.md)** is *reactive and advisory*: customers own execution, and Percona engineers respond when issues or questions arise.
+- **[ExpertOps](expertops/messaging.md)** is *proactive and operational*: a flexible partnership where Percona engineers handle the parts of day-to-day database operations customers want support with, ranging from full operational ownership to shared workflows or targeted help with high-risk tasks.
+- **[Expert Consulting and Services](expert-consulting/messaging.md)** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as architecture decisions, deep performance tuning, and scoped project delivery at the level of involvement the customer needs.
+- **[Database modernization and migration](migration-program/messaging.md)** is the capability home for legacy exit and modernization programs, including **PACE** (Percona Assisted Cutover Engine). Buyers contract with Percona; delivery runs through Consulting and the HexaCluster partnership.
 
 ## Which offering?
 
@@ -19,7 +20,7 @@ The main fork is **who runs day-to-day database operations**:
 - **Your team executes**: [Expert Support](expert-support/messaging.md): Percona guides; you operate production.
 - **Percona executes in your environment**: [ExpertOps](expertops/messaging.md): hands-on operational partnership.
 
-Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (migrations, architecture, deep tuning) alongside either steady-state offering. **[Database modernization and migration](migration-program/messaging.md)** is the canonical capability and **PACE** program naming for legacy exit work delivered through Consulting. **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
+Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (architecture, deep tuning, scoped delivery) alongside either steady-state offering. When the buyer need is **legacy exit or modernization to open source**, use **[Database modernization and migration](migration-program/messaging.md)** (capability language and **PACE** program naming). **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
 
 Percona also offers **database training** as a complementary service. Training builds in-house skill; it is not a substitute for ExpertOps operational coverage or Expert Support for production incidents.
 
