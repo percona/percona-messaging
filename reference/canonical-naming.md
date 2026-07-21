@@ -51,7 +51,7 @@ These are community participation programs, not commercial offerings. Keep them 
 | **Mountaineers** | Recognition and rewards for top contributors | Code, forum help, content, and direct product feedback |
 | **Community Writers Program** | Paid community-authored technical posts | Publish on the community blog under the author’s name |
 | **Percona Community Slack** | Peer conversation space | Complements forums; does not replace them for support |
-| **Percona Live** | Flagship community conference | Event details on [perconalive.com](https://perconalive.com/) |
+| **Percona Live** | Flagship Percona conference | Event details on [perconalive.com](https://perconalive.com/) |
 
 ## MongoDB wording in capability copy
 
