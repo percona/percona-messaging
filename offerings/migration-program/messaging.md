@@ -22,7 +22,7 @@ One accountable Percona engagement covers:
 4. **Post-cutover hypercare** to stabilize the destination estate through the critical period after go-live
 5. **Post-migration 24×7 Expert Support** on the destination stack
 
-Tooling automates the majority of the migration; consulting covers the scope that cannot be automated on a case-by-case basis. Teams get one accountable path from assessment through cutover, hypercare, and support, instead of stitching separate migration vendors, licenses, and post-cutover coverage.
+Tooling automates what it can; consulting covers the non-automated work the estate still requires. Teams get one accountable path from assessment through cutover, hypercare, and support, instead of stitching separate migration vendors, licenses, and post-cutover coverage.
 
 ## Focus migration paths
 
@@ -40,6 +40,6 @@ Source and target are typically chosen before assessment begins. Assessment conf
 | Cassandra | PostgreSQL |
 | MongoDB Atlas / Enterprise Advanced | Percona Server for MongoDB |
 
-Targets may run self-managed, on Percona software, or on supported managed database services across major cloud providers. Other source and target combinations may be feasible; assessment sets scope for the agreed path.
+Targets may run self-managed, on Percona software, or on supported managed database services across major cloud providers. Other source and target combinations may be feasible; assessment sets scope for the agreed path. Same-engine and MongoDB paths are Percona consulting unless assessment says otherwise.
 
 Cutover approaches target near-zero downtime where application and operational constraints allow.
