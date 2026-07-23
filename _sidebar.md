@@ -21,6 +21,7 @@
 - Products
   - [Overview](/products/README.md)
   - [MySQL](/products/mysql/messaging.md)
+  - [MariaDB](/products/mariadb/messaging.md)
   - [PostgreSQL](/products/postgresql/messaging.md)
   - [MongoDB](/products/mongodb/messaging.md)
   - [Valkey and Redis](/products/valkey-redis/messaging.md)

@@ -1,0 +1,53 @@
+---
+description: MariaDB Community Support scope, migration language, and anti-dunking guardrails
+alwaysApply: true
+---
+
+# MariaDB scope (hard rules)
+
+Portable baseline: `docs/agent-guidelines.md`. Canonical seller copy: `products/mariadb/messaging.md`. Short Community-only reminder also lives in `terminology-and-naming.mdc`; keep both aligned.
+
+These rules apply whenever MariaDB appears in this repo.
+
+## Support and software scope
+
+- **Expert Support** covers **MariaDB Community versions only**. Never write "any MariaDB version" for Support coverage. Never imply MariaDB Enterprise editions are under standard Expert Support entitlements.
+- **Extended Lifecycle Support (ELS)** may be positioned for **MariaDB Community** when versions approach or pass End of Life (EOL). Frame ELS as a bridge to a supported Community release, not indefinite stay-on-EOL, and never as MariaDB Enterprise coverage.
+- ELS for MariaDB does **not** mean Percona ships MariaDB database software. Do not invent MariaDB ELS binary, private-repository, or patch-cadence details until product publishes them.
+- **Expert Consulting and Services** may cover complex estates, non-Community versions, and scoped migration work. Say that explicitly when the estate is outside Community Support.
+- Percona does **not** ship MariaDB database software. Never invent Percona Server for MariaDB, a Percona Distribution for MariaDB, or similar.
+- Prefer: "Percona supports MariaDB Community with Expert Support and operational expertise."
+- Never: "Percona builds software for MariaDB."
+
+## Migration and compatibility language
+
+- No bare **drop-in** claims for MariaDB to MySQL / Percona Server for MySQL moves.
+- Use controlled language: **controlled migration**, **compatibility-tested path**, **validate in your environment**, or **assessed cutover**.
+- Public migration resources when linking is useful:
+  - [How to migrate from MariaDB to Percona Server for MySQL](https://www.percona.com/resources/how-to-migrate-from-mariadb-to-percona-server-for-mysql)
+  - [Open source migration](https://www.percona.com/services/open-source-migration)
+  - [MariaDB support](https://www.percona.com/services/support/mariadb-support)
+
+## Features first (value and use case, not movement)
+
+- Lead with MariaDB customer problems and what Percona helps them do **on MariaDB**: reliability, cost clarity, security posture, and use-case fit.
+- Differentiation is **value and use case**, not "better than MySQL" and not a default migration story. Do not open MariaDB messaging with movement to Percona Server for MySQL or frame MariaDB as a temporary stop.
+- Migration / engine-change content is an **exception path** when the customer asks for a different engine home. Keep it late, quiet, and controlled. Never thread stay-vs-migrate through every pillar.
+- Do **not** write anti-Oracle posture, "beat Oracle," ERP/financials lock-in sell-against stories, or PLC vs Oracle "control" attack lines as Percona messaging. Audience reality in one neutral sentence is the maximum; omit when unsure.
+- Do **not** badmouth MySQL or MariaDB. Both can be valid in the same company for different workloads.
+- "When MariaDB vs MySQL" must be **situation-based**: workloads, features already in use, ops constraints. Never competitive dunking or invented head-to-head wins.
+- Unverified performance or vector-search superiority claims are banned unless already proven elsewhere in this repo with a public source. Prefer "evaluate for the workload."
+
+## Offering names
+
+- Use **ExpertOps**, not "Managed Services," as the offer name (historical "formerly Managed Services" only when needed).
+- Keep Support vs Consulting vs ExpertOps roles clear: Support for Community production help, Consulting for depth and out-of-scope versions, ExpertOps when customers want operational ownership.
+
+## Do not put in canonical MariaDB copy
+
+- Named private pipeline details, Foundation membership politics, Monty personality narratives, SkySQL hooks, Slintel share stats, named internal personas, or Notion URLs.
+- Red Hat subscription or development-release experiments that are not messaging-ready.
+
+## Pointer
+
+Seller-facing structure, pillars, and conversation starters live in `products/mariadb/messaging.md`. Do not contradict `framework/core-positioning.md` on MariaDB Community scope.
