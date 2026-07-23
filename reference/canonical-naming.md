@@ -21,11 +21,11 @@
 
 ## Extended Lifecycle Support program naming (ELS)
 
-Percona's paid program for continuity after a database version reaches End of Life (EOL) is **Extended Lifecycle Support (ELS)**. Use this name for MySQL, MongoDB, and **MariaDB Community** in customer-facing copy. Retain **End of Life (EOL)** only for deadline state (community or vendor EOL dates), not as a program label. ELS for MariaDB does not mean Percona ships MariaDB database software; keep Community-only scope.
+Percona's paid program for continuity after a database version reaches End of Life (EOL) is **Extended Lifecycle Support (ELS)**. Use this name for MySQL and MongoDB in customer-facing copy. For **MariaDB Community**, use ELS only where Percona publishes coverage; keep Community-only scope, and never imply Percona ships MariaDB database software. Retain **End of Life (EOL)** only for deadline state (community or vendor EOL dates), not as a program label.
 
 | Context | Use this | Not this |
 | --- | --- | --- |
-| Percona post-EOL program (MySQL, MongoDB, MariaDB Community) | **Extended Lifecycle Support (ELS)** | Extended Life Support, post-EOL support, Post-EOL Support, Percona EOL Support |
+| Percona post-EOL program (MySQL, MongoDB; MariaDB Community where published) | **Extended Lifecycle Support (ELS)** | Extended Life Support, post-EOL support, Post-EOL Support, Percona EOL Support |
 | Third-party vendor extended support | vendor extended support, RDS extended support | (Do not relabel as Percona ELS) |
 | EOL as a date or state | End of Life (EOL), community EOL, reached end of life | EOL Support (as a program SKU) |
 
