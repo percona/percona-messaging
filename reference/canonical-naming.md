@@ -31,13 +31,15 @@ Percona’s paid program for security and stability updates after a database ver
 
 Live web paths and legacy PDFs may still say post-EOL support until commercial assets are updated. Canonical messaging in this repo should use **Extended Lifecycle Support (ELS)** so future edits do not drift back to deprecated program names.
 
-## PACE and migration program naming
+## Migration and Modernization naming
 
-- **Capability:** Database modernization and migration
-- **Program:** PACE (Percona Assisted Cutover Engine)
-- **Partner:** HexaCluster (migration software and services; customers contract with Percona)
+- **Public frame:** Migration and Modernization
+- **Partnership:** Percona + HexaCluster combined offer (outcomes, not a delivery RACI)
+- **Methodology:** PACE (in-program; program name not locked)
+- **Contracting:** Customer contracts with Percona; migration software license is part of the engagement
+- **Do not name:** HexaRocket on public web
 
-Full copy blocks: [migration-program/messaging.md](../offerings/migration-program/messaging.md).
+Full copy: [migration-program/messaging.md](../offerings/migration-program/messaging.md).
 
 ## Community program naming
 
