@@ -34,9 +34,9 @@ Live web paths and legacy PDFs may still say post-EOL support until commercial a
 ## Migration and Modernization naming
 
 - **Public frame:** Migration and Modernization
-- **Partnership:** Percona + HexaCluster combined offer (outcomes, not a delivery RACI)
-- **Methodology:** PACE (in-program; program name not locked)
-- **Contracting:** Customer contracts with Percona; migration software license is part of the engagement
+- **HexaCluster:** Named for proprietary exits such as Oracle to PostgreSQL (usual destinations PostgreSQL, MySQL, MariaDB); do not imply Hexa covers every path in the tables
+- **Contracting:** Customer contracts with Percona; transparent that a migration software license is part of the Percona engagement when tooling applies
+- **Methodology:** PACE (one in-program mention on the offering page; program name not locked)
 - **Do not name:** HexaRocket on public web
 
 Full copy: [migration-program/messaging.md](../offerings/migration-program/messaging.md).

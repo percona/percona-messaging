@@ -11,7 +11,7 @@ Percona offers complementary ways to meet customer needs across the full lifecyc
 - **[Expert Support](expert-support/messaging.md)** is *reactive and advisory*: customers own execution, and Percona engineers respond when issues or questions arise.
 - **[ExpertOps](expertops/messaging.md)** is *proactive and operational*: a flexible partnership where Percona engineers handle the parts of day-to-day database operations customers want support with, ranging from full operational ownership to shared workflows or targeted help with high-risk tasks.
 - **[Expert Consulting and Services](expert-consulting/messaging.md)** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as architecture decisions, deep performance tuning, and scoped project delivery at the level of involvement the customer needs.
-- **[Migration and Modernization](migration-program/messaging.md)** is the capability home for legacy exit and modernization programs. Public frame is Migration and Modernization delivered as a **Percona + HexaCluster** combined offer; **PACE** is the in-program delivery methodology. Customers contract with Percona for the full engagement; migration software licensing is included in that engagement.
+- **[Migration and Modernization](migration-program/messaging.md)** is the capability home for legacy exit and modernization programs. For proprietary exits such as Oracle to PostgreSQL, Percona partners with HexaCluster in one offer. Customers contract with Percona for the full engagement; a migration software license is part of that engagement when the path uses migration tooling.
 
 ## Which offering?
 
@@ -42,7 +42,7 @@ When the need is a defined outcome on fixed scope with Consulting and Support pa
 | [expert-support/messaging.md](expert-support/messaging.md) | Expert Support positioning |
 | [expertops/messaging.md](expertops/messaging.md) | ExpertOps positioning |
 | [expert-consulting/messaging.md](expert-consulting/messaging.md) | Expert Consulting and Services positioning |
-| [migration-program/messaging.md](migration-program/messaging.md) | Migration and Modernization; Percona + HexaCluster combined offer; PACE methodology; Percona-wrapped contracting |
+| [migration-program/messaging.md](migration-program/messaging.md) | Migration and Modernization; Percona + HexaCluster for proprietary exits; Percona-wrapped contracting |
 | [solution-bundles/messaging.md](solution-bundles/messaging.md) | Packaged Consulting + Support bundles |
 
 Engine-specific Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) belongs under `products/{engine}/`, not in offering files here. Offering files describe how Support, ExpertOps, and Consulting work across all supported engines.
