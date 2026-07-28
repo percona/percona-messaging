@@ -1,6 +1,6 @@
 # Migration and Modernization
 
-**Assessment-led programs from evaluation to production. One Percona engagement, open source targets, support after go-live.**
+**Experts assess how much of the migration can be automated and where manual work is needed, then stay with you through execution, hypercare, and Expert Support. One Percona engagement, open source targets, support after go-live.**
 
 Percona delivers Migration and Modernization as one accountable engagement from assessment through cutover, hypercare, and Expert Support. We don't stop at conversion: we stay through go-live and keep supporting you on the new database.
 
