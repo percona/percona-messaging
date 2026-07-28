@@ -60,6 +60,7 @@ Percona supports teams that need to run MySQL, PostgreSQL, and MongoDB on Kubern
 - Need for GitOps-compatible control and auditability via declarative resources
 - Requirement for integrated observability across database fleets
 - Preference for open source tooling and cloud portability
+- Existing PostgreSQL-on-Kubernetes control plane (for example CloudNativePG) where the buyer need is commercial support for that estate rather than adopting Percona Operators; route to [Expert Support](../../offerings/expert-support/messaging.md#common-scenarios)
 
 **Discovery questions**
 
@@ -67,6 +68,7 @@ Percona supports teams that need to run MySQL, PostgreSQL, and MongoDB on Kubern
 - Where do incidents most often start: failover, backup and recovery, scaling events, or visibility gaps?
 - How are you balancing standardization across engines with team-level autonomy?
 - What compliance or governance requirements influence where and how you run databases?
+- Which operator or control plane runs your databases today, and is the next step Operator adoption, commercial support for the current stack, or both?
 - Where would expert help accelerate outcomes, architecture planning, reliability tuning, or ongoing operations?
 
 **Public resources**

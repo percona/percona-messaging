@@ -47,6 +47,7 @@ Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, P
 - How much internal PostgreSQL expertise does your team have today?
 - If you already have a support contract: How has your experience been with your current vendor?
 - If migrating from Oracle or another proprietary database: How will you handle schema and data migration, HA architecture, and zero-downtime cutover if the target needs active-active replication or distributed writes?
+- Which operator owns PostgreSQL on Kubernetes today (CloudNativePG, Crunchy, Zalando, Percona), and are backups Barman Cloud object-store or something else? If the estate is CloudNativePG (CNPG), ask what commercial support must cover and who owns Day-2 work. (See [Expert Support](../../offerings/expert-support/messaging.md#common-scenarios).)
 
 ### Public resources
 
