@@ -28,7 +28,7 @@ Tooling automates what it can; consulting covers the non-automated work the esta
 
 Assessment confirms the target path, feasibility, change scope, project cost, and post-migration support cost.
 
-Common paths include Oracle to PostgreSQL, MySQL, or MariaDB; SQL Server to PostgreSQL; and MySQL and MariaDB engine switches or same-engine moves to Percona software. We also help with Sybase ASE, IBM DB2, EDB Advanced Server, Cassandra, and other combinations: tell us what you need to move and where you want to land, and we'll help make it happen.
+Common paths include Oracle to PostgreSQL, MySQL, or MariaDB; and SQL Server to PostgreSQL. We also help with Sybase ASE, IBM DB2, EDB Advanced Server, Cassandra, and other combinations: tell us what you need to move and where you want to land, and we'll help make it happen.
 
 Targets may run self-managed, on Percona software, or on supported managed database services across major cloud providers.
 
