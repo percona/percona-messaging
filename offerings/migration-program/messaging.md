@@ -2,7 +2,7 @@
 
 **Assessment-led programs from evaluation to production. One Percona engagement, open source targets, support after go-live.**
 
-Percona delivers Migration and Modernization as one accountable engagement from assessment through cutover, hypercare, and Expert Support. Percona stays present for the full journey, not only the conversion step.
+Percona delivers Migration and Modernization as one accountable engagement from assessment through cutover, hypercare, and Expert Support. We don't stop at conversion: we stay through go-live and keep supporting you on the new database.
 
 When teams need to leave a proprietary estate, especially Oracle for PostgreSQL, Percona partners with HexaCluster so migration expertise, project management, and support after go-live come together in one offer. Usual destinations are PostgreSQL, MySQL, and MariaDB.
 
@@ -26,20 +26,10 @@ Tooling automates what it can; consulting covers the non-automated work the esta
 
 ## Focus migration paths
 
-Source and target are typically chosen before assessment begins. Assessment confirms feasibility, change scope, project cost, and post-migration support cost for that path. Common paths include:
+Assessment confirms the target path, feasibility, change scope, project cost, and post-migration support cost.
 
-| Source | Common targets |
-| --- | --- |
-| Oracle | PostgreSQL, MariaDB |
-| SQL Server | PostgreSQL |
-| Sybase ASE (SAP ASE) | PostgreSQL |
-| IBM DB2 | PostgreSQL |
-| EDB Advanced Server (EnterpriseDB / PPAS) | PostgreSQL |
-| MySQL | PostgreSQL, MySQL |
-| MariaDB | PostgreSQL, MariaDB |
-| Cassandra | PostgreSQL |
-| MongoDB Atlas / Enterprise Advanced | Percona Server for MongoDB |
+Common paths include Oracle to PostgreSQL, MySQL, or MariaDB; SQL Server to PostgreSQL; and MySQL and MariaDB engine switches or same-engine moves to Percona software. We also help with Sybase ASE, IBM DB2, EDB Advanced Server, Cassandra, and other combinations: tell us what you need to move and where you want to land, and we'll help make it happen.
 
-Targets may run self-managed, on Percona software, or on supported managed database services across major cloud providers. Other source and target combinations may be feasible; assessment sets scope for the agreed path. Same-engine and MongoDB paths are Percona consulting unless assessment says otherwise.
+Targets may run self-managed, on Percona software, or on supported managed database services across major cloud providers.
 
 Cutover approaches target near-zero downtime where application and operational constraints allow.
