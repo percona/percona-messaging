@@ -27,7 +27,7 @@ See also the [key/value overview](../messaging.md). Optional open-path messaging
 
 **Future readiness and portability**
 
-- **Optional open path when the customer asks:** If governance, memory cost, or operating model push a change discussion, Percona can support a paced evaluate → validate → migrate path while Redis support continues.
+- **Optional open path when the customer asks:** If governance, memory cost, or operating model push a change discussion, Percona can support a paced path to evaluate, validate, and migrate while Redis support continues.
 
 ### Sales enablement
 
