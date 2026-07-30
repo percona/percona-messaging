@@ -60,3 +60,19 @@ These are community participation programs, not commercial offerings. Keep them 
 - For generic capability coverage, use "MongoDB-compatible environments" or "MongoDB services monitored by PMM."
 - For product-specific copy, use the exact product name, for example "Percona Server for MongoDB" or "Percona Operator for MongoDB."
 - When a capability does not apply across engines, state scope directly, for example "MongoDB only" and "not MySQL or PostgreSQL."
+
+## Key/value family (Valkey and Redis)
+
+Canonical product modules live under `products/key-value/`: shared parent for key/value workloads, with asymmetric siblings for Valkey and Redis.
+
+| Context | Use this | Avoid |
+| --- | --- | --- |
+| Family / parent | Key/value workloads; Percona for key/value workloads | Treating Valkey as "Redis-compatible" as its identity |
+| Paired naming | Valkey first when both are named (Valkey and Redis) | Redis and Valkey as the default order |
+| Valkey product module | Percona for Valkey | Transition-to-Redis messaging on the Valkey page |
+| Redis product module | Percona for Redis | Omitting stay-on-Redis as a first-class option |
+| Shared use cases | Same list for both: cache, sessions, pub/sub, queues, rate limiting, high-throughput key/value | Separate invented use-case lists per engine |
+| Prose comparison | Prefer "versus" over "vs" when house style allows | (none) |
+| Ops claims | Call out High Availability explicitly where relevant | Install-only framing for production readiness |
+
+Full copy: [key/value parent](../products/key-value/messaging.md), [Valkey](../products/key-value/valkey/messaging.md), [Redis](../products/key-value/redis/messaging.md).

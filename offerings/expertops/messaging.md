@@ -2,7 +2,7 @@
 
 **Proactive, hands-on database management partnership for teams that want Percona to operate part or all of their day-to-day operations.**
 
-ExpertOps is Percona's proactive operations offering. Percona engineers provide hands-on database management with complete care for your database infrastructure, similar to an in-house DBA team, while reducing total cost of ownership. You can augment your current team with seasoned database administrators who care for your infrastructure 24/7 and keep databases performing at their best. Deep operational knowledge across MySQL, MariaDB, PostgreSQL, MongoDB-compatible environments, and Valkey/Redis keeps systems in expert hands so you can focus on your business.
+ExpertOps is Percona's proactive operations offering. Percona engineers provide hands-on database management with complete care for your database infrastructure, similar to an in-house DBA team, while reducing total cost of ownership. You can augment your current team with seasoned database administrators who care for your infrastructure 24/7 and keep databases performing at their best. Deep operational knowledge across MySQL, MariaDB, PostgreSQL, MongoDB-compatible environments, Valkey, and Redis keeps systems in expert hands so you can focus on your business.
 
 Percona engineers perform operational work directly in your environment: monitoring, tuning, patching, automation, backup validation, and routine maintenance, using PMM for observability and Operators plus engine-appropriate tooling for execution. Unlike [Expert Support](../expert-support/messaging.md), ExpertOps is proactive and hands-on: Percona executes operational work rather than advising your team to execute it.
 

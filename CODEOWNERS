@@ -30,8 +30,8 @@
 /products/postgresql/                        @brianamarie
 # /products/mongodb/                           @briana-swift @val-bogatyreva @puneet-kala 
 /products/mongodb/                           @brianamarie
-# /products/valkey-redis/                      @briana-swift @kyle-davis
-/products/valkey-redis/                      @brianamarie
+# /products/key-value/                         @briana-swift @stockholmux (Kyle Davis)
+/products/key-value/                         @brianamarie @stockholmux
 # /products/pmm/                               @briana-swift @dave-poole
 /products/pmm/                               @brianamarie @DavePoole30 @tichomir
 # /products/operators/                         @briana-swift @kate-obiidykhata 
