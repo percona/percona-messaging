@@ -2,7 +2,7 @@
 
 ## Percona for PostgreSQL {#percona-for-postgresql}
 
-Percona Distribution for PostgreSQL is a fully open source, production- and performance-tested database platform for organizations running PostgreSQL across on-prem, cloud, and hybrid environments. It's built for high performance, reliability, security, sovereignty, and compliance. 
+Percona Distribution for PostgreSQL is a fully open source, production- and performance-tested database platform for organizations running PostgreSQL across on-prem, cloud, and hybrid environments. It's built for high performance, reliability, security, sovereignty, and compliance.
 
 It packages and validates trusted PostgreSQL components as matched, release-tested binaries, so teams don't have to assemble and validate tooling themselves:
 
@@ -27,7 +27,7 @@ Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, P
   
 - Migration clarity when PostgreSQL licensing or managed-service roadmaps change: Evaluate migration options with confidence as licensing models evolve. Percona helps organizations compare portable PostgreSQL software against proprietary distributions and managed services ([Percona Software for PostgreSQL](https://www.percona.com/postgresql/software)), using publicly available information, making it easier to choose a migration path while maintaining flexibility and avoiding vendor lock-in.
 
-- Legacy RDBMS exit to PostgreSQL for TCO: Modernize legacy databases with a structured migration approach. [Percona Expert Consulting and Services](https://www.percona.com/services/consulting) support migrations from MySQL, MariaDB, Oracle, and SQL Server to [Percona Distribution for PostgreSQL](https://www.percona.com/postgresql/software), covering schema migration, code conversion, data migration, continuous replication, validation, and cutover, with scope and downtime tolerance confirmed during assessment. 
+- Legacy RDBMS exit to PostgreSQL for TCO: Modernize legacy databases with a structured migration approach. [Percona Expert Consulting and Services](https://www.percona.com/services/consulting) support migrations from MySQL, MariaDB, Oracle, and SQL Server to [Percona Distribution for PostgreSQL](https://www.percona.com/postgresql/software), covering schema migration, code conversion, data migration, continuous replication, validation, and cutover, with scope and downtime tolerance confirmed during assessment.
 
 **Performance and Reliability at Scale**
 
