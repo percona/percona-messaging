@@ -15,6 +15,7 @@
   - [Expert Support](/offerings/expert-support/messaging.md)
   - [ExpertOps](/offerings/expertops/messaging.md)
   - [Expert Consulting and Services](/offerings/expert-consulting/messaging.md)
+  - [Migration and Modernization](/offerings/migration-program/messaging.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
 - Products
