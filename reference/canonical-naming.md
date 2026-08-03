@@ -21,15 +21,31 @@
 
 ## Extended Lifecycle Support program naming (ELS)
 
-Percona's paid program for continuity after a database version reaches End of Life (EOL) is **Extended Lifecycle Support (ELS)**. Use this name for MySQL and MongoDB in customer-facing copy. For **MariaDB Community**, use ELS only where Percona publishes coverage; keep Community-only scope, and never imply Percona ships MariaDB database software. Retain **End of Life (EOL)** only for deadline state (community or vendor EOL dates), not as a program label.
+Percona's paid program for continuity after a database version reaches End of Life (EOL) is **Extended Lifecycle Support (ELS)**. Use this name for MySQL and MongoDB in customer-facing copy. For **MariaDB Server**, use ELS only where Percona publishes coverage; keep MariaDB Server-only scope, and never imply Percona ships MariaDB database software. Retain **End of Life (EOL)** only for deadline state (community or vendor EOL dates), not as a program label.
 
 | Context | Use this | Not this |
 | --- | --- | --- |
-| Percona post-EOL program (MySQL, MongoDB; MariaDB Community where published) | **Extended Lifecycle Support (ELS)** | Extended Life Support, post-EOL support, Post-EOL Support, Percona EOL Support |
+| Percona post-EOL program (MySQL, MongoDB; MariaDB Server where published) | **Extended Lifecycle Support (ELS)** | Extended Life Support, post-EOL support, Post-EOL Support, Percona EOL Support |
 | Third-party vendor extended support | vendor extended support, RDS extended support | (Do not relabel as Percona ELS) |
 | EOL as a date or state | End of Life (EOL), community EOL, reached end of life | EOL Support (as a program SKU) |
 
 Live web paths and legacy PDFs may still say post-EOL support until commercial assets are updated. Canonical messaging in this repo should use **Extended Lifecycle Support (ELS)** so future edits do not drift back to deprecated program names.
+
+## MariaDB edition and entity naming
+
+Percona does not ship MariaDB database software. Under standard **Expert Support** entitlements, coverage is **MariaDB Server** only: the open source edition maintained by the **MariaDB Foundation**, contrasted with **MariaDB Enterprise**. **Expert Consulting and Services** may apply to other MariaDB versions and complex environments.
+
+| Context | Use this | Not this |
+| --- | --- | --- |
+| Open source edition covered by Expert Support | **MariaDB Server** | MariaDB Community (as the product edition name) |
+| Commercial edition (outside standard Expert Support) | MariaDB Enterprise | Implying standard Support covers Enterprise |
+| Short product lists where Server and Enterprise may both appear | MariaDB | Required when the line must stay edition-neutral (for example home product lists) |
+| Upstream open source steward | MariaDB Foundation | |
+| Commercial entity | MariaDB Corporation or MariaDB plc | |
+
+Prefer **MariaDB Server** over bare "MariaDB" when the sentence means the supported open source database software. Keep the Foundation / Corporation (or plc) distinction when the steward or commercial entity matters.
+
+**MaxScale:** MariaDB **MaxScale** is database proxy / routing middleware from MariaDB plc, typically under BSL terms for current commercial access. In sales and discovery copy, ask whether MaxScale is load-bearing in the estate. Do not imply MaxScale is included in standard MariaDB Server Expert Support, and do not claim Percona ships or forks MaxScale until product publishes that coverage. Complex MaxScale-heavy estates may need consulting scope.
 
 ## PACE and migration program naming
 
