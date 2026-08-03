@@ -18,6 +18,10 @@
   - [Migration and Modernization](/offerings/migration-program/messaging.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
+- Partners
+  - [Overview](/partners/README.md)
+  - [Partners](/partners/messaging.md)
+
 - Products
   - [Overview](/products/README.md)
   - [MySQL](/products/mysql/messaging.md)

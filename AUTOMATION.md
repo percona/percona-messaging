@@ -167,7 +167,7 @@ Waiver state resolution rule:
 
 **Smart Suggestions** (`smart-suggestions.yml`, `scripts/suggest_updates.py`) combines the same impact map with **`automation/claim-types.yml`** to propose additional candidates. Treat both Impact Check and Smart Suggestions comments as **map-backed hints**: extend coverage by editing `messaging-impact-map.yml` (and claim hints) when reviews repeatedly surface misses.
 
-**Canonical messaging directories** (`framework/`, `products/`, `use-cases-value-pillars/`, `offerings/`) are routing targets for decomposition; automation only surfaces files that rules enumerate. Reviewers remain responsible for cross-module consistency when claims move.
+**Canonical messaging directories** (`framework/`, `products/`, `use-cases-value-pillars/`, `offerings/`, `partners/`) are routing targets for decomposition; automation only surfaces files that rules enumerate. Reviewers remain responsible for cross-module consistency when claims move.
 
 ## PR comment upsert standard
 
