@@ -20,6 +20,7 @@ Modern teams need database operations that move at product speed without giving 
 
 - Operational efficiency through automation: Managing database clusters manually in Kubernetes often consumes excessive engineering hours for deployment, scaling, and failover management. Percona Operators automate operations like backups, upgrades, and recovery through declarative Kubernetes Custom Resources (CRDs). This ensures every operation follows a consistent, version-controlled process, reducing manual error and stabilizing lifecycle costs. A 2024 DoK survey found that organizations running 75%+ of their data workloads in production on Kubernetes reported significant productivity gains when using operators. Percona Operator for MySQL based on Percona XtraDB Cluster provides configurable leader election for high-latency or resource-constrained clusters and carries forward backup queuing and automatic backup suspension during unhealthy cluster states. The Percona Operator for MySQL includes zstd backup compression, together reducing operational overload and backup storage waste.
 - Freedom from DBaaS markup: Proprietary managed services like RDS or Atlas add convenience but impose per-instance fees and license gating. With Percona Operators, organizations can deploy production-grade databases on any Kubernetes environment, maintaining automation benefits without recurring license or subscription costs. [MySQL Operator backup workflows](https://docs.percona.com/percona-operator-for-mysql/pxc/backups.html) support object storage and persistent volumes, letting teams keep self-managed cost control while retaining production backup automation.
+- **Near-zero-downtime MongoDB migration on Kubernetes:** The Percona Operator for MongoDB can run Percona ClusterSync for MongoDB to copy a live source cluster, keep the new cluster updated while the app stays on the old one, and let you move the app when you are ready. Compared with a full dump and restore, the cutover window is much smaller. Teams use it to leave hosted MongoDB, keep a fresh non-production or disaster-recovery copy, or sync hybrid-cloud clusters without running ClusterSync by hand.
 
 **Performance and Reliability at Scale**
 
@@ -38,9 +39,13 @@ Modern teams need database operations that move at product speed without giving 
 
 **Adaptability for Emerging Workloads**
 
-- Multi-cloud and hybrid portability: Percona Operators run on any CNCF-conformant Kubernetes, including OpenShift, Amazon EKS, Google GKE, Azure AKS, and on-prem clusters. Teams can move workloads freely without rewriting automation or getting trapped by a single cloud vendor. The [Percona Operator for MySQL cross-site replication](https://docs.percona.com/percona-operator-for-mysql/pxc/dr-replication.html) enables multi-environment continuity with replication between Kubernetes sites.
-- Integration with cloud-native toolchains: Operators expose APIs for CI/CD pipelines and policy engines, with support for Prometheus, Grafana, and PMM (Percona Monitoring and Management), so database operations fit naturally into platform engineering workflows and support rapid, reliable delivery. [PostgreSQL Operator architecture](https://docs.percona.com/percona-operator-for-postgresql/latest/architecture.html) also highlights integration components such as Patroni, pgBackRest for PostgreSQL backup catalog management and PiTR-oriented workflows, and pgBouncer that align with platform engineering operating models. A dedicated CRD Helm chart (Operator for MongoDB 1.22.0+) improves compatibility with GitOps tools like ArgoCD and FluxCD by letting Helm manage all resources, including CRDs.
-- Modernization path for legacy operations: Operators replace ticket-driven, manual database lifecycle tasks with declarative workflows for provisioning, upgrades, backups, and recovery. For PostgreSQL on Kubernetes, upstream Crunchy resources migrate automatically to the `upstream.pgv2.percona.com` API group on upgrade so Percona and Crunchy operators can coexist during adoption and teams can move without re-architecting clusters. Major-version upgrades use `PerconaPGUpgrade` and the official Percona distribution upgrade image for controlled execution in Kubernetes. [Migration from Crunchy PGO](https://docs.percona.com/percona-operator-for-postgresql/3.0.0/migrate-from-crunchy.html), [PostgreSQL major version upgrade workflow](https://docs.percona.com/percona-operator-for-postgresql/latest/update-db-major.html)
+- **Multi-cloud and hybrid portability:** Percona Operators run on standard Kubernetes in public cloud, OpenShift, and on-premises, so teams keep one way to run Day 2 work across environments.
+  - **MongoDB:** Works on Rancher (RKE2) and on ARM servers with the same Operator model. Multi-cluster and multi-region setups support teams that need data in more than one place.
+  - **MySQL:** Cross-site replication keeps clusters in sync across Kubernetes sites.
+  - **PostgreSQL:** Same Operator model on OpenShift and public clouds, including catalog installs with clear namespace scope.
+- **Full-text and vector search for MongoDB (Technical Preview):** The Percona Operator for MongoDB can install and run Percona Search for MongoDB with the cluster so teams get full-text and vector search on data they already keep, while apps keep the same connection string. In this Technical Preview you provide embeddings yourself; it needs Percona Server for MongoDB 8.3 and is for staging, not production. More Search capability is planned in upcoming releases.
+- **Integration with cloud-native toolchains:** Operators work with CI/CD and policy tools, plus Prometheus, Grafana, and PMM, so database operations fit platform engineering workflows. PostgreSQL setups often include Patroni, pgBackRest, and pgBouncer. MongoDB teams can manage Operator resources with GitOps tools such as ArgoCD and FluxCD.
+- **Modernization path for legacy operations:** Operators replace ticket-based, manual database work with automated create, upgrade, backup, and recovery steps. For PostgreSQL on Kubernetes, teams moving from Crunchy can keep both operators during the move, and major version upgrades use Percona’s upgrade workflow and images.
 
 ### Sales enablement: cloud native database operations
 
@@ -68,11 +73,13 @@ Percona supports teams that need to run MySQL, PostgreSQL, and MongoDB on Kubern
 - How are you balancing standardization across engines with team-level autonomy?
 - What compliance or governance requirements influence where and how you run databases?
 - Where would expert help accelerate outcomes, architecture planning, reliability tuning, or ongoing operations?
+- Are you trying search or AI features on self-managed MongoDB without a second search system? (Percona Search for MongoDB is Technical Preview on Percona Server for MongoDB 8.3, including with the Percona Operator for MongoDB; staging only.)
 
 **Public resources**
 
 - [Percona Operators documentation](https://docs.percona.com/percona-operator-for-mysql/pxc/index.html)
 - [Percona Operator for PostgreSQL documentation](https://docs.percona.com/percona-operator-for-postgresql/latest/index.html)
 - [Percona Operator for MongoDB documentation](https://docs.percona.com/percona-operator-for-mongodb/index.html)
+- [Full-text and vector search overview (Operator Technical Preview)](https://docs.percona.com/percona-operator-for-mongodb/search-overview.html)
 - [Percona Monitoring and Management (PMM)](https://docs.percona.com/percona-monitoring-and-management/index.html)
 
