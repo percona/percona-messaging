@@ -76,7 +76,7 @@ Use the most defensible formulation available. In order of preference:
 
 ### Databases Percona supports but does not develop software for
 - Redis
-- MariaDB (Community versions only)
+- MariaDB Server (Expert Support covers MariaDB Server only, not MariaDB Enterprise)
 
 Never claim Percona develops Redis or MariaDB software.
 - OK: "Percona supports Redis users with operational expertise."
@@ -132,10 +132,12 @@ Keep "Support" attached when referencing SLAs or response times.
 
 ## MariaDB scope
 
-Percona supports **MariaDB Community versions only**. Do not:
+Percona supports **MariaDB Server** under standard Expert Support entitlements (open source edition maintained by the MariaDB Foundation), not MariaDB Enterprise. Prefer **MariaDB Server** over "MariaDB Community" as the edition name. Prefer **MariaDB Server** over bare "MariaDB" when the sentence means the supported open source database. For **MaxScale**, ask whether it is in the estate; do not imply standard Expert Support includes MaxScale, and do not claim Percona ships or forks MaxScale until product publishes that coverage. Do not:
 - Use "any MariaDB version"
-- Imply coverage of MariaDB Enterprise editions
+- Imply coverage of MariaDB Enterprise editions under standard Support
 - Claim Percona develops MariaDB software
+
+See `reference/canonical-naming.md` (MariaDB edition and entity naming).
 
 ## Third-party trademark rules
 
