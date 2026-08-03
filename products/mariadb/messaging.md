@@ -2,7 +2,7 @@
 
 ## Percona for MariaDB {#percona-for-mariadb}
 
-For organizations running **MariaDB Server** in production, Percona helps teams get more value from that stack. That means steadier day-to-day operations, clearer cost and support boundaries, stronger performance and reliability practices, and security that fits how the estate already runs. Percona does this with **Expert Support**, **Expert Consulting and Services** for complex environments, and **Percona ExpertOps** when teams want operational ownership. Where Percona publishes **Extended Lifecycle Support (ELS)** for qualifying MariaDB Server versions near or past End of Life (EOL), that coverage is available as a bridge on the team's timeline. Teams do not need to change platforms to start.
+For organizations running **MariaDB Server** in production, Percona helps teams get more value from that stack. That means steadier day-to-day operations, clearer cost and support boundaries, stronger performance and reliability practices, and security that fits how the estate already runs. Percona does this with **Expert Support**, **Expert Consulting and Services** for complex environments, and **Percona ExpertOps** when teams want operational ownership. Teams do not need to change platforms to start.
 
 MariaDB Server is a strong fit when teams use what MariaDB Server already does well: Galera-style clustering they already know, **ColumnStore** for analytics next to everyday transaction work (OLTP), MariaDB backup and audit tools, **MaxScale** when it sits in the data path, and software versions that match apps already built on MariaDB Server. Many organizations run MariaDB Server **alongside** MySQL because different jobs needed different databases for real reasons.
 
@@ -14,7 +14,6 @@ Percona does not ship MariaDB database software. Percona supports **MariaDB Serv
 
 **Optimized TCO**
 
-- **Extended Lifecycle Support (ELS) for MariaDB Server:** When MariaDB Server versions near or pass End of Life (EOL), teams face higher security, compliance, and support risk if they stay with no continuity plan, or costly rush upgrades if they move under deadline pressure. Where Percona publishes MariaDB Server ELS coverage, treat it as a bridge to a supported MariaDB Server release on the team's timeline, not a permanent stay on EOL. ELS is not a replacement for moving to a supported version, and it does not mean Percona ships MariaDB database software.
 - **MySQL Galera Cluster end of life (adjacent estates):** What is ending is **MySQL Galera Cluster**, not Galera in MariaDB Server. MariaDB has announced 2026-09-30 as the end of life for maintenance and regular binary releases of MySQL Galera Cluster. Galera-style clustering remains available in **MariaDB Server**. For teams on MySQL Galera Cluster who want a Galera-to-Galera path on MySQL-compatible software, **Percona XtraDB Cluster** is available ([continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/)). Teams already on MariaDB Server stay in the MariaDB Support and consulting motion above.
 - **Multi-database vendor consolidation:** Teams already working with Percona for MySQL, PostgreSQL, MongoDB-compatible environments, Valkey, or Redis can add **MariaDB Server** Expert Support without a separate database vendor relationship, duplicate SLAs, or slower handoffs when incidents cross engines.
 
@@ -41,16 +40,16 @@ Percona does not ship MariaDB database software. Percona supports **MariaDB Serv
 
 **Elevator pitch**
 
-Percona helps MariaDB Server environments run in production with Expert Support and optional ExpertOps. Consulting covers complex environments or estates outside MariaDB Server entitlements. Where Percona publishes ELS for qualifying MariaDB Server versions near or past EOL, that coverage bridges to a supported release on the team's timeline. Teams get more reliability, clarity, and operational depth on MariaDB Server, without Percona claiming to ship MariaDB software.
+Percona helps MariaDB Server environments run in production with Expert Support and optional ExpertOps. Consulting covers complex environments or estates outside MariaDB Server entitlements. Teams get more reliability, clarity, and operational depth on MariaDB Server, without Percona claiming to ship MariaDB software.
 
 **Purpose**
 
-MariaDB Server is a lasting production path, not a short stop on the way to MySQL. Teams need honest MariaDB Server Support scope, consulting when the environment is broader or outside MariaDB Server entitlements, ExpertOps when teams want operational ownership, and published ELS coverage where MariaDB Server versions near or pass EOL. Percona meets those needs on MariaDB Server with clear boundaries: MariaDB Server-only Expert Support, no Percona MariaDB database software, and engine-change work only when the customer asks for a different home.
+MariaDB Server is a lasting production path, not a short stop on the way to MySQL. Teams need honest MariaDB Server Support scope, consulting when the environment is broader or outside MariaDB Server entitlements, and ExpertOps when teams want operational ownership. Percona meets those needs on MariaDB Server with clear boundaries: MariaDB Server-only Expert Support, no Percona MariaDB database software, and engine-change work only when the customer asks for a different home.
 
 **Conversation starters**
 
 - Are you running MariaDB Server or Enterprise in production today, and which versions matter for Support scope? (Expert Support covers MariaDB Server only; surfaces outside MariaDB Server need consulting scope so entitlements stay honest.)
-- Which MariaDB Server versions are approaching or past End of Life (EOL), and do you need runway before an upgrade finishes? (Where Percona publishes MariaDB Server ELS, treat it as a bridge to a supported MariaDB Server release on the team's timeline, not a permanent stay on EOL.)
+- Which MariaDB Server versions are approaching or past End of Life (EOL), and do you need an upgrade plan on your timeline? (Support and consulting help plan upgrades and reduce rush risk; do not invent MariaDB ELS coverage until product publishes terms.)
 - Which MariaDB-specific components are load-bearing today: Galera patterns, ColumnStore, MaxScale, backup, audit, or app assumptions built on MariaDB Server? (Stay-and-stabilize is the default when those pieces are central; MaxScale is MariaDB plc BSL middleware, so confirm it is in the path and whether consulting scope is needed; engine-change only if the customer asks.)
 - Do you already buy Percona Support for other engines while MariaDB Server sits on a separate vendor relationship? (Same Support relationship and SLAs across engines without forcing one database.)
 - What are the top recurring MariaDB Server incidents (replication, failover, upgrades, query regressions), and how are they handled today? (Expert Support and optional ExpertOps reduce repeat fire drills on the stack you run now.)
@@ -63,7 +62,7 @@ MariaDB Server is a lasting production path, not a short stop on the way to MySQ
 
 **Situation talk tracks**
 
-- **ELS bridge on MariaDB Server:** Version is near or past EOL, MariaDB-specific components still matter, and the team needs continuity plus an upgrade plan. Use published MariaDB Server ELS where available; do not invent coverage.
+- **EOL upgrade planning on MariaDB Server:** Version is near or past EOL, MariaDB-specific components still matter, and the team needs an upgrade plan. Use Support and consulting; do not invent MariaDB ELS coverage until product publishes terms.
 - **Unify Support across engines:** Multi-engine estate, MariaDB Server is staying, buyer wants one Support relationship and clear MariaDB Server entitlements.
 - **Stabilize on MariaDB Server:** Recurring incidents or HA drill gaps are the pain; Expert Support and optional ExpertOps deepen operations without a platform change.
 - **Harden MariaDB Server in place:** Audit, identity, encryption, or evidence requirements can be met on the current MariaDB Server estate with Support and consulting.
