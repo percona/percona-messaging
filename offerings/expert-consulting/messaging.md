@@ -12,8 +12,8 @@ Consulting is project-based and time-boxed. It complements steady-state [Expert 
 
 ## Common scenarios
 
-- **Migrations and upgrades:** Complex or high-risk moves delivered as defined projects, including planning and hands-on execution where scoped.
-- **Legacy RDBMS migration to open source:** Assessment-led projects when license, support, or vendor roadmap risk drives the case. Source-to-target combinations and execution depth are scoped and quoted after assessment, not assumed for every engine pair.
+- **Migrations and upgrades:** Planned version, platform, or topology changes when source, target, and timing are largely set; delivered as defined projects with planning and hands-on execution where scoped. When End of Life (EOL) timing drives the case, assessment can also scope Extended Lifecycle Support (ELS) alongside the upgrade or migration path.
+- **Legacy exit and modernization:** When license, renewal, or vendor pressure drives a move to open source targets, assessment scopes how complex the move is for the chosen target. Percona delivers scoped work directly or through a **Migration and Modernization** engagement with the Percona + HexaCluster partnership for proprietary exits such as Oracle to PostgreSQL. The customer contracts with Percona for the full engagement. Optional post-migration Expert Support follows cutover.
 - **Assessments:** Structured health, performance, security, or compliance reviews with clear recommendations and deliverables.
 - **Architecture and modernization:** Major design decisions and modernization paths across cloud, on-premises, hybrid, and Kubernetes environments.
 - **Deep performance work:** Schema, query, configuration, and scaling work when bottlenecks or unclear storage and query behavior exceed advisory support scope.

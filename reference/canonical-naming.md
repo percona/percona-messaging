@@ -31,6 +31,30 @@ Percona’s paid program for security and stability updates after a database ver
 
 Live web paths and legacy PDFs may still say post-EOL support until commercial assets are updated. Canonical messaging in this repo should use **Extended Lifecycle Support (ELS)** so future edits do not drift back to deprecated program names.
 
+## Migration and Modernization naming
+
+- **Public frame:** Migration and Modernization
+- **HexaCluster:** Named for proprietary exits such as Oracle to PostgreSQL (usual destinations PostgreSQL, MySQL, MariaDB); do not imply Hexa covers every path in the tables
+- **Contracting:** Customer contracts with Percona; transparent that a migration software license is part of the Percona engagement when tooling applies
+- **Methodology:** PACE (one in-program mention on the offering page; program name not locked)
+- **Do not name:** HexaRocket on public web
+
+Full copy: [migration-program/messaging.md](../offerings/migration-program/messaging.md).
+
+## Community program naming
+
+These are community participation programs, not commercial offerings. Keep them distinct from Expert Support, ExpertOps, and Consulting. Positioning lives under Deep Ecosystem participation in [why-percona.md](../framework/why-percona.md).
+
+| Name | Use for | Notes |
+| --- | --- | --- |
+| **Percona Community** | The overall community home and programs | Public hub: [percona.community](https://percona.community/) |
+| **Basecamp** | The entry point on the community climb | Starting rung; not a product or SKU |
+| **Community Ascent** | The contribution climb and public dashboards | Program home: [percona.community/ascent](https://percona.community/ascent/) |
+| **Mountaineers** | Recognition and rewards for top contributors | Code, forum help, content, and direct product feedback |
+| **Community Writers Program** | Paid community-authored technical posts | Publish on the community blog under the author’s name |
+| **Percona Community Slack** | Peer conversation space | Complements forums; does not replace them for support |
+| **Percona Live** | Flagship Percona conference | Event details on [perconalive.com](https://perconalive.com/) |
+
 ## MongoDB wording in capability copy
 
 - For generic capability coverage, use "MongoDB-compatible environments" or "MongoDB services monitored by PMM."
