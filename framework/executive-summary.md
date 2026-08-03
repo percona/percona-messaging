@@ -18,6 +18,6 @@ Modern data estates are spread across many systems, creating operational sprawl 
 
 - **Expert Support, ExpertOps, and Expert Consulting and Services** keep systems reliable, scalable, and well-architected with responsive and optionally hands-on expertise
 
-Together, these offerings provide the reliability of a proprietary database platform without runtime licensing charges, vendor lock-in, or opaque operational layers.
+Together, these offerings provide the reliability of a proprietary database platform without licensing or runtime costs, vendor lock-in, or opaque operational layers.
 
 *(Note: see [canonical naming references](../reference/canonical-naming.md).)*
