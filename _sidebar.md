@@ -19,7 +19,6 @@
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
 - Partners
-  - [Overview](/partners/README.md)
   - [Partners](/partners/messaging.md)
 
 - Products
