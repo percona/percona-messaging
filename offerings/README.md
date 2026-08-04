@@ -11,7 +11,7 @@ Percona offers complementary ways to meet customer needs across the full lifecyc
 - **[Expert Support](expert-support/messaging.md)** is *reactive and advisory*: customers own execution, and Percona engineers respond when issues or questions arise.
 - **[ExpertOps](expertops/messaging.md)** is *proactive and operational*: a flexible partnership where Percona engineers handle the parts of day-to-day database operations customers want support with, ranging from full operational ownership to shared workflows or targeted help with high-risk tasks.
 - **[Expert Consulting and Services](expert-consulting/messaging.md)** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as architecture decisions, deep performance tuning, and scoped project delivery at the level of involvement the customer needs.
-- **[Database modernization and migration](migration-program/messaging.md)** is the capability home for legacy exit and modernization programs, including **PACE** (Percona Assisted Cutover Engine). Buyers contract with Percona; delivery runs through Consulting and the HexaCluster partnership.
+- **[Migration and Modernization](migration-program/messaging.md)** is the capability home for legacy exit and modernization programs. For proprietary exits such as Oracle to PostgreSQL, Percona partners with HexaCluster in one offer. Customers contract with Percona for the full engagement; a migration software license is part of that engagement when the path uses migration tooling.
 
 ## Which offering?
 
@@ -20,7 +20,7 @@ The main fork is **who runs day-to-day database operations**:
 - **Your team executes**: [Expert Support](expert-support/messaging.md): Percona guides; you operate production.
 - **Percona executes in your environment**: [ExpertOps](expertops/messaging.md): hands-on operational partnership.
 
-Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (architecture, deep tuning, scoped delivery) alongside either steady-state offering. When the buyer need is **legacy exit or modernization to open source**, use **[Database modernization and migration](migration-program/messaging.md)** (capability language and **PACE** program naming). **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
+Add **[Expert Consulting and Services](expert-consulting/messaging.md)** for bounded projects (architecture, deep tuning, scoped delivery) alongside either steady-state offering. When the buyer need is **legacy exit or modernization to open source**, use **[Migration and Modernization](migration-program/messaging.md)**. **[Solution bundles](solution-bundles/messaging.md)** package Consulting + Support for known buyer moments when fixed scope fits; they are not ExpertOps subscriptions.
 
 Percona also offers **database training** as a complementary service. Training builds in-house skill; it is not a substitute for ExpertOps operational coverage or Expert Support for production incidents.
 
@@ -42,7 +42,7 @@ When the need is a defined outcome on fixed scope with Consulting and Support pa
 | [expert-support/messaging.md](expert-support/messaging.md) | Expert Support positioning |
 | [expertops/messaging.md](expertops/messaging.md) | ExpertOps positioning |
 | [expert-consulting/messaging.md](expert-consulting/messaging.md) | Expert Consulting and Services positioning |
-| [migration-program/messaging.md](migration-program/messaging.md) | Database modernization and migration capability; PACE program naming |
+| [migration-program/messaging.md](migration-program/messaging.md) | Migration and Modernization; Percona + HexaCluster for proprietary exits; Percona-wrapped contracting |
 | [solution-bundles/messaging.md](solution-bundles/messaging.md) | Packaged Consulting + Support bundles |
 
 Engine-specific Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) belongs under `products/{engine}/`, not in offering files here. Offering files describe how Support, ExpertOps, and Consulting work across all supported engines.
