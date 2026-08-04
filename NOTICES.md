@@ -11,6 +11,7 @@ This repository references third-party database products and trademarks. These r
 | MariaDB® | MariaDB plc / MariaDB Foundation |
 | Valkey | The Linux Foundation |
 | Kubernetes® | The Linux Foundation |
+| CloudNativePG | CloudNativePG contributors / CNCF |
 | Oracle® | Oracle Corporation |
 
 All other trademarks are the property of their respective owners.
