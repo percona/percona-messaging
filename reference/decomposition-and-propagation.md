@@ -34,6 +34,8 @@ Use this quick map for routing:
 - Shared value and scenario narratives: `use-cases-value-pillars/`
 - Product-specific framing and product language: `products/`
 - Core service messaging: `offerings/`
+- Fixed-fee Consulting scopes: `offerings/expert-consulting/` (Health Audit, Architecture and Design, Performance Tuning, PMM QuickStart, Security Assessment)
+- Migration and Modernization capability plus nested migration engagements: `offerings/migration-program/`
 - Sold package messaging: `offerings/solution-bundles/`
 - Partner hub and partner-interest CTA: `partners/`
 - Naming and policy guidance: `reference/`

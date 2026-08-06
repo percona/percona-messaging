@@ -33,3 +33,17 @@ Common paths include Oracle to PostgreSQL, MySQL, or MariaDB; and SQL Server to 
 Targets may run self-managed, on Percona software, or on supported managed database services across major cloud providers.
 
 Cutover approaches target near-zero downtime where application and operational constraints allow.
+
+## Fixed-scope migration engagements (a subset, not the full program)
+
+The three engagements below are **common packaged paths** under Migration and Modernization. They are **not** the full migration and modernization catalog, and they are not peer fixed-fee Consulting SKUs under Expert Consulting.
+
+Migration and Modernization still covers broader proprietary-estate exits, multi-phase modernization, application-layer work, hypercare, and post-migration Expert Support through a custom-scoped program (including PACE for complex proprietary exits). If your move does not match one of the packages below, that is expected; we scope the full engagement from assessment through cutover instead.
+
+| Engagement | Starting from | Use when |
+| --- | --- | --- |
+| [Database Migrations](database-migrations.md) | $26,000 (least complex) | Homogeneous or platform/version moves across MySQL, MariaDB Community, PostgreSQL, MongoDB, Valkey/Redis |
+| [Proprietary Database Migration to PostgreSQL](proprietary-to-postgresql.md) | $5,000 (assessment) | Oracle, SQL Server, or DB2 exit assessment via DMAT before full migration scope |
+| [MySQL Galera Cluster Migration](mysql-galera-cluster-migration.md) | $26,000 (least complex) | MySQL or MariaDB Community Galera → Percona XtraDB Cluster (or another Percona-supported HA path) |
+
+Related fixed-fee consulting assessments (Health Audit, Architecture and Design, Performance Tuning, PMM QuickStart, Security Assessment) are likewise a **subset** of [Expert Consulting and Services](../expert-consulting/messaging.md), not everything Consulting can deliver.

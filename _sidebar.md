@@ -15,7 +15,15 @@
   - [Expert Support](/offerings/expert-support/messaging.md)
   - [ExpertOps](/offerings/expertops/messaging.md)
   - [Expert Consulting and Services](/offerings/expert-consulting/messaging.md)
+    - [Health Audit](/offerings/expert-consulting/health-audit.md)
+    - [Architecture and Design](/offerings/expert-consulting/architecture-and-design.md)
+    - [Performance Tuning](/offerings/expert-consulting/performance-tuning.md)
+    - [Database Monitoring QuickStart](/offerings/expert-consulting/database-monitoring-quickstart.md)
+    - [Security Assessment](/offerings/expert-consulting/security-assessment.md)
   - [Migration and Modernization](/offerings/migration-program/messaging.md)
+    - [Database Migrations](/offerings/migration-program/database-migrations.md)
+    - [Proprietary to PostgreSQL](/offerings/migration-program/proprietary-to-postgresql.md)
+    - [MySQL Galera Cluster Migration](/offerings/migration-program/mysql-galera-cluster-migration.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
 - Partners

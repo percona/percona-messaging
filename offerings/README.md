@@ -10,8 +10,8 @@ Percona offers complementary ways to meet customer needs across the full lifecyc
 
 - **[Expert Support](expert-support/messaging.md)** is *reactive and advisory*: customers own execution, and Percona engineers respond when issues or questions arise.
 - **[ExpertOps](expertops/messaging.md)** is *proactive and operational*: a flexible partnership where Percona engineers handle the parts of day-to-day database operations customers want support with, ranging from full operational ownership to shared workflows or targeted help with high-risk tasks.
-- **[Expert Consulting and Services](expert-consulting/messaging.md)** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as architecture decisions, deep performance tuning, and scoped project delivery at the level of involvement the customer needs.
-- **[Migration and Modernization](migration-program/messaging.md)** is the capability home for legacy exit and modernization programs. For proprietary exits such as Oracle to PostgreSQL, Percona partners with HexaCluster in one offer. Customers contract with Percona for the full engagement; a migration software license is part of that engagement when the path uses migration tooling.
+- **[Expert Consulting and Services](expert-consulting/messaging.md)** are *proactive and project-based*: Percona experts help teams plan and execute complex, high-impact work such as architecture decisions, deep performance tuning, and scoped project delivery at the level of involvement the customer needs. The fixed-fee SKUs listed there (Health Audit, Architecture and Design, Performance Tuning, PMM QuickStart, Security Assessment) are a **subset** of Consulting, not the full catalog; work outside those gates is custom-scoped.
+- **[Migration and Modernization](migration-program/messaging.md)** is the capability home for legacy exit and modernization programs. For proprietary exits such as Oracle to PostgreSQL, Percona partners with HexaCluster in one offer. Customers contract with Percona for the full engagement; a migration software license is part of that engagement when the path uses migration tooling. The packaged migration engagements nested there are likewise a **subset** of what the program can cover.
 
 ## Which offering?
 
@@ -42,8 +42,18 @@ When the need is a defined outcome on fixed scope with Consulting and Support pa
 | [expert-support/messaging.md](expert-support/messaging.md) | Expert Support positioning |
 | [expertops/messaging.md](expertops/messaging.md) | ExpertOps positioning |
 | [expert-consulting/messaging.md](expert-consulting/messaging.md) | Expert Consulting and Services positioning |
+| [expert-consulting/health-audit.md](expert-consulting/health-audit.md) | Fixed-fee Health Audit (CONS-HAFF) |
+| [expert-consulting/architecture-and-design.md](expert-consulting/architecture-and-design.md) | Fixed-fee Architecture and Design (CONS-AD) |
+| [expert-consulting/performance-tuning.md](expert-consulting/performance-tuning.md) | Fixed-fee Performance Tuning (CONS-PTFF) |
+| [expert-consulting/database-monitoring-quickstart.md](expert-consulting/database-monitoring-quickstart.md) | Fixed-fee Database Monitoring QuickStart (CONS-PMM) |
+| [expert-consulting/security-assessment.md](expert-consulting/security-assessment.md) | Fixed-fee Security Assessment (CONS-SECFF) |
 | [migration-program/messaging.md](migration-program/messaging.md) | Migration and Modernization; Percona + HexaCluster for proprietary exits; Percona-wrapped contracting |
+| [migration-program/database-migrations.md](migration-program/database-migrations.md) | Homogeneous / platform Database Migrations (CONS-MIG) |
+| [migration-program/proprietary-to-postgresql.md](migration-program/proprietary-to-postgresql.md) | Proprietary → PostgreSQL assessment (DMAT) |
+| [migration-program/mysql-galera-cluster-migration.md](migration-program/mysql-galera-cluster-migration.md) | MySQL Galera Cluster → Percona XtraDB Cluster migration |
 | [solution-bundles/messaging.md](solution-bundles/messaging.md) | Packaged Consulting + Support bundles |
+
+Fixed-fee Consulting scopes live under `expert-consulting/`. Migration cutover and proprietary-exit assessment scopes nest under `migration-program/`, not as peer Consulting SKUs.
 
 Engine-specific Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) belongs under `products/{engine}/`, not in offering files here. Offering files describe how Support, ExpertOps, and Consulting work across all supported engines.
 
