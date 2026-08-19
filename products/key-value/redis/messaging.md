@@ -41,11 +41,11 @@ Percona supports Redis for traditional key/value work with Expert Support and PM
 - Are you embedding or redistributing Redis (product/SaaS), or is it internal-only?
 - Are you on self-managed, Redis Enterprise, or a cloud managed service?
 - Is Redis fine in day-to-day ops, or is the pressure from cost, governance, support coverage, or managed-service lock-in?
-- What is the main pressure this quarter: RAM cost, support coverage, governance / license trust, or vendor relationship?
+- What is the main pressure this quarter: RAM cost, support coverage, governance / license trust, or managed-service constraints?
 - Is the cache required for production? How much memory are you buying relative to the traffic it handles?
 - Do you need geo-local latency across regions for cache or session workloads?
 - Which Redis version are you on?
-- For managed Redis or strong vendor-relationship cases, what would "good" look like if you stay on Redis with Percona Expert Support?
+- For teams staying on managed Redis or self-managed Redis, what would "good" look like with Percona Expert Support?
 
 **Public resources**
 

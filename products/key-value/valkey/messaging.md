@@ -33,7 +33,7 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 
 **Future readiness**
 
-- **Search and JSON modules:** Valkey includes open modules for search and JSON workloads, including full-text search in Valkey Search, under the same open contribution model as core Valkey.
+- **JSON and search modules:** Valkey includes open modules for JSON and full-text workloads under the same open contribution model as core Valkey.
 - **Expansion across the Percona estate:** Valkey often sits next to existing MySQL, PostgreSQL, or MongoDB work. Percona can expand across those technologies when key/value is part of a larger estate.
 
 ### Sales enablement
