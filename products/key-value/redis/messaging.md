@@ -50,5 +50,5 @@ Percona supports Redis for traditional key/value work with Expert Support and PM
 **Public resources**
 
 - [Percona Support for Valkey and Redis](https://www.percona.com/valkey-redis/support/)
-- [Percona Expert Consulting and Services](https://www.percona.com/services/consulting)
+- [Percona Expert Consulting and Services](https://www.percona.com/services/expert-consulting-and-services/)
 - [PMM Valkey and Redis monitoring](https://docs.percona.com/percona-monitoring-and-management/3/install-pmm/install-pmm-client/connect-database/valkey-redis.html)

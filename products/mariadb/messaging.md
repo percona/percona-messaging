@@ -8,7 +8,7 @@ Teams run **MariaDB Community** for MySQL-compatible workloads where the MariaDB
 
 Percona does not ship MariaDB database software. We support **MariaDB Community** in production with Expert Support and ExpertOps, and bring the same upstream-level engineering depth we apply across MySQL, PostgreSQL, MongoDB, and Valkey. **Expert Consulting and Services** covers complex estates, non-Community versions, and tested workload migrations when a MariaDB deployment should move to Percona software for MySQL.
 
-Percona **Expert Support** covers **MariaDB Community versions only**, not MariaDB Enterprise editions under standard Support entitlements. **Expert Consulting and Services** may apply to other MariaDB versions and complex environments. See [MariaDB support](https://www.percona.com/services/support/mariadb-support).
+Percona **Expert Support** covers **MariaDB Community versions only**, not MariaDB Enterprise editions under standard Support entitlements. **Expert Consulting and Services** may apply to other MariaDB versions and complex environments. See [MariaDB support](https://www.percona.com/mariadb-support/).
 
 ### Customer Challenges and Value Alignment – MariaDB
 
@@ -33,8 +33,8 @@ Percona **Expert Support** covers **MariaDB Community versions only**, not Maria
 
 **Public resources**
 
-- [MariaDB support](https://www.percona.com/services/support/mariadb-support)
+- [MariaDB support](https://www.percona.com/mariadb-support/)
 - [Percona for MySQL software](https://www.percona.com/software/mysql-database)
 - [Continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/)
 - [Compare MySQL, MongoDB, PostgreSQL, and MariaDB](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb)
-- [Percona Expert Consulting and Services](https://www.percona.com/services/consulting)
+- [Percona Expert Consulting and Services](https://www.percona.com/services/expert-consulting-and-services/)
