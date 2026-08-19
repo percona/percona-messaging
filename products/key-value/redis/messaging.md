@@ -10,7 +10,7 @@ See also the [key/value overview](../messaging.md). Optional open-path messaging
 
 **Optimized TCO**
 
-- **Keep using Redis:** Teams that are happy with current Redis operations, prefer to stay with their Redis vendor, or run managed Redis can keep Redis as a long-term choice. Percona supports that path with Expert Support, incident escalation help, and PMM observability.
+- **Keep using Redis:** Teams that are happy with current Redis operations or run via a managed Redis service can keep Redis as a long-term choice. Percona supports that path with Expert Support, incident escalation help, and PMM observability.
 - **Memory pressure still drives cost:** Redis keeps working sets in RAM, which can become expensive at scale. Percona Experts help teams tune memory allocation, eviction, replication, and topology to improve latency and throughput efficiency on Redis estates.
 
 **Performance and Reliability at Scale**

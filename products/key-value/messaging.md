@@ -29,7 +29,7 @@ These apply to both Valkey and Redis:
 - **One support relationship for key/value:** Expert Support, ExpertOps, and Consulting cover Valkey and Redis so teams consolidate operational risk alongside the rest of the Percona estate, rather than treating cache and session layers as a separate vendor problem.
 - **Memory-driven infrastructure spend:** In-memory key/value workloads are among the most infrastructure-expensive databases in common use because working sets live in RAM. Percona Experts tune memory allocation, eviction, replication, and topology so teams improve latency and throughput efficiency on less infrastructure.
 - **Caching as operational infrastructure:** On critical workloads, the cache layer is a production requirement, not an optional accelerator. Cache failures and memory pressure hit user-facing latency before primary databases show stress. Production readiness means High Availability, support SLAs, observability, and migration rehearsal, not install-only test usage.
-- **Honest routing to the right engine:** Some teams prioritize Redis vendor relationship or managed-service posture, while others prioritize Linux Foundation governance, BSD licensing, open modules, and memory economics in Valkey. When a move is in scope, Percona plans cutovers by version and topology rather than assuming one path for every estate.
+- **Honest routing to the right engine:** Some teams prioritize staying on Redis with Expert Support and PMM, or a managed-service posture, while others prioritize Linux Foundation guided open governance, BSD licensing, open modules, and memory economics in Valkey. When a move is in scope, Percona plans cutovers by version and topology rather than assuming one path for every estate.
 
 ### Public resources
 

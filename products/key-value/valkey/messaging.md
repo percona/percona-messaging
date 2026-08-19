@@ -20,7 +20,7 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 
 - **Traditional workloads first:** Caching, sessions, pub/sub, queues, rate limiting, and high-throughput key/value remain the default Valkey lane. On important systems, the cache is crucial for production.
 - **Less load on the main database:** Valkey often sits in front of or alongside MySQL, PostgreSQL, or MongoDB-compatible systems. A well-tuned cache helps the app handle more traffic and cuts read load on those databases. That can delay expensive scale up.
-- **Familiar clients and wire protocol:** The RESP wire protocol remains 100% compatible with existing clients used for this workload family. Where differences appear, they are at the API or feature layer, not the wire protocol.
+- **Familiar clients and wire protocol:** The RESP wire protocol remains 100% compatible with existing clients used for this workload family. API differences are extremely minimal, and no backward-incompatible API changes have been made.
 - **Migration planning when needed:** Not every Valkey deployment is a migration from another engine. When a move is in scope, version and topology determine the safest path. Percona Experts plan replication- or service-level cutovers, validate rollback, and confirm High Availability before production moves.
 - **Operational tuning:** Percona Experts tune production Valkey for high availability and steady latency under load. Most platform teams do not have deep in-memory ops skills. 24×7 Expert Support and consulting cover escalation, architecture, migration, and health checks.
 - **See Valkey in PMM:** PMM has Valkey dashboards and metrics across overview, instance, and cluster views, covering commands, clients, memory use, keyspace behavior, latency, replication health, and slowlog analysis so teams can diagnose incidents faster.
@@ -28,12 +28,12 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 **Security, Sovereignty, and Compliance**
 
 - **Governance and trust:** Valkey is community-led under the Linux Foundation. It uses a BSD 3-Clause permissive license, no contributor license agreement requirement, and an open contribution model. That multi-vendor model gives teams a clear view of project direction and lowers single-vendor control risk for key/value infrastructure.
-- **Digital sovereignty, hybrid, and multi-cloud:** Teams that need self-managed, hybrid, or multi-cloud key/value, especially in the EU and other sovereignty-sensitive settings, can keep Valkey on infrastructure they control. AWS has named Percona as a partner path for ElastiCache/Valkey customers who also want self-managed or multi-cloud options. Google offers managed Valkey. Azure does not. Percona supports the self-managed, hybrid, and multi-cloud posture when managed Valkey is missing or not enough.
+- **Digital sovereignty, hybrid, and multi-cloud:** Teams that need self-managed, hybrid, or multi-cloud key/value, especially in the EU and other sovereignty-sensitive settings, can keep Valkey on infrastructure they control. Google offers managed Valkey. Azure does not. Percona supports the self-managed, hybrid, and multi-cloud posture when managed Valkey is missing or not enough.
 - **Enterprise controls:** TLS encryption, LDAP authentication, and an audit path help organizations align with GDPR, HIPAA, and PCI-DSS requirements on customer-operated infrastructure without opaque vendor-managed layers.
 
 **Future readiness**
 
-- **Open Search and JSON modules:** Valkey includes open modules for search and JSON workloads, including full-text search in Valkey Search. That open-module model avoids open-core boundaries such as single-node-only search, so teams can extend beyond basic caching without moving to a proprietary runtime.
+- **Search and JSON modules:** Valkey includes open modules for search and JSON workloads, including full-text search in Valkey Search, under the same open contribution model as core Valkey.
 - **Expansion across the Percona estate:** Valkey often sits next to existing MySQL, PostgreSQL, or MongoDB work. Percona can expand across those technologies when key/value is part of a larger estate.
 
 ### Sales enablement
