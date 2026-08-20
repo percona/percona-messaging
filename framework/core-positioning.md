@@ -4,4 +4,4 @@ Percona delivers open source and source-available database solutions with Expert
 
 **Standard company descriptor (PF-approved, 2026-02-24):** Customers rely on Percona to run critical MySQL and MariaDB, PostgreSQL, MongoDB, Valkey, and Redis databases across on-premises, hybrid, and multi-cloud environments without licensing costs or vendor lock-in.
 
-**Messaging guardrail: MariaDB scope.** Percona supports **MariaDB Community versions only**. Do not use "any MariaDB version" or imply coverage of MariaDB Enterprise editions. Ref: [MariaDB support](https://www.percona.com/mariadb-support/).
+**Messaging guardrail: MariaDB scope.** Percona supports **MariaDB Server** under standard Expert Support entitlements (not MariaDB Enterprise). Prefer **MariaDB Server** over "MariaDB Community" as the edition name. Ref: [MariaDB support](https://www.percona.com/services/support/mariadb-support), [canonical naming](../reference/canonical-naming.md).
