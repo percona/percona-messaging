@@ -16,4 +16,4 @@ This repository references third-party database products and trademarks. These r
 
 All other trademarks are the property of their respective owners.
 
-Percona®, Percona Server, Percona XtraDB Cluster, Percona XtraBackup, Percona Monitoring and Management (PMM), Percona Toolkit, Percona Backup for MongoDB, Percona ClusterSync, and Percona Operators are trademarks or registered trademarks of Percona LLC.
+Percona®, Percona Server, Percona XtraDB Cluster, Percona XtraBackup, Percona Monitoring and Management (PMM), Percona Toolkit, Percona Backup for MongoDB, Percona ClusterSync, Percona Search, and Percona Operators are trademarks or registered trademarks of Percona LLC.
