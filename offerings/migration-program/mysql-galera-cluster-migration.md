@@ -25,7 +25,7 @@ Because the direction is on the record. In February 2026 MariaDB moved to strip 
 
 ## Who it is for
 
-Built for teams running MySQL or MariaDB Community Galera Cluster in production who want a reliable, future-proof HA strategy. Actual scope is refined during planning based on cluster size, used features, and application dependencies.
+Built for teams running MySQL or MariaDB Galera Cluster in production who want a reliable, future-proof HA strategy. Actual scope is refined during planning based on cluster size, used features, and application dependencies.
 
 ## Outcome
 

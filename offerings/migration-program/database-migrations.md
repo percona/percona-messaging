@@ -3,15 +3,15 @@
 **SKU:** CONS-MIG  
 **Starting from:** $26,000 for the least complex environments
 
-Migrations fail in the gap between the plan and the cutover: untested rollback procedures, missed replication lag, application changes nobody scoped, or a maintenance window that runs long because nobody tested the actual cutover steps beforehand.
+Nobody books a maintenance window expecting to use the rollback plan. The teams that come out clean are the ones that rehearsed both. Migrations fail in the gap between the plan and the cutover: untested rollback procedures, missed replication lag, application changes nobody scoped, or a maintenance window that runs long because nobody tested the actual cutover steps beforehand.
 
-This engagement covers MySQL, MariaDB Community, PostgreSQL, MongoDB, and Valkey/Redis migrations across on-prem, cloud, or DBaaS, and builds a fully tested target environment before cutover ever happens. It is one packaged path under [Migration and Modernization](messaging.md), not the full migration and modernization catalog. For proprietary exits such as Oracle or SQL Server to PostgreSQL, start with the [Proprietary Database Migration to PostgreSQL](proprietary-to-postgresql.md) assessment. For Galera roadmap risk, see [MySQL Galera Cluster Migration](mysql-galera-cluster-migration.md). Broader multi-phase or proprietary-estate programs are scoped as a full Migration and Modernization engagement.
+This engagement covers MySQL, MariaDB Server, PostgreSQL, MongoDB, and Valkey/Redis migrations across on-prem, cloud, or DBaaS, and builds a fully tested target environment before cutover ever happens. It is one packaged path under [Migration and Modernization](messaging.md), not the full migration and modernization catalog. For proprietary exits such as Oracle or SQL Server to PostgreSQL, start with the [Proprietary Database Migration to PostgreSQL](proprietary-to-postgresql.md) assessment. For Galera roadmap risk, see [MySQL Galera Cluster Migration](mysql-galera-cluster-migration.md). Broader multi-phase or proprietary-estate programs are scoped as a full Migration and Modernization engagement.
 
 ## FAQ
 
 ### Which databases and platforms do you migrate?
 
-We assist with homogeneous migrations (MySQL, MariaDB Community, PostgreSQL, MongoDB, and Valkey/Redis across on-prem, cloud, and DBaaS in any direction: on-prem to cloud, DBaaS to self-managed, version upgrades, or engine to engine) as well as heterogeneous migrations (for example moving Oracle or SQL Server workloads to PostgreSQL). Heterogeneous proprietary exits typically start with the proprietary assessment engagement.
+We assist with homogeneous migrations (MySQL, MariaDB Server, PostgreSQL, MongoDB, and Valkey/Redis across on-prem, cloud, and DBaaS in any direction: on-prem to cloud, DBaaS to self-managed, version upgrades, or engine to engine) as well as heterogeneous migrations (for example moving Oracle or SQL Server workloads to PostgreSQL). Heterogeneous proprietary exits typically start with the proprietary assessment engagement.
 
 ### How do you keep the cutover from going wrong?
 
@@ -38,7 +38,7 @@ Because migration scope varies more than any other engagement we run. The starti
 
 ## Who it is for
 
-The actual scope depends on the source/target engines, data volume, and cutover complexity, and is refined during the planning phase. Applicable across MySQL, MariaDB Community, PostgreSQL, MongoDB, and Valkey/Redis, whether self-managed, cloud, or DBaaS.
+The actual scope depends on the source/target engines, data volume, and cutover complexity, and is refined during the planning phase. Applicable across MySQL, MariaDB Server, PostgreSQL, MongoDB, and Valkey/Redis, whether self-managed, cloud, or DBaaS.
 
 ## Outcome
 

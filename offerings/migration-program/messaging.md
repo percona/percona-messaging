@@ -42,8 +42,8 @@ Migration and Modernization still covers broader proprietary-estate exits, multi
 
 | Engagement | Starting from | Use when |
 | --- | --- | --- |
-| [Database Migrations](database-migrations.md) | $26,000 (least complex) | Homogeneous or platform/version moves across MySQL, MariaDB Community, PostgreSQL, MongoDB, Valkey/Redis |
+| [Database Migrations](database-migrations.md) | $26,000 (least complex) | Homogeneous or platform/version moves across MySQL, MariaDB Server, PostgreSQL, MongoDB, Valkey/Redis |
 | [Proprietary Database Migration to PostgreSQL](proprietary-to-postgresql.md) | $5,000 (assessment) | Oracle, SQL Server, or DB2 exit assessment via DMAT before full migration scope |
-| [MySQL Galera Cluster Migration](mysql-galera-cluster-migration.md) | $26,000 (least complex) | MySQL or MariaDB Community Galera → Percona XtraDB Cluster (or another Percona-supported HA path) |
+| [MySQL Galera Cluster Migration](mysql-galera-cluster-migration.md) | $26,000 (least complex) | MySQL or MariaDB Galera → Percona XtraDB Cluster (or another Percona-supported HA path) |
 
 Related fixed-fee consulting assessments (Health Audit, Architecture and Design, Performance Tuning, PMM QuickStart, Security Assessment) are likewise a **subset** of [Expert Consulting and Services](../expert-consulting/messaging.md), not everything Consulting can deliver.

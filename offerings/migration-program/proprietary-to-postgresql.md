@@ -35,4 +35,4 @@ Built for teams running Oracle, Microsoft SQL Server, or IBM DB2 who are evaluat
 
 A concrete, code-level answer to how hard this migration actually is, before you have committed a budget or a timeline to leadership. You will know which parts of your schema convert cleanly and which parts need real expert effort, so the migration proposal that follows is based on your actual environment, not a vendor's average case.
 
-**CTA:** Find out what your proprietary to open source migration actually costs before you commit to it.
+**CTA:** Price the migration before you commit.
