@@ -42,19 +42,19 @@ When the need is a defined outcome on fixed scope with Consulting and Support pa
 | [expert-support/messaging.md](expert-support/messaging.md) | Expert Support positioning |
 | [expertops/messaging.md](expertops/messaging.md) | ExpertOps positioning |
 | [expert-consulting/messaging.md](expert-consulting/messaging.md) | Expert Consulting and Services positioning |
-| [expert-consulting/health-audit.md](expert-consulting/health-audit.md) | Fixed-fee Health Audit (CONS-HAFF) |
-| [expert-consulting/architecture-and-design.md](expert-consulting/architecture-and-design.md) | Fixed-fee Architecture and Design (CONS-AD) |
-| [expert-consulting/performance-tuning.md](expert-consulting/performance-tuning.md) | Fixed-fee Performance Tuning (CONS-PTFF) |
-| [expert-consulting/database-monitoring-quickstart.md](expert-consulting/database-monitoring-quickstart.md) | Fixed-fee Database Monitoring QuickStart (CONS-PMM) |
-| [expert-consulting/security-assessment.md](expert-consulting/security-assessment.md) | Fixed-fee Security Assessment (CONS-SECFF) |
+| [expert-consulting/health-audit/](expert-consulting/health-audit/messaging.md) | Fixed-fee Health Audit (CONS-HAFF); shared hub plus per-engine variants |
+| [expert-consulting/architecture-and-design/](expert-consulting/architecture-and-design/messaging.md) | Fixed-fee Architecture and Design (CONS-AD); shared hub plus per-engine variants |
+| [expert-consulting/performance-tuning/](expert-consulting/performance-tuning/messaging.md) | Fixed-fee Performance Tuning (CONS-PTFF); shared hub plus per-engine variants |
+| [expert-consulting/database-monitoring-quickstart/](expert-consulting/database-monitoring-quickstart/messaging.md) | Fixed-fee Database Monitoring QuickStart (CONS-PMM); shared hub plus per-engine variants |
+| [expert-consulting/security-assessment/](expert-consulting/security-assessment/messaging.md) | Fixed-fee Security Assessment (CONS-SECFF); shared hub plus per-engine variants |
 | [migration-program/messaging.md](migration-program/messaging.md) | Migration and Modernization; Percona + HexaCluster for proprietary exits; Percona-wrapped contracting |
 | [migration-program/database-migrations.md](migration-program/database-migrations.md) | Homogeneous / platform Database Migrations (CONS-MIG) |
 | [migration-program/proprietary-to-postgresql.md](migration-program/proprietary-to-postgresql.md) | Proprietary → PostgreSQL assessment (DMAT) |
 | [migration-program/mysql-galera-cluster-migration.md](migration-program/mysql-galera-cluster-migration.md) | MySQL Galera Cluster → Percona XtraDB Cluster migration |
 | [solution-bundles/messaging.md](solution-bundles/messaging.md) | Packaged Consulting + Support bundles |
 
-Fixed-fee Consulting scopes live under `expert-consulting/`. Migration cutover and proprietary-exit assessment scopes nest under `migration-program/`, not as peer Consulting SKUs.
+Fixed-fee Consulting scopes live under `expert-consulting/`. Each multi-engine package is a directory: `messaging.md` holds the shared SKU, price, and FAQ, and uses Docsify `:include` so the reader site still shows every engine variant on one page. `mysql.md`, `mariadb.md`, `postgresql.md`, `mongodb.md`, and `valkey-redis.md` (when in scope) stay separate for tech-owner review. Migration cutover and proprietary-exit assessment scopes nest under `migration-program/`, not as peer Consulting SKUs.
 
-Engine-specific Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) belongs under `products/{engine}/`, not in offering files here. Offering files describe how Support, ExpertOps, and Consulting work across all supported engines.
+Product-level Support or Consulting scope (extensions, compatibility boundaries, advisory add-ons) still belongs under `products/{engine}/`. Offering hubs describe how Support, ExpertOps, and Consulting work across engines; nested package variants are commercial SKU detail, not product positioning.
 
 
