@@ -15,6 +15,19 @@
 /framework/                                  @brianamarie  
 # /offerings/                                  @briana-swift @matt-kane @andrey-glazkov @cindy-neely @val-bogatyreva
 /offerings/                                  @brianamarie 
+
+# Fixed-fee Consulting engine variants: product owners review their engine file only.
+# Shared package hubs (**/messaging.md) stay with offerings ownership above.
+# /offerings/expert-consulting/**/mysql.md      @briana-swift @val-bogatyreva @dennis-kittrell
+/offerings/expert-consulting/**/mysql.md     @brianamarie @thefactremains
+# /offerings/expert-consulting/**/mariadb.md    @briana-swift @val-bogatyreva
+/offerings/expert-consulting/**/mariadb.md   @brianamarie
+# /offerings/expert-consulting/**/postgresql.md @briana-swift @kai-wagner @janwieremjewicz
+/offerings/expert-consulting/**/postgresql.md @brianamarie
+# /offerings/expert-consulting/**/mongodb.md   @briana-swift @val-bogatyreva @puneet-kala
+/offerings/expert-consulting/**/mongodb.md   @brianamarie
+# /offerings/expert-consulting/**/valkey-redis.md @briana-swift @kyle-davis
+/offerings/expert-consulting/**/valkey-redis.md @brianamarie
 # /use-cases-value-pillars/                    @briana-swift @gareth-case @matt-kane @cindy-neely @val-bogatyreva
 /use-cases-value-pillars/                    @brianamarie 
 # /reference/                                  @briana-swift @val-bogatyreva @cindy-neely @val-bogatyreva
