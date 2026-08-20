@@ -76,3 +76,13 @@ These are community participation programs, not commercial offerings. Keep them 
 - For generic capability coverage, use "MongoDB-compatible environments" or "MongoDB services monitored by PMM."
 - For product-specific copy, use the exact product name, for example "Percona Server for MongoDB" or "Percona Operator for MongoDB."
 - When a capability does not apply across engines, state scope directly, for example "MongoDB only" and "not MySQL or PostgreSQL."
+
+## Percona Search for MongoDB
+
+| Context | Use this |
+| --- | --- |
+| Full name (first mention) | **Percona Search for MongoDB** |
+| After first mention | **Percona Search**, or generic **Search** / **vector search** / **full-text search** |
+| Framing | Optional add-on for Percona Server for MongoDB |
+
+Avoid Percona product titles that sound like MongoDB, Inc. product names (for example “MongoDB Search”).
