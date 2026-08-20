@@ -45,7 +45,7 @@ Modern teams need database operations that move at product speed without giving 
   - **PostgreSQL:** Same Operator model on OpenShift and public clouds, including catalog installs with clear namespace scope.
 - **Full-text and vector search for MongoDB (Technical Preview):** The Percona Operator for MongoDB can install and run Percona Search for MongoDB with the cluster so teams get full-text and vector search on data they already keep, while apps keep the same connection string. In this Technical Preview you can provide embeddings yourself or use automatic embeddings with supported third-party models; it needs Percona Server for MongoDB 8.3 and is for staging, not production. More Search capability is planned in upcoming releases.
 - **Integration with cloud-native toolchains:** Operators work with CI/CD and policy tools, plus Prometheus, Grafana, and PMM, so database operations fit platform engineering workflows. PostgreSQL setups often include Patroni, pgBackRest, and pgBouncer. MongoDB teams can manage Operator resources with GitOps tools such as ArgoCD and FluxCD.
-- **Modernization path for legacy operations:** Operators replace ticket-based, manual database work with automated create, upgrade, backup, and recovery steps. For PostgreSQL on Kubernetes, teams moving from Crunchy can keep both operators during the move, and major version upgrades use Percona’s upgrade workflow and images.
+- **Modernization path for legacy operations:** Operators replace ticket-based, manual database work with automated create, upgrade, backup, and recovery steps. For PostgreSQL on Kubernetes, teams moving from Crunchy can keep both operators during the move because Percona Operator for PostgreSQL is a hard fork that retains Patroni, pgBackRest, and pgBouncer foundations and coexisting CRDs, and major version upgrades use Percona’s upgrade workflow and images. Teams that prefer CloudNativePG instead of adopting Percona Operators can still get commercial support and migration help through [Expert Support](../../offerings/expert-support/messaging.md#common-scenarios).
 
 ### Sales enablement: cloud native database operations
 
@@ -66,6 +66,7 @@ Percona supports teams that need to run MySQL, PostgreSQL, and MongoDB on Kubern
 - Requirement for integrated observability across database fleets
 - Preference for open source tooling and cloud portability
 - Existing PostgreSQL-on-Kubernetes control plane (for example CloudNativePG) where the buyer need is commercial support for that estate rather than adopting Percona Operators; route to [Expert Support](../../offerings/expert-support/messaging.md#common-scenarios)
+- Crunchy PostgreSQL Operator or on-prem Crunchy estates evaluating an exit path; qualify timeline pressure, Ansible automation investment, and destination preference (Percona Operator for PostgreSQL vs CloudNativePG), then route migration scoping to [Expert Support](../../offerings/expert-support/messaging.md#common-scenarios)
 
 **Discovery questions**
 
@@ -74,6 +75,8 @@ Percona supports teams that need to run MySQL, PostgreSQL, and MongoDB on Kubern
 - How are you balancing standardization across engines with team-level autonomy?
 - What compliance or governance requirements influence where and how you run databases?
 - Which operator or control plane runs your databases today, and is the next step Operator adoption, commercial support for the current stack, or both?
+- If you run CloudNativePG today, what must commercial support cover (incidents, upgrades, backups, HA, monitoring), and who owns Day-2 work?
+- If you run Crunchy today, is the pressure a sunset date, support gap, or licensing change, and do you want Percona Operator for PostgreSQL, CloudNativePG, or a decision workshop first?
 - Where would expert help accelerate outcomes, architecture planning, reliability tuning, or ongoing operations?
 - Are you evaluating advanced search on self-managed MongoDB (full-text, vector, or hybrid) without a second search system? (Percona Search for MongoDB is Technical Preview on Percona Server for MongoDB 8.3, including with the Percona Operator for MongoDB; staging only.)
 
