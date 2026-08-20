@@ -9,4 +9,4 @@ alwaysApply: true
 
 **Portable baseline (full policy and scope):** `docs/agent-guidelines.md`.
 
-**Canonical messaging guardrails** in sibling `.mdc` files apply when editing canonical positioning under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, `partners/`, and `reference/` (see baseline). **Terminology and naming** in `terminology-and-naming.mdc` stays repo-wide unless an edit is purely non-prose automation.
+**Canonical messaging guardrails** in sibling `.mdc` files apply when editing canonical positioning under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` (see baseline). **Terminology and naming** in `terminology-and-naming.mdc` stays repo-wide unless an edit is purely non-prose automation.

@@ -54,7 +54,6 @@ Use as a map; priority and placement still follow the section above.
 | **A value pillar or cross-product scenario** | `use-cases-value-pillars/`; keep `framework/why-percona.md` intro aligned with the three core values |
 | **A specific product or stack** | `products/<product>/messaging.md` (pillar subsections + technical depth in the right place) |
 | **Commercial package or offering name** | `offerings/`; `offering-naming.mdc` when in scope |
-| **Partner hub UVP or partner-interest CTA** | `partners/messaging.md`  |
 | **Licensing (open source vs source available)** | `terminology-and-naming.mdc`; never overstate OSI “open source” |
 
 Execution-only assets (decks, campaigns, talk tracks) are **out of scope** for file lists here; note one line of **execution follow-up** if relevant.

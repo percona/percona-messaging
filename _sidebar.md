@@ -26,9 +26,6 @@
     - [MySQL Galera Cluster Migration](/offerings/migration-program/mysql-galera-cluster-migration.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
-- Partners
-  - [Partners](/partners/messaging.md)
-
 - Products
   - [Overview](/products/README.md)
   - [MySQL](/products/mysql/messaging.md)

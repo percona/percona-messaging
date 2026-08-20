@@ -43,7 +43,6 @@ The stronger messaging-quality bars (**value linkage, canonical audience, presen
 - `framework/`
 - `use-cases-value-pillars/`
 - `offerings/`
-- `partners/`
 - `reference/` **when** the file is **canonical positioning** (not contributor-only docs such as navigation READMEs inside `reference/` that only explain the repo).
 
 For those paths, combine this baseline with **[reference/canonical-naming.md](../reference/canonical-naming.md)**, **[reference/banned-terms.md](../reference/banned-terms.md)**, **[reference/brand-voice.md](../reference/brand-voice.md)**, and **[reference/decomposition-and-propagation.md](../reference/decomposition-and-propagation.md)** as appropriate.
