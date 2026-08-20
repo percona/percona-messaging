@@ -9,5 +9,3 @@ Each product area includes `messaging.md` for canonical product framing. Competi
 Current product areas include MySQL, MariaDB, PostgreSQL, MongoDB, Valkey/Redis, PMM, and Operators.
 
 Engine-specific Support, ExpertOps, or Consulting differentiators belong in the relevant product `messaging.md` pillar bullets (what ships in the distribution, what experts cover in production, and customer outcomes). Keep `offerings/` files cross-engine.
-
-Current product areas include MySQL, PostgreSQL, MongoDB, Valkey/Redis, PMM, and Operators.
