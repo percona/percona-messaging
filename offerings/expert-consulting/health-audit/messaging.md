@@ -35,7 +35,7 @@ The report is written so your team can act on it directly. If you would rather h
 
 ## Engine variants
 
-Source files are split by engine so tech owners can review only their variant. On the Docsify site, those variants render in full below. On GitHub, open the linked file.
+Source files are split by engine so tech owners can review only their variant. Engine files on this PR are stubs; full copy lands in follow-up tech PRs (issue #274). On the Docsify site, includes still render below once those PRs land.
 
 | Engine | Source file |
 | --- | --- |
