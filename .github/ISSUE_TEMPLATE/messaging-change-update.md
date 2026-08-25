@@ -46,7 +46,7 @@ assignees: ''
 - [ ] PostgreSQL (`products/postgresql/`)
 - [ ] MongoDB (`products/mongodb/`)
 - [ ] PMM (`products/pmm/`)
-- [ ] Valkey / Redis (`products/valkey-redis/`)
+- [ ] Key/value: Valkey / Redis (`products/key-value/`, including `valkey/` and `redis/`)
 - [ ] Framework / pillars / offerings (`framework/`, `use-cases-value-pillars/`, `offerings/`)
 - [ ] Other: <!-- path -->
 
