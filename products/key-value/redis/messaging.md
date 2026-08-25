@@ -16,7 +16,7 @@ See also the [key/value overview](../messaging.md). Optional open-path messaging
 **Performance and Reliability at Scale**
 
 - **Traditional workloads first:** Caching, sessions, pub/sub, queues, rate limiting, and high-throughput key/value work. On important systems, the cache is required for production, not an optional accelerator.
-- **Less load on the main database:** Redis often sits in front of or alongside MySQL, PostgreSQL, or MongoDB-compatible systems. A well-tuned cache helps the app handle more traffic and cuts read load on those databases. That can delay expensive scale up.
+- **Less load on the main database:** Redis often sits in front of or alongside MySQL, PostgreSQL, or MongoDB-compatible systems. A well-tuned cache helps the app handle more traffic and cuts read load on those databases. Redis can delay expensive scale up.
 - **Tuning and high availability:** Percona Experts help stabilize production Redis under heavy use and during failures. Most platform teams do not have deep in-memory ops skills. 24×7 Expert Support and consulting cover escalation, architecture, and health checks.
 - **PMM visibility:** PMM has Redis dashboards and metrics across overview, instance, and cluster views, covering commands, clients, memory use, keyspace behavior, latency, replication health, and slowlog analysis so teams can diagnose incidents faster.
 

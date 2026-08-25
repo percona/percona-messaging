@@ -2,7 +2,7 @@
 
 ## Percona for Valkey {#percona-for-valkey}
 
-For platform, SRE, and DevOps teams running traditional key/value and in-memory workloads that need sub-millisecond performance, production High Availability, and open governance across on-premises, cloud, and hybrid environments, Percona helps teams run **Valkey** with Expert Support, Expert Consulting and Services, migration and readiness guidance, and PMM observability. Unlike a proprietary single-vendor key/value stack, Valkey under Linux Foundation governance and a BSD 3-Clause license gives teams a multi-vendor open path with memory-efficient operations and Percona support on infrastructure they control. Percona contributes upstream, including Valkey Technical Steering Committee leadership participation, and publishes operational packaging, but does not own the Valkey project.
+For platform, SRE, and DevOps teams running traditional key/value and in-memory workloads that need sub-millisecond performance, production High Availability, and open governance across on-premises, cloud, and hybrid environments, Percona helps teams run **Valkey** with Expert Support, Expert Consulting and Services, migration and readiness guidance, and PMM observability. Unlike a proprietary single-vendor key/value stack, Valkey under Linux Foundation guided open governance and a BSD 3-Clause license gives teams a multi-vendor open path with memory-efficient operations and Percona support on infrastructure they control. Percona contributes upstream, including Valkey Technical Steering Committee leadership participation, and publishes operational packaging, but does not own the Valkey project.
 
 Lead reasons to evaluate Valkey are memory efficiency and TCO, governance and trust, and traditional key/value workloads, with optional digital sovereignty and hybrid or multi-cloud control for teams that prefer not to lock key/value estates to a single hyperscaler managed service.
 
@@ -19,7 +19,7 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 **Performance and Reliability at Scale**
 
 - **Traditional workloads first:** Caching, sessions, pub/sub, queues, rate limiting, and high-throughput key/value remain the default Valkey lane. On important systems, the cache is crucial for production.
-- **Less load on the main database:** Valkey often sits in front of or alongside MySQL, PostgreSQL, or MongoDB-compatible systems. A well-tuned cache helps the app handle more traffic and cuts read load on those databases. That can delay expensive scale up.
+- **Less load on the main database:** Valkey often sits in front of or alongside MySQL, PostgreSQL, or MongoDB-compatible systems. A well-tuned cache helps the app handle more traffic and cuts read load on those databases. Valkey can delay expensive scale up.
 - **Familiar clients and wire protocol:** The RESP wire protocol remains 100% compatible with existing clients used for this workload family. API differences are extremely minimal, and no backward-incompatible API changes have been made.
 - **Migration planning when needed:** Not every Valkey deployment is a migration from another engine. When a move is in scope, version and topology determine the safest path. Percona Experts plan replication- or service-level cutovers, validate rollback, and confirm High Availability before production moves.
 - **Operational tuning:** Percona Experts tune production Valkey for high availability and steady latency under load. Most platform teams do not have deep in-memory ops skills. 24×7 Expert Support and consulting cover escalation, architecture, migration, and health checks.
@@ -28,7 +28,7 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 **Security, Sovereignty, and Compliance**
 
 - **Governance and trust:** Valkey is community-led under the Linux Foundation. It uses a BSD 3-Clause permissive license, no contributor license agreement requirement, and an open contribution model. That multi-vendor model gives teams a clear view of project direction and lowers single-vendor control risk for key/value infrastructure.
-- **Digital sovereignty, hybrid, and multi-cloud:** Teams that need self-managed, hybrid, or multi-cloud key/value, especially in the EU and other sovereignty-sensitive settings, can keep Valkey on infrastructure they control. Google offers managed Valkey. Azure does not. Percona supports the self-managed, hybrid, and multi-cloud posture when managed Valkey is missing or not enough.
+- **Digital sovereignty, hybrid, and multi-cloud:** Teams that need self-managed, hybrid, or multi-cloud key/value, especially in the EU and other sovereignty-sensitive settings, can keep Valkey on infrastructure they control. Percona supports the self-managed, hybrid, and multi-cloud posture when managed Valkey is missing or not enough.
 - **Enterprise controls:** TLS encryption, LDAP authentication, and an audit path help organizations align with GDPR, HIPAA, and PCI-DSS requirements on customer-operated infrastructure without opaque vendor-managed layers.
 
 **Future readiness**
@@ -40,7 +40,7 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 
 **Elevator pitch**
 
-Percona helps platform and SRE teams run open Valkey for traditional key/value work with production high availability, Expert Support, and PMM. Teams get Linux Foundation governance, memory-efficient operations when RAM is expensive, and clear production readiness for greenfield Valkey and for migrations when a move is in scope.
+Percona helps platform and SRE teams run open Valkey for traditional key/value work with production high availability, Expert Support, and PMM. Teams get Linux Foundation guided open governance, memory-efficient operations when RAM is expensive, and clear production readiness for greenfield Valkey and for migrations when a move is in scope.
 
 **Purpose**
 
