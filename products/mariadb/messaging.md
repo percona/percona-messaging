@@ -8,7 +8,7 @@ MariaDB Server is a strong fit when teams use what MariaDB Server already does w
 
 MariaDB Server is a production path for important open source workloads. Teams need production Expert Support that is clear about MariaDB Server entitlement limits, consulting when the setup is larger or more mixed, and operators who know MariaDB-specific parts and use cases. Percona fills that gap without claiming to build MariaDB software, and without treating MariaDB Server as a short stop on the way to MySQL.
 
-Percona does not ship MariaDB database software. Percona supports **MariaDB Server** in production with the same upstream-level engineering depth applied across MySQL, PostgreSQL, MongoDB, and Valkey. **Expert Support** covers **MariaDB Server versions only**, not MariaDB Enterprise editions under standard Support entitlements. **Expert Consulting and Services** may apply to other MariaDB versions and complex environments. See [MariaDB support](https://www.percona.com/services/support/mariadb-support).
+Percona does not ship MariaDB database software. Percona supports **MariaDB Server** in production with the same upstream-level engineering depth applied across MySQL, PostgreSQL, MongoDB, and Valkey. **Expert Support** covers **MariaDB Server versions only**, not MariaDB Enterprise editions under standard Support entitlements. **Expert Consulting and Services** may apply to other MariaDB versions and complex environments. See [MariaDB support](https://www.percona.com/mariadb-support/).
 
 ### Customer Challenges and Value Alignment – MariaDB
 
@@ -70,9 +70,9 @@ MariaDB Server is a lasting production path, not a short stop on the way to MySQ
 
 **Public resources**
 
-- [MariaDB support](https://www.percona.com/services/support/mariadb-support)
+- [MariaDB support](https://www.percona.com/mariadb-support/)
 - [Compare MySQL, MongoDB, PostgreSQL, and MariaDB](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb)
-- [Percona Expert Consulting and Services](https://www.percona.com/services/consulting)
+- [Percona Expert Consulting and Services](https://www.percona.com/services/expert-consulting-and-services/)
 - [Continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/) (for MySQL Galera Cluster EOL estates who want a Galera-to-Galera path)
 - [How to migrate from MariaDB to Percona Server for MySQL](https://www.percona.com/resources/how-to-migrate-from-mariadb-to-percona-server-for-mysql) (customer-requested engine change only)
 - [Open source migration](https://www.percona.com/services/open-source-migration) (customer-requested engine change only)
