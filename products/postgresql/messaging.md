@@ -43,7 +43,7 @@ Unlike license-restricted PostgreSQL offerings and proprietary DBaaS services, P
 
 **Security, Sovereignty, and Compliance**
 
-- End-to-end encryption: Percona integrates pg_tde for database-level transparent data-at-rest and WAL encryption (not storage-only encryption alone), including 256-bit AES, optimized encrypted I/O, and external key management through HashiCorp Vault, Thales CipherTrust, Fortanix SDKMS, Open Bao, and Akeyless. Encrypted-cluster upgrades are supported through pg_tde_upgrade and validated major-version upgrade paths on the distribution stack. Current constraints and KMS options are documented in [Percona Transparent Data Encryption for PostgreSQL](https://docs.percona.com/pg-tde/).
+- End-to-end encryption: Percona integrates pg_tde for database-level transparent data-at-rest and WAL encryption (not storage-only encryption alone), including 256-bit AES, optimized encrypted I/O, and external key management through HashiCorp Vault, Thales CipherTrust, Fortanix SDKMS, OpenBao, and Akeyless. Encrypted-cluster upgrades are supported through pg_tde_upgrade and validated major-version upgrade paths on the distribution stack. Current constraints and KMS options are documented in [Percona Transparent Data Encryption for PostgreSQL](https://docs.percona.com/pg-tde/).
   
 - Authentication, audit, and vulnerability management: Percona supports LDAP, Kerberos, and TLS for centralized authentication. pgAudit and Percona's documented CVE process strengthen auditability for GDPR, HIPAA, and PCI-DSS frameworks and keep supported PostgreSQL versions on current security fixes.
   
