@@ -11,3 +11,7 @@ Current product areas include MySQL, MariaDB, PostgreSQL, MongoDB, key/value wor
 Engine-specific Support, ExpertOps, or Consulting differentiators belong in the relevant product `messaging.md` pillar bullets (what ships in the distribution, what experts cover in production, and customer outcomes). Keep `offerings/` files cross-engine.
 
 The key/value family uses a shared parent (`products/key-value/messaging.md`) with separate Valkey and Redis modules.
+
+Lifecycle and offering topics that need their own reusable module sit
+alongside the product `messaging.md` in the same folder, for example
+[MySQL Galera Cluster EOL offering](mysql/galera-cluster-eol.md).

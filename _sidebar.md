@@ -17,10 +17,11 @@
   - [Expert Consulting and Services](/offerings/expert-consulting/messaging.md)
   - [Migration and Modernization](/offerings/migration-program/messaging.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
-
+  
 - Products
   - [Overview](/products/README.md)
   - [MySQL](/products/mysql/messaging.md)
+   - [MySQL Galera Cluster EOL](/products/mysql/galera-cluster-eol.md)
   - [MariaDB](/products/mariadb/messaging.md)
   - [PostgreSQL](/products/postgresql/messaging.md)
   - [MongoDB](/products/mongodb/messaging.md)
