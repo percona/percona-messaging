@@ -18,8 +18,7 @@
   - [Migration and Modernization](/offerings/migration-program/messaging.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
-- Partners
-  - [Partners](/partners/messaging.md)
+- [Partners](/partners/messaging.md)
 
 - Products
   - [Overview](/products/README.md)
