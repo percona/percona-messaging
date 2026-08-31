@@ -8,70 +8,53 @@ Percona works with companies that help customers decide three things: what datab
 
 Most work starts with consulting, professional services, or migration help. If the customer later needs day-to-day coverage (backups, high availability, upgrades, or on-call), the partnership can grow into longer operational support.
 
-How the deal is structured depends on the partner type:
+Partners usually fit one of four types. How Percona shows up in the deal follows the type.
 
-| Term | Meaning |
-| --- | --- |
-| **Sell-with** | We pursue the customer together |
-| **Sell-through** | The partner includes Percona offers in its own portfolio |
-| **Reseller** | The partner resells Percona software and/or services |
-| **One-to-many** | Percona expertise is built into the partner’s own service offerings |
+### Global systems integrators and systems integrators (GSI / SI)
 
-### Global systems integrators (GSI / SI)
-
-**Who:** Large integrators serving enterprise and global accounts.
+**Who:** Integrators serving enterprise accounts, from global firms to regional and boutique SIs.
 
 **How we work together**
 
-- **Sell-with** and **sell-through**
-- Percona offers can sit on the integrator’s existing portfolio so customers get database software and services through a relationship they already have
+- Sell-with and sell-through: we pursue the customer together, and Percona offers can sit on the integrator’s existing portfolio
+- Some GSIs are also customers (sell-to), then bring Percona into their integrator motion
 - Percona engineers join when a project needs that depth
 
 **Customer gets:** One integrator relationship and a ready path to database expertise.
 
-### Independent software vendors (ISV)
-
-**Who:** Software companies that pair their product with Percona database software and expertise.
-
-**How we work together**
-
-- **Reseller**, **sell-with**, and **sell-through**
-- We go to market together so the customer gets a fuller stack under clear commercial terms
-
-**Customer gets:** Fewer vendors and contracts, and a fuller stack from one motion.
-
-### Hyperscalers
-
-**Who:** Major public clouds where customers already buy (AWS, GCP).
-
-**How we work together**
-
-- Follow the hyperscaler’s marketplace and partner programs
-- Customers buy through paths they already use in that cloud
-
-**Customer gets:** Percona-supported databases inside a cloud they already know how to buy from.
-
-### Cloud providers
-
-**Who:** Cloud companies that put Percona expertise inside their own database services. DigitalOcean is one example today.
-
-**How we work together**
-
-- **One-to-many:** Percona supplies engineering expertise; the provider builds it into its MySQL and PostgreSQL offerings
-- Customers stay on the provider’s contract and brand
-
-**Customer gets:** Provider-branded MySQL and PostgreSQL services powered by Percona expertise.
-
-### Value-added resellers (VARs)
+### Resellers and value-added resellers (VAR)
 
 **Who:** Resellers that already sell hardware and software to a set account base.
 
 **How we work together**
 
+- The partner resells Percona software and services
 - Help VAR teams sell database consulting, projects, and ongoing support as clear services offers
 - Package work as services and projects so it fits how VARs sell, not as proprietary database license SKUs
 
 **Customer gets:** A familiar reseller plus database experts, with services priced to match how the work is sold.
+
+### Technology partners (ISV)
+
+**Who:** Independent software vendors that pair their product with Percona database software and expertise.
+
+**How we work together**
+
+- Reseller, sell-with, and sell-through
+- We go to market together so the customer gets a fuller stack under clear commercial terms
+
+**Customer gets:** Fewer vendors and contracts, and a fuller stack from one motion.
+
+### Hyperscalers and cloud service providers (CSP)
+
+**Who:** Major public clouds and other CSPs where customers already buy or run databases. AWS and GCP are hyperscaler examples. DigitalOcean is a CSP example that is not a hyperscaler.
+
+**How we work together**
+
+- **Hyperscalers:** Follow the cloud’s marketplace and partner programs. Customers buy through paths they already use in that cloud.
+- **CSPs (one-to-many):** Percona supplies engineering expertise. The provider builds it into its MySQL® and PostgreSQL offerings. Customers stay on the provider’s contract and brand.
+
+**Customer gets:** Percona-supported databases through a cloud they already know: a buy path in that cloud, or provider-branded MySQL and PostgreSQL services powered by Percona expertise.
 
 ## Why partner with Percona
 
