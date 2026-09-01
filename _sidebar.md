@@ -15,15 +15,20 @@
   - [Expert Support](/offerings/expert-support/messaging.md)
   - [ExpertOps](/offerings/expertops/messaging.md)
   - [Expert Consulting and Services](/offerings/expert-consulting/messaging.md)
-  - [Database modernization and migration](/offerings/migration-program/messaging.md)
+  - [Migration and Modernization](/offerings/migration-program/messaging.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
+
+- [Partners](/partners/messaging.md)
 
 - Products
   - [Overview](/products/README.md)
   - [MySQL](/products/mysql/messaging.md)
+  - [MariaDB](/products/mariadb/messaging.md)
   - [PostgreSQL](/products/postgresql/messaging.md)
   - [MongoDB](/products/mongodb/messaging.md)
-  - [Valkey and Redis](/products/valkey-redis/messaging.md)
+  - [Key/value workloads](/products/key-value/messaging.md)
+    - [Valkey](/products/key-value/valkey/messaging.md)
+    - [Redis](/products/key-value/redis/messaging.md)
   - [PMM](/products/pmm/messaging.md)
   - [Operators](/products/operators/messaging.md)
 
