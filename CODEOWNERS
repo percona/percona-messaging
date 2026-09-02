@@ -15,6 +15,8 @@
 /framework/                                  @brianamarie  
 # /offerings/                                  @briana-swift @matt-kane @andrey-glazkov @cindy-neely @val-bogatyreva
 /offerings/                                  @brianamarie 
+# /partners/                                   @briana-swift
+/partners/                                   @brianamarie
 # /use-cases-value-pillars/                    @briana-swift @gareth-case @matt-kane @cindy-neely @val-bogatyreva
 /use-cases-value-pillars/                    @brianamarie 
 # /reference/                                  @briana-swift @val-bogatyreva @cindy-neely @val-bogatyreva
@@ -30,8 +32,8 @@
 /products/postgresql/                        @brianamarie
 # /products/mongodb/                           @briana-swift @val-bogatyreva @puneet-kala 
 /products/mongodb/                           @brianamarie
-# /products/valkey-redis/                      @briana-swift @kyle-davis
-/products/valkey-redis/                      @brianamarie
+# /products/key-value/                         @briana-swift @stockholmux (Kyle Davis)
+/products/key-value/                         @brianamarie @stockholmux
 # /products/pmm/                               @briana-swift @dave-poole
 /products/pmm/                               @brianamarie @DavePoole30 @tichomir
 # /products/operators/                         @briana-swift @kate-obiidykhata 
