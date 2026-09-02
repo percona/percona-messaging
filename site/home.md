@@ -13,7 +13,8 @@ Product managers, Solutions Marketing, field teams, partners, and anyone who nee
 - **Company positioning:** [Executive summary](/framework/executive-summary.md), [Core positioning](/framework/core-positioning.md), [Why Percona](/framework/why-percona.md)
 - **Value pillars:** cost, performance, security, and future readiness under **Value pillars** in the sidebar
 - **Services:** Expert Support, ExpertOps, and Consulting under **Offerings**
-- **Products:** MySQL, PostgreSQL, MongoDB, and others under **Products**
+- **Partners:** [Partners](/partners/messaging.md) under **Partners** in the sidebar
+- **Products:** MySQL, MariaDB, PostgreSQL, MongoDB, and others under **Products**
 - **Naming rules:** [Canonical naming](/reference/canonical-naming.md) and [Brand voice](/reference/brand-voice.md)
 
 Use **Search** (top of sidebar) to find a topic across the site.
