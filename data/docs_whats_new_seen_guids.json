@@ -42,6 +42,20 @@
     "https://docs.percona.com/new/2026/06/24/percona-xtrabackup-840-6-has-been-released/",
     "https://docs.percona.com/new/2026/06/30/percona-distribution-for-mysql-8410-using-percona-server-for-mysql-has-been-released/",
     "https://docs.percona.com/new/2026/06/30/percona-server-for-mysql-8410-10-has-been-released/",
-    "https://docs.percona.com/new/2026/07/03/percona-operator-for-mysql-120-has-been-released/"
+    "https://docs.percona.com/new/2026/07/03/percona-operator-for-mysql-120-has-been-released/",
+    "https://docs.percona.com/new/2026/07/06/percona-distribution-for-postgresql-1842-17102-and-pg_tde-221-have-been-released/",
+    "https://docs.percona.com/new/2026/07/09/percona-server-for-mysql-5744-59-has-been-released/",
+    "https://docs.percona.com/new/2026/07/15/percona-xtrabackup-971-rc1-has-been-released/",
+    "https://docs.percona.com/new/2026/07/20/percona-xtradb-cluster-5744-316512-has-been-released/",
+    "https://docs.percona.com/new/2026/07/21/percona-server-for-mysql-8046-38-has-been-released/",
+    "https://docs.percona.com/new/2026/07/23/percona-distribution-for-mysql-8046-using-percona-xtradb-cluster-has-been-released/",
+    "https://docs.percona.com/new/2026/07/23/percona-operator-for-mongodb-1230-has-been-released/",
+    "https://docs.percona.com/new/2026/07/23/percona-xtradb-cluster-8046-38-has-been-released/",
+    "https://docs.percona.com/new/2026/07/27/percona-distribution-for-mysql-8410-using-percona-xtradb-cluster-has-been-released/",
+    "https://docs.percona.com/new/2026/07/27/percona-xtradb-cluster-8410-10-has-been-released/",
+    "https://docs.percona.com/new/2026/07/29/percona-build-of-proxysql-309-has-been-released/",
+    "https://docs.percona.com/new/2026/08/05/percona-distribution-for-mysql-971-using-percona-server-for-mysql-has-been-released/",
+    "https://docs.percona.com/new/2026/08/05/percona-server-for-mysql-971-1-has-been-released/",
+    "https://docs.percona.com/new/2026/08/20/percona-server-for-mongodb-7040-22-and-8029-13-have-been-released/"
   ]
 }
