@@ -44,7 +44,8 @@ Approved messaging is also available as a browsable site (Docsify on GitHub Page
 - `use-cases-value-pillars/`: shared value-pillar messaging (cost, performance, security/compliance, future readiness) and cross-product scenarios
 - `offerings/`: core services messaging, including Expert Support, Expert Consulting, and managed services (`ExpertOps`)
 - `offerings/solution-bundles/`: fixed-scope sold packages that combine services and outcomes
-- `products/`: product and database-specific messaging (MySQL, MariaDB, PostgreSQL, MongoDB, Valkey/Redis, PMM, Operators)
+- [`partners/messaging.md`](partners/messaging.md): partner hub positioning (not a commercial offering SKU). Internal named inventory: [`partners/roster.md`](partners/roster.md)
+- `products/`: product and database-specific messaging (MySQL, MariaDB, PostgreSQL, MongoDB, key/value Valkey and Redis, PMM, Operators)
 - `reference/`: canonical naming, banned terms, brand voice, governance references, and decomposition guidance
 - `docs/`: portable agent baseline shared across editors and tools (see [docs/agent-guidelines.md](docs/agent-guidelines.md))
 - `.cursor/rules/`: Cursor-facing snippets aligned with that baseline
@@ -56,13 +57,14 @@ Approved messaging is also available as a browsable site (Docsify on GitHub Page
 
 1. Start with `framework/` for the highest-level narrative and reusable positioning.
 2. Use `offerings/` and `products/` for domain-specific source material.
-3. Use `use-cases-value-pillars/` for value pillars and broader scenario/value-prop messaging.
-4. Use `offerings/solution-bundles/` for sold packaged offers.
-5. Check `reference/` and `.cursor/rules/` for naming, terminology, style guidance, and decomposition policy.
-6. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes.
-7. Read [GOVERNANCE.md](GOVERNANCE.md) when a change affects ownership, approval, or canonical status.
-8. Use [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) for the decomposition workflow and propagation checklist.
-9. Use [OPEN-SOURCE-MESSAGING-PLAYBOOK.md](OPEN-SOURCE-MESSAGING-PLAYBOOK.md) and [ORIGIN.md](ORIGIN.md) for the operating model and adoption program behind this repository.
+3. Use the [Partners hub](partners/messaging.md) for partner hub messaging.
+4. Use `use-cases-value-pillars/` for value pillars and broader scenario/value-prop messaging.
+5. Use `offerings/solution-bundles/` for sold packaged offers.
+6. Check `reference/` and `.cursor/rules/` for naming, terminology, style guidance, and decomposition policy.
+7. Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes.
+8. Read [GOVERNANCE.md](GOVERNANCE.md) when a change affects ownership, approval, or canonical status.
+9. Use [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) for the decomposition workflow and propagation checklist.
+10. Use [OPEN-SOURCE-MESSAGING-PLAYBOOK.md](OPEN-SOURCE-MESSAGING-PLAYBOOK.md) and [ORIGIN.md](ORIGIN.md) for the operating model and adoption program behind this repository.
 
 ## Working with AI assistants
 
