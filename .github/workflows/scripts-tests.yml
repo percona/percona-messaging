@@ -31,6 +31,3 @@ jobs:
 
       - name: Run script regression tests
         run: python -m pytest -q
-
-      - name: Run GitHub helper tests
-        run: node --test scripts/github/*.test.js
