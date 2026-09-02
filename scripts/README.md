@@ -24,6 +24,9 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 - `github/upsert_marker_comment.js`: shared marker-based upsert helper for workflow-managed PR comments
   - when duplicate marker comments exist, the helper updates the newest created marker comment and logs a warning
+- `github/parse_slash_command.js`: shared parser for maintainer slash commands
+  - reads the command from the first non-empty line, so leading blank lines do not silence the command
+  - accepts reversed aliases (`/ok-impact` for `/impact-ok`) and reports near misses so workflows can reply with a hint
 
 ## Workflow entry points
 
@@ -36,7 +39,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 - `.github/workflows/case-study-maintenance-reminder.yml` -> `case_study_maintenance_reminder.py`
 - `.github/workflows/docs-whats-new-monitor.yml` -> `docs_whats_new_monitor.py`
 - `.github/workflows/markdown-hygiene-autofix.yml` -> `markdownlint-cli2 --fix` with `automation/markdown-hygiene-autofix.jsonc`
-- `.github/workflows/scripts-tests.yml` -> `pytest` over `scripts/tests/` (fixture regression suite for Python automation)
+- `.github/workflows/scripts-tests.yml` -> `pytest` over `scripts/tests/` (fixture regression suite for Python automation) and `node --test` for `scripts/github/*.test.js`
 
 ## Regression tests (pytest)
 

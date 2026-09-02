@@ -12,12 +12,31 @@ permissions:
 
 jobs:
   governance-waiver:
-    if: ${{ github.event.issue.pull_request && (startsWith(github.event.comment.body, '/governance-ok') || startsWith(github.event.comment.body, '/governance-reset') || startsWith(github.event.comment.body, '/governance-all')) && github.actor != 'github-actions[bot]' }}
+    if: ${{ github.event.issue.pull_request && github.actor != 'github-actions[bot]' && (contains(github.event.comment.body, '/governance-') || contains(github.event.comment.body, '/ok-governance') || contains(github.event.comment.body, '/reset-governance') || contains(github.event.comment.body, '/all-governance')) }}
     runs-on: ubuntu-latest
 
     steps:
+      # Default branch, so the parser below is trusted code rather than the PR's.
+      - name: Checkout command parser
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Parse slash command
+        id: parse
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { parseSlashCommand, canonicalCommandLine } = require("./scripts/github/parse_slash_command.js");
+            const parsed = parseSlashCommand(context.payload.comment.body, "governance");
+            core.setOutput("is_command", parsed.kind === "command" ? "true" : "false");
+            core.setOutput("is_near_miss", parsed.kind === "near-miss" ? "true" : "false");
+            core.setOutput("command_line", canonicalCommandLine(parsed, "governance"));
+            core.info(`Parsed comment as: ${parsed.kind}`);
+
       - name: Verify commenter is maintainer-level
         id: authz
+        if: steps.parse.outputs.is_command == 'true' || steps.parse.outputs.is_near_miss == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -25,8 +44,29 @@ jobs:
             const assoc = context.payload.comment.author_association;
             core.setOutput("allowed", allowed.has(assoc) ? "true" : "false");
 
+      - name: Hint on near-miss command
+        if: steps.parse.outputs.is_near_miss == 'true' && steps.authz.outputs.allowed == 'true'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                "⚠️ That is not a recognized Content Governance command. Use one of:",
+                "",
+                "- `/governance-ok all` (or `/governance-all`) to waive both blocking gates",
+                "- `/governance-ok new-file` or `/governance-ok doc-coverage` to waive one gate",
+                "- `/governance-reset all` to clear waiver state",
+                "- `/governance-reset <same token>` to remove one waiver",
+                "",
+                "The command must be the first line of the comment. Reversed forms such as `/ok-governance all` also work.",
+              ].join("\n"),
+            });
+
       - name: Reject unauthorized command
-        if: steps.authz.outputs.allowed != 'true'
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed != 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -37,12 +77,9 @@ jobs:
               body: "⚠️ `/governance-ok`, `/governance-reset`, and `/governance-all` can only be used by Owner, Member, or Collaborator.",
             });
 
-      - name: Stop when unauthorized
-        if: steps.authz.outputs.allowed != 'true'
-        run: exit 0
-
       - name: Load PR refs
         id: pr
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -56,15 +93,18 @@ jobs:
             core.setOutput("base_ref", pr.data.base.ref);
 
       - name: Checkout PR head
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ steps.pr.outputs.head_sha }}
           fetch-depth: 0
 
       - name: Fetch base branch
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         run: git fetch origin "${{ steps.pr.outputs.base_ref }}" --depth=1
 
       - name: Set up Python
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.11"
@@ -72,10 +112,14 @@ jobs:
           cache-dependency-path: ".github/requirements/ci.txt"
 
       - name: Install dependencies
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         run: python -m pip install -r .github/requirements/ci.txt
 
       - name: Merge command into governance waiver state
         id: merge_waiver
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
+        env:
+          COMMAND_LINE: ${{ steps.parse.outputs.command_line }}
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -101,31 +145,16 @@ jobs:
             const marker = "<!-- messaging-governance-waiver-data:v1 -->";
             const issue_number = context.issue.number;
             const { owner, repo } = context.repo;
-            let body = context.payload.comment.body.trim();
-            if (/^\/governance-all\b/i.test(body)) {
-              body = body.replace(/^\/governance-all\b\s*/i, "/governance-ok all ");
-            }
-            const match = body.match(/^\/governance-(ok|reset)\b\s*(.*)$/is);
+            // Already canonical from the parse step: `/governance-<verb> <all|token>`.
+            const match = String(process.env.COMMAND_LINE || "").match(/^\/governance-(ok|reset) (\S+)$/);
             if (!match) {
-              await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number,
-                body: "⚠️ Unsupported command format. Use `/governance-ok all`, `/governance-ok new-file`, `/governance-reset all`, or `/governance-all`.",
-              });
-              fs.writeFileSync(
-                "governance-waivers.json",
-                JSON.stringify({ all: false, checks: [], reset_checks: [] })
-              );
+              core.setFailed("No canonical governance command available; leaving waiver state unchanged.");
               return;
             }
 
-            const command = match[1].toLowerCase();
-            const remainder = (match[2] || "").trim();
-            const firstLine = remainder.split(/\r?\n/)[0].trim();
-            const tokens = firstLine.split(/\s+/).filter(Boolean);
-            const firstToken = tokens[0] || "";
-            const all = !firstToken || firstToken.toLowerCase() === "all";
+            const command = match[1];
+            const firstToken = match[2];
+            const all = firstToken === "all";
             let canonical = "";
             if (!all) {
               canonical = normalizeCheckToken(firstToken);
@@ -247,6 +276,7 @@ jobs:
             fs.writeFileSync("governance-waivers.json", JSON.stringify(data));
 
       - name: Write PR body to file
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -261,6 +291,7 @@ jobs:
 
       - name: Run new-file gate (slash refresh)
         id: slash_new_file
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         continue-on-error: true
         run: |
           python scripts/new_file_gate.py \
@@ -272,6 +303,7 @@ jobs:
 
       - name: Run doc coverage check (slash refresh)
         id: slash_coverage
+        if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         continue-on-error: true
         run: |
           python scripts/check_doc_coverage.py \
@@ -281,7 +313,7 @@ jobs:
             --output-md "doc-coverage-report.md"
 
       - name: Upsert PR governance comment
-        if: always()
+        if: always() && steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -324,7 +356,7 @@ jobs:
             });
 
       - name: Rerun latest Content Governance Checks workflow
-        if: always()
+        if: always() && steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
