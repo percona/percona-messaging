@@ -5,6 +5,7 @@ globs:
   - framework/**/*
   - use-cases-value-pillars/**/*
   - offerings/**/*
+  - partners/**/*
   - reference/**/*
 alwaysApply: false
 ---
@@ -13,7 +14,7 @@ alwaysApply: false
 
 Portable baseline: `docs/agent-guidelines.md`.
 
-Applies to reusable messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` when the content is **canonical positioning**, not repo docs like `README.md`, `CONTRIBUTING.md`, or `.github/`.
+Applies to reusable messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, `partners/`, and `reference/` when the content is **canonical positioning**, not repo docs like `README.md`, `CONTRIBUTING.md`, or `.github/`.
 
 ## Write for downstream reuse
 

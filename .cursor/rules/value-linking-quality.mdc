@@ -5,6 +5,7 @@ globs:
   - framework/**/*
   - use-cases-value-pillars/**/*
   - offerings/**/*
+  - partners/**/*
   - reference/**/*
 alwaysApply: false
 ---
@@ -13,7 +14,7 @@ alwaysApply: false
 
 Portable baseline: `docs/agent-guidelines.md`.
 
-Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` when the content is canonical positioning (see `canonical-copy-audience.mdc`).
+Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, `partners/`, and `reference/` when the content is canonical positioning (see `canonical-copy-audience.mdc`).
 
 ## Do not ship feature dumps
 
