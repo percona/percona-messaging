@@ -12,58 +12,33 @@ permissions:
 
 jobs:
   governance-waiver:
-    if: ${{ github.event.issue.pull_request && github.actor != 'github-actions[bot]' && (contains(github.event.comment.body, '/governance-') || contains(github.event.comment.body, '/ok-governance') || contains(github.event.comment.body, '/reset-governance') || contains(github.event.comment.body, '/all-governance')) }}
+    if: ${{ github.event.issue.pull_request && github.actor != 'github-actions[bot]' && (contains(github.event.comment.body, '/governance-ok') || contains(github.event.comment.body, '/governance-reset') || contains(github.event.comment.body, '/governance-all')) }}
     runs-on: ubuntu-latest
 
     steps:
-      # Default branch, so the parser below is trusted code rather than the PR's.
-      - name: Checkout command parser
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Parse slash command
+      - name: Read first non-empty command line
         id: parse
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
-            const { parseSlashCommand, canonicalCommandLine } = require("./scripts/github/parse_slash_command.js");
-            const parsed = parseSlashCommand(context.payload.comment.body, "governance");
-            core.setOutput("is_command", parsed.kind === "command" ? "true" : "false");
-            core.setOutput("is_near_miss", parsed.kind === "near-miss" ? "true" : "false");
-            core.setOutput("command_line", canonicalCommandLine(parsed, "governance"));
-            core.info(`Parsed comment as: ${parsed.kind}`);
+            // Keep in sync with scripts/github/first_slash_command_line.js
+            const commandLine = String(context.payload.comment.body || "")
+              .split(/\r?\n/)
+              .map((l) => l.replace(/^\uFEFF/, "").trim())
+              .find(Boolean) || "";
+            const isCommand = /^\/governance-(ok|reset|all)\b/i.test(commandLine);
+            core.setOutput("is_command", isCommand ? "true" : "false");
+            core.setOutput("command_line", commandLine);
 
       - name: Verify commenter is maintainer-level
         id: authz
-        if: steps.parse.outputs.is_command == 'true' || steps.parse.outputs.is_near_miss == 'true'
+        if: steps.parse.outputs.is_command == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const allowed = new Set(["OWNER", "MEMBER", "COLLABORATOR"]);
             const assoc = context.payload.comment.author_association;
             core.setOutput("allowed", allowed.has(assoc) ? "true" : "false");
-
-      - name: Hint on near-miss command
-        if: steps.parse.outputs.is_near_miss == 'true' && steps.authz.outputs.allowed == 'true'
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        with:
-          script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: [
-                "⚠️ That is not a recognized Content Governance command. Use one of:",
-                "",
-                "- `/governance-ok all` (or `/governance-all`) to waive both blocking gates",
-                "- `/governance-ok new-file` or `/governance-ok doc-coverage` to waive one gate",
-                "- `/governance-reset all` to clear waiver state",
-                "- `/governance-reset <same token>` to remove one waiver",
-                "",
-                "The command must be the first line of the comment. Reversed forms such as `/ok-governance all` also work.",
-              ].join("\n"),
-            });
 
       - name: Reject unauthorized command
         if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed != 'true'
@@ -145,16 +120,31 @@ jobs:
             const marker = "<!-- messaging-governance-waiver-data:v1 -->";
             const issue_number = context.issue.number;
             const { owner, repo } = context.repo;
-            // Already canonical from the parse step: `/governance-<verb> <all|token>`.
-            const match = String(process.env.COMMAND_LINE || "").match(/^\/governance-(ok|reset) (\S+)$/);
+            let body = String(process.env.COMMAND_LINE || "");
+            if (/^\/governance-all\b/i.test(body)) {
+              body = body.replace(/^\/governance-all\b\s*/i, "/governance-ok all ");
+            }
+            const match = body.match(/^\/governance-(ok|reset)\b\s*(.*)$/is);
             if (!match) {
-              core.setFailed("No canonical governance command available; leaving waiver state unchanged.");
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: "⚠️ Unsupported command format. Use `/governance-ok all`, `/governance-ok new-file`, `/governance-reset all`, or `/governance-all`.",
+              });
+              fs.writeFileSync(
+                "governance-waivers.json",
+                JSON.stringify({ all: false, checks: [], reset_checks: [] })
+              );
               return;
             }
 
-            const command = match[1];
-            const firstToken = match[2];
-            const all = firstToken === "all";
+            const command = match[1].toLowerCase();
+            const remainder = (match[2] || "").trim();
+            const firstLine = remainder.split(/\r?\n/)[0].trim();
+            const tokens = firstLine.split(/\s+/).filter(Boolean);
+            const firstToken = tokens[0] || "";
+            const all = !firstToken || firstToken.toLowerCase() === "all";
             let canonical = "";
             if (!all) {
               canonical = normalizeCheckToken(firstToken);

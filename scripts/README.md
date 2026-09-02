@@ -24,9 +24,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 - `github/upsert_marker_comment.js`: shared marker-based upsert helper for workflow-managed PR comments
   - when duplicate marker comments exist, the helper updates the newest created marker comment and logs a warning
-- `github/parse_slash_command.js`: shared parser for maintainer slash commands
-  - reads the command from the first non-empty line, so leading blank lines do not silence the command
-  - accepts reversed aliases (`/ok-impact` for `/impact-ok`) and reports near misses so workflows can reply with a hint
+- `github/first_slash_command_line.js`: first non-empty line of a PR comment, plus the `/ok-impact` alias (unit-tested against real comment payloads)
 
 ## Workflow entry points
 

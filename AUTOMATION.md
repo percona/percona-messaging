@@ -137,16 +137,12 @@ For false positives where maintainers agree no edit is needed in a listed `must_
 
 - Comment `/impact-ok all` to acknowledge all currently missing required paths (you can add a short note on the same line after `all`; only the first word is read as the argument).
 - Comment `/impact-all` as a shortcut for `/impact-ok all`.
+- Comment `/ok-impact all` as an alias for `/impact-ok all`.
 - Comment `/impact-ok <exact path>` to acknowledge one path at a time (same rule: optional same-line text after the path is ignored).
 - Comment `/impact-reset all` to clear all recorded waivers for the PR.
 - Comment `/impact-reset <exact path>` to remove one waiver. If `/impact-ok all` is active, this path-specific reset is stored as an explicit exception.
 
-How commands are read (shared with Content Governance below):
-
-- The command must be on the **first non-empty line** of the comment. Leading blank lines are ignored, so a comment that starts with a newline still works.
-- **Reversed forms are accepted**: `/ok-impact`, `/reset-impact`, and `/all-impact` map to `/impact-ok`, `/impact-reset`, and `/impact-all`.
-- A first line that starts with `/` and mentions the command family but does not parse (for example `/impact-approve`) gets a reply listing the valid commands, so a mistyped command is never silent for maintainers.
-- A command quoted **below** prose is deliberately ignored, so discussing a command does not trigger it.
+The command is read from the **first non-empty line** of the comment (leading blank lines are ignored). A command quoted below other prose is ignored.
 
 The slash-command workflow stores waiver state in a hidden PR comment and re-runs the impact check so the checklist comment reflects waived items.
 
@@ -159,7 +155,7 @@ When maintainers agree a governance gate is satisfied outside automation (or the
 - Comment `/governance-reset all` to clear waiver state for the PR.
 - Comment `/governance-reset <same token>` to remove one waiver. While `/governance-ok all` is active, a path-specific reset records an exception (same pattern as Impact Check reset paths).
 
-Commands are read the same way as Impact Check (first non-empty line, reversed aliases such as `/ok-governance`, hint reply on a mistyped command).
+Commands are read from the first non-empty line, same as Impact Check.
 
 The slash-command workflow stores JSON in a hidden PR comment (`messaging-governance-waiver-data:v1`), refreshes the visible governance report, and requests a rerun of **Content Governance Checks** so check status matches waiver state.
 

@@ -12,58 +12,34 @@ permissions:
 
 jobs:
   impact-ok:
-    if: ${{ github.event.issue.pull_request && github.actor != 'github-actions[bot]' && (contains(github.event.comment.body, '/impact-') || contains(github.event.comment.body, '/ok-impact') || contains(github.event.comment.body, '/reset-impact') || contains(github.event.comment.body, '/all-impact')) }}
+    if: ${{ github.event.issue.pull_request && github.actor != 'github-actions[bot]' && (contains(github.event.comment.body, '/impact-ok') || contains(github.event.comment.body, '/impact-reset') || contains(github.event.comment.body, '/impact-all') || contains(github.event.comment.body, '/ok-impact')) }}
     runs-on: ubuntu-latest
 
     steps:
-      # Default branch, so the parser below is trusted code rather than the PR's.
-      - name: Checkout command parser
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Parse slash command
+      - name: Read first non-empty command line
         id: parse
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
-            const { parseSlashCommand, canonicalCommandLine } = require("./scripts/github/parse_slash_command.js");
-            const parsed = parseSlashCommand(context.payload.comment.body, "impact");
-            core.setOutput("is_command", parsed.kind === "command" ? "true" : "false");
-            core.setOutput("is_near_miss", parsed.kind === "near-miss" ? "true" : "false");
-            core.setOutput("command_line", canonicalCommandLine(parsed, "impact"));
-            core.info(`Parsed comment as: ${parsed.kind}`);
+            // Keep in sync with scripts/github/first_slash_command_line.js
+            const line = String(context.payload.comment.body || "")
+              .split(/\r?\n/)
+              .map((l) => l.replace(/^\uFEFF/, "").trim())
+              .find(Boolean) || "";
+            const commandLine = line.replace(/^\/ok-impact\b/i, "/impact-ok");
+            const isCommand = /^\/impact-(ok|reset|all)\b/i.test(commandLine);
+            core.setOutput("is_command", isCommand ? "true" : "false");
+            core.setOutput("command_line", commandLine);
 
       - name: Verify commenter is maintainer-level
         id: authz
-        if: steps.parse.outputs.is_command == 'true' || steps.parse.outputs.is_near_miss == 'true'
+        if: steps.parse.outputs.is_command == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const allowed = new Set(["OWNER", "MEMBER", "COLLABORATOR"]);
             const assoc = context.payload.comment.author_association;
             core.setOutput("allowed", allowed.has(assoc) ? "true" : "false");
-
-      - name: Hint on near-miss command
-        if: steps.parse.outputs.is_near_miss == 'true' && steps.authz.outputs.allowed == 'true'
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        with:
-          script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: [
-                "⚠️ That is not a recognized Impact Check command. Use one of:",
-                "",
-                "- `/impact-ok all` (or `/impact-all`) to waive every missing required path",
-                "- `/impact-ok <exact path>` to waive one path from the checklist",
-                "- `/impact-reset all` to clear recorded waivers",
-                "- `/impact-reset <exact path>` to remove one waiver",
-                "",
-                "The command must be the first line of the comment. Reversed forms such as `/ok-impact all` also work.",
-              ].join("\n"),
-            });
 
       - name: Reject unauthorized command
         if: steps.parse.outputs.is_command == 'true' && steps.authz.outputs.allowed != 'true'
@@ -127,16 +103,30 @@ jobs:
             const marker = "<!-- messaging-impact-waiver-data:v1 -->";
             const issue_number = context.issue.number;
             const { owner, repo } = context.repo;
-            // Already canonical from the parse step: `/impact-<verb> <all|path>`.
-            const match = String(process.env.COMMAND_LINE || "").match(/^\/impact-(ok|reset) (\S+)$/);
+            let body = String(process.env.COMMAND_LINE || "");
+            // Alias for waive-all; normalize so the same parser handles trailing discussion text.
+            if (/^\/impact-all\b/i.test(body)) {
+              body = body.replace(/^\/impact-all\b\s*/i, "/impact-ok all ");
+            }
+            const match = body.match(/^\/impact-(ok|reset)\b\s*(.*)$/i);
             if (!match) {
-              core.setFailed("No canonical impact command available; leaving waiver state unchanged.");
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: "⚠️ Unsupported command format. Use `/impact-ok all`, `/impact-ok <exact path>`, `/impact-reset all`, `/impact-reset <exact path>`, or `/impact-all` (same as `/impact-ok all`).",
+              });
+              fs.writeFileSync("waivers.json", JSON.stringify({ all: false, paths: [], reset_paths: [] }));
               return;
             }
 
-            const command = match[1];
-            const all = match[2] === "all";
-            const arg = all ? "" : match[2];
+            const command = match[1].toLowerCase();
+            const remainder = (match[2] || "").trim();
+            // First token decides waive-all vs path (ignore same-line discussion after the path or "all").
+            const tokens = remainder.split(/\s+/).filter(Boolean);
+            const firstToken = tokens[0] || "";
+            const all = !firstToken || firstToken.toLowerCase() === "all";
+            const arg = all ? "" : firstToken;
 
             const comments = await github.paginate(
               github.rest.issues.listComments,
