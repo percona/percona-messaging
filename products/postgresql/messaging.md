@@ -2,7 +2,7 @@
 
 ## Percona for PostgreSQL {#percona-for-postgresql}
 
-Percona Distribution for PostgreSQL is a fully open source, production- and performance-tested database platform for organizations running PostgreSQL across on-prem, cloud, and hybrid environments. It's built for high performance, reliability, security, sovereignty, and compliance.
+For organizations running PostgreSQL across on-prem, cloud, and hybrid environments, Percona Distribution for PostgreSQL is a fully open source, production- and performance-tested database platform. It's built for high performance, reliability, security, sovereignty, and compliance.
 
 The distribution packages and validates trusted PostgreSQL components as matched, release-tested binaries, so teams don't have to assemble and validate tooling themselves:
 
