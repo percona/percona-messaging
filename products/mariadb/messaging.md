@@ -49,7 +49,6 @@ MariaDB Server is a lasting production path, not a short stop on the way to MySQ
 **Conversation starters**
 
 - Are you running MariaDB Server or Enterprise in production today, and which versions matter for Support scope? (Expert Support covers MariaDB Server only; surfaces outside MariaDB Server need consulting scope so entitlements stay honest.)
-- Which MariaDB Server versions are approaching or past End of Life (EOL), and do you need an upgrade plan on your timeline? (Support and consulting help plan upgrades and reduce rush risk; do not invent MariaDB ELS coverage until product publishes terms.)
 - Which MariaDB-specific components are load-bearing today: Galera patterns, ColumnStore, MaxScale, backup, audit, or app assumptions built on MariaDB Server? (Stay-and-stabilize is the default when those pieces are central; MaxScale is MariaDB plc BSL middleware, so confirm it is in the path and whether consulting scope is needed; engine-change only if the customer asks.)
 - Do you already buy Percona Support for other engines while MariaDB Server sits on a separate vendor relationship? (Same Support relationship and SLAs across engines without forcing one database.)
 - What are the top recurring MariaDB Server incidents (replication, failover, upgrades, query regressions), and how are they handled today? (Expert Support and optional ExpertOps reduce repeat fire drills on the stack you run now.)
@@ -62,7 +61,6 @@ MariaDB Server is a lasting production path, not a short stop on the way to MySQ
 
 **Situation talk tracks**
 
-- **EOL upgrade planning on MariaDB Server:** Version is near or past EOL, MariaDB-specific components still matter, and the team needs an upgrade plan. Use Support and consulting; do not invent MariaDB ELS coverage until product publishes terms.
 - **Unify Support across engines:** Multi-engine estate, MariaDB Server is staying, buyer wants one Support relationship and clear MariaDB Server entitlements.
 - **Stabilize on MariaDB Server:** Recurring incidents or HA drill gaps are the pain; Expert Support and optional ExpertOps deepen operations without a platform change.
 - **Harden MariaDB Server in place:** Audit, identity, encryption, or evidence requirements can be met on the current MariaDB Server estate with Support and consulting.
