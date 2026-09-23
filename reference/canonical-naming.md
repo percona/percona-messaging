@@ -87,6 +87,17 @@ These are community participation programs, not commercial offerings. Keep them 
 
 Avoid Percona product titles that sound like MongoDB, Inc. product names (for example “MongoDB Search”).
 
+## [NAME] (MongoDB operations in PMM)
+
+| Context | Use this | Avoid |
+| --- | --- | --- |
+| Full name (first mention) | **[NAME]**, a capability within Percona Monitoring and Management (PMM) | Presenting [NAME] as a standalone product or SKU |
+| Scope | MongoDB only, not MySQL or PostgreSQL | Implying PMM operations coverage for other engines |
+| Current availability | Technical Preview: Percona Server for MongoDB replica sets on Ubuntu and Amazon Linux | Presenting planned capabilities as available |
+| Planned (not available) | MongoDB Community Edition, upgrades, RBAC, security management, restore, replica-set reconfiguration, sharded clusters, Operator integration, broader operating system support, public API | Present-tense claims for these items |
+| MongoDB editions | "MongoDB Community Edition and Percona Server for MongoDB," or "MongoDB editions" | PSMDB; "MongoDB distributions" |
+| Licensing | Open source applies to PMM and [NAME] (TODO: verify license). MongoDB Community Edition and Percona Server for MongoDB are source available (SSPL). | Calling the managed databases open source |
+
 ## Key/value family (Valkey and Redis)
 
 Canonical product modules live under `products/key-value/`: shared parent for key/value workloads, with asymmetric siblings for Valkey and Redis.
