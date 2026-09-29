@@ -37,6 +37,7 @@ Use this quick map for routing:
 - Fixed-fee Consulting scopes: `offerings/expert-consulting/messaging.md` (Health Audit, Architecture and Design, Performance Tuning, Database Monitoring QuickStart, Security Assessment), with SKU, starting price, and what each engagement covers.
 - Migration and Modernization capability plus nested migration engagements: `offerings/migration-program/`
 - Sold package messaging: `offerings/solution-bundles/`
+- Partner hub and partner-interest CTA: `partners/`
 - Naming and policy guidance: `reference/`
 
 ## Example decomposition
@@ -55,7 +56,7 @@ Do not create one standalone markdown page that combines all contexts.
 
 ## Execution-layer outputs vs canonical updates
 
-**Canonical updates** live in this repository as durable modules (`framework/`, `products/`, `offerings/`, `use-cases-value-pillars/`, `reference/`).
+**Canonical updates** live in this repository as durable modules (`framework/`, `products/`, `offerings/`, `partners/`, `use-cases-value-pillars/`, `reference/`).
 
 **Execution-layer outputs** are the real-world deliverables teams assemble from canonical modules: talk tracks, campaign assets, regional variants, sales enablement packs, customer-specific decks, and similar artifacts. They live in whatever systems those teams already use for execution and distribution.
 
