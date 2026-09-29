@@ -20,16 +20,61 @@ Consulting is project-based and time-boxed. It complements steady-state [Expert 
 
 ## Fixed-fee scopes (a subset, not the full catalog)
 
-These five engagements are **packaged fixed-fee scopes**: common, well-bounded work with a defined SKU, starting price, and engine variants. They are **not** the full Expert Consulting catalog.
+These five engagements are **packaged fixed-fee scopes**: common, well-bounded work with a defined SKU and starting price. They are **not** the full Expert Consulting catalog.
 
 Expert Consulting also covers custom, time-boxed projects outside these gates: larger or multi-cluster environments, six or more distinct performance issues, Setup and Configuration, upgrades, edge-case remediation, extended assessments, and other scoped delivery. If the need does not fit a fixed-fee gate below, that is normal; we scope a custom consulting engagement instead.
 
 | Engagement | SKU | Starting from |
 | --- | --- | --- |
-| [Health Audit](health-audit/messaging.md) | CONS-HAFF | $11,400 |
-| [Architecture and Design](architecture-and-design/messaging.md) | CONS-AD | $11,400 |
-| [Performance Tuning](performance-tuning/messaging.md) | CONS-PTFF | $11,400 |
-| [Database Monitoring QuickStart](database-monitoring-quickstart/messaging.md) | CONS-PMM | $4,500 |
-| [Security Assessment](security-assessment/messaging.md) | CONS-SECFF | $6,800 |
+| Health Audit | CONS-HAFF | $11,400 |
+| Architecture and Design | CONS-AD | $11,400 |
+| Performance Tuning | CONS-PTFF | $11,400 |
+| Database Monitoring QuickStart | CONS-PMM | $4,500 |
+| Security Assessment | CONS-SECFF | $6,800 |
+
+### Health Audit
+
+**SKU:** CONS-HAFF  
+**Starting from:** $11,400
+
+A database that looks healthy today can be one traffic spike away from an incident. Defaults nobody revisited, replication quietly falling behind, indexes that no longer match the workload: none of it shows up until something breaks. This audit reviews your full stack against how it actually runs in production, and hands your team a scored, prioritized list of what to fix first. The report and a live rundown land 5–7 business days after kickoff.
+
+Larger or multi-cluster environments, and any audit shape outside this gate, are scoped as custom consulting instead.
+
+### Architecture and Design
+
+**SKU:** CONS-AD  
+**Starting from:** $11,400
+
+Architecture decisions are cheap to make and expensive to undo. Choices that fit today's traffic can fall over at 3x write volume, and by then, every fix is a migration. We review your current or planned architecture against your actual workload, growth numbers, and availability targets, and you walk away with a documented set of options and the trade-offs behind each one.
+
+Implementation happens through Migration, Setup and Configuration, or other custom consulting scope when the need sits outside this design engagement.
+
+### Performance Tuning
+
+**SKU:** CONS-PTFF  
+**Starting from:** $11,400
+
+Slow queries rarely get fixed; they get worked around. Someone adds an index in production, waits, and hopes. This engagement takes up to five queries or performance issues you have already identified, finds the actual root cause, and tests every proposed fix in your environment before it goes anywhere near production. You get the results we measured, not a list of theories.
+
+Broader performance work, or six or more distinct issues, is scoped as custom Performance Tuning consulting instead. If you cannot name the problem queries yet, start with a Health Audit.
+
+### Database Monitoring QuickStart
+
+**SKU:** CONS-PMM  
+**Starting from:** $4,500
+
+Most monitoring rollouts stall the same way: the server goes up, the default dashboards go unread, and the alerts never get tuned, so nobody trusts them. This engagement deploys Percona Monitoring and Management (PMM) against your environment and, more to the point, teaches your team to use it: reading query analytics, setting alert thresholds your team has actually agreed to, and owning upgrades going forward. PMM is open source; this is how it becomes useful in days instead of quarters. The packaged QuickStart covers MySQL, MariaDB Server, PostgreSQL, and MongoDB.
+
+PMM Customization, multi-environment rollouts, and other monitoring work outside this QuickStart are scoped separately.
+
+### Security Assessment
+
+**SKU:** CONS-SECFF  
+**Starting from:** $6,800
+
+Database security gaps rarely come from exotic attacks; they come from drift. An account that kept its privileges after the project ended, a default nobody hardened, a patch that is still in the backlog. This assessment reviews your configuration, access controls, and operational practices against the specific requirements you are accountable for, whether that is PCI-DSS, HIPAA, or your own internal policy, and gives you a prioritized list of what to fix first.
+
+Multi-environment estates, remediation programs, and security work outside this assessment gate are scoped as custom consulting instead.
 
 For migration cutovers, proprietary-to-PostgreSQL assessment, and Galera-to-Percona XtraDB Cluster moves, see [Migration and Modernization](../migration-program/messaging.md). Those migration engagements are likewise a subset of what Migration and Modernization can cover.
