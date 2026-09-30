@@ -99,6 +99,7 @@ Do not move internal planning notes, private review prep, sequencing notes, or o
 - [reference/brand-voice.md](reference/brand-voice.md)
 - [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) (after intake, how changes spread across files)
 - [GOVERNANCE.md](GOVERNANCE.md)
+- [partners/messaging.md](partners/messaging.md) (Partners hub). Named inventory is [partners/roster.md](partners/roster.md) (internal; not public hub copy)
 
 ## Getting help
 

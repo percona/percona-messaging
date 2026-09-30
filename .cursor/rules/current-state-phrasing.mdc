@@ -5,6 +5,7 @@ globs:
   - framework/**/*
   - use-cases-value-pillars/**/*
   - offerings/**/*
+  - partners/**/*
   - reference/**/*
 alwaysApply: false
 ---
@@ -13,7 +14,7 @@ alwaysApply: false
 
 Portable baseline: `docs/agent-guidelines.md`.
 
-Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, and `reference/` when the content is canonical positioning. Do not apply to contributor docs such as `README.md`, `CONTRIBUTING.md`, or `.github/`.
+Applies to canonical messaging under `products/`, `framework/`, `use-cases-value-pillars/`, `offerings/`, `partners/`, and `reference/` when the content is canonical positioning. Do not apply to contributor docs such as `README.md`, `CONTRIBUTING.md`, or `.github/`.
 
 Use this rule with `canonical-copy-audience.mdc` and `value-linking-quality.mdc`.
 
