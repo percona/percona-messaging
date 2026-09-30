@@ -2,7 +2,7 @@
 
 ## Percona Database Service {#percona-database-service}
 
-For organizations running databases across Kubernetes, public clouds, virtual machines, and on-premises infrastructure, Percona Database Service (PDS) is open source software for creating databases on infrastructure you choose.
+For organizations running databases on Kubernetes infrastructure, Percona Database Service (PDS) is open source software for creating databases on infrastructure you choose. PDS is developing to additionally support public clouds, virtual machines, and on-premises infrastructure.
 
 Unlike a hyperscaler database service, where the provider hosts the database, the database stays on infrastructure you choose.
 
