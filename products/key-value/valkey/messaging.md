@@ -34,7 +34,7 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 
 **Future readiness**
 
-- **JSON and search modules:** Valkey includes open modules for JSON and full-text workloads, and the valkey-search module for vector similarity search, under the same open contribution model as core Valkey. Cache, session, pub/sub, queue, and rate-limiting work stays the default lane. Vector similarity is for teams that want low-latency retrieval on the cache tier they already run.
+- **JSON and search modules:** Valkey includes open modules for JSON and full-text workloads, and the valkey-search module for vector similarity search.
 - **Expansion across the Percona estate:** Valkey often sits next to existing MySQL, PostgreSQL, or MongoDB work. Percona can expand across those technologies when key/value is part of a larger estate.
 
 ### Sales enablement
