@@ -8,7 +8,7 @@ MongoDB Community Edition is licensed under the Server Side Public License (SSPL
 
 Compared with MongoDB Enterprise Advanced or Atlas, Percona focuses on self-managed deployments backed by Percona's operational tooling and 24×7 Expert Support. Monitoring, backup, and automation are handled by Percona components deployed in customer-controlled environments.
 
-PMM provides observability for backup operations and backup health indicators, while backup execution and policy management remain in dedicated Percona backup tooling.
+PMM provides observability for backup operations and backup health indicators, while backup execution and policy management remain in dedicated Percona backup tooling. For Percona Server for MongoDB replica sets deployed with Percona Operations for MongoDB (POM, Technical Preview), PMM also schedules backups, which Percona Backup for MongoDB runs.
 
 ### Customer Challenges and Value Alignment: MongoDB
 
@@ -21,7 +21,7 @@ PMM provides observability for backup operations and backup health indicators, w
 
 - **Faster recovery and replica sync:** Manual HA/DR operations create business risk as well as labor cost: outages during scale-out or node replacement, prolonged recovery windows, and replication catch-up lag can interrupt revenue-critical workloads while consuming scarce DBA time. Percona Server for MongoDB includes file copy-based initial sync to shorten recovery and lighten day-two work so topology changes stay reliable.
 - **Low-latency in-memory workloads:** Teams running cache-like, session, or real-time data that must stay hot in RAM need in-memory storage without MongoDB Enterprise Advanced licensing costs. Percona Server for MongoDB includes the [Percona Memory Engine](https://docs.percona.com/percona-server-for-mongodb/8.0/inmemory.html), a WiredTiger configuration that keeps the working set in memory for faster reads and writes on infrastructure you control.
-- **Deployment, backup, and restore automation:** The Percona Operator for MongoDB and [Percona Backup for MongoDB](https://docs.percona.com/percona-backup-mongodb/) automate deployment and backup schedules on infrastructure you control; restore runs through the Operator and PBM when teams initiate it after an incident. ExpertOps supports predictable uptime and capacity planning. Percona Backup for MongoDB supports logical, physical, snapshot-based, and incremental backups with point-in-time recovery, selective backups that include users and roles, and storage profiles for multi-storage targets, so teams can align backup design with recovery time and recovery point objectives and strengthen restore confidence in regulated environments.
+- **Deployment, backup, and restore automation:** The Percona Operator for MongoDB and [Percona Backup for MongoDB](https://docs.percona.com/percona-backup-mongodb/) automate deployment and backup schedules on infrastructure you control; restore runs through the Operator and PBM when teams initiate it after an incident. For self-managed hosts outside Kubernetes, Percona Operations for MongoDB (POM), a free capability within [Percona Monitoring and Management](../pmm/messaging.md#percona-monitoring-and-management-pmm), brings deployment and observability into one platform. As a Technical Preview, it deploys Percona Server for MongoDB replica sets on Ubuntu and Amazon Linux and schedules backups with Percona Backup for MongoDB, reducing dependence on custom scripts and disconnected tools. ExpertOps supports predictable uptime and capacity planning. Percona Backup for MongoDB supports logical, physical, snapshot-based, and incremental backups with point-in-time recovery, selective backups that include users and roles, and storage profiles for multi-storage targets, so teams can align backup design with recovery time and recovery point objectives and strengthen restore confidence in regulated environments.
 - **Major-version upgrades with controlled cutover:** Teams on end-of-life MongoDB releases need a supported path to current versions without relying on a single high-stakes maintenance window. [Percona ClusterSync for MongoDB](https://docs.percona.com/percona-clustersync-for-mongodb/) supports cross-major-version replication and controlled cutover from [Percona ClusterSync for MongoDB 0.9.0 (2026-06-01)](https://docs.percona.com/percona-clustersync-for-mongodb/release-notes/0.9.0.html) across [supported upgrade paths](https://docs.percona.com/percona-clustersync-for-mongodb/system-requirements.html), including 6.x to 7.x, 6.x to 8.x, and 7.x to 8.x. Percona experts help plan replication, performance validation, and cutover sequencing so teams reach an actively supported release (including from 6.0.17+ where supported) with predictable uptime.
 
 **Security, Sovereignty, and Compliance**
@@ -45,6 +45,7 @@ Percona for MongoDB is the self-managed way off MongoDB Enterprise Advanced and 
 
 - Teams leaving MongoDB Enterprise Advanced or Atlas for lower cost, less lock-in, and self-managed security (LDAP, encryption, audit, FIPS)
 - Platform and SRE teams who want MongoDB Day 2 work automated on Kubernetes
+- DBAs and platform teams running self-managed MongoDB on hosts or VMs who want to standardize deployment and observability in one open source platform (Percona Operations for MongoDB in PMM, Technical Preview)
 - Teams evaluating advanced search (full-text, vector, or hybrid) on MongoDB data they already keep (Technical Preview)
 
 **Discovery questions**
@@ -53,6 +54,7 @@ Percona for MongoDB is the self-managed way off MongoDB Enterprise Advanced and 
 - Do you still need LDAP/AD for database login, and what will you do as MongoDB removes it?
 - How do you migrate or upgrade MongoDB without a long production outage?
 - If you run MongoDB on Kubernetes, which Day 2 tasks are still manual? (backup, restore, scaling, upgrades, failover)
+- If you run MongoDB on hosts or VMs, how important is retaining control of your MongoDB infrastructure and management layer, and which workflow would you most value standardizing next: deployment, upgrades, access control, security, backup and restore, or reconfiguration?
 - Are you evaluating advanced search on self-managed MongoDB (full-text, vector, or hybrid) without a second search system? (Percona Search for MongoDB is Technical Preview on Percona Server for MongoDB 8.3; staging only.)
 - Where would Expert Support or ExpertOps help most: design, migration, or day-to-day operations?
 - Do you have upcoming projects that need consulting, professional services, or training? (architecture review, migration, performance work, team enablement)
