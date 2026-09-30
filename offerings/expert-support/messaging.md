@@ -1,8 +1,8 @@
 # Percona Expert Support
 
-Reactive support and expert guidance for teams that operate their own databases.
+Expert database support and reliable escalation for teams that run their own databases. Get 24×7 troubleshooting and advisory help across MySQL, PostgreSQL, MongoDB, Valkey/Redis, and MariaDB Server.
 
-Expert Support provides 24×7 incident response, troubleshooting, and advisory guidance for MySQL, MariaDB Server, PostgreSQL, MongoDB, Valkey, and Redis OSS. Percona engineers help diagnose issues, review customer plans, validate configurations, and guide customers through critical problems, while the customer maintains operational control.
+Expert Support provides 24×7 incident response, troubleshooting, and advisory guidance. Available in Advanced (production environments) and Premium (mission-critical environments) tiers. Percona engineers help diagnose issues, review customer plans, validate configurations, and guide customers through critical problems, while the customer maintains operational control.
 
 - **Who Expert Support is for:** Teams with capable DBAs or SREs who manage their own databases but want reliable expert escalation for production issues, architectural questions, and review of planned changes.
 - **Problems Expert Support solves:** Outages and other urgent incidents, replication or high availability failures, performance regressions, uncertain upgrade or migration plans, lifecycle and EOL transition risk, and hard architectural questions.
