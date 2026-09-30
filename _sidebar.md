@@ -16,6 +16,9 @@
   - [ExpertOps](/offerings/expertops/messaging.md)
   - [Expert Consulting and Services](/offerings/expert-consulting/messaging.md)
   - [Migration and Modernization](/offerings/migration-program/messaging.md)
+    - [Database Migrations](/offerings/migration-program/database-migrations.md)
+    - [Proprietary to PostgreSQL](/offerings/migration-program/proprietary-to-postgresql.md)
+    - [MySQL Galera Cluster Migration](/offerings/migration-program/mysql-galera-cluster-migration.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
 - [Partners](/partners/messaging.md)
