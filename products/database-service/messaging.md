@@ -28,7 +28,7 @@ You can operate the database yourself, use Percona Expert Support when you need 
 
 **Adaptability for Emerging Workloads**
 
-- **What comes later:** A specific next action after the database is running comes later. A wider place to run comes after that: a private cloud, more than one provider, and more database technologies. Access through APIs and automation comes with that later work.
+- **A starting point you can extend:** You create the database from a Percona template or from settings you choose, on infrastructure you already run. That split, a creation path you control and a database that stays on your infrastructure, leaves room to grow how you run it.
 
 On Kubernetes, PDS uses Percona Operators to run the database. Right now, that is the Percona Operator for MySQL. PDS is how you create the database.
 
