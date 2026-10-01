@@ -1,6 +1,6 @@
 # Performance and Reliability at Scale
 
-Downtime carries a measurable business cost. [Atlassian](https://www.atlassian.com/incident-management/kpis/cost-of-downtime) cites a 2014 Gartner average of $5,600 per minute, and a 2016 Ponemon figure of nearly $9,000 per minute. Percona mitigates this exposure with round-the-clock Expert Support and proactive management through ExpertOps and Expert Consulting. Our engineers apply operational best practices and automation built from thousands of production environments to keep databases stable under load.
+Downtime carries a measurable business cost. In [Uptime Institute's 2026 Annual Outage Analysis](https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2026.AnnualOutageAnalysis.pdf), 57% of respondents said their most recent major outage cost more than $100,000, and one in five said it cost more than $1 million. Percona mitigates this exposure with round-the-clock Expert Support and proactive management through ExpertOps and Expert Consulting. Our engineers apply operational best practices and automation built from thousands of production environments to keep databases stable under load.
 
 ### The Problem: Performance Is Harder to Manage as Environments Grow
 
@@ -20,7 +20,7 @@ Percona's reliability model combines free software with 24×7 Support, ExpertOps
 
 - **24×7 Expert Coverage:** Global Percona engineers monitor telemetry, analyze query patterns, and tune systems continuously, often resolving performance anomalies before they impact operations.
 - **Automated Resilience:** Recovery and upgrade paths stay repeatable across environments. ExpertOps grounds day-two work in PMM, validated backup and HA tooling per engine, and Kubernetes Operators so failover, backup, and restore behavior stays consistent whether teams run on bare metal, VMs, or clusters.
-- **Performance Optimization at Scale:** Query tuning, schema review, and storage-layer optimization (buffer pools, I/O scheduling, cache efficiency) enable significant throughput gains and capacity headroom on existing infrastructure. Research shows that index- and schema-based tuning can produce 3× or more throughput improvements in some cases ([Cornell](https://arxiv.org/abs/1901.07064)), and buffer-pool optimizations alone can improve throughput by 40–70% ([Datacamp on InnoDB buffer pool tuning](https://www.datacamp.com/doc/mysql/mysql-innodb-buffer-pool-tuning)).
+- **Performance Optimization at Scale:** Query tuning, schema review, and storage-layer optimization (buffer pools, I/O scheduling, cache efficiency) enable significant throughput gains and capacity headroom on existing infrastructure.
 - **Rapid Incident Recovery:** Percona's 24×7 global team responds according to defined SLAs, ensuring the right experts are engaged immediately when critical issues arise. Combined observability and replication management help teams identify root causes quickly and recover systems with minimal downtime.
 
 ### Use cases
