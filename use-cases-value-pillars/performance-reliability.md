@@ -1,6 +1,6 @@
 # Performance and Reliability at Scale
 
-Performance instability carries measurable business impact: 100 ms of added latency reduces conversion rates by 7% ([Akamai](https://www.akamai.com/newsroom/press-release/akamai-releases-spring-2017-state-of-online-retail-performance-report)), and every hour offline costs enterprises six figures ([Atlassian](https://www.atlassian.com/incident-management/kpis/cost-of-downtime)). Percona mitigates this exposure with round-the-clock Expert Support and proactive management through ExpertOps and Expert Consulting. Our engineers apply operational best practices and automation built from thousands of production environments to keep databases stable under load.
+Downtime carries a measurable business cost. [Atlassian](https://www.atlassian.com/incident-management/kpis/cost-of-downtime) cites a 2014 Gartner average of $5,600 per minute, and a 2016 Ponemon figure of nearly $9,000 per minute. Percona mitigates this exposure with round-the-clock Expert Support and proactive management through ExpertOps and Expert Consulting. Our engineers apply operational best practices and automation built from thousands of production environments to keep databases stable under load.
 
 ### The Problem: Performance Is Harder to Manage as Environments Grow
 
