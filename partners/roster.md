@@ -45,7 +45,7 @@ Public hub keeps both motions under **Hyperscalers and cloud service providers (
 ### Technology partners (ISV)
 
 - HexaCluster
-- Coroot (public partnership 2026-09-10; [Percona Coroot Edition](https://www.percona.com/coroot/) is early access and complements PMM; public quote still needs partner approval; do not publish mockup customer logos until cleared)
+- Coroot (public partnership 2026-09-10; [Percona Coroot Edition](https://www.percona.com/coroot/) is early access and complements PMM
 - Red Hat
 - SUSE
 - Solanica
