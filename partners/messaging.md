@@ -58,23 +58,7 @@ Partners usually fit one of four types. How Percona shows up in the deal follows
 
 ## Better together
 
-The partner brings the relationship, the product, or the cloud. Percona brings the database software and the engineers who run those engines in production. These four pillars apply to every partnership.
-
-### Optimized TCO
-
-The customer gets one commercial motion instead of a separate database vendor. Percona software has no charge on runtime. Services are priced as work, not as proprietary database licenses. The partner's contract, marketplace, or portfolio stays the buying path the customer already knows.
-
-### Performance and Reliability at Scale
-
-The customer gets Percona engineers in the same conversation as the partner's product, cloud, or delivery team. Backup, high availability, upgrades, and incident response stay with the people who run those engines in production.
-
-### Security, Sovereignty, and Compliance
-
-The customer keeps control of where data runs and who operates it: on-premises, in a cloud they already use, or on Kubernetes, on infrastructure they control.
-
-### Adaptability for Emerging Workloads
-
-The customer can add engines, Kubernetes, and new workloads on the same operational model. Percona covers the database layer when the partner's stack is how the application is delivered.
+The partner brings the relationship, the product, or the cloud. Percona brings the database software and the engineers who run those engines in production. Four pillars apply to every partnership: cost, performance and reliability, security and sovereignty, and emerging workloads.
 
 ## Why partner with Percona
 
