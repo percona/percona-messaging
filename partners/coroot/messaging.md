@@ -28,8 +28,6 @@ Percona Coroot Edition adds SSO and RBAC, so access to that telemetry can be lim
 
 You do not reconfigure monitoring every time Kubernetes rescales. One agent keeps working past 1,000 nodes. That is the environment small platform teams meet when they run databases on Percona Operators without a dedicated DBA. When new application traffic looks like a database failure, PMM shows the queries and Coroot shows the path outside the database.
 
-Still in development for the full edition: MySQL schema and configuration change tracking, filing a Percona Support case from Coroot with diagnostics attached, deep database root cause analysis, and AI analysis powered by the Percona Knowledge Base.
-
 ### Sales enablement
 
 - **Qualification framework:** Use this module when the incident is not explained by the database pane alone. Pair Coroot with PMM. PMM stays the database pane.
