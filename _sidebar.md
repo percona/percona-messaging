@@ -21,7 +21,9 @@
     - [MySQL Galera Cluster Migration](/offerings/migration-program/mysql-galera-cluster-migration.md)
   - [Solution bundles](/offerings/solution-bundles/messaging.md)
 
-- [Partners](/partners/messaging.md)
+- Partners
+  - [Overview](/partners/messaging.md)
+  - [Percona Coroot Edition](/partners/coroot/messaging.md)
 
 - Products
   - [Overview](/products/README.md)
