@@ -21,7 +21,7 @@
 
 ## Extended Lifecycle Support program naming (ELS)
 
-Percona’s paid program for security and stability updates after a database version reaches End of Life (EOL) is **Extended Lifecycle Support (ELS)**. Use this name for MySQL and MongoDB in customer-facing copy. Retain **End of Life (EOL)** only for deadline state (community or vendor EOL dates), not as a program label.
+Percona's paid program for continuity after a database version reaches End of Life (EOL) is **Extended Lifecycle Support (ELS)**. Use this name for MySQL and MongoDB in customer-facing copy. Do not claim MariaDB Server ELS coverage until product publishes terms. Retain **End of Life (EOL)** only for deadline state (community or vendor EOL dates), not as a program label.
 
 | Context | Use this | Not this |
 | --- | --- | --- |
@@ -31,8 +31,74 @@ Percona’s paid program for security and stability updates after a database ver
 
 Live web paths and legacy PDFs may still say post-EOL support until commercial assets are updated. Canonical messaging in this repo should use **Extended Lifecycle Support (ELS)** so future edits do not drift back to deprecated program names.
 
+## MariaDB edition and entity naming
+
+Percona does not ship MariaDB database software. Under standard **Expert Support** entitlements, coverage is **MariaDB Server** only: the open source edition maintained by the **MariaDB Foundation**, contrasted with **MariaDB Enterprise**. **Expert Consulting and Services** may apply to other MariaDB versions and complex environments.
+
+| Context | Use this | Not this |
+| --- | --- | --- |
+| Open source edition covered by Expert Support | **MariaDB Server** | MariaDB Community (as the product edition name) |
+| Commercial edition (outside standard Expert Support) | MariaDB Enterprise | Implying standard Support covers Enterprise |
+| Short product lists where Server and Enterprise may both appear | MariaDB | Required when the line must stay edition-neutral (for example home product lists) |
+| Upstream open source steward | MariaDB Foundation | |
+| Commercial entity | MariaDB Corporation or MariaDB plc | |
+
+Prefer **MariaDB Server** over bare "MariaDB" when the sentence means the supported open source database software. Keep the Foundation / Corporation (or plc) distinction when the steward or commercial entity matters.
+
+**MaxScale:** MariaDB **MaxScale** is database proxy / routing middleware from MariaDB plc, typically under BSL terms for current commercial access. In sales and discovery copy, ask whether MaxScale is load-bearing in the estate. Do not imply MaxScale is included in standard MariaDB Server Expert Support, and do not claim Percona ships or forks MaxScale until product publishes that coverage. Complex MaxScale-heavy estates may need consulting scope.
+
+## Migration and Modernization naming
+
+- **Public frame:** Migration and Modernization
+- **HexaCluster:** Named for proprietary exits such as Oracle to PostgreSQL (usual destinations PostgreSQL, MySQL, MariaDB); do not imply Hexa covers every path in the tables
+- **Contracting:** Customer contracts with Percona; transparent that a migration software license is part of the Percona engagement when tooling applies
+- **Methodology:** PACE (one in-program mention on the offering page; program name not locked)
+- **Do not name:** HexaRocket on public web
+
+Full copy: [migration-program/messaging.md](../offerings/migration-program/messaging.md).
+
+## Community program naming
+
+These are community participation programs, not commercial offerings. Keep them distinct from Expert Support, ExpertOps, and Consulting. Positioning lives under Deep Ecosystem participation in [why-percona.md](../framework/why-percona.md).
+
+| Name | Use for | Notes |
+| --- | --- | --- |
+| **Percona Community** | The overall community home and programs | Public hub: [percona.community](https://percona.community/) |
+| **Basecamp** | The entry point on the community climb | Starting rung; not a product or SKU |
+| **Community Ascent** | The contribution climb and public dashboards | Program home: [percona.community/ascent](https://percona.community/ascent/) |
+| **Mountaineers** | Recognition and rewards for top contributors | Code, forum help, content, and direct product feedback |
+| **Community Writers Program** | Paid community-authored technical posts | Publish on the community blog under the author’s name |
+| **Percona Community Slack** | Peer conversation space | Complements forums; does not replace them for support |
+| **Percona Live** | Flagship Percona conference | Event details on [perconalive.com](https://perconalive.com/) |
+
 ## MongoDB wording in capability copy
 
 - For generic capability coverage, use "MongoDB-compatible environments" or "MongoDB services monitored by PMM."
 - For product-specific copy, use the exact product name, for example "Percona Server for MongoDB" or "Percona Operator for MongoDB."
 - When a capability does not apply across engines, state scope directly, for example "MongoDB only" and "not MySQL or PostgreSQL."
+
+## Percona Search for MongoDB
+
+| Context | Use this |
+| --- | --- |
+| Full name (first mention) | **Percona Search for MongoDB** |
+| After first mention | **Percona Search**, or generic **Search** / **vector search** / **full-text search** |
+| Framing | Optional add-on for Percona Server for MongoDB |
+
+Avoid Percona product titles that sound like MongoDB, Inc. product names (for example “MongoDB Search”).
+
+## Key/value family (Valkey and Redis)
+
+Canonical product modules live under `products/key-value/`: shared parent for key/value workloads, with asymmetric siblings for Valkey and Redis.
+
+| Context | Use this | Avoid |
+| --- | --- | --- |
+| Family / parent | Key/value workloads; Percona for key/value workloads | Treating Valkey as "Redis-compatible" as its identity |
+| Paired naming | Valkey first when both are named (Valkey and Redis) | Redis and Valkey as the default order |
+| Valkey product module | Percona for Valkey | Transition-to-Redis messaging on the Valkey page |
+| Redis product module | Percona for Redis | Omitting stay-on-Redis as a first-class option |
+| Shared use cases | Same list for both: cache, sessions, pub/sub, queues, rate limiting, high-throughput key/value | Separate invented use-case lists per engine |
+| Prose comparison | Prefer "versus" over "vs" when house style allows | (none) |
+| Ops claims | Call out High Availability explicitly where relevant | Install-only framing for production readiness |
+
+Full copy: [key/value parent](../products/key-value/messaging.md), [Valkey](../products/key-value/valkey/messaging.md), [Redis](../products/key-value/redis/messaging.md).

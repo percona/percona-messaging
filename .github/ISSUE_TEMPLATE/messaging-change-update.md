@@ -46,8 +46,8 @@ assignees: ''
 - [ ] PostgreSQL (`products/postgresql/`)
 - [ ] MongoDB (`products/mongodb/`)
 - [ ] PMM (`products/pmm/`)
-- [ ] Valkey / Redis (`products/valkey-redis/`)
-- [ ] Framework / pillars / offerings (`framework/`, `use-cases-value-pillars/`, `offerings/`)
+- [ ] Key/value: Valkey / Redis (`products/key-value/`, including `valkey/` and `redis/`)
+- [ ] Framework / pillars / offerings / partners (`framework/`, `use-cases-value-pillars/`, `offerings/`, `partners/`)
 - [ ] Other: <!-- path -->
 
 ## What messaging likely needs updating

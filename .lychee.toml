@@ -18,20 +18,13 @@ exclude = [
   # Local dev preview; not reachable from CI or GitHub-rendered markdown.
   "^http://localhost(:[0-9]+)?(/.*)?$",
   "^http://127\\.0\\.0\\.1(:[0-9]+)?(/.*)?$",
-  # McKinsey DE often times out or blocks datacenter IPs in CI; keep citation in prose.
-  "^https://www\\.mckinsey\\.de/capabilities/quantumblack/our-insights/the-state-of-ai-2024$",
   # Gartner: returns 403 from many automated / datacenter clients (including GitHub Actions)
-  # even with a browser-like User-Agent—WAF behavior, not broken URLs for readers.
+  # even with a browser-like User-Agent. WAF behavior, not broken URLs for readers.
   # Exclude the whole host so new citations do not need per-URL regex churn.
   "^https://www\\.gartner\\.com/",
-  # Big Data Wire (IDC survey): 403 to automated clients in CI.
-  "^https://www\\.bigdatawire\\.com/this-just-in/idc-survey-finds-data-sovereignty-and-compliance-issues-shaping-it-decisions/$",
-  # Akamai press release: 403 to automated clients in CI.
-  "^https://www\\.akamai\\.com/newsroom/press-release/akamai-releases-spring-2017-state-of-online-retail-performance-report$",
-  # DataCamp doc: 403 to automated clients in CI.
-  "^https://www\\.datacamp\\.com/doc/mysql/mysql-innodb-buffer-pool-tuning$",
-  # NetApp-hosted IDC PDF (Akamai edge): 403 to automated clients in CI.
-  "^https://www\\.netapp\\.com/media/110879-idc-workload-impacts-storage-info-brief\\.pdf$",
+  # UNCTAD data-protection overview: 403/524 to automated clients and often
+  # times out under load; Briana verified the live page loads (slowly) on 2026-07-17.
+  "^https://unctad\\.org/page/data-protection-and-privacy-legislation-worldwide$",
 ]
 
 # Expand as needed when a host is consistently flaky in CI
