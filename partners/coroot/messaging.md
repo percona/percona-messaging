@@ -6,7 +6,7 @@ Coroot is a technology partner. [Percona Coroot Edition](https://www.percona.com
 
 Coroot follows the application, network, and infrastructure and recommends how to fix the incident. Percona Monitoring and Management (PMM) remains the pane for database health, queries, replication, and engine internals. The customer gets both in one motion, and can tell whether the cause is the application, the network, or the database.
 
-You choose where Coroot runs: on-premises, in your VPC, or fully air-gapped. The telemetry stays there.
+Coroot runs on-premises, in your VPC, or fully air-gapped. Telemetry stays where you install it.
 
 One agent, with no manual instrumentation, collects metrics, logs, traces, and profiles continuously. Install is measured in minutes, with no per-service setup. On Kubernetes it keeps that view through rescaling, node changes, and reconfiguration, past 1,000 nodes.
 
