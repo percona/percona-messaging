@@ -4,7 +4,7 @@ Percona helps partners cut customer database cost, keep customers free of vendor
 
 ## How we partner
 
-Percona works with companies that help customers decide three things: what databases should cost, who controls them, and where they run. The partner brings the customer relationship, a product, or a cloud the customer already uses. Percona brings database software and engineers who run those engines in production. Every motion uses the [better together](#better-together) frame on all four value pillars.
+Percona works with companies that help customers decide three things: what databases should cost, who controls them, and where they run. The partner brings the customer relationship, a product, or a cloud the customer already uses. Percona brings database software and engineers who run those engines in production.
 
 Most work starts with consulting, professional services, or migration help. If the customer later needs day-to-day coverage (backups, high availability, upgrades, or on-call), the partnership can grow into longer operational support.
 
@@ -22,8 +22,6 @@ Partners usually fit one of four types. How Percona shows up in the deal follows
 
 **Customer gets:** One integrator relationship and a ready path to database expertise.
 
-**Better together:** The integrator keeps the customer relationship. Percona brings the database engineers when the project needs that depth, across cost, reliability, sovereignty, and new workloads.
-
 ### Resellers and value-added resellers (VAR)
 
 **Who:** Resellers that already sell hardware and software to a set account base.
@@ -36,8 +34,6 @@ Partners usually fit one of four types. How Percona shows up in the deal follows
 
 **Customer gets:** A familiar reseller plus database experts, with services priced to match how the work is sold.
 
-**Better together:** The reseller keeps the account. Percona brings consulting, projects, and ongoing support the reseller can sell as services, not as proprietary database license SKUs.
-
 ### Technology partners (ISV)
 
 **Who:** Independent software vendors that pair their product with Percona database software and expertise.
@@ -48,8 +44,6 @@ Partners usually fit one of four types. How Percona shows up in the deal follows
 - We go to market together so the customer gets a fuller stack under clear commercial terms
 
 **Customer gets:** Fewer vendors and contracts, and a fuller stack from one motion.
-
-**Better together:** The partner's product and Percona's database layer ship as one stack, and each one has a named job. [Percona Coroot Edition](coroot/messaging.md) is the observability example: Coroot follows the application, network, and infrastructure, and PMM remains the database pane.
 
 ### Hyperscalers and cloud service providers (CSP)
 
@@ -62,11 +56,9 @@ Partners usually fit one of four types. How Percona shows up in the deal follows
 
 **Customer gets:** Percona-supported databases through a cloud they already know: a buy path in that cloud, or provider-branded MySQL and PostgreSQL services powered by Percona expertise.
 
-**Better together:** The customer stays on the cloud they already buy. Percona brings the database expertise inside that cloud's marketplace or into the provider's own MySQL and PostgreSQL services.
-
 ## Better together
 
-The partner brings the relationship, the product, or the cloud. Percona brings the database software and the engineers who run those engines in production. Every partnership is explained on cost, performance and reliability, security and sovereignty, and emerging workloads.
+The partner brings the relationship, the product, or the cloud. Percona brings the database software and the engineers who run those engines in production. These four pillars apply to every partnership.
 
 ### Optimized TCO
 
