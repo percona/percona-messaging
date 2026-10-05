@@ -1,0 +1,50 @@
+name: Deploy PR preview
+
+# Publishes each pull request to gh-pages under pr-preview/pr-<number>/
+# and posts the preview URL as a sticky PR comment. The preview is removed
+# when the PR is closed or merged.
+#
+# Fork PRs are skipped: their GITHUB_TOKEN cannot push to gh-pages.
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: pages-pr-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Build static publish directory
+        if: github.event.action != 'closed'
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          rsync -a \
+            --exclude=".git/" \
+            --exclude=".github/" \
+            --exclude="_site/" \
+            ./ _site/
+
+      - name: Deploy or remove preview
+        uses: rossjrw/pr-preview-action@ffa7509e91a3ec8dfc2e5536c4d5c1acdf7a6de9 # v1.8.1
+        with:
+          source-dir: _site
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto

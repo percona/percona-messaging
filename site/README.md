@@ -4,7 +4,8 @@ This directory holds **site-only** pages and notes. Canonical messaging stays in
 
 ## How publishing works
 
-- **No CI workflow.** GitHub Pages serves from the `main` branch root.
+- **Published from the `gh-pages` branch.** [`pages-deploy.yml`](../.github/workflows/pages-deploy.yml) copies the `main` branch to the root of `gh-pages` on every push to `main`.
+- **PR previews.** [`pages-pr-preview.yml`](../.github/workflows/pages-pr-preview.yml) publishes each pull request to `https://percona.github.io/percona-messaging/pr-preview/pr-<number>/` and posts the link as a PR comment. The preview updates on each push and is removed when the PR closes. PRs from forks do not get a preview.
 - **No markdown reformat.** Docsify renders existing `.md` files in place.
 - After merge to `main`, Pages updates automatically (may take a minute or two).
 - **Not indexed by search engines.** `index.html` includes `noindex`, and `robots.txt` disallows crawlers. Share the URL directly; do not rely on organic search.
@@ -38,5 +39,5 @@ When you add a new canonical page, link it from the nearest folder `README.md` (
 Repository **Settings → Pages**:
 
 - Source: **Deploy from a branch**
-- Branch: **`main`**, folder **`/ (root)`**
+- Branch: **`gh-pages`**, folder **`/ (root)`** (the branch is created by the first run of `pages-deploy.yml`)
 - Save. The site URL will be `https://percona.github.io/percona-messaging/`

@@ -1,5 +1,9 @@
 name: Deploy Docsify site
 
+# Publishes main to the root of the gh-pages branch.
+# PR previews live under pr-preview/ on the same branch (see pages-pr-preview.yml),
+# so that folder is preserved on every deploy.
+
 on:
   push:
     branches:
@@ -7,9 +11,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages-deploy
@@ -20,13 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://percona.github.io/percona-messaging/
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: Configure Pages
-        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
       - name: Build static publish directory
         run: |
@@ -38,11 +37,10 @@ jobs:
             --exclude="_site/" \
             ./ _site/
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
         with:
-          path: _site
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+          branch: gh-pages
+          folder: _site
+          clean-exclude: pr-preview/
+          force: false

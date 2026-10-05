@@ -16,10 +16,13 @@
         var repoName = "percona-messaging";
         var parts = window.location.pathname.split("/").filter(Boolean);
         var repoIndex = parts.indexOf(repoName);
-        var basePath =
-          repoIndex >= 0
-            ? "/" + parts.slice(0, repoIndex + 1).join("/") + "/"
-            : "/";
+        var baseParts = repoIndex >= 0 ? parts.slice(0, repoIndex + 1) : [];
+        // PR previews are served from <base>/pr-preview/pr-<number>/
+        var previewIndex = parts.indexOf("pr-preview", baseParts.length);
+        if (previewIndex === baseParts.length && parts[previewIndex + 1]) {
+          baseParts = parts.slice(0, previewIndex + 2);
+        }
+        var basePath = baseParts.length ? "/" + baseParts.join("/") + "/" : "/";
 
         window.$docsify = {
           name: "Percona Messaging",
