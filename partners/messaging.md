@@ -4,7 +4,7 @@ Percona helps partners cut customer database cost, keep customers free of vendor
 
 ## How we partner
 
-Percona works with companies that help customers decide three things: what databases should cost, who controls them, and where they run. The partner brings the customer relationship. Percona brings database software and engineers who run those engines in production.
+Percona works with companies that help customers decide three things: what databases should cost, who controls them, and where they run. The partner brings the customer relationship, a product, or a cloud the customer already uses. Percona brings database software and engineers who run those engines in production.
 
 Most work starts with consulting, professional services, or migration help. If the customer later needs day-to-day coverage (backups, high availability, upgrades, or on-call), the partnership can grow into longer operational support.
 
@@ -55,6 +55,10 @@ Partners usually fit one of four types. How Percona shows up in the deal follows
 - **CSPs (one-to-many):** Percona supplies engineering expertise. The provider builds it into its MySQL® and PostgreSQL offerings. Customers stay on the provider’s contract and brand.
 
 **Customer gets:** Percona-supported databases through a cloud they already know: a buy path in that cloud, or provider-branded MySQL and PostgreSQL services powered by Percona expertise.
+
+## Better together
+
+The partner brings the relationship, the product, or the cloud. Percona brings the database software and the engineers who run those engines in production. Four pillars apply to every partnership: cost, performance and reliability, security and sovereignty, and emerging workloads.
 
 ## Why partner with Percona
 
