@@ -16,7 +16,7 @@ Do not add a new top-level pillar file for a use case. Add a bullet under the pa
 ## Current files (value pillars)
 
 - [cost-optimization.md](cost-optimization.md) (use cases: proprietary licensing costs, migration and modernization, DBA talent shortage, database end-of-life migration (MySQL 8.0 EOL), database vendor consolidation, lower cloud database costs, database workload tuning and rightsizing, in-memory cache infrastructure spend)
-- [performance-reliability.md](performance-reliability.md) (use cases: database backup and recovery, peak traffic and seasonal scale, multi-database Kubernetes operations, multi-region database replication, unified observability across heterogeneous estates, production cache tier operations)
+- [performance-reliability.md](performance-reliability.md) (use cases: database backup and recovery, peak traffic and seasonal scale, multi-database Kubernetes operations, multi-region database replication, unified observability across heterogeneous estates, AI traffic that looks like a database failure, production cache tier operations)
 - [security-sovereignty-compliance.md](security-sovereignty-compliance.md) (use cases: audit-ready compliance, data governance and access control, enterprise directory auth continuity, database data residency, database data sovereignty and US jurisdiction risk, database multi-tenancy on Kubernetes, payments and PCI-DSS Level 1; sovereignty evidence table)
 - [future-readiness-ai.md](future-readiness-ai.md) (use cases: RAG on PostgreSQL, self-managed MySQL without managed vector, MySQL with a separate vector store, vector search on Valkey / Redis, similarity lookup next to transactional data, AI data pipelines across hybrid cloud)
 
