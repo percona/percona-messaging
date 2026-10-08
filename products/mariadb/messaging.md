@@ -22,6 +22,7 @@ Percona does not ship MariaDB database software. Percona supports **MariaDB Serv
 - **Faster recovery when production breaks:** Percona Expert Support and ExpertOps give MariaDB Server environments 24×7 upstream-level help for incidents, upgrades, replication, and performance problems on the stack teams run today. That helps restore service and reduce repeat risk without waiting on a platform change.
 - **Reliability without forced re-architecture:** Teams keep existing HA, backup, and ops patterns while Percona helps diagnose root causes, reduce repeat incidents, and harden recovery practices.
 - **Workload-shaped tuning:** OLTP, analytics (including ColumnStore where in use), and clustering patterns get guidance matched to how the application actually behaves. Prefer "evaluate for the workload" over unverified head-to-head claims.
+- **Toolkit clients recognize MariaDB Server:** Percona Toolkit 3.7.1 identifies MariaDB Server on connect. Toolkit 3.7.0 missed that check and could send MySQL replication statements ([Percona Toolkit 3.7.1](https://percona.community/blog/2025/12/17/what-is-new-in-percona-toolkit-3.7.1/)).
 - **Keep MariaDB Server when components are load-bearing:** Keep MariaDB Server when Galera-style clustering, ColumnStore, MaxScale, MariaDB backup and audit tooling, or app assumptions built on MariaDB Server are load-bearing. Keep MySQL or Percona Server for MySQL when that stack is already the estate standard. Both can be valid; match the engine to the workload and ops constraints without ranking the engines.
 
 **Security, Sovereignty, and Compliance**
@@ -71,6 +72,7 @@ MariaDB Server is a lasting production path, not a short stop on the way to MySQ
 **Public resources**
 
 - [MariaDB support](https://www.percona.com/mariadb-support/)
+- [Percona Toolkit 3.7.1](https://percona.community/blog/2025/12/17/what-is-new-in-percona-toolkit-3.7.1/)
 - [Compare MySQL, MongoDB, PostgreSQL, and MariaDB](https://www.percona.com/compare-mysql-mongodb-postgresql-mariadb)
 - [Percona Expert Consulting and Services](https://www.percona.com/services/expert-consulting-and-services/)
 - [Continued commitment to Percona XtraDB Cluster](https://www.percona.com/blog/continued-commitment-to-percona-xtradb-cluster/) (for MySQL Galera Cluster EOL estates who want a Galera-to-Galera path)
