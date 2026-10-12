@@ -45,6 +45,7 @@ Public hub keeps both motions under **Hyperscalers and cloud service providers (
 ### Technology partners (ISV)
 
 - HexaCluster
+- Coroot (public partnership 2026-09-10; [Percona Coroot Edition](https://www.percona.com/coroot/) is early access and complements PMM
 - Red Hat
 - SUSE
 - Solanica
@@ -66,7 +67,6 @@ Public hub keeps both motions under **Hyperscalers and cloud service providers (
 
 ## To place
 
-- **Coroot.** Lou: newly signed; named as a core-partner quote candidate. Category not assigned on the 2026-08-20 call.
 - **IBM** as GSI (sell-to plus integrator motion). Confirm whether **IBM GS** stays on the VAR list or moves to GSI / SI.
 
 ## Quotes / featured examples (Lou, 2026-08-31)

@@ -46,6 +46,7 @@ assignees: ''
 - [ ] PostgreSQL (`products/postgresql/`)
 - [ ] MongoDB (`products/mongodb/`)
 - [ ] PMM (`products/pmm/`)
+- [ ] Percona Coroot Edition (`partners/coroot/`)
 - [ ] Key/value: Valkey / Redis (`products/key-value/`, including `valkey/` and `redis/`)
 - [ ] Framework / pillars / offerings / partners (`framework/`, `use-cases-value-pillars/`, `offerings/`, `partners/`)
 - [ ] Other: <!-- path -->

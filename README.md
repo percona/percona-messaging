@@ -44,7 +44,7 @@ Approved messaging is also available as a browsable site (Docsify on GitHub Page
 - `use-cases-value-pillars/`: shared value-pillar messaging (cost, performance, security/compliance, future readiness) and cross-product scenarios
 - `offerings/`: core services messaging, including Expert Support, Expert Consulting, and managed services (`ExpertOps`)
 - `offerings/solution-bundles/`: fixed-scope sold packages that combine services and outcomes
-- [`partners/messaging.md`](partners/messaging.md): partner hub positioning (not a commercial offering SKU). Internal named inventory: [`partners/roster.md`](partners/roster.md)
+- [`partners/messaging.md`](partners/messaging.md): partner hub positioning (not a commercial offering SKU), including the better-together frame on all four value pillars. Technology partner example: [`Percona Coroot Edition`](partners/coroot/messaging.md). Internal named inventory: [`partners/roster.md`](partners/roster.md)
 - `products/`: product and database-specific messaging (MySQL, MariaDB, PostgreSQL, MongoDB, key/value Valkey and Redis, PMM, Operators)
 - `reference/`: canonical naming, banned terms, brand voice, governance references, and decomposition guidance
 - `docs/`: portable agent baseline shared across editors and tools (see [docs/agent-guidelines.md](docs/agent-guidelines.md))
