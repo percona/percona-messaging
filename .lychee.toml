@@ -22,6 +22,9 @@ exclude = [
   # even with a browser-like User-Agent. WAF behavior, not broken URLs for readers.
   # Exclude the whole host so new citations do not need per-URL regex churn.
   "^https://www\\.gartner\\.com/",
+  # GigaOm reports: 403 from automated clients despite valid pages for readers.
+  # Treat this as a WAF/CI signal, not a broken article URL.
+  "^https://gigaom\\.com/",
   # UNCTAD data-protection overview: 403/524 to automated clients and often
   # times out under load; Briana verified the live page loads (slowly) on 2026-07-17.
   "^https://unctad\\.org/page/data-protection-and-privacy-legislation-worldwide$",
