@@ -20,6 +20,21 @@ body {
   font-size: 2rem;
 }
 
+.markdown-section li {
+  margin-bottom: 0.5rem;
+}
+
+/* Render loose and tight markdown lists identically, so blank lines between
+   bullets in source do not change spacing on the site. */
+.markdown-section li > p {
+  margin: 0;
+}
+
+.markdown-section li > ul,
+.markdown-section li > ol {
+  margin-top: 0.5rem;
+}
+
 .app-name-link {
   font-weight: 600;
 }

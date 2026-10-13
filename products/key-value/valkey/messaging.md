@@ -22,18 +22,19 @@ See also the [key/value overview](../messaging.md). For Redis support continuity
 - **Less load on the main database:** Valkey often sits in front of or alongside MySQL, PostgreSQL, or MongoDB-compatible systems. A well-tuned cache helps the app handle more traffic and cuts read load on those databases. Valkey can delay expensive scale up.
 - **Familiar clients and wire protocol:** The RESP wire protocol remains 100% compatible with existing clients used for this workload family. API differences are extremely minimal, and no backward-incompatible API changes have been made.
 - **Migration planning when needed:** Not every Valkey deployment is a migration from another engine. When a move is in scope, version and topology determine the safest path. Percona Experts plan replication- or service-level cutovers, validate rollback, and confirm High Availability before production moves.
-- **Operational tuning:** Percona Experts tune production Valkey for high availability and steady latency under load. Most platform teams do not have deep in-memory ops skills. 24×7 Expert Support and consulting cover escalation, architecture, migration, and health checks.
-- **See Valkey in PMM:** PMM has Valkey dashboards and metrics across overview, instance, and cluster views, covering commands, clients, memory use, keyspace behavior, latency, replication health, and slowlog analysis so teams can diagnose incidents faster.
+- **Operational tuning:** Percona Experts tune production Valkey for high availability and steady latency under load. Operators can require a safe shutdown, and Valkey rejects the command when the node is in an unsafe state, so an accidental shutdown is less likely to drop a node that is still needed. Most platform teams do not have deep in-memory ops skills. 24×7 Expert Support and consulting cover escalation, architecture, migration, and health checks.
+- **Throughput on pipelined commands:** Memory prefetching for pipelined commands reaches up to 40% higher throughput than Valkey 8.1 for pipelined commands.([Linux Foundation, 21 October 2025])(<https://www.linuxfoundation.org/press/valkey-9.0-delivers-performance-and-resiliency-for-real-time-workloads>).
+- **See Valkey in PMM:** PMM has [Valkey dashboards and metrics](https://docs.percona.com/percona-monitoring-and-management/3/install-pmm/install-pmm-client/connect-database/valkey-redis.html) across overview, instance, and cluster views, covering commands, clients, memory use, keyspace behavior, latency, replication health, and slowlog analysis so teams can diagnose incidents and bottlenecks faster.
 
 **Security, Sovereignty, and Compliance**
 
 - **Governance and trust:** Valkey is community-led under the Linux Foundation. It uses a BSD 3-Clause permissive license, no contributor license agreement requirement, and an open contribution model. That multi-vendor model gives teams a clear view of project direction and lowers single-vendor control risk for key/value infrastructure.
 - **Digital sovereignty, hybrid, and multi-cloud:** Teams that need self-managed, hybrid, or multi-cloud key/value, especially in the EU and other sovereignty-sensitive settings, can keep Valkey on infrastructure they control. Percona supports the self-managed, hybrid, and multi-cloud posture when managed Valkey is missing or not enough.
-- **Enterprise controls:** TLS encryption, LDAP authentication, and an audit path help organizations align with GDPR, HIPAA, and PCI-DSS requirements on customer-operated infrastructure without opaque vendor-managed layers.
+- **Enterprise controls:** TLS encryption, automatic client authentication from TLS certificate fields, LDAP authentication, and an audit path help organizations align with GDPR, HIPAA, and PCI-DSS requirements on customer-operated infrastructure without opaque vendor-managed layers.
 
 **Future readiness**
 
-- **JSON and search modules:** Valkey includes open modules for JSON and full-text workloads under the same open contribution model as core Valkey.
+- **JSON and search modules:** Valkey includes open modules for JSON and full-text workloads, and the valkey-search module for vector similarity search.
 - **Expansion across the Percona estate:** Valkey often sits next to existing MySQL, PostgreSQL, or MongoDB work. Percona can expand across those technologies when key/value is part of a larger estate.
 
 ### Sales enablement
@@ -54,7 +55,7 @@ Valkey is the open, multi-vendor path for traditional key/value work. Percona ad
 - Where does RAM cost show up in your cache or session layer today? Have you measured working-set density on Valkey versus your current engine?
 - Is your cache layer a hard production dependency, and are primary databases carrying read load that better cache design could offload?
 - Do AGPL constraints or open-contribution requirements matter for this estate’s legal or procurement posture?
-- Are Search and JSON requirements covered by Valkey’s open modules, including full-text search?
+- Are Search and JSON requirements covered by Valkey’s open modules, including full-text and vector similarity search?
 - Do you need geo-local latency across regions for cache or session workloads, and if so, what replication and failover model is required?
 - Is this greenfield Valkey, or a migration from another engine? If a move is in scope, what cutover method fits the topology?
 - Are you on a managed cache service, an enterprise key/value product, self-managed Valkey, or another path today?
