@@ -34,6 +34,7 @@
     - [Redis](/products/key-value/redis/messaging.md)
   - [PMM](/products/pmm/messaging.md)
   - [Operators](/products/operators/messaging.md)
+  - [Database Service](/products/database-service/messaging.md)
 
 - Naming and voice
   - [Canonical naming](/reference/canonical-naming.md)

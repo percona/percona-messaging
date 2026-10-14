@@ -40,6 +40,8 @@ Unlike Oracle MySQL Enterprise or proprietary DBaaS offerings, Percona delivers 
 - Driving MySQL evolution in the open: Percona invests in MySQL vector distance and search on self-managed builds, backup and replication reliability, performance leadership, continuous hardening of high-availability stacks and supported upgrade paths, cloud-native operations by default, modern security and compliance, and a healthy MySQL community, so teams adopt innovation on open, inspectable software rather than waiting on proprietary release gates.
 - Recent shipped operator signals: Percona Operator for MySQL (Percona Server for MySQL line) adds compression updates, while Percona Operator for MySQL based on Percona XtraDB Cluster ships automatic PVC storage resizing, automated TLS certificate rotation, and configurable leader election for Day 2 operations in Kubernetes.
 
+Percona Database Service (PDS) is a separate tool. This early look creates a MySQL database on a Kubernetes cluster you connect, with the Percona Operator for MySQL underneath. It is not a finished product. MySQL only, not PostgreSQL or MongoDB. It does not replace Percona Monitoring and Management (PMM).
+
 ### Sales enablement
 
 **Elevator pitch**

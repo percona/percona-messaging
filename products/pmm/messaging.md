@@ -8,6 +8,8 @@ The data observability market is projected to grow from USD 3.15B in 2025 to USD
 
 PMM provides observability for backup operations and backup health indicators, while backup execution and policy management remain in dedicated Percona backup tooling.
 
+Percona Database Service (PDS) is a separate tool. This early look creates a MySQL database on a Kubernetes cluster you connect, with the Percona Operator for MySQL underneath. It is not a finished product. MySQL only, not PostgreSQL or MongoDB. It does not replace Percona Monitoring and Management (PMM).
+
 PMM pairs metrics and Query Analytics with Percona Advisors: bundled Security, Configuration, Performance, and Query checks that run inventory-scoped on a schedule or on demand, so one deployment surfaces live health, historical query insight, and automated risk signals for the engines you monitor. This fit is strongest for mixed estates across MySQL, PostgreSQL, MongoDB, Valkey, and Redis-compatible services running on-premises, in cloud, in Kubernetes, and in OpenShift, especially where teams require local telemetry control and role-based access boundaries.
 
 ### Customer Challenges and Value Alignment: PMM
