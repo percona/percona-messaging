@@ -8,7 +8,6 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 - `impact_check.py`: checks changed files against `automation/messaging-impact-map.yml`
   - applies waiver state from slash commands (`/impact-ok`, `/impact-reset`, `/impact-all`) including path-specific resets when `all` is active
-- `suggest_updates.py`: generates deterministic suggestion candidates for impacted files
 - `governance_waiver.py`: loads maintainer waiver JSON for `new_file_gate.py` and `check_doc_coverage.py` (same hidden-comment pattern as Impact Check)
 - `new_file_gate.py`: enforces required PR justification fields when new markdown files are added (supports `--waiver-file`)
 - `check_doc_coverage.py`: verifies new markdown docs are linked from repository navigation docs (supports `--waiver-file`)
@@ -28,7 +27,6 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 ## Workflow entry points
 
 - `.github/workflows/impact-check.yml` -> `impact_check.py`
-- `.github/workflows/smart-suggestions.yml` -> `suggest_updates.py`
 - `.github/workflows/content-governance-checks.yml` -> `new_file_gate.py`, `check_doc_coverage.py`, `governance_waiver.py`
 - `.github/workflows/governance-slash-commands.yml` -> merges `/governance-ok`, `/governance-reset`, `/governance-all` comments into waiver state and reruns Content Governance Checks
 - `.github/workflows/staleness-report.yml` -> `staleness_report.py`
@@ -40,7 +38,7 @@ For the cross-repo automation overview, see [AUTOMATION.md](../AUTOMATION.md).
 
 ## Regression tests (pytest)
 
-Fixture-driven tests guard core behavior in `impact_check.py`, `suggest_updates.py`, `new_file_gate.py`, and `case_study_maintenance_reminder.py` without calling the GitHub API (tracked as [issue #21](https://github.com/percona/percona-messaging/issues/21)).
+Fixture-driven tests guard core behavior in `impact_check.py`, `new_file_gate.py`, and `case_study_maintenance_reminder.py` without calling the GitHub API (tracked as [issue #21](https://github.com/percona/percona-messaging/issues/21)).
 
 **Local run** (from repository root; reuse the same dependency pin file as workflows):
 
@@ -147,7 +145,6 @@ Expected checks for this scenario:
 
 - `Terminology Check`
 - `Impact Check`
-- `Smart Suggestions`
 - `Content Governance Checks`
 - `Prose and links` (`Spelling (typos)`, `Markdown structure (markdownlint)`, `Links (lychee)`)
 

@@ -8,7 +8,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 
 - `**.github/workflows/**`: when automation runs (triggers, permissions, PR comments, scheduled jobs).
 - `**scripts/**`: what automation executes (Python logic for checks, reports, and sync tasks).
-- `**automation/**`: automation inputs (impact map, claim categories, and other config data).
+- `**automation/**`: automation inputs (impact map and other config data).
 - `**data/**`: machine-readable inputs/outputs used by automation (for example the manual case-study registry and processed RSS GUID state).
 
 ## Documentation ownership boundary
@@ -34,7 +34,6 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/terminology-check.yml`         | PR touching `*.md`, Vale config, or tool versions | inline shell checks                                                                          | repository markdown content + `automation/tool-versions.json`       | Fails/warns on banned terms and naming issues                      |
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script            | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist                         |
 | `.github/workflows/impact-slash-commands.yml`     | PR comments whose first non-empty line is `/impact-ok`, `/impact-reset`, or `/impact-all` | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
-| `.github/workflows/smart-suggestions.yml`         | PR touching markdown/automation/script            | `scripts/suggest_updates.py`                                                                 | `automation/messaging-impact-map.yml`, `automation/claim-types.yml` | PR comment with suggestion candidates                              |
 | `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/governance_waiver.py` | PR template + markdown corpus + hidden waiver comment               | PR governance comment; fails on blocking checks                    |
 | `.github/workflows/governance-slash-commands.yml` | PR comments whose first non-empty line is `/governance-ok`, `/governance-reset`, or `/governance-all` | same governance scripts                                                                      | hidden waiver comment (`messaging-governance-waiver-data:v1`)      | Updates waivers, refreshes governance comment, reruns governance workflow |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
@@ -166,11 +165,11 @@ Waiver state resolution rule:
 - If the newest created payload is malformed, automation falls back to the next newest valid payload.
 - If no valid payload exists, automation uses an empty waiver state.
 
-## Impact Check and Smart Suggestions: scope and limits
+## Impact Check: scope and limits
 
 **Impact Check** (`impact-check.yml`, `scripts/impact_check.py`) evaluates pull request diffs against **`automation/messaging-impact-map.yml`**. It lists **`must_review`** paths when rule triggers match (file globs and optional diff regexes). It does **not** compute a full propagation graph across the repo, infer impact levels (low / medium / high), or replace the human flow in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md) or **`.cursor/rules/impact-analysis.mdc`**.
 
-**Smart Suggestions** (`smart-suggestions.yml`, `scripts/suggest_updates.py`) combines the same impact map with **`automation/claim-types.yml`** to propose additional candidates. Treat both Impact Check and Smart Suggestions comments as **map-backed hints**: extend coverage by editing `messaging-impact-map.yml` (and claim hints) when reviews repeatedly surface misses.
+Treat Impact Check comments as **map-backed hints**: extend coverage by editing `messaging-impact-map.yml` when reviews repeatedly surface misses.
 
 **Canonical messaging directories** (`framework/`, `products/`, `use-cases-value-pillars/`, `offerings/`, `partners/`) are routing targets for decomposition; automation only surfaces files that rules enumerate. Reviewers remain responsible for cross-module consistency when claims move.
 
@@ -180,7 +179,7 @@ Marker-managed PR comments must use the shared helper at `scripts/github/upsert_
 
 - Keep marker strings stable. Treat them as persistent IDs.
 - Prefix the rendered comment body with the marker (`${marker}\n...`).
-- Use one marker per workflow comment type (for example impact checklist, governance report, smart suggestions).
+- Use one marker per workflow comment type (for example impact checklist, governance report).
 - Call the helper from `actions/github-script` steps instead of inlining list/update/create comment logic.
 - For **human-visible** marker comments, pass `automationFooter: { workflowFile, eventName }` so the rendered comment ends with the triggering GitHub event, a link to the workflow file on `main`, and links to `AUTOMATION.md` (this section) and `automation/README.md`. Do **not** append this footer to hidden machine-readable marker payloads (for example waiver JSON comments).
 
@@ -192,7 +191,6 @@ Current workflows using this standard:
 - `.github/workflows/impact-slash-commands.yml` (impact checklist comment only; waiver payload comments omit the footer)
 - `.github/workflows/markdown-hygiene-autofix.yml`
 - `.github/workflows/pr-reviewer-sla-reminder.yml`
-- `.github/workflows/smart-suggestions.yml`
 
 ## AI and automation: how to use AI responsibly
 
