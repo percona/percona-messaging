@@ -58,7 +58,7 @@ Revisit once you have a few months of throughput data (volume of PRs, reviewer l
 ### Automation touchpoints in the loop
 
 - **During drafting/review:** terminology and governance checks run via pull request workflows (see `[.github/workflows/](.github/workflows/)`).
-- **During impact assessment:** impact map and suggestion logic surface **rule-backed** propagation hints (see [automation/messaging-impact-map.yml](automation/messaging-impact-map.yml) and [automation/claim-types.yml](automation/claim-types.yml)). They complement, but do not replace, structured decomposition in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md).
+- **During impact assessment:** the impact map surfaces **rule-backed** propagation hints (see [automation/messaging-impact-map.yml](automation/messaging-impact-map.yml)). It complements, but does not replace, structured decomposition in [reference/decomposition-and-propagation.md](reference/decomposition-and-propagation.md).
 - **During quality control:** new-file and doc coverage checks guard against one-off sprawl and undiscoverable docs.
 - **During maintenance:** staleness and case study maintenance reminders support periodic housekeeping issues.
 
@@ -117,11 +117,11 @@ The program has tended to run with these defaults (they can flex):
 
 #### Workstream 3 story
 
-- Established checks and scaffolding for terminology, impact, smart suggestions, content governance gates, staleness reporting, and case study maintenance reminders.
+- Established checks and scaffolding for terminology, impact, content governance gates, staleness reporting, and case study maintenance reminders.
 - Added support scripts and maps in [scripts/README.md](scripts/README.md), [automation/README.md](automation/README.md), and [data/README.md](data/README.md).
 - Updated contribution and governance docs so automation behavior is documented where contributors look first.
 
-**Worth measuring as you go:** incidents caught in CI that would have shipped without it; contributor sentiment on noisy checks; and **reuse**—whether other repos or teams lifted patterns (workflow shape, claim maps, hybrid design) with fewer support threads. That last one is the outward signal that “good automation with AI” is enabling others, not only this codebase.
+**Worth measuring as you go:** incidents caught in CI that would have shipped without it; contributor sentiment on noisy checks; and **reuse** (whether other repos or teams lifted patterns such as workflow shape, impact maps, and hybrid design) with fewer support threads. That last one is the outward signal that “good automation with AI” is enabling others, not only this codebase.
 
 ### Workstream 4: Training and change management
 
