@@ -1,6 +1,6 @@
 # Future Readiness (AI, Emerging Workloads)
 
-As AI, real-time analytics, and hybrid data pipelines reshape enterprise workloads, most organizations face a familiar tension: adopt faster, or lose control. [According to IDC](https://my.idc.com/getdoc.jsp?containerId=prAP53268725), 75% of enterprise AI workloads will be deployed on hybrid fit-for-purpose infrastructure by 2027, yet many are locked into proprietary ecosystems that tie "AI enablement" to license upgrades or vendor-specific APIs.
+As AI, real-time analytics, and hybrid data pipelines reshape enterprise workloads, most organizations face a familiar tension: adopt faster, or lose control. Many are locked into proprietary ecosystems that tie "AI enablement" to license upgrades or vendor-specific APIs.
 
 Percona's open source foundation and consistent operational model give customers freedom to evolve. From AI pipelines to vector search and hybrid-cloud deployments, Percona helps teams adopt emerging workloads securely, efficiently, and without losing architectural independence.
 

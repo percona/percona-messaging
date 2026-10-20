@@ -29,7 +29,7 @@ Field setup guidance for `Launch track` is maintained in [AUTOMATION.md](../AUTO
 | 5   | Future: notify stakeholders when canonical messaging changes (Slack/email)                     | [https://github.com/percona/percona-messaging/issues/5](https://github.com/percona/percona-messaging/issues/5)   |
 | 6   | Validate: terminology and banned terms check (terminology-check.yml)                           | [https://github.com/percona/percona-messaging/issues/6](https://github.com/percona/percona-messaging/issues/6)   |
 | 7   | Validate: impact check (impact-check.yml + impact_check.py)                                    | [https://github.com/percona/percona-messaging/issues/7](https://github.com/percona/percona-messaging/issues/7)   |
-| 8   | Validate: smart suggestions (smart-suggestions.yml + suggest_updates.py)                       | [https://github.com/percona/percona-messaging/issues/8](https://github.com/percona/percona-messaging/issues/8)   |
+| 8   | ~~Validate: smart suggestions (smart-suggestions.yml + suggest_updates.py)~~ **Removed:** check dropped ([issue #8](https://github.com/percona/percona-messaging/issues/8)) | [https://github.com/percona/percona-messaging/issues/8](https://github.com/percona/percona-messaging/issues/8)   |
 | 9   | Validate: new file gate (content-governance-checks + new_file_gate.py)                         | [https://github.com/percona/percona-messaging/issues/9](https://github.com/percona/percona-messaging/issues/9)   |
 | 10  | Validate: doc coverage / navigation links (check_doc_coverage.py)                              | [https://github.com/percona/percona-messaging/issues/10](https://github.com/percona/percona-messaging/issues/10) |
 | 11  | ~~Validate: duplicate content detector (duplicate_detector.py)~~ **Removed:** check dropped as low signal ([issue #11](https://github.com/percona/percona-messaging/issues/11)) | [https://github.com/percona/percona-messaging/issues/11](https://github.com/percona/percona-messaging/issues/11) |
@@ -38,7 +38,7 @@ Field setup guidance for `Launch track` is maintained in [AUTOMATION.md](../AUTO
 | 14  | Validate: prose and links workflow (typos + markdownlint + lychee)                             | [https://github.com/percona/percona-messaging/issues/14](https://github.com/percona/percona-messaging/issues/14) |
 | 15  | Validate: PR smoke, multiple workflows on one change                                           | [https://github.com/percona/percona-messaging/issues/15](https://github.com/percona/percona-messaging/issues/15) |
 | 16  | Implement: reviewer SLA reminders for stalled PRs                                              | [https://github.com/percona/percona-messaging/issues/16](https://github.com/percona/percona-messaging/issues/16) |
-| 17  | Implement: track smart-suggestion quality (precision / recall over time)                       | [https://github.com/percona/percona-messaging/issues/17](https://github.com/percona/percona-messaging/issues/17) |
+| 17  | ~~Implement: track smart-suggestion quality (precision / recall over time)~~ **Removed:** depended on Smart Suggestions ([issue #17](https://github.com/percona/percona-messaging/issues/17)) | [https://github.com/percona/percona-messaging/issues/17](https://github.com/percona/percona-messaging/issues/17) |
 | 18  | Implement: decomposition / propagation completeness check before merge                         | [https://github.com/percona/percona-messaging/issues/18](https://github.com/percona/percona-messaging/issues/18) |
 | 19  | Define product → social announcement workflow (timing, owners, and automation ideas)           | [https://github.com/percona/percona-messaging/issues/19](https://github.com/percona/percona-messaging/issues/19) |
 | 20  | Implement: canonical discoverability check (beyond new-file doc coverage)                      | [https://github.com/percona/percona-messaging/issues/20](https://github.com/percona/percona-messaging/issues/20) |
@@ -88,7 +88,7 @@ Use these implementation docs instead of adding execution detail here:
 | --- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | A1  | Validate: terminology / banned terms (`terminology-check.yml`) | Overlaps conceptually with **typos**; terminology = policy, typos = spelling.            |
 | A2  | Validate: impact check                                         |                                                                                          |
-| A3  | Validate: smart suggestions                                    |                                                                                          |
+| A3  | ~~Validate: smart suggestions~~ **Removed** (see issue #8)     |                                                                                          |
 | A4  | Validate: new file gate                                        | See `scripts/README.md` (New file gate sign-off protocol for issue #9).                  |
 | A5  | Validate: doc coverage                                         |                                                                                          |
 | A6  | ~~Validate: duplicate detector~~ **Removed** (see issue #11)                                   |                                                                                          |
@@ -151,7 +151,7 @@ Use these implementation docs instead of adding execution detail here:
 | --- | ------------------------------------------------- | -------------------------- |
 | P1  | Walkthrough: Cursor rules vs public governance    | Cindy, Kim; Legal optional |
 | P2  | Walkthrough: terminology & naming source of truth | Cindy, Legal, PMs          |
-| P3  | Walkthrough: smart suggestions & impact map       | Cindy, PMs                 |
+| P3  | Walkthrough: impact map                           | Cindy, PMs                 |
 | C1  | Pre-publish scrub: internal names / markers       | Legal, PM per file         |
 | C2  | Pre-publish: competitive / third-party lines      | Legal (e.g. Jaimie), PMs   |
 | C3  | Audit: customer names vs published case studies   | Marketing, PM              |
@@ -182,7 +182,7 @@ Use these implementation docs instead of adding execution detail here:
 
 ## Product-driven implementation ideas (for N/W backlog)
 
-- When offerings or positioning change, treat `messaging-impact-map.yml` and `claim-types.yml` as versioned alongside product (same release train).
+- When offerings or positioning change, treat `messaging-impact-map.yml` as versioned alongside product (same release train).
 - If you later adopt PR launch labels for GTM, add a small consistency check then (N1 was deferred).
 - Case study maintenance reminder + staleness automation supports **proof-point** updates when marketing changes claims.
 - Decomposition assistant (N5) reduces **missed downstream** when pillar or product pages move.

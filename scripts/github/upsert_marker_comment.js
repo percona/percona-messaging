@@ -12,7 +12,7 @@ function buildAutomationFooter(owner, repo, { workflowFile, eventName }) {
   ensureString(workflowFile, "automationFooter.workflowFile");
   if (!/^[a-z0-9][a-z0-9_.-]*\.ya?ml$/i.test(workflowFile)) {
     throw new Error(
-      "automationFooter.workflowFile must be a workflow filename (example: smart-suggestions.yml)",
+      "automationFooter.workflowFile must be a workflow filename (example: impact-check.yml)",
     );
   }
 
