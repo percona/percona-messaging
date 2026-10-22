@@ -1,8 +1,0 @@
-version: 1
-claim_types:
-  cost:
-    keywords:
-      - "total cost of ownership"
-  alpha_claim:
-    keywords:
-      - "uniquefixturekeyword"
