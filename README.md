@@ -49,7 +49,7 @@ Approved messaging is also available as a browsable site (Docsify on GitHub Page
 - `reference/`: canonical naming, banned terms, brand voice, governance references, and decomposition guidance
 - `docs/`: portable agent baseline shared across editors and tools (see [docs/agent-guidelines.md](docs/agent-guidelines.md))
 - `.cursor/rules/`: Cursor-facing snippets aligned with that baseline
-- `automation/`: impact maps and claim categories for CI checks
+- `automation/`: impact map and other CI check config
 - `data/`: machine-readable registries used by automation
 - `scripts/`: CI and local automation entry points
 
