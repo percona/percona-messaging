@@ -29,6 +29,7 @@
   - [MariaDB](/products/mariadb/messaging.md)
   - [PostgreSQL](/products/postgresql/messaging.md)
   - [MongoDB](/products/mongodb/messaging.md)
+    - [Percona Search for MongoDB](/products/mongodb/percona-search.md)
   - [Key/value workloads](/products/key-value/messaging.md)
     - [Valkey](/products/key-value/valkey/messaging.md)
     - [Redis](/products/key-value/redis/messaging.md)

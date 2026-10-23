@@ -33,7 +33,7 @@ PMM provides observability for backup operations and backup health indicators, w
 
 **Adaptability for Emerging Workloads**
 
-- **Full-text and vector search (Technical Preview):** Percona Search for MongoDB is an optional add-on for Percona Server for MongoDB that adds full-text and vector search so you can find data by meaning on data you already keep, without a second search system, while apps keep the same connection string. In this Technical Preview you can provide embeddings yourself or use automatic embeddings with supported third-party models; it needs Percona Server for MongoDB 8.3 and is for staging, not production. More Search capability is planned in upcoming releases. On Kubernetes, the Percona Operator for MongoDB can install and run Search with the cluster.
+- **Full-text, vector, and hybrid search:** [Percona Search for MongoDB](./percona-search.md) adds a supported, integrated search tier to self-managed MongoDB. Local-first automatic embeddings keep document text in the cluster when a local provider is configured. The Percona Operator for MongoDB manages deployment and separate search-tier scaling, while Percona Backup for MongoDB and PMM cover index backup and observability. The software is free to use, with support available as an optional add-on to a Percona Support contract.
 - **Platform portability for infrastructure refresh:** Teams standardizing on current enterprise Linux images, including ARM, need database packages that match those platforms. Percona Server for MongoDB ships packages for RHEL 10 and its derivatives and for Debian 13 on x86_64 and ARM64 ([supported platforms](https://www.percona.com/services/policies/percona-software-support-lifecycle)). Percona builds and tests Debian 13 packages independently while upstream MongoDB does not yet list Debian 13 as a supported platform.
 - **Multi-environment operations:** The Percona Operator for MongoDB helps you create and grow MongoDB clusters on Kubernetes across clouds, while PMM shows health and performance across those clusters. The same Operator model works on Rancher (RKE2) and on ARM servers. It can also grow disk space when needed and make restores safer when you move between environments. Minsait moved major telecom workloads to Percona Server for MongoDB on Google Cloud with the Operator, cut cost, and kept more control across Kubernetes.
 
@@ -47,7 +47,7 @@ Percona for MongoDB is the self-managed way off MongoDB Enterprise Advanced and 
 
 - Teams leaving MongoDB Enterprise Advanced or Atlas for lower cost, less lock-in, and self-managed security (LDAP, encryption, audit, FIPS)
 - Platform and SRE teams who want MongoDB Day 2 work automated on Kubernetes
-- Teams evaluating advanced search (full-text, vector, or hybrid) on MongoDB data they already keep (Technical Preview)
+- Teams that need production full-text, vector, or hybrid search on MongoDB data they already keep, especially when document text must stay in the cluster
 
 **Discovery questions**
 
@@ -57,7 +57,7 @@ Percona for MongoDB is the self-managed way off MongoDB Enterprise Advanced and 
 - Do long-running ClusterSync migrations need automatic failover if the sync host or pod fails during continuous replication?
 - Are you refreshing onto RHEL 10, Debian 13, or ARM while keeping MongoDB self-managed?
 - If you run MongoDB on Kubernetes, which Day 2 tasks are still manual? (backup, restore, scaling, upgrades, failover)
-- Are you evaluating advanced search on self-managed MongoDB (full-text, vector, or hybrid) without a second search system? (Percona Search for MongoDB is Technical Preview on Percona Server for MongoDB 8.3; staging only.)
+- Does document text need to stay inside your MongoDB cluster during embedding, and do you need production vector, full-text, or hybrid search?
 - Where would Expert Support or ExpertOps help most: design, migration, or day-to-day operations?
 - Do you have upcoming projects that need consulting, professional services, or training? (architecture review, migration, performance work, team enablement)
 
