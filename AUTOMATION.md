@@ -35,6 +35,7 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/impact-check.yml`              | PR touching markdown/impact map/script            | `scripts/impact_check.py`                                                                    | `automation/messaging-impact-map.yml`                               | PR comment + summary with impact checklist                         |
 | `.github/workflows/impact-slash-commands.yml`     | PR comments whose first non-empty line is `/impact-ok`, `/impact-reset`, or `/impact-all` | `scripts/impact_check.py`                                                                    | hidden waiver comment + `automation/messaging-impact-map.yml`       | Updates waivers and refreshes impact checklist                     |
 | `.github/workflows/content-governance-checks.yml` | PR touching markdown/template/check scripts       | `scripts/new_file_gate.py`, `scripts/check_doc_coverage.py`, `scripts/governance_waiver.py` | PR template + markdown corpus + hidden waiver comment               | PR governance comment; fails on blocking checks                    |
+| `.github/workflows/fork-pr-comments.yml`          | Fork PR touching markdown or these check workflows | same governance and impact scripts, from the default branch                                  | pull request diff plus hidden waiver comments                        | Posts the governance and impact comments a fork pull request cannot post itself |
 | `.github/workflows/governance-slash-commands.yml` | PR comments whose first non-empty line is `/governance-ok`, `/governance-reset`, or `/governance-all` | same governance scripts                                                                      | hidden waiver comment (`messaging-governance-waiver-data:v1`)      | Updates waivers, refreshes governance comment, reruns governance workflow |
 | `.github/workflows/staleness-report.yml`          | Weekly schedule + manual dispatch                 | `scripts/staleness_report.py`                                                                | git history + markdown corpus                                       | Updates/creates maintenance staleness issue                        |
 | `.github/workflows/pr-reviewer-sla-reminder.yml` | Weekday schedule + manual dispatch                | `scripts/github/pr_reviewer_sla_reminder.js`                                                 | optional repo variables (threshold, skip labels)                     | Upserts a single PR comment when review queue latency exceeds threshold |
@@ -43,6 +44,12 @@ It explains how `.github/workflows/`, `scripts/`, and `automation/` work togethe
 | `.github/workflows/quarterly-citation-review.yml` | Quarterly (15 Jan/Apr/Jul/Oct) + manual dispatch  | `scripts/quarterly_lychee_citation_review_issue.py`                                          | `automation/lychee-quarterly-review-citations.json`                 | New issue listing CI-excluded citation URLs for human verification |
 | `.github/workflows/docs-whats-new-monitor.yml` | Daily schedule + manual dispatch (opt-in) | `scripts/docs_whats_new_monitor.py` | RSS feed + `data/docs_whats_new_seen_guids.json` | New `product-update` issues (backup intake) |
 | `.github/workflows/scripts-tests.yml` | PR touching `scripts/**`, `pytest.ini`, workflow file, or `.github/requirements/ci.txt` | pytest suite (`scripts/tests`) | pinned deps in `.github/requirements/ci.txt` | Fails on automation script regressions |
+
+## Fork pull requests
+
+Content Governance Checks and Impact Check still run on the pull request. A branch in this repository posts its own comment, the same as before.
+
+A fork cannot write that comment. On a fork, those two workflows skip the comment step, so the refused write does not turn the check red. [fork-pr-comments.yml](.github/workflows/fork-pr-comments.yml) runs in this repository, reads the pull request, and posts the same comments. It uses the scripts on the default branch and does not run code from the fork. It starts working after this change is merged to the default branch.
 
 ## Docs What's New monitor (optional)
 
@@ -186,6 +193,7 @@ Marker-managed PR comments must use the shared helper at `scripts/github/upsert_
 Current workflows using this standard:
 
 - `.github/workflows/content-governance-checks.yml`
+- `.github/workflows/fork-pr-comments.yml`
 - `.github/workflows/governance-slash-commands.yml` (governance report comment only; waiver payload comments omit the footer)
 - `.github/workflows/impact-check.yml`
 - `.github/workflows/impact-slash-commands.yml` (impact checklist comment only; waiver payload comments omit the footer)

@@ -1,0 +1,250 @@
+name: Fork pull request comments
+
+# Fork pull_request runs cannot write comments. This workflow runs in the
+# base repository, diffs the pull request, and posts the notes those checks
+# would have posted. It does not run code from the fork, and it does not
+# decide whether the pull request checks pass.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "**/*.md"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
+      - "automation/messaging-impact-map.yml"
+      - "scripts/new_file_gate.py"
+      - "scripts/check_doc_coverage.py"
+      - "scripts/governance_waiver.py"
+      - "scripts/impact_check.py"
+      - ".github/requirements/ci.txt"
+      - ".github/workflows/content-governance-checks.yml"
+      - ".github/workflows/governance-slash-commands.yml"
+      - ".github/workflows/impact-check.yml"
+      - ".github/workflows/impact-slash-commands.yml"
+      - ".github/workflows/fork-pr-comments.yml"
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  comment:
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: ".github/requirements/ci.txt"
+
+      - name: Install dependencies
+        run: python -m pip install -r .github/requirements/ci.txt
+
+      - name: Fetch pull request commits
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch --no-tags origin "$BASE_REF"
+          git fetch --no-tags origin "pull/${PR_NUMBER}/head:pr-head"
+          mkdir -p "$RUNNER_TEMP/pr-tree"
+          git archive pr-head | tar -x -C "$RUNNER_TEMP/pr-tree"
+
+      - name: Build governance waiver state from hidden comment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-governance-waiver-data:v1 -->";
+            const pr_number = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number: pr_number, per_page: 100 }
+            );
+            let data = { all: false, checks: [], reset_checks: [] };
+            const markerComments = comments
+              .filter((c) => c.body && c.body.includes(marker))
+              .sort((a, b) => {
+                const aTime = Date.parse(a.created_at || "") || 0;
+                const bTime = Date.parse(b.created_at || "") || 0;
+                if (bTime !== aTime) {
+                  return bTime - aTime;
+                }
+                return (Number(b.id) || 0) - (Number(a.id) || 0);
+              });
+
+            for (const found of markerComments) {
+              try {
+                const raw = found.body.split(marker)[1].trim();
+                const parsed = JSON.parse(raw);
+                data = {
+                  all: Boolean(parsed.all),
+                  checks: Array.isArray(parsed.checks)
+                    ? [...new Set(parsed.checks.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                  reset_checks: Array.isArray(parsed.reset_checks)
+                    ? [...new Set(parsed.reset_checks.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                };
+                break;
+              } catch (e) {
+                core.warning(`Ignoring invalid governance waiver JSON in comment ${found.id}: ${e}`);
+              }
+            }
+
+            fs.writeFileSync("governance-waivers.json", JSON.stringify(data));
+
+      - name: Build impact waiver state from hidden comment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-impact-waiver-data:v1 -->";
+            const pr_number = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number: pr_number, per_page: 100 }
+            );
+            let data = { all: false, paths: [] };
+            const markerComments = comments
+              .filter((c) => c.body && c.body.includes(marker))
+              .sort((a, b) => {
+                const aTime = Date.parse(a.created_at || "") || 0;
+                const bTime = Date.parse(b.created_at || "") || 0;
+                if (bTime !== aTime) {
+                  return bTime - aTime;
+                }
+                return (Number(b.id) || 0) - (Number(a.id) || 0);
+              });
+
+            for (const found of markerComments) {
+              try {
+                const raw = found.body.split(marker)[1].trim();
+                const parsed = JSON.parse(raw);
+                data = {
+                  all: Boolean(parsed.all),
+                  paths: Array.isArray(parsed.paths)
+                    ? [...new Set(parsed.paths.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                  reset_paths: Array.isArray(parsed.reset_paths)
+                    ? [...new Set(parsed.reset_paths.map((p) => String(p).trim()).filter(Boolean))]
+                    : [],
+                };
+                break;
+              } catch (e) {
+                core.warning(`Ignoring invalid waiver JSON in comment ${found.id}: ${e}`);
+              }
+            }
+
+            fs.writeFileSync("waivers.json", JSON.stringify(data));
+
+      - name: Write PR body to file
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          mkdir -p .tmp
+          printf '%s' "$PR_BODY" > .tmp/pr_body.md
+
+      - name: Run governance and impact checks
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          python scripts/new_file_gate.py \
+            --base "$BASE_SHA" \
+            --head "pr-head" \
+            --pr-body-file ".tmp/pr_body.md" \
+            --waiver-file "governance-waivers.json" \
+            --output-md "new-file-gate-report.md" || true
+          python scripts/impact_check.py \
+            --map "automation/messaging-impact-map.yml" \
+            --base "$BASE_SHA" \
+            --head "pr-head" \
+            --waiver-file "waivers.json" \
+            --output-json "impact-report.json" \
+            --output-md "impact-report.md" || true
+          # Sidebar links are read from files, so this scan uses the pull request tree.
+          (
+            cd "$RUNNER_TEMP/pr-tree"
+            GIT_DIR="$GITHUB_WORKSPACE/.git" python "$GITHUB_WORKSPACE/scripts/check_doc_coverage.py" \
+              --base "$BASE_SHA" \
+              --head "pr-head" \
+              --waiver-file "$GITHUB_WORKSPACE/governance-waivers.json" \
+              --output-md "$GITHUB_WORKSPACE/doc-coverage-report.md"
+          ) || true
+
+      - name: Post governance comment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-content-governance -->";
+            const files = [
+              "new-file-gate-report.md",
+              "doc-coverage-report.md",
+            ];
+            const sections = files
+              .filter((f) => fs.existsSync(f))
+              .map((f) => fs.readFileSync(f, "utf8"));
+            const footer = [
+              "",
+              "## Manual waiver commands (maintainers)",
+              "",
+              "- `/governance-ok all` or `/governance-all`",
+              "- `/governance-ok new-file`, `/governance-ok doc-coverage`",
+              "- `/governance-reset all` or `/governance-reset` with the same token",
+              "",
+              "Waiver JSON is stored in a hidden PR comment (`messaging-governance-waiver-data:v1`), same pattern as Impact Check.",
+              "",
+            ].join("\n");
+            const body = `${marker}\n` + sections.join("\n") + footer;
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body,
+              automationFooter: {
+                workflowFile: "fork-pr-comments.yml",
+                eventName: context.eventName,
+              },
+            });
+
+      - name: Post impact comment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- messaging-impact-check -->";
+            const body = `${marker}\n` + fs.readFileSync("impact-report.md", "utf8");
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const upsertMarkerComment = require("./scripts/github/upsert_marker_comment.js");
+            await upsertMarkerComment({
+              github,
+              core,
+              owner,
+              repo,
+              issue_number,
+              marker,
+              body,
+              automationFooter: {
+                workflowFile: "fork-pr-comments.yml",
+                eventName: context.eventName,
+              },
+            });
