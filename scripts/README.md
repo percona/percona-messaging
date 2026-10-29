@@ -101,7 +101,7 @@ Use this protocol to produce low-lift PASS or FAIL evidence for `new_file_gate.p
 
 ### Preconditions
 
-- Run from a branch in this repository (not a fork) so PR comment upserts can write.
+- A branch in this repository posts the check comment itself. A fork pull request gets that comment from [fork-pr-comments.yml](../.github/workflows/fork-pr-comments.yml) after that workflow is on the default branch.
 - Keep the PR as draft during validation.
 - Use one throwaway markdown path for validation, then remove it before merge if needed.
 
@@ -133,7 +133,7 @@ Use this protocol for one realistic draft PR that triggers multiple workflows to
 
 ### Preconditions
 
-- Run from a branch in this repository (not a fork) so PR comment upserts can write as expected.
+- A branch in this repository posts the check comment itself. A fork pull request gets that comment from [fork-pr-comments.yml](../.github/workflows/fork-pr-comments.yml) after that workflow is on the default branch.
 - Use existing files only, do not create new markdown files in this smoke PR.
 - Keep the PR as draft while testing.
 
