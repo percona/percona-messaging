@@ -12,18 +12,15 @@ on:
       - "**/*.md"
       - ".github/PULL_REQUEST_TEMPLATE.md"
       - "automation/messaging-impact-map.yml"
-      - "automation/claim-types.yml"
       - "scripts/new_file_gate.py"
       - "scripts/check_doc_coverage.py"
       - "scripts/governance_waiver.py"
       - "scripts/impact_check.py"
-      - "scripts/suggest_updates.py"
       - ".github/requirements/ci.txt"
       - ".github/workflows/content-governance-checks.yml"
       - ".github/workflows/governance-slash-commands.yml"
       - ".github/workflows/impact-check.yml"
       - ".github/workflows/impact-slash-commands.yml"
-      - ".github/workflows/smart-suggestions.yml"
       - ".github/workflows/fork-pr-comments.yml"
 
 permissions:
