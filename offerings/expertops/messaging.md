@@ -7,7 +7,7 @@ ExpertOps is Percona's proactive operations offering. Percona engineers provide 
 Percona engineers perform operational work directly in your environment: monitoring, tuning, patching, automation, backup validation, and routine maintenance, using PMM for observability and Operators plus engine-appropriate tooling for execution. Unlike [Expert Support](../expert-support/messaging.md), ExpertOps is proactive and hands-on: Percona executes operational work rather than advising your team to execute it.
 
 - **Who ExpertOps is for:** Teams with limited staff or time to manage databases, companies that need 24×7 operational coverage, organizations that want to prevent incidents instead of reacting to them, environments where uptime is business-critical.
-- **Problems ExpertOps solves:** Operational noise and alert fatigue, manual or inconsistent scaling, maintenance and tuning, downtime from preventable issues, operational backlog, staffing limitations, and "day two" risk after migrations or upgrades (inconsistent backups, policy drift, weak monitoring).
+- **Problems ExpertOps solves:** Operational noise and alert fatigue, manual or inconsistent scaling, maintenance and tuning, downtime from preventable issues, operational backlog, staffing limitations, observability loss when the monitoring platform goes down during database incidents, and "day two" risk after migrations or upgrades (inconsistent backups, policy drift, weak monitoring).
 - **Outcomes ExpertOps delivers:** Proactive issue prevention, stable and predictable performance, reduced operational burden on engineering teams, faster incident response from engineers already familiar with the environment, and lower infrastructure waste through rightsizing and standardized operations.
 
 ## Operating model
@@ -22,7 +22,7 @@ ExpertOps is flexible: Percona can own monitoring, tuning, patching, backup vali
 | --- | --- | --- |
 | Underlying infrastructure | Rightsizing guidance, capacity reviews, failover and DR automation support | Cloud account ownership, cluster provisioning policy, network design |
 | Database platform | Operator or instance configuration, patching, backup jobs, HA behavior | Major architecture decisions, vendor selection |
-| Monitoring and alerting | PMM deployment, alert tuning, 24×7 alert response | Business priority definitions for alert thresholds |
+| Monitoring and alerting | PMM deployment and HA operations, alert tuning, 24×7 alert response | Business priority definitions for alert thresholds |
 | Tuning and performance | Query review, index and configuration tuning, proactive capacity checks | Application query design, schema ownership |
 | Access and security | Secure remote access, patch and security advisory response | Identity policy, application credentials |
 | Application | Incident coordination when database symptoms affect apps | Application code, feature releases |
@@ -35,6 +35,7 @@ Exact boundaries are agreed at onboarding and recorded in the subscription.
 - **Post-migration day-two operations:** Consistent backup behavior, policy alignment, and monitoring after cutover (for example, migration to Percona Operator for MongoDB on Kubernetes).
 - **Staffing gaps:** 24/7 operational coverage without full-time hires.
 - **Operator fleet operations:** Hands-on monitoring, backup validation, tuning, patching, and upgrade execution for MySQL, PostgreSQL, and MongoDB clusters on Percona Operators when customers want Percona to run Day-2 work instead of advising on it.
+- **Resilient observability:** PMM HA Cluster deployment, health validation, and 24×7 monitoring operations for teams that need dashboards and alerts to stay up through PMM Server maintenance and failures.
 - **Operator migration and cutover (scoped):** Percona-led moves to operator-managed clusters from VMs, managed services, or legacy StatefulSets, plus post-cutover stabilization, when migration and operational hours are defined in the agreement.
 - **DBaaS exit or hybrid operations:** Operational partnership after moving from managed database services to customer-controlled infrastructure while retaining expert coverage.
 
