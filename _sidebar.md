@@ -35,6 +35,9 @@
   - [PMM](/products/pmm/messaging.md)
   - [Operators](/products/operators/messaging.md)
 
+- Industries
+  - [Percona for Finance](/industries/finance/messaging.md)
+
 - Naming and voice
   - [Canonical naming](/reference/canonical-naming.md)
   - [Brand voice](/reference/brand-voice.md)

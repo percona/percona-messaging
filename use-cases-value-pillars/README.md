@@ -7,7 +7,7 @@ This directory combines two closely related messaging layers:
 
 Percona's open source identity, engineering expertise, and multi-environment support converge in a model designed for practical outcomes. The company's value proposition is reflected in four operational pillars: optimized total cost of ownership, performance and reliability at scale, comprehensive security and compliance, and adaptability for emerging workloads.
 
-**What belongs in a use case bullet:** a named situation (requirement, workload pattern, or cost driver) plus how Percona addresses it in one or two sentences. **What does not:** repeating Solution proof, listing every offering SKU scope (see `offerings/`), or industry-vertical campaigns (see vertical messaging when that layer exists).
+**What belongs in a use case bullet:** a named situation (requirement, workload pattern, or cost driver) plus how Percona addresses it in one or two sentences. **What does not:** repeating Solution proof, listing every offering SKU scope (see `offerings/`), or industry-vertical campaigns (see [Percona for Finance](../industries/finance/messaging.md)).
 
 Do not add a new top-level pillar file for a use case. Add a bullet under the parent pillar (or open an issue if the narrative truly spans multiple pillars).
 

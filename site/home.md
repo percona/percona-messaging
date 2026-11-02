@@ -15,6 +15,7 @@ Product managers, Solutions Marketing, field teams, partners, and anyone who nee
 - **Services:** Expert Support, ExpertOps, and Consulting under **Offerings**
 - **Partners:** [Partners](/partners/messaging.md) under **Partners** in the sidebar
 - **Products:** MySQL, MariaDB, PostgreSQL, MongoDB, and others under **Products**
+- **Industries:** [Percona for Finance](/industries/finance/messaging.md) under **Industries**
 - **Naming rules:** [Canonical naming](/reference/canonical-naming.md) and [Brand voice](/reference/brand-voice.md)
 
 Use **Search** (top of sidebar) to find a topic across the site.
