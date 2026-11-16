@@ -28,6 +28,12 @@ exclude = [
   # UNCTAD data-protection overview: 403/524 to automated clients and often
   # times out under load; Briana verified the live page loads (slowly) on 2026-07-17.
   "^https://unctad\\.org/page/data-protection-and-privacy-legislation-worldwide$",
+  # UK Parliament Treasury Committee news: 403 to automated clients in CI.
+  "^https://committees\\.parliament\\.uk/committee/158/treasury-committee/news/205611/more-than-one-months-worth-of-it-failures-at-major-banks-and-building-societies-in-the-last-two-years/$",
+  # Splunk gated downtime form: 403 to automated clients in CI.
+  "^https://www\\.splunk\\.com/en_us/form/the-hidden-costs-of-downtime-in-financial-services\\.html$",
+  # Splunk gated downtime PDF: 403 to automated clients in CI.
+  "^https://www\\.splunk\\.com/en_us/pdfs/gated/ebooks/the-hidden-costs-of-downtime-2026\\.pdf$",
 ]
 
 # Expand as needed when a host is consistently flaky in CI
