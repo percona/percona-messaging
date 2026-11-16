@@ -35,7 +35,7 @@ Percona combines the transparency and choice of open source with database securi
 - **Address the full cost of database operations:** License savings are only part of the business case. Infrastructure, migration, maintenance, specialist staffing, and incident response also affect total cost. Percona combines monitoring, performance tuning, automation, and expert services to help teams identify inefficient resource use and assess the economics of their database estate.
 - **Preserve future choices:** A database decision should leave room for changes in hosting, support providers, and business requirements. Percona helps teams evaluate migration and deployment options with attention to compatibility, operational dependencies, and exit requirements.
 
-**Customer proof:** [BBVA](https://www.percona.com/customer-story/bbva-migrates-document-oriented-database-nosql-workloads-to-percona-avoiding-license-costs-and-lock-in/) migrated 35 TB across more than 400 servers from MongoDB Enterprise to Percona Server for MongoDB (source available). The bank cut licensing and support costs, and recovers 20% faster with Percona Backup for MongoDB (PBM) than with its previous approach.
+**Customer proof:** [BBVA](https://www.percona.com/customer-story/bbva-migrates-document-oriented-database-nosql-workloads-to-percona-avoiding-license-costs-and-lock-in/) migrated 35 TB across more than 400 servers from MongoDB to Percona Server for MongoDB (source available). The bank cut licensing and support costs, and recovers 20% faster with Percona Backup for MongoDB (PBM) than with its previous approach.
 
 ### Modernization and Emerging Workloads
 
