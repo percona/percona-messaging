@@ -41,7 +41,7 @@ Percona combines the transparency and choice of open source with database securi
 
 - **Modernize with a defined migration path:** Moving critical databases requires clarity on application compatibility, data migration, validation, and cutover. Percona's consulting and migration services help teams assess those requirements and plan transitions around business constraints and acceptable downtime.
 - **Reduce operational complexity across environments:** Financial institutions often operate several database technologies across established infrastructure and newer cloud platforms. Percona Monitoring and Management provides database and query performance visibility, while Percona Operators automate supported database operations in Kubernetes. Expert services help teams apply these tools within their operating model.
-- **Prepare the database layer for AI applications:** New AI applications introduce additional requirements for data access, performance, and security. Percona Distribution for PostgreSQL includes pgvector for vector search and embeddings, helping teams evaluate workloads that can use their existing PostgreSQL platform. Database architecture, access controls, and capacity still need to be assessed for each application.
+- **Prepare the database layer for AI applications:** New AI applications introduce additional requirements for data access, performance, and security. Percona Distribution for PostgreSQL includes pgvector for vector search and embeddings, helping teams evaluate workloads that can use their existing PostgreSQL platform.
 
 ## Conversation Starters
 
