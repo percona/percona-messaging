@@ -31,7 +31,7 @@ Percona combines the transparency and choice of open source with database securi
 
 ### Cost Efficiency and Vendor Independence
 
-- **Reduce exposure to proprietary database costs:** Licensing renewals and commercial restrictions can limit how financial institutions scale and modernize. Percona offers open source database alternatives and migration expertise to help teams evaluate options, reduce licensing expenditure, and retain more control over their database strategy.
+- **Reduce exposure to proprietary database costs:** Licensing renewals and commercial restrictions on Oracle, Microsoft SQL Server, and other proprietary databases can limit how financial institutions scale and modernize. Percona offers open source database alternatives and migration and modernization expertise through PACE (Percona Assisted Cutover Engine) and the Percona and HexaCluster partnership, helping teams evaluate options, reduce licensing expenditure, and retain more control over their database strategy.
 - **Address the full cost of database operations:** License savings are only part of the business case. Infrastructure, migration, maintenance, specialist staffing, and incident response also affect total cost. Percona combines monitoring, performance tuning, automation, and expert services to help teams identify inefficient resource use and assess the economics of their database estate.
 - **Preserve future choices:** A database decision should leave room for changes in hosting, support providers, and business requirements. Percona helps teams evaluate migration and deployment options with attention to compatibility, operational dependencies, and exit requirements.
 
