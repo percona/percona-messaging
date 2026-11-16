@@ -46,6 +46,7 @@ Approved messaging is also available as a browsable site (Docsify on GitHub Page
 - `offerings/solution-bundles/`: fixed-scope sold packages that combine services and outcomes
 - [`partners/messaging.md`](partners/messaging.md): partner hub positioning (not a commercial offering SKU). Internal named inventory: [`partners/roster.md`](partners/roster.md)
 - `products/`: product and database-specific messaging (MySQL, MariaDB, PostgreSQL, MongoDB, key/value Valkey and Redis, PMM, Operators)
+- `industries/`: industry vertical messaging. Start with [Percona for Finance](industries/finance/messaging.md)
 - `reference/`: canonical naming, banned terms, brand voice, governance references, and decomposition guidance
 - `docs/`: portable agent baseline shared across editors and tools (see [docs/agent-guidelines.md](docs/agent-guidelines.md))
 - `.cursor/rules/`: Cursor-facing snippets aligned with that baseline
