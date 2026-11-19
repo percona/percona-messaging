@@ -78,7 +78,19 @@
     "https://docs.percona.com/new/2026/10/05/percona-xtradb-cluster-8411-11-has-been-released/",
     "https://docs.percona.com/new/2026/10/07/percona-xtradb-cluster-5744-316513-has-been-released/",
     "https://docs.percona.com/new/2026/10/08/percona-server-for-mysql-8046-39-has-been-released/",
+    "https://docs.percona.com/new/2026/10/14/percona-backup-for-mongodb-2170-has-been-released/",
     "https://docs.percona.com/new/2026/10/22/percona-monitoring-and-management-3100-has-been-released/",
-    "https://docs.percona.com/new/2026/10/22/percona-toolkit-v372-has-been-released/"
+    "https://docs.percona.com/new/2026/10/22/percona-toolkit-v372-has-been-released/",
+    "https://docs.percona.com/new/2026/10/27/percona-server-for-mongodb-7045-24-8034-15-and-8313-4-have-been-released/",
+    "https://docs.percona.com/new/2026/10/29/percona-operator-for-mysql-130-has-been-released/",
+    "https://docs.percona.com/new/2026/10/29/percona-search-for-mongodb-1705-3-is-generally-available/",
+    "https://docs.percona.com/new/2026/11/02/percona-distribution-for-mysql-972-using-percona-xtradb-cluster-has-been-released/",
+    "https://docs.percona.com/new/2026/11/02/percona-xtradb-cluster-972-2-has-been-released/",
+    "https://docs.percona.com/new/2026/11/03/percona-xtradb-cluster-8046-39-has-been-released/",
+    "https://docs.percona.com/new/2026/11/09/percona-clustersync-for-mongodb-110-has-been-released/",
+    "https://docs.percona.com/new/2026/11/12/percona-server-for-mysql-percona-xtradb-cluster-and-percona-distribution-for-mysql-8411-12-972-3-8046-and-5744-have-been-released/",
+    "https://docs.percona.com/new/2026/11/13/percona-server-for-mongodb-7048-25-and-8038-16-have-been-released/",
+    "https://docs.percona.com/new/2026/11/18/percona-server-for-mongodb-8317-5-has-been-released/",
+    "https://docs.percona.com/new/2026/11/19/percona-server-for-mongodb-6030-24-and-8317-5-have-been-released/"
   ]
 }
