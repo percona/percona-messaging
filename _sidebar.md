@@ -32,6 +32,7 @@
   - [Key/value workloads](/products/key-value/messaging.md)
     - [Valkey](/products/key-value/valkey/messaging.md)
     - [Redis](/products/key-value/redis/messaging.md)
+  - [Percona Toolkit](/products/toolkit/messaging.md)
   - [PMM](/products/pmm/messaging.md)
   - [Operators](/products/operators/messaging.md)
 
